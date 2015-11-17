@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8FD514D01BFA7987008E7CDB"
-               BuildableName = "Project Blacksky.app"
-               BlueprintName = "Project Blacksky"
-               ReferencedContainer = "container:Project Blacksky.xcodeproj">
+               BlueprintIdentifier = "8FD5150C1BFA7C2F008E7CDB"
+               BuildableName = "Project BlackSky.app"
+               BlueprintName = "Project BlackSky"
+               ReferencedContainer = "container:Project BlackSky.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +32,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8FD514E61BFA7988008E7CDB"
-               BuildableName = "Project BlackskyTests.xctest"
-               BlueprintName = "Project BlackskyTests"
-               ReferencedContainer = "container:Project Blacksky.xcodeproj">
+               BlueprintIdentifier = "8FD515221BFA7C30008E7CDB"
+               BuildableName = "Project BlackSkyTests.xctest"
+               BlueprintName = "Project BlackSkyTests"
+               ReferencedContainer = "container:Project BlackSky.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8FD514F11BFA7988008E7CDB"
-               BuildableName = "Project BlackskyUITests.xctest"
-               BlueprintName = "Project BlackskyUITests"
-               ReferencedContainer = "container:Project Blacksky.xcodeproj">
+               BlueprintIdentifier = "8FD5152D1BFA7C30008E7CDB"
+               BuildableName = "Project BlackSkyUITests.xctest"
+               BlueprintName = "Project BlackSkyUITests"
+               ReferencedContainer = "container:Project BlackSky.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8FD514D01BFA7987008E7CDB"
-            BuildableName = "Project Blacksky.app"
-            BlueprintName = "Project Blacksky"
-            ReferencedContainer = "container:Project Blacksky.xcodeproj">
+            BlueprintIdentifier = "8FD5150C1BFA7C2F008E7CDB"
+            BuildableName = "Project BlackSky.app"
+            BlueprintName = "Project BlackSky"
+            ReferencedContainer = "container:Project BlackSky.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,10 +75,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8FD514D01BFA7987008E7CDB"
-            BuildableName = "Project Blacksky.app"
-            BlueprintName = "Project Blacksky"
-            ReferencedContainer = "container:Project Blacksky.xcodeproj">
+            BlueprintIdentifier = "8FD5150C1BFA7C2F008E7CDB"
+            BuildableName = "Project BlackSky.app"
+            BlueprintName = "Project BlackSky"
+            ReferencedContainer = "container:Project BlackSky.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,10 +94,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8FD514D01BFA7987008E7CDB"
-            BuildableName = "Project Blacksky.app"
-            BlueprintName = "Project Blacksky"
-            ReferencedContainer = "container:Project Blacksky.xcodeproj">
+            BlueprintIdentifier = "8FD5150C1BFA7C2F008E7CDB"
+            BuildableName = "Project BlackSky.app"
+            BlueprintName = "Project BlackSky"
+            ReferencedContainer = "container:Project BlackSky.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

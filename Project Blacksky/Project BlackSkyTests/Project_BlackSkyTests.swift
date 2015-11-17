@@ -1,15 +1,15 @@
 //
-//  Project_BlackskyTests.swift
-//  Project BlackskyTests
+//  Project_BlackSkyTests.swift
+//  Project BlackSkyTests
 //
 //  Created by Deven  on 11/16/15.
 //  Copyright © 2015 Hurt Enterprises. All rights reserved.
 //
 
 import XCTest
-@testable import Project_Blacksky
+@testable import Project_BlackSky
 
-class Project_BlackskyTests: XCTestCase {
+class Project_BlackSkyTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

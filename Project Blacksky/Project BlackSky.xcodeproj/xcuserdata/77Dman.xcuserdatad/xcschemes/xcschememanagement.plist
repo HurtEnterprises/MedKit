@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Project Blacksky.xcscheme</key>
+		<key>Project BlackSky.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,17 +12,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8FD514D01BFA7987008E7CDB</key>
+		<key>8FD5150C1BFA7C2F008E7CDB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8FD514E61BFA7988008E7CDB</key>
+		<key>8FD515221BFA7C30008E7CDB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8FD514F11BFA7988008E7CDB</key>
+		<key>8FD5152D1BFA7C30008E7CDB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
