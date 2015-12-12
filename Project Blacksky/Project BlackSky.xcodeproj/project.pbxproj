@@ -76,6 +76,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F9FA2171C1BAD5A003319F0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		8FD515041BFA7C2F008E7CDB = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +110,7 @@
 				8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */,
 				8FD515141BFA7C2F008E7CDB /* DetailViewController.swift */,
 				8FD515161BFA7C2F008E7CDB /* Main.storyboard */,
+				8F9FA2171C1BAD5A003319F0 /* Login */,
 				8FD515191BFA7C2F008E7CDB /* Assets.xcassets */,
 				8FD5151B1BFA7C2F008E7CDB /* LaunchScreen.storyboard */,
 				8FD5151E1BFA7C2F008E7CDB /* Info.plist */,
@@ -488,6 +496,7 @@
 				8FD515391BFA7C30008E7CDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8FD5153A1BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSkyTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +505,7 @@
 				8FD5153C1BFA7C30008E7CDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8FD5153D1BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSkyUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +514,7 @@
 				8FD5153F1BFA7C30008E7CDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
