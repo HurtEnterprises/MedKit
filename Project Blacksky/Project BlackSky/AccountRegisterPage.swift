@@ -1,25 +1,26 @@
 //
-//  DetailViewController.swift
+//  AccountRegister.swift
 //  Project BlackSky
 //
-//  Created by Deven  on 11/16/15.
+//  Created by Deven  on 12/27/15.
 //  Copyright © 2015 Hurt Enterprises. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class DetailViewController: UIViewController {
-
+class AccountRegisterPage: UIViewController {
+    
     @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
+    
+    
     var detailItem: AnyObject? {
         didSet {
             // Update the view.
             self.configureView()
         }
     }
-
+    
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
@@ -28,7 +29,7 @@ class DetailViewController: UIViewController {
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -40,12 +41,12 @@ class DetailViewController: UIViewController {
         let getStarted = UIButton()
         getStarted.setTitle("Get Started", forState: .Normal)
         getStarted.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        getStarted.frame = CGRectMake((screenSize.width-120)/2, screenSize.height/2 + 150, 120, 30) // X, Y, width, height
+        getStarted.frame = CGRectMake((screenSize.width-120)/2, screenSize.width/2, 120, 30) // X, Y, width, height
         getStarted.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
         self.view.addSubview(getStarted)
         self.configureView()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,9 +54,9 @@ class DetailViewController: UIViewController {
     
     func pressed(sender: UIButton!) {
         
-            let loginPage:LoginPage = LoginPage()
-            
-            self.presentViewController(loginPage, animated: true, completion: nil)
+        let loginPage:LoginPage = LoginPage()
+        
+        self.presentViewController(loginPage, animated: true, completion: nil)
         
     }
 }
