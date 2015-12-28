@@ -18,11 +18,13 @@ class AccountRegisterPage: UIViewController {
         didSet {
             // Update the view.
             self.configureView()
+
         }
     }
     
     func configureView() {
         // Update the user interface for the detail item.
+        self.view.backgroundColor = UIColor.lightGrayColor()
         if let detail = self.detailItem {
             if let label = self.detailDescriptionLabel {
                 label.text = detail.description
@@ -39,9 +41,9 @@ class AccountRegisterPage: UIViewController {
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         
         let getStarted = UIButton()
-        getStarted.setTitle("Get Started", forState: .Normal)
+        getStarted.setTitle("Account Register", forState: .Normal)
         getStarted.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        getStarted.frame = CGRectMake((screenSize.width-120)/2, screenSize.width/2, 120, 30) // X, Y, width, height
+        getStarted.frame = CGRectMake((screenSize.width-120)/2, screenSize.height/2 + 150, 120, 30) // X, Y, width, height
         getStarted.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
         self.view.addSubview(getStarted)
         self.configureView()

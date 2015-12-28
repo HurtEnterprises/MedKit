@@ -33,8 +33,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
-        
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         
         let getStarted = UIButton()
@@ -53,9 +51,8 @@ class DetailViewController: UIViewController {
     
     func pressed(sender: UIButton!) {
         
-            let loginPage:LoginPage = LoginPage()
-            
-            self.presentViewController(loginPage, animated: true, completion: nil)
+        let loginPage:LoginPage = LoginPage()
+        self.presentViewController(loginPage, animated: true, completion: nil)
         
     }
 }
