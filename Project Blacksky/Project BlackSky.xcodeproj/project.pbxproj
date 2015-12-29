@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05CEF4FB6B4D1446A38E7C83 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC0893880AADD86CDD48041 /* libPods.a */; };
+		6C7006EE1C32862900E681DF /* Obj-C-Bridging-Header.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6C7006EC1C32862900E681DF /* Obj-C-Bridging-Header.cpp */; };
+		6C7006F11C3287E400E681DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7006F01C3287E400E681DF /* Constants.swift */; };
 		8F20F9451C2F794B00C5C5D7 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */; };
 		8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */; };
 		8FD515131BFA7C2F008E7CDB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */; };
@@ -38,6 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		310339BA6D4E8C1A7E588097 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6C7006EB1C32862900E681DF /* Project BlackSky-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project BlackSky-Bridging-Header.h"; sourceTree = "<group>"; };
+		6C7006EC1C32862900E681DF /* Obj-C-Bridging-Header.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Obj-C-Bridging-Header.cpp"; sourceTree = "<group>"; };
+		6C7006ED1C32862900E681DF /* Obj-C-Bridging-Header.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "Obj-C-Bridging-Header.hpp"; sourceTree = "<group>"; };
+		6C7006F01C3287E400E681DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		8FD5150D1BFA7C2F008E7CDB /* Project BlackSky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project BlackSky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +63,8 @@
 		8FD515341BFA7C30008E7CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRegisterPage.swift; sourceTree = "<group>"; };
 		8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
+		B4CE596C600BC070ACA22C32 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FCC0893880AADD86CDD48041 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CEF4FB6B4D1446A38E7C83 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +93,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		68489BE3A9AFC246620B657D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				310339BA6D4E8C1A7E588097 /* Pods.debug.xcconfig */,
+				B4CE596C600BC070ACA22C32 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6C7006EA1C3285E600E681DF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8FD515191BFA7C2F008E7CDB /* Assets.xcassets */,
+				8FD5151B1BFA7C2F008E7CDB /* LaunchScreen.storyboard */,
+				8FD5151E1BFA7C2F008E7CDB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6C7006EF1C3286EF00E681DF /* Bridging Header */ = {
+			isa = PBXGroup;
+			children = (
+				6C7006EC1C32862900E681DF /* Obj-C-Bridging-Header.cpp */,
+				6C7006ED1C32862900E681DF /* Obj-C-Bridging-Header.hpp */,
+				6C7006EB1C32862900E681DF /* Project BlackSky-Bridging-Header.h */,
+			);
+			name = "Bridging Header";
+			sourceTree = "<group>";
+		};
 		8F9FA2171C1BAD5A003319F0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +136,8 @@
 				8FD515261BFA7C30008E7CDB /* Project BlackSkyTests */,
 				8FD515311BFA7C30008E7CDB /* Project BlackSkyUITests */,
 				8FD5150E1BFA7C2F008E7CDB /* Products */,
+				68489BE3A9AFC246620B657D /* Pods */,
+				B6682445B03FDD3EC965B70C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +154,8 @@
 		8FD5150F1BFA7C2F008E7CDB /* Project BlackSky */ = {
 			isa = PBXGroup;
 			children = (
+				6C7006F01C3287E400E681DF /* Constants.swift */,
+				6C7006EF1C3286EF00E681DF /* Bridging Header */,
 				8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */,
 				8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */,
 				8FD515141BFA7C2F008E7CDB /* DetailViewController.swift */,
@@ -120,9 +164,7 @@
 				8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */,
 				8FD515161BFA7C2F008E7CDB /* Main.storyboard */,
 				8F9FA2171C1BAD5A003319F0 /* Login */,
-				8FD515191BFA7C2F008E7CDB /* Assets.xcassets */,
-				8FD5151B1BFA7C2F008E7CDB /* LaunchScreen.storyboard */,
-				8FD5151E1BFA7C2F008E7CDB /* Info.plist */,
+				6C7006EA1C3285E600E681DF /* Supporting Files */,
 			);
 			path = "Project BlackSky";
 			sourceTree = "<group>";
@@ -145,6 +187,14 @@
 			path = "Project BlackSkyUITests";
 			sourceTree = "<group>";
 		};
+		B6682445B03FDD3EC965B70C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCC0893880AADD86CDD48041 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,9 +202,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8FD515371BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSky" */;
 			buildPhases = (
+				5BDF3EBEB69AC25B40842F81 /* Check Pods Manifest.lock */,
 				8FD515091BFA7C2F008E7CDB /* Sources */,
 				8FD5150A1BFA7C2F008E7CDB /* Frameworks */,
 				8FD5150B1BFA7C2F008E7CDB /* Resources */,
+				6402EAED41616014C3F5DD7E /* Embed Pods Frameworks */,
+				94C4B4F30F3D56727F84D739 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -207,7 +260,7 @@
 		8FD515051BFA7C2F008E7CDB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Hurt Enterprises";
 				TargetAttributes = {
@@ -271,6 +324,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5BDF3EBEB69AC25B40842F81 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6402EAED41616014C3F5DD7E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94C4B4F30F3D56727F84D739 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8FD515091BFA7C2F008E7CDB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -278,10 +379,12 @@
 			files = (
 				8F20F9451C2F794B00C5C5D7 /* LoginPage.swift in Sources */,
 				8FD515151BFA7C2F008E7CDB /* DetailViewController.swift in Sources */,
+				6C7006EE1C32862900E681DF /* Obj-C-Bridging-Header.cpp in Sources */,
 				8FFE85C01C30927100BC38DB /* AccountRegisterPage.swift in Sources */,
 				8FD515131BFA7C2F008E7CDB /* MasterViewController.swift in Sources */,
 				8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */,
 				8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */,
+				6C7006F11C3287E400E681DF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,23 +524,30 @@
 		};
 		8FD515381BFA7C30008E7CDB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 310339BA6D4E8C1A7E588097 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Project BlackSky/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Hurt-Enterprises.Project-BlackSky";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Project BlackSky/Project BlackSky-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		8FD515391BFA7C30008E7CDB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4CE596C600BC070ACA22C32 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Project BlackSky/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Hurt-Enterprises.Project-BlackSky";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Project BlackSky/Project BlackSky-Bridging-Header.h";
 			};
 			name = Release;
 		};

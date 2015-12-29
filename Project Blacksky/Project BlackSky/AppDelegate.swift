@@ -20,6 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
+        
+        //let cognitoIdentityPoolId = "us-east-1:b9a270f0-ab59-4cbf-ac54-e1dd45a51d96"
+        let credentialsProvider = AWSCognitoCredentialsProvider(
+            regionType: CognitoRegionType, identityPoolId: CognitoIdentityPoolId)
+        
+        let defaultServiceConfiguration = AWSServiceConfiguration(
+            region: DefaultServiceRegionType, credentialsProvider: credentialsProvider)
+        
+        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = defaultServiceConfiguration
         return true
     }
 
