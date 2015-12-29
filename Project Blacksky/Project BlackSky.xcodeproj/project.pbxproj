@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F20F9451C2F794B00C5C5D7 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */; };
 		8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */; };
 		8FD515131BFA7C2F008E7CDB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */; };
 		8FD515151BFA7C2F008E7CDB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515141BFA7C2F008E7CDB /* DetailViewController.swift */; };
@@ -15,6 +16,8 @@
 		8FD5151D1BFA7C2F008E7CDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5151B1BFA7C2F008E7CDB /* LaunchScreen.storyboard */; };
 		8FD515281BFA7C30008E7CDB /* Project_BlackSkyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515271BFA7C30008E7CDB /* Project_BlackSkyTests.swift */; };
 		8FD515331BFA7C30008E7CDB /* Project_BlackSkyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515321BFA7C30008E7CDB /* Project_BlackSkyUITests.swift */; };
+		8FFE85C01C30927100BC38DB /* AccountRegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */; };
+		8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		8FD5150D1BFA7C2F008E7CDB /* Project BlackSky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project BlackSky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +53,8 @@
 		8FD5152E1BFA7C30008E7CDB /* Project BlackSkyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project BlackSkyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD515321BFA7C30008E7CDB /* Project_BlackSkyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_BlackSkyUITests.swift; sourceTree = "<group>"; };
 		8FD515341BFA7C30008E7CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRegisterPage.swift; sourceTree = "<group>"; };
+		8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F9FA2171C1BAD5A003319F0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		8FD515041BFA7C2F008E7CDB = {
 			isa = PBXGroup;
 			children = (
@@ -102,7 +115,11 @@
 				8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */,
 				8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */,
 				8FD515141BFA7C2F008E7CDB /* DetailViewController.swift */,
+				8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */,
+				8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */,
+				8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */,
 				8FD515161BFA7C2F008E7CDB /* Main.storyboard */,
+				8F9FA2171C1BAD5A003319F0 /* Login */,
 				8FD515191BFA7C2F008E7CDB /* Assets.xcassets */,
 				8FD5151B1BFA7C2F008E7CDB /* LaunchScreen.storyboard */,
 				8FD5151E1BFA7C2F008E7CDB /* Info.plist */,
@@ -259,9 +276,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F20F9451C2F794B00C5C5D7 /* LoginPage.swift in Sources */,
 				8FD515151BFA7C2F008E7CDB /* DetailViewController.swift in Sources */,
+				8FFE85C01C30927100BC38DB /* AccountRegisterPage.swift in Sources */,
 				8FD515131BFA7C2F008E7CDB /* MasterViewController.swift in Sources */,
 				8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */,
+				8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +508,7 @@
 				8FD515391BFA7C30008E7CDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8FD5153A1BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSkyTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +517,7 @@
 				8FD5153C1BFA7C30008E7CDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8FD5153D1BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSkyUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +526,7 @@
 				8FD5153F1BFA7C30008E7CDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
