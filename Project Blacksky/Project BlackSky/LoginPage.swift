@@ -13,11 +13,6 @@ class LoginPage: UINavigationController {
     
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
-    class subclassedUIButton: UIButton {
-        var username: String?
-        var password: String?
-    }
-    
     
     var detailItem: AnyObject? {
         didSet {
@@ -32,6 +27,8 @@ class LoginPage: UINavigationController {
         self.view.backgroundColor = UIColor.cyanColor()
     }
     
+    let usernameField: UITextField = UITextField()
+    let passwordField: UITextField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,32 +37,11 @@ class LoginPage: UINavigationController {
         
         // Adds Navigation Bar
         navigationItem.title = "Login"
-        
-        //TODO: Redo the buttons so they are placed and the length is chosen based upon the legnth of the word
-        // Makes login, register, and forgot password button.
-        
-        let Login = subclassedUIButton()
-        makeButton(Login, name: "Login", location: CGRectMake((screenSize.width-120)/2, 5*screenSize.width/6, 120, 30))
-        Login.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
-        
-        let register = UIButton()
-        makeButton(register, name: "Register", location: CGRectMake((screenSize.width-120)/2-100, 8*screenSize.width/9, 120, 30))
-        register.addTarget(self, action: "registerSwitch:", forControlEvents: .TouchUpInside)
-        
-        let forgotPassword = subclassedUIButton()
-        makeButton(forgotPassword, name: "Forgot Password", location: CGRectMake((screenSize.width-150)/2+100, 8*screenSize.width/9, 150, 30))
-        forgotPassword.addTarget(self, action: "forgotPasswordSwitch:", forControlEvents: .TouchUpInside)
-        
-        
-        
+    
         // Makes Text Fields
-        let usernameField: UITextField = UITextField()
         makeTextField(usernameField, frame: CGRectMake((screenSize.width-300)/2 + 300, 175, 300, 35))
-        Login.username = usernameField.text
         
-        let passwordField: UITextField = UITextField()
         makeTextField(passwordField, frame: CGRectMake((screenSize.width-300)/2 + 300, 350, 300, 35))
-        Login.password = passwordField.text
        
         // Makes Text Labels
         let usernameLabel: UILabel = UILabel()
@@ -74,8 +50,23 @@ class LoginPage: UINavigationController {
         let passwordLabel: UILabel = UILabel()
         makeLabel(passwordLabel, name: "Password", frame: CGRectMake((screenSize.width-300)/2 - 300, 350, 300, 55))
         
-        self.configureView()
+        //TODO: Redo the buttons so they are placed and the length is chosen based upon the legnth of the word
+        // Makes login, register, and forgot password button.
         
+        let Login = UIButton()
+        makeButton(Login, name: "Login", location: CGRectMake((screenSize.width-120)/2, 5*screenSize.width/6, 120, 30))
+        Login.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
+        
+        let register = UIButton()
+        makeButton(register, name: "Register", location: CGRectMake((screenSize.width-120)/2-100, 8*screenSize.width/9, 120, 30))
+        register.addTarget(self, action: "registerSwitch:", forControlEvents: .TouchUpInside)
+        
+        let forgotPassword = UIButton()
+        makeButton(forgotPassword, name: "Forgot Password", location: CGRectMake((screenSize.width-150)/2+100, 8*screenSize.width/9, 150, 30))
+        forgotPassword.addTarget(self, action: "forgotPasswordSwitch:", forControlEvents: .TouchUpInside)
+        
+        
+        self.configureView()
         
     }
     
@@ -84,39 +75,42 @@ class LoginPage: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
-    // Functions
+    // Private Functions
     
-    func loginChecks(sender: subclassedUIButton!) {
-        // Checks login logic
-         var inputtedPassword = sender.password
-         var inputtedUsername = sender.username
-        print(inputtedUsername)
-        print(inputtedPassword)
-        
-        if (inputtedUsername == ""){
-            makeAlert("No Username", message: "Please input a username.", printStatement: "No username")
-            return
-        } else if(inputtedPassword == ""){
-            makeAlert("No Password", message: "Please input a password.", printStatement: "No password")
-            return
-        } else {
-            //TODO: @Mehrab connect to database and do checks to see if matches valid login
+    func loginChecks(sender: UIButton!){
+            // Checks login logic
+            var inputtedPassword = passwordField.text
+            var inputtedUsername = usernameField.text
+            print(inputtedUsername)
+            print(inputtedPassword)
+            
+            if (inputtedUsername == ""){
+                makeAlert("No Username", message: "Please input a username.", printStatement: "No username")
+                return
+            } else if(inputtedPassword == ""){
+                makeAlert("No Password", message: "Please input a password.", printStatement: "No password")
+                return
+            } else {
+                //TODO: @Mehrab connect to database and do checks to see if matches valid login
+            }
+            
         }
         
-        
-        
-    }
+
     
+    // Changes to Register Page
     func registerSwitch(sender: UIButton!) {
         let AccountRegister:AccountRegisterPage = AccountRegisterPage()
         self.presentViewController(AccountRegister, animated: true, completion: nil)
     }
     
+    // Changes to Password Page
     func forgotPasswordSwitch(sender: UIButton!) {
         let ForgotPassword:ForgotPasswordPage = ForgotPasswordPage()
         self.presentViewController(ForgotPassword, animated: true, completion: nil)
     }
     
+    // Creates Button
     func makeButton(button: UIButton, name: String, location: CGRect){
         button.setTitle(name, forState: .Normal)
         button.setTitleColor(UIColor.blueColor(), forState: .Normal)
@@ -124,12 +118,14 @@ class LoginPage: UINavigationController {
         self.view.addSubview(button)
     }
     
+    // Makes a Text Field
     func makeTextField(field: UITextField, frame: CGRect){
         field.frame = frame
         field.backgroundColor = UIColor.lightGrayColor()
         self.view.addSubview(field)
     }
     
+    // Makes a label
     func makeLabel(label: UILabel, name: String, frame: CGRect){
         label.frame = frame
         label.textColor = UIColor.lightGrayColor()
@@ -139,6 +135,7 @@ class LoginPage: UINavigationController {
 
     }
     
+    // Makes an alert
     func makeAlert(title: String, message: String, printStatement: String){
         // Makes the iphone popup alert
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
