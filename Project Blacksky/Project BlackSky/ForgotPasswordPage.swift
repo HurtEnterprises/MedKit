@@ -35,8 +35,7 @@ class ForgotPasswordPage: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
-        
+        // Gets size of screen
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         
         let getStarted = UIButton()
