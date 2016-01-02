@@ -25,6 +25,25 @@ class MasterViewController: UITableViewController {
 //            let controllers = split.viewControllers
 //            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
 //        }
+        
+        //makes a secure connection to DynamoDB and lists all of our tables in our database via printing to console.
+        let dynamoDB = AWSDynamoDB.defaultDynamoDB()
+        let listTableInput = AWSDynamoDBListTablesInput()
+        dynamoDB.listTables(listTableInput).continueWithBlock{ (task: AWSTask!) -> AnyObject! in
+            if let error = task.error {
+                print("Error occurred: \(error)")
+                return nil
+            }
+            
+            let listTablesOutput = task.result as! AWSDynamoDBListTablesOutput
+            
+            for tableName : AnyObject in listTablesOutput.tableNames! {
+                print("\(tableName)")
+            }
+            
+            return nil
+        }
+
     }
 
     override func viewWillAppear(animated: Bool) {
