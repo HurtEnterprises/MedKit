@@ -35,9 +35,6 @@ class LoginPage: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let screenSize: CGRect = UIScreen.mainScreen().bounds
-        
-        // Adds Navigation Bar
-        navigationItem.title = "Login"
     
         // Makes Text Fields
         makeTextField(usernameField, frame: CGRectMake((screenSize.width-300)/2 + 300, 175, 300, 35))
