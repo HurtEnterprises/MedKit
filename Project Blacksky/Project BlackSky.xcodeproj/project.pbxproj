@@ -1,0 +1,644 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05CEF4FB6B4D1446A38E7C83 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC0893880AADD86CDD48041 /* libPods.a */; };
+		6C7006EE1C32862900E681DF /* Obj-C-Bridging-Header.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6C7006EC1C32862900E681DF /* Obj-C-Bridging-Header.cpp */; };
+		6C7006F11C3287E400E681DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7006F01C3287E400E681DF /* Constants.swift */; };
+		8F20F9451C2F794B00C5C5D7 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */; };
+		8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */; };
+		8FD515131BFA7C2F008E7CDB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */; };
+		8FD515151BFA7C2F008E7CDB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515141BFA7C2F008E7CDB /* DetailViewController.swift */; };
+		8FD515181BFA7C2F008E7CDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD515161BFA7C2F008E7CDB /* Main.storyboard */; };
+		8FD5151A1BFA7C2F008E7CDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD515191BFA7C2F008E7CDB /* Assets.xcassets */; };
+		8FD5151D1BFA7C2F008E7CDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5151B1BFA7C2F008E7CDB /* LaunchScreen.storyboard */; };
+		8FD515281BFA7C30008E7CDB /* Project_BlackSkyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515271BFA7C30008E7CDB /* Project_BlackSkyTests.swift */; };
+		8FD515331BFA7C30008E7CDB /* Project_BlackSkyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515321BFA7C30008E7CDB /* Project_BlackSkyUITests.swift */; };
+		8FFE85C01C30927100BC38DB /* AccountRegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */; };
+		8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8FD515241BFA7C30008E7CDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FD515051BFA7C2F008E7CDB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FD5150C1BFA7C2F008E7CDB;
+			remoteInfo = "Project BlackSky";
+		};
+		8FD5152F1BFA7C30008E7CDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FD515051BFA7C2F008E7CDB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FD5150C1BFA7C2F008E7CDB;
+			remoteInfo = "Project BlackSky";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		310339BA6D4E8C1A7E588097 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6C7006EB1C32862900E681DF /* Project BlackSky-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project BlackSky-Bridging-Header.h"; sourceTree = "<group>"; };
+		6C7006EC1C32862900E681DF /* Obj-C-Bridging-Header.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Obj-C-Bridging-Header.cpp"; sourceTree = "<group>"; };
+		6C7006ED1C32862900E681DF /* Obj-C-Bridging-Header.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "Obj-C-Bridging-Header.hpp"; sourceTree = "<group>"; };
+		6C7006F01C3287E400E681DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
+		8FD5150D1BFA7C2F008E7CDB /* Project BlackSky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project BlackSky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		8FD515141BFA7C2F008E7CDB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		8FD515171BFA7C2F008E7CDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8FD515191BFA7C2F008E7CDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8FD5151C1BFA7C2F008E7CDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8FD5151E1BFA7C2F008E7CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FD515231BFA7C30008E7CDB /* Project BlackSkyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project BlackSkyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FD515271BFA7C30008E7CDB /* Project_BlackSkyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_BlackSkyTests.swift; sourceTree = "<group>"; };
+		8FD515291BFA7C30008E7CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FD5152E1BFA7C30008E7CDB /* Project BlackSkyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project BlackSkyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FD515321BFA7C30008E7CDB /* Project_BlackSkyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_BlackSkyUITests.swift; sourceTree = "<group>"; };
+		8FD515341BFA7C30008E7CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRegisterPage.swift; sourceTree = "<group>"; };
+		8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
+		B4CE596C600BC070ACA22C32 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FCC0893880AADD86CDD48041 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8FD5150A1BFA7C2F008E7CDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05CEF4FB6B4D1446A38E7C83 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FD515201BFA7C30008E7CDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FD5152B1BFA7C30008E7CDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		68489BE3A9AFC246620B657D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				310339BA6D4E8C1A7E588097 /* Pods.debug.xcconfig */,
+				B4CE596C600BC070ACA22C32 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6C7006EA1C3285E600E681DF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8FD515191BFA7C2F008E7CDB /* Assets.xcassets */,
+				8FD5151B1BFA7C2F008E7CDB /* LaunchScreen.storyboard */,
+				8FD5151E1BFA7C2F008E7CDB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6C7006EF1C3286EF00E681DF /* Bridging Header */ = {
+			isa = PBXGroup;
+			children = (
+				6C7006EC1C32862900E681DF /* Obj-C-Bridging-Header.cpp */,
+				6C7006ED1C32862900E681DF /* Obj-C-Bridging-Header.hpp */,
+				6C7006EB1C32862900E681DF /* Project BlackSky-Bridging-Header.h */,
+			);
+			name = "Bridging Header";
+			sourceTree = "<group>";
+		};
+		8F9FA2171C1BAD5A003319F0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		8FD515041BFA7C2F008E7CDB = {
+			isa = PBXGroup;
+			children = (
+				8FD5150F1BFA7C2F008E7CDB /* Project BlackSky */,
+				8FD515261BFA7C30008E7CDB /* Project BlackSkyTests */,
+				8FD515311BFA7C30008E7CDB /* Project BlackSkyUITests */,
+				8FD5150E1BFA7C2F008E7CDB /* Products */,
+				68489BE3A9AFC246620B657D /* Pods */,
+				B6682445B03FDD3EC965B70C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8FD5150E1BFA7C2F008E7CDB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8FD5150D1BFA7C2F008E7CDB /* Project BlackSky.app */,
+				8FD515231BFA7C30008E7CDB /* Project BlackSkyTests.xctest */,
+				8FD5152E1BFA7C30008E7CDB /* Project BlackSkyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8FD5150F1BFA7C2F008E7CDB /* Project BlackSky */ = {
+			isa = PBXGroup;
+			children = (
+				6C7006F01C3287E400E681DF /* Constants.swift */,
+				6C7006EF1C3286EF00E681DF /* Bridging Header */,
+				8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */,
+				8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */,
+				8FD515141BFA7C2F008E7CDB /* DetailViewController.swift */,
+				8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */,
+				8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */,
+				8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */,
+				8FD515161BFA7C2F008E7CDB /* Main.storyboard */,
+				8F9FA2171C1BAD5A003319F0 /* Login */,
+				6C7006EA1C3285E600E681DF /* Supporting Files */,
+			);
+			path = "Project BlackSky";
+			sourceTree = "<group>";
+		};
+		8FD515261BFA7C30008E7CDB /* Project BlackSkyTests */ = {
+			isa = PBXGroup;
+			children = (
+				8FD515271BFA7C30008E7CDB /* Project_BlackSkyTests.swift */,
+				8FD515291BFA7C30008E7CDB /* Info.plist */,
+			);
+			path = "Project BlackSkyTests";
+			sourceTree = "<group>";
+		};
+		8FD515311BFA7C30008E7CDB /* Project BlackSkyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8FD515321BFA7C30008E7CDB /* Project_BlackSkyUITests.swift */,
+				8FD515341BFA7C30008E7CDB /* Info.plist */,
+			);
+			path = "Project BlackSkyUITests";
+			sourceTree = "<group>";
+		};
+		B6682445B03FDD3EC965B70C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCC0893880AADD86CDD48041 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8FD5150C1BFA7C2F008E7CDB /* Project BlackSky */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FD515371BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSky" */;
+			buildPhases = (
+				5BDF3EBEB69AC25B40842F81 /* Check Pods Manifest.lock */,
+				8FD515091BFA7C2F008E7CDB /* Sources */,
+				8FD5150A1BFA7C2F008E7CDB /* Frameworks */,
+				8FD5150B1BFA7C2F008E7CDB /* Resources */,
+				6402EAED41616014C3F5DD7E /* Embed Pods Frameworks */,
+				94C4B4F30F3D56727F84D739 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Project BlackSky";
+			productName = "Project BlackSky";
+			productReference = 8FD5150D1BFA7C2F008E7CDB /* Project BlackSky.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8FD515221BFA7C30008E7CDB /* Project BlackSkyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FD5153A1BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSkyTests" */;
+			buildPhases = (
+				8FD5151F1BFA7C30008E7CDB /* Sources */,
+				8FD515201BFA7C30008E7CDB /* Frameworks */,
+				8FD515211BFA7C30008E7CDB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8FD515251BFA7C30008E7CDB /* PBXTargetDependency */,
+			);
+			name = "Project BlackSkyTests";
+			productName = "Project BlackSkyTests";
+			productReference = 8FD515231BFA7C30008E7CDB /* Project BlackSkyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8FD5152D1BFA7C30008E7CDB /* Project BlackSkyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FD5153D1BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSkyUITests" */;
+			buildPhases = (
+				8FD5152A1BFA7C30008E7CDB /* Sources */,
+				8FD5152B1BFA7C30008E7CDB /* Frameworks */,
+				8FD5152C1BFA7C30008E7CDB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8FD515301BFA7C30008E7CDB /* PBXTargetDependency */,
+			);
+			name = "Project BlackSkyUITests";
+			productName = "Project BlackSkyUITests";
+			productReference = 8FD5152E1BFA7C30008E7CDB /* Project BlackSkyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8FD515051BFA7C2F008E7CDB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Hurt Enterprises";
+				TargetAttributes = {
+					8FD5150C1BFA7C2F008E7CDB = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					8FD515221BFA7C30008E7CDB = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 8FD5150C1BFA7C2F008E7CDB;
+					};
+					8FD5152D1BFA7C30008E7CDB = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 8FD5150C1BFA7C2F008E7CDB;
+					};
+				};
+			};
+			buildConfigurationList = 8FD515081BFA7C2F008E7CDB /* Build configuration list for PBXProject "Project BlackSky" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8FD515041BFA7C2F008E7CDB;
+			productRefGroup = 8FD5150E1BFA7C2F008E7CDB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8FD5150C1BFA7C2F008E7CDB /* Project BlackSky */,
+				8FD515221BFA7C30008E7CDB /* Project BlackSkyTests */,
+				8FD5152D1BFA7C30008E7CDB /* Project BlackSkyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8FD5150B1BFA7C2F008E7CDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FD5151D1BFA7C2F008E7CDB /* LaunchScreen.storyboard in Resources */,
+				8FD5151A1BFA7C2F008E7CDB /* Assets.xcassets in Resources */,
+				8FD515181BFA7C2F008E7CDB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FD515211BFA7C30008E7CDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FD5152C1BFA7C30008E7CDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5BDF3EBEB69AC25B40842F81 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6402EAED41616014C3F5DD7E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94C4B4F30F3D56727F84D739 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8FD515091BFA7C2F008E7CDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F20F9451C2F794B00C5C5D7 /* LoginPage.swift in Sources */,
+				8FD515151BFA7C2F008E7CDB /* DetailViewController.swift in Sources */,
+				6C7006EE1C32862900E681DF /* Obj-C-Bridging-Header.cpp in Sources */,
+				8FFE85C01C30927100BC38DB /* AccountRegisterPage.swift in Sources */,
+				8FD515131BFA7C2F008E7CDB /* MasterViewController.swift in Sources */,
+				8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */,
+				8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */,
+				6C7006F11C3287E400E681DF /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FD5151F1BFA7C30008E7CDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FD515281BFA7C30008E7CDB /* Project_BlackSkyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FD5152A1BFA7C30008E7CDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FD515331BFA7C30008E7CDB /* Project_BlackSkyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8FD515251BFA7C30008E7CDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FD5150C1BFA7C2F008E7CDB /* Project BlackSky */;
+			targetProxy = 8FD515241BFA7C30008E7CDB /* PBXContainerItemProxy */;
+		};
+		8FD515301BFA7C30008E7CDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FD5150C1BFA7C2F008E7CDB /* Project BlackSky */;
+			targetProxy = 8FD5152F1BFA7C30008E7CDB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8FD515161BFA7C2F008E7CDB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8FD515171BFA7C2F008E7CDB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8FD5151B1BFA7C2F008E7CDB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8FD5151C1BFA7C2F008E7CDB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8FD515351BFA7C30008E7CDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		8FD515361BFA7C30008E7CDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8FD515381BFA7C30008E7CDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 310339BA6D4E8C1A7E588097 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "Project BlackSky/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Hurt-Enterprises.Project-BlackSky";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Project BlackSky/Project BlackSky-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8FD515391BFA7C30008E7CDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4CE596C600BC070ACA22C32 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "Project BlackSky/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Hurt-Enterprises.Project-BlackSky";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Project BlackSky/Project BlackSky-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		8FD5153B1BFA7C30008E7CDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Project BlackSkyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Hurt-Enterprises.Project-BlackSkyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project BlackSky.app/Project BlackSky";
+			};
+			name = Debug;
+		};
+		8FD5153C1BFA7C30008E7CDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Project BlackSkyTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Hurt-Enterprises.Project-BlackSkyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project BlackSky.app/Project BlackSky";
+			};
+			name = Release;
+		};
+		8FD5153E1BFA7C30008E7CDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Project BlackSkyUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Hurt-Enterprises.Project-BlackSkyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Project BlackSky";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		8FD5153F1BFA7C30008E7CDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Project BlackSkyUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Hurt-Enterprises.Project-BlackSkyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Project BlackSky";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8FD515081BFA7C2F008E7CDB /* Build configuration list for PBXProject "Project BlackSky" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FD515351BFA7C30008E7CDB /* Debug */,
+				8FD515361BFA7C30008E7CDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FD515371BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSky" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FD515381BFA7C30008E7CDB /* Debug */,
+				8FD515391BFA7C30008E7CDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FD5153A1BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSkyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FD5153B1BFA7C30008E7CDB /* Debug */,
+				8FD5153C1BFA7C30008E7CDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FD5153D1BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSkyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FD5153E1BFA7C30008E7CDB /* Debug */,
+				8FD5153F1BFA7C30008E7CDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8FD515051BFA7C2F008E7CDB /* Project object */;
+}
