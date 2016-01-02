@@ -9,10 +9,11 @@
 import Foundation
 import UIKit
 
-class LoginPage: UINavigationController {
+class LoginPage: UIViewController {
     
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
+
     
     var detailItem: AnyObject? {
         didSet {
@@ -34,9 +35,6 @@ class LoginPage: UINavigationController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let screenSize: CGRect = UIScreen.mainScreen().bounds
-        
-        // Adds Navigation Bar
-        navigationItem.title = "Login"
     
         // Makes Text Fields
         makeTextField(usernameField, frame: CGRectMake((screenSize.width-300)/2 + 300, 175, 300, 35))
@@ -77,17 +75,16 @@ class LoginPage: UINavigationController {
     
     // Private Functions
     
+    //Login Verification
     func loginChecks(sender: UIButton!){
             // Checks login logic
-            var inputtedPassword = passwordField.text
-            var inputtedUsername = usernameField.text
-            print(inputtedUsername)
-            print(inputtedPassword)
+            print(usernameField.text)
+            print(passwordField.text)
             
-            if (inputtedUsername == ""){
+            if (usernameField.text == ""){
                 makeAlert("No Username", message: "Please input a username.", printStatement: "No username")
                 return
-            } else if(inputtedPassword == ""){
+            } else if(passwordField.text == ""){
                 makeAlert("No Password", message: "Please input a password.", printStatement: "No password")
                 return
             } else {
@@ -95,20 +92,8 @@ class LoginPage: UINavigationController {
             }
             
         }
-        
-
     
-    // Changes to Register Page
-    func registerSwitch(sender: UIButton!) {
-        let AccountRegister:AccountRegisterPage = AccountRegisterPage()
-        self.presentViewController(AccountRegister, animated: true, completion: nil)
-    }
-    
-    // Changes to Password Page
-    func forgotPasswordSwitch(sender: UIButton!) {
-        let ForgotPassword:ForgotPasswordPage = ForgotPasswordPage()
-        self.presentViewController(ForgotPassword, animated: true, completion: nil)
-    }
+    // Creates UI Options
     
     // Creates Button
     func makeButton(button: UIButton, name: String, location: CGRect){
@@ -149,16 +134,32 @@ class LoginPage: UINavigationController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
-    // Called when 'return' key pressed. return NO to ignore. Resigns first responder
+    // Called when 'return' key pressed. return NO to ignore. Resigns first responder (closes keyboard)
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
     
-    // Called when the user click on the view (outside the UITextField). Resigns first responder
+    // Called when the user click on the view (outside the UITextField). Resigns first responder (closes keyboard)
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    //Transitions
+    
+    // Changes to Register Page
+    func registerSwitch(sender: UIButton!) {
+        let AccountRegister:AccountRegisterPage = AccountRegisterPage()
+        self.presentViewController(AccountRegister, animated: true, completion: nil)
+    }
+    
+    // Changes to Forgot Password Page
+    func forgotPasswordSwitch(sender: UIButton!) {
+       let ForgotPassword:ForgotPasswordPage = ForgotPasswordPage()
+       self.presentViewController(ForgotPassword, animated: true, completion: nil)
+
+    }
+    
 }
 
