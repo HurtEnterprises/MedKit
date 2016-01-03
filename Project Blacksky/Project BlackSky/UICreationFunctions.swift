@@ -19,13 +19,13 @@ func makeButton(button: UIButton, name: String, titleColor: UIColor, location: C
 }
 
 // Makes a Text Field
-    func makeTextField(field: UITextField, backgroundColor: UIColor, frame: CGRect){
+func makeTextField(field: UITextField, backgroundColor: UIColor, frame: CGRect){
     field.frame = frame
     field.backgroundColor = backgroundColor
 }
 
 // Makes a label
-    func makeLabel(label: UILabel, name: String, textColor:UIColor, frame: CGRect){
+func makeLabel(label: UILabel, name: String, textColor:UIColor, frame: CGRect){
     label.frame = frame
     label.textColor = textColor
     label.textAlignment = NSTextAlignment.Center
@@ -43,7 +43,7 @@ func makeAlert(title: String, message: String, printStatement: String){
     // Add Actions
     alertController.addAction(okayAction)
     // Present Alert Controller
-    }
+}
 
 // Makes a navigation Bar
 func makeNavigationBar(navigationBar: UINavigationBar, barTitle: String, forwardButton: Bool, backButton: Bool, classofOrigin: UIViewController){

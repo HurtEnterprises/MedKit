@@ -18,18 +18,18 @@ class AccountRegisterPage: UIViewController {
         didSet {
             // Update the view.
             self.configureView()
-
+            
         }
     }
     
     func configureView() {
         // Update the user interface for the detail item.
         self.view.backgroundColor = UIColor.lightGrayColor()
-//        if let detail = self.detailItem {
-//            if let label = self.detailDescriptionLabel {
-//                label.text = detail.description
-//            }
-//        }
+        //        if let detail = self.detailItem {
+        //            if let label = self.detailDescriptionLabel {
+        //                label.text = detail.description
+        //            }
+        //        }
     }
     
     // Initializes text fields
@@ -38,10 +38,10 @@ class AccountRegisterPage: UIViewController {
     
     let desiredPasswordField: UITextField = UITextField()
     let desiredPasswordLabel: UILabel = UILabel()
-
+    
     let confirmPasswordField: UITextField = UITextField()
     let confirmPasswordLabel: UILabel = UILabel()
-
+    
     let emailAddressField: UITextField = UITextField()
     let emailAddressLabel: UILabel = UILabel()
     
@@ -114,13 +114,13 @@ class AccountRegisterPage: UIViewController {
         print(emailAddressField.text)
         
         if(desiredPasswordField.text == "" || desiredUsernameField.text == "" || confirmPasswordField.text == "" || accessCodeField.text == ""){
-            loginPage.makeAlert("Incomplete Form", message: "Please fill out all text fields", printStatement: "Form not filled out completely")
+            makeAlert("Incomplete Form", message: "Please fill out all text fields", printStatement: "Form not filled out completely")
         } else {
             //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
-            loginPage.makeAlert("Congrats", message: "You have successfully created an account. You will automaticall be logged in.", printStatement: "New User created")
+            makeAlert("Congrats", message: "Account successfully created.", printStatement: "New user")
             // Take them to next page we have after & automatically log them in
         }
-
+        
     }
     
     func backClicked (sender: UIBarButtonItem!){
@@ -159,12 +159,12 @@ class AccountRegisterPage: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         // Initialize Actions
         let okayAction = UIAlertAction(title: "Okay", style: .Default) { (action) -> Void in
-            print(printStatement)
         }
         // Add Actions
         alertController.addAction(okayAction)
         // Present Alert Controller
         self.presentViewController(alertController, animated: true, completion: nil)
+        print(printStatement)
     }
     
     // Called when 'return' key pressed. return NO to ignore. Resigns first responder (closes keyboard)
