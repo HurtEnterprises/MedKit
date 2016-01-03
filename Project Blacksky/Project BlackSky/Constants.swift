@@ -12,4 +12,4 @@ import Foundation
 let CognitoRegionType = AWSRegionType.USEast1
 let DefaultServiceRegionType = AWSRegionType.USEast1
 let CognitoIdentityPoolId = "us-east-1:b9a270f0-ab59-4cbf-ac54-e1dd45a51d96"
-let AWSSampleDynamoDBTableName = "Login-Info-Table-Sample"
+let AWSSampleDynamoDBTableName = "Login-Test"

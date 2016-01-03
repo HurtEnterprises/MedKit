@@ -23,10 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         //don't worry about this stuff, its just technical jargon.
         let credentialsProvider = AWSCognitoCredentialsProvider(
-            regionType: CognitoRegionType, identityPoolId: CognitoIdentityPoolId)
+                                    regionType: CognitoRegionType,
+                                    identityPoolId: CognitoIdentityPoolId)
         
         let defaultServiceConfiguration = AWSServiceConfiguration(
-            region: DefaultServiceRegionType, credentialsProvider: credentialsProvider)
+                                            region: DefaultServiceRegionType,
+                                            credentialsProvider: credentialsProvider)
         
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = defaultServiceConfiguration
         return true
