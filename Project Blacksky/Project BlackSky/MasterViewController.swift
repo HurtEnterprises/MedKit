@@ -27,8 +27,12 @@ class MasterViewController: UITableViewController {
 //        }
         
         //makes a secure connection to DynamoDB and lists all of our tables in our database via printing to console.
+        //grabs the singleton dynamodb client.
         let dynamoDB = AWSDynamoDB.defaultDynamoDB()
+        //creates the var to use as a variable in the listtables method. AWSDynamoDBListTablesInput is the input to
+        //listTables.
         let listTableInput = AWSDynamoDBListTablesInput()
+        //we run this closure upon calling listTables.
         dynamoDB.listTables(listTableInput).continueWithBlock{ (task: AWSTask!) -> AnyObject! in
             if let error = task.error {
                 print("Error occurred: \(error)")
