@@ -11,7 +11,8 @@ import UIKit
 
 class AccountRegisterPage: UIViewController {
     let loginPage:LoginPage = LoginPage()
-    
+    let creationFunctions: UICreationFunctions = UICreationFunctions()
+
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
     var detailItem: AnyObject? {
@@ -52,45 +53,31 @@ class AccountRegisterPage: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Gets size of screen
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        
         // Creates registration button
         let register = UIButton()
-        makeButton(register, name: "Register", location: CGRectMake((screenSize.width-120)/2, screenSize.height/2 + 300, 120, 30))// X, Y, width, height
+        creationFunctions.makeButton(register, name: "Register", titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2, screenSize.height/2 + 300, 120, 30), page: self) // X, Y, width, height for CGRect
         register.addTarget(self, action: "Confirm:", forControlEvents: .TouchUpInside)
         
-        // Adds navigation bar (will pullout as function in the great UI refactor of 2016)
+        // Adds navigation bar
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
-        navigationBar.backgroundColor = UIColor.whiteColor()
-        // Create a navigation item with a title
-        let navigationItem = UINavigationItem()
-        navigationItem.title = "Register Account"
-        // Create left navigation item
-        let leftButton =  UIBarButtonItem(title: "Back", style:   UIBarButtonItemStyle.Plain, target: self, action: "backClicked:")
-        // Create two buttons for the navigation item
-        navigationItem.leftBarButtonItem = leftButton
-        // Assign the navigation item to the navigation bar
-        navigationBar.items = [navigationItem]
-        // Make the navigation bar a subview of the current view controller
-        self.view.addSubview(navigationBar)
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "Resister Account", color: UIColor.whiteColor(), forwardButton: false, backButton: true, page: self)
         
         // Adds text fields and their cooresponding identifying labels
         // TODO(DEVEN): Make passwords show up as stars
-        makeLabel(desiredUsernameLabel, name: "Desired Username:", frame: CGRectMake((screenSize.width-300)/2 - 300, 150, 300, 35))
-        makeTextField(desiredUsernameField, frame: CGRectMake((screenSize.width-300)/2 + 300, 150, 300, 35))
+        creationFunctions.makeLabel(desiredUsernameLabel, name: "Desired Username", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 150, 300, 35), page: self)
+        creationFunctions.makeTextField(desiredUsernameField, backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 150, 300, 35), page: self)
         
-        makeLabel(desiredPasswordLabel, name: "Desired Password:", frame: CGRectMake((screenSize.width-300)/2 - 300, 350, 300, 35))
-        makeTextField(desiredPasswordField, frame: CGRectMake((screenSize.width-300)/2 + 300, 300, 300, 35))
+        creationFunctions.makeLabel(desiredPasswordLabel, name: "Desired Password:",textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 350, 300, 35), page:self)
+        creationFunctions.makeTextField(desiredPasswordField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 300, 300, 35), page: self)
         
-        makeLabel(confirmPasswordLabel, name: "Confirm Password:", frame: CGRectMake((screenSize.width-300)/2 - 300, 450, 300, 35))
-        makeTextField(confirmPasswordField, frame: CGRectMake((screenSize.width-300)/2 + 300, 450, 300, 35))
+        creationFunctions.makeLabel(confirmPasswordLabel, name: "Confirm Password:", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 450, 300, 35), page: self)
+        creationFunctions.makeTextField(confirmPasswordField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 450, 300, 35), page:self)
         
-        makeLabel(emailAddressLabel, name: "Email Address:", frame: CGRectMake((screenSize.width-300)/2 - 300, 600, 300, 35))
-        makeTextField(emailAddressField, frame: CGRectMake((screenSize.width-300)/2 + 300, 600, 300, 35))
+        creationFunctions.makeLabel(emailAddressLabel, name: "Email Address:", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 600, 300, 35), page: self)
+        creationFunctions.makeTextField(emailAddressField, backgroundColor: UIColor.whiteColor(),frame: CGRectMake((screenSize.width-300)/2 + 300, 600, 300, 35), page: self)
         
-        makeLabel(accessCodeLabelabel, name: "Access Code:", frame: CGRectMake((screenSize.width-300)/2 - 300, 750, 300, 35))
-        makeTextField(accessCodeField, frame: CGRectMake((screenSize.width-300)/2 + 300, 750, 300, 35))
+        creationFunctions.makeLabel(accessCodeLabelabel, name: "Access Code:",textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center,  frame: CGRectMake((screenSize.width-300)/2 - 300, 750, 300, 35), page: self)
+        creationFunctions.makeTextField(accessCodeField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 750, 300, 35), page: self)
         
         self.configureView()
     }
@@ -114,10 +101,10 @@ class AccountRegisterPage: UIViewController {
         print(emailAddressField.text)
         
         if(desiredPasswordField.text == "" || desiredUsernameField.text == "" || confirmPasswordField.text == "" || accessCodeField.text == ""){
-            makeAlert("Incomplete Form", message: "Please fill out all text fields", printStatement: "Form not filled out completely")
+            creationFunctions.makeAlert("Incomplete Form", message: "Please fill out all text fields", printStatement: "Form not filled out completely", page: self)
         } else {
             //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
-            makeAlert("Congrats", message: "Account successfully created.", printStatement: "New user")
+            creationFunctions.makeAlert("Congrats", message: "Account successfully created.", printStatement: "New user",page: self)
             // Take them to next page we have after & automatically log them in
         }
         
@@ -127,45 +114,6 @@ class AccountRegisterPage: UIViewController {
         self.presentViewController(loginPage, animated: true, completion: nil)
     }
     
-    // Creates Button
-    func makeButton(button: UIButton, name: String, location: CGRect){
-        button.setTitle(name, forState: .Normal)
-        button.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        button.frame = location // X, Y, width, height
-        self.view.addSubview(button)
-    }
-    
-    // Makes a Text Field
-    func makeTextField(field: UITextField, frame: CGRect){
-        field.frame = frame
-        field.backgroundColor = UIColor.whiteColor()
-        ()
-        self.view.addSubview(field)
-    }
-    
-    // Makes a label
-    func makeLabel(label: UILabel, name: String, frame: CGRect){
-        label.frame = frame
-        label.textColor = UIColor.cyanColor()
-        label.textAlignment = NSTextAlignment.Center
-        label.text = name
-        self.view.addSubview(label)
-        
-    }
-    
-    // Makes an alert
-    func makeAlert(title: String, message: String, printStatement: String){
-        // Makes the iphone popup alert
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        // Initialize Actions
-        let okayAction = UIAlertAction(title: "Okay", style: .Default) { (action) -> Void in
-        }
-        // Add Actions
-        alertController.addAction(okayAction)
-        // Present Alert Controller
-        self.presentViewController(alertController, animated: true, completion: nil)
-        print(printStatement)
-    }
     
     // Called when 'return' key pressed. return NO to ignore. Resigns first responder (closes keyboard)
     func textFieldShouldReturn(textField: UITextField) -> Bool {

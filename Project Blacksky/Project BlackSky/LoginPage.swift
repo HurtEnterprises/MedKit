@@ -13,7 +13,7 @@ class LoginPage: UIViewController {
     
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
-
+    let creationFunctions: UICreationFunctions = UICreationFunctions()
     
     var detailItem: AnyObject? {
         didSet {
@@ -34,35 +34,32 @@ class LoginPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-    
-        // Makes Text Fields
-        makeTextField(usernameField, frame: CGRectMake((screenSize.width-300)/2 + 300, 175, 300, 35))
         
-        makeTextField(passwordField, frame: CGRectMake((screenSize.width-300)/2 + 300, 350, 300, 35))
+        // Makes Text Fields
+        creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 175, 300, 35), page:self)
+        creationFunctions.makeTextField(passwordField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 350, 300, 35), page:self)
        
         // Makes Text Labels
         let usernameLabel: UILabel = UILabel()
-        makeLabel(usernameLabel, name: "Username", frame: CGRectMake((screenSize.width-300)/2 - 300, 175, 300, 55))
+        creationFunctions.makeLabel(usernameLabel, name: "Username", textColor: UIColor.lightGrayColor(), alignment:NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 175, 300, 55), page: self)
     
         let passwordLabel: UILabel = UILabel()
-        makeLabel(passwordLabel, name: "Password", frame: CGRectMake((screenSize.width-300)/2 - 300, 350, 300, 55))
+        creationFunctions.makeLabel(passwordLabel, name: "Password", textColor: UIColor.lightGrayColor(), alignment:NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 350, 300, 55), page: self)
         
         //TODO: Redo the buttons so they are placed and the length is chosen based upon the legnth of the word
-        // Makes login, register, and forgot password button.
         
-        let Login = UIButton()
-        makeButton(Login, name: "Login", location: CGRectMake((screenSize.width-120)/2, 5*screenSize.width/6, 120, 30))
-        Login.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
+        // Makes login, register, and forgot password button.
+        let loginButton = UIButton()
+        creationFunctions.makeButton(loginButton, name: "Login", titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2, 5*screenSize.width/6, 120, 30), page: self)
+        loginButton.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
         
         let register = UIButton()
-        makeButton(register, name: "Register", location: CGRectMake((screenSize.width-120)/2-100, 8*screenSize.width/9, 120, 30))
+        creationFunctions.makeButton(register, name: "Register",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2-100, 8*screenSize.width/9, 120, 30), page: self)
         register.addTarget(self, action: "registerSwitch:", forControlEvents: .TouchUpInside)
         
         let forgotPassword = UIButton()
-        makeButton(forgotPassword, name: "Forgot Password", location: CGRectMake((screenSize.width-150)/2+100, 8*screenSize.width/9, 150, 30))
+        creationFunctions.makeButton(forgotPassword, name: "Forgot Password",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-150)/2+100, 8*screenSize.width/9, 150, 30), page: self)
         forgotPassword.addTarget(self, action: "forgotPasswordSwitch:", forControlEvents: .TouchUpInside)
-        
         
         self.configureView()
         
@@ -82,10 +79,10 @@ class LoginPage: UIViewController {
             print(passwordField.text)
             
             if (usernameField.text == ""){
-                makeAlert("No Username", message: "Please input a username.", printStatement: "No username")
+                creationFunctions.makeAlert("No Username", message: "Please input a username.", printStatement: "No username", page: self)
                 return
             } else if(passwordField.text == ""){
-                makeAlert("No Password", message: "Please input a password.", printStatement: "No password")
+                creationFunctions.makeAlert("No Password", message: "Please input a password.", printStatement: "No password", page: self)
                 return
             } else {
                 //TODO: @Mehrab connect to database and do checks to see if matches valid login
@@ -93,46 +90,6 @@ class LoginPage: UIViewController {
             
         }
     
-    // Creates UI Options
-    
-    // Creates Button
-    func makeButton(button: UIButton, name: String, location: CGRect){
-        button.setTitle(name, forState: .Normal)
-        button.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        button.frame = location // X, Y, width, height
-        self.view.addSubview(button)
-    }
-    
-    // Makes a Text Field
-    func makeTextField(field: UITextField, frame: CGRect){
-        field.frame = frame
-        field.backgroundColor = UIColor.lightGrayColor()
-        self.view.addSubview(field)
-    }
-    
-    // Makes a label
-    func makeLabel(label: UILabel, name: String, frame: CGRect){
-        label.frame = frame
-        label.textColor = UIColor.lightGrayColor()
-        label.textAlignment = NSTextAlignment.Center
-        label.text = name
-        self.view.addSubview(label)
-
-    }
-    
-    // Makes an alert
-    func makeAlert(title: String, message: String, printStatement: String){
-        // Makes the iphone popup alert
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        // Initialize Actions
-        let okayAction = UIAlertAction(title: "Okay", style: .Default) { (action) -> Void in
-            print(printStatement)
-        }
-        // Add Actions
-        alertController.addAction(okayAction)
-        // Present Alert Controller
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
 
     // Called when 'return' key pressed. return NO to ignore. Resigns first responder (closes keyboard)
     func textFieldShouldReturn(textField: UITextField) -> Bool {
