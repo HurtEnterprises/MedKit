@@ -130,7 +130,7 @@ class LoginPage: UIViewController {
                     
                     //compare the password on the db to the password they supplied:
                     if self.passwordField.text == loginData.Password {
-                        self.makeAlert("Success!", message: "Signed in.", printStatement: "Database confirmed sign in info.")
+                        self.creationFunctions.makeAlert("Success!", message: "Signed in.", printStatement: "Database confirmed sign in info.", page: self)
                         print("Valid. Signed in.")
                     } else {
                         print("Wrong password")
@@ -146,6 +146,5 @@ class LoginPage: UIViewController {
 
     }
     
->>>>>>> origin
 }
 

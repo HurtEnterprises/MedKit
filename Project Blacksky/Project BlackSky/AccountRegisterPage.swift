@@ -117,7 +117,7 @@ class AccountRegisterPage: UIViewController {
             sendLoginData(loginData) //run the send function and push it to ddb.
             //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
             creationFunctions.makeAlert("Congrats", message: "Account successfully created.", printStatement: "New user",page: self)
-            // Take them to next page we have after & automatically log them in
+            // TODO: Take them to next page we have after & automatically log them in
         }
         
     }
@@ -156,4 +156,3 @@ class AccountRegisterPage: UIViewController {
             })
     }
 }
->>>>>>> origin

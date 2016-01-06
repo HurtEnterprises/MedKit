@@ -70,10 +70,23 @@ class ForgotPasswordPage: UIViewController {
     }
     
     func pressed(sender: UIButton!) {
-        let loginPage:LoginPage = LoginPage()
-        creationFunctions.makeAlert("Success.", message: "Check your email for instructions on resetting your password.", printStatement: "*insert username* forgot password", page: self)
-        self.presentViewController(loginPage, animated: true, completion: nil)
+        // I created an alert this way to allow a page change upon clicking okay
+        if(usernameField.text == "" || emailField.text == ""){
+            creationFunctions.makeAlert("Incomplete Form", message: "Please fill out the form in its entirety.", printStatement: "Incomplete forgot password form.", page: self)
+        }
+        //TODO @Mehrab: make sure usernmae and email map to same user
+        let alertController = UIAlertController(title: "Success", message: "Check your email for instructions on resetting your password.", preferredStyle: .Alert)
+        // Initialize Actions
+        let okayAction = UIAlertAction(title: "Okay", style: .Default) { (action) -> Void in
+            self.presentViewController(self.loginPage, animated: true, completion: nil)
+            print("*insert username* forgot password")
+        }
+        // Add Actions
+        alertController.addAction(okayAction)
+        // Present Alert Controller
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
+
     
     func backClicked (sender: UIBarButtonItem!){
         self.presentViewController(loginPage, animated: true, completion: nil)
