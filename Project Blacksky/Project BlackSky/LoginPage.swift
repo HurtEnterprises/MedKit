@@ -115,8 +115,6 @@ class LoginPage: UIViewController {
     func forgotPasswordSwitch(sender: UIButton!) {
        let ForgotPassword:ForgotPasswordPage = ForgotPasswordPage()
        self.presentViewController(ForgotPassword, animated: true, completion: nil)
-
     }
-    
 }
 

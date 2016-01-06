@@ -33,7 +33,7 @@ class AccountRegisterPage: UIViewController {
         //        }
     }
     
-    // Initializes text fields
+    // Initializes text fields & labels
     let desiredUsernameField: UITextField = UITextField()
     let desiredUsernameLabel: UILabel = UILabel()
     
@@ -63,15 +63,16 @@ class AccountRegisterPage: UIViewController {
         creationFunctions.makeNavigationBar(navigationBar, barTitle: "Resister Account", color: UIColor.whiteColor(), forwardButton: false, backButton: true, page: self)
         
         // Adds text fields and their cooresponding identifying labels
-        // TODO(DEVEN): Make passwords show up as stars
         creationFunctions.makeLabel(desiredUsernameLabel, name: "Desired Username", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 150, 300, 35), page: self)
         creationFunctions.makeTextField(desiredUsernameField, backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 150, 300, 35), page: self)
         
-        creationFunctions.makeLabel(desiredPasswordLabel, name: "Desired Password:",textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 350, 300, 35), page:self)
+        creationFunctions.makeLabel(desiredPasswordLabel, name: "Desired Password:",textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 300, 300, 35), page:self)
         creationFunctions.makeTextField(desiredPasswordField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 300, 300, 35), page: self)
+        desiredPasswordField.secureTextEntry = true
         
         creationFunctions.makeLabel(confirmPasswordLabel, name: "Confirm Password:", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 450, 300, 35), page: self)
         creationFunctions.makeTextField(confirmPasswordField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 450, 300, 35), page:self)
+        confirmPasswordField.secureTextEntry = true
         
         creationFunctions.makeLabel(emailAddressLabel, name: "Email Address:", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 600, 300, 35), page: self)
         creationFunctions.makeTextField(emailAddressField, backgroundColor: UIColor.whiteColor(),frame: CGRectMake((screenSize.width-300)/2 + 300, 600, 300, 35), page: self)

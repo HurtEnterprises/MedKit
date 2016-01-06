@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class ForgotPasswordPage: UIViewController {
+    let loginPage:LoginPage = LoginPage()
+    let creationFunctions: UICreationFunctions = UICreationFunctions()
     
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
@@ -31,16 +33,34 @@ class ForgotPasswordPage: UIViewController {
         }
     }
     
+    // Initializes text fields & labels
+    let usernameField: UITextField = UITextField()
+    let usernameLabel: UILabel = UILabel()
+    
+    let emailField: UITextField = UITextField()
+    let emailLabel: UILabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        // Adds navigation bar
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "Forgot Password", color: UIColor.whiteColor(), forwardButton: false, backButton: true, page: self)
+        
         let getStarted = UIButton()
-        getStarted.setTitle("Forgot Password", forState: .Normal)
-        getStarted.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        getStarted.frame = CGRectMake((screenSize.width-120)/2, screenSize.width/2, 120, 30) // X, Y, width, height
+        creationFunctions.makeButton(getStarted, name: "Forgot Password", titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-200)/2, 7*screenSize.height/10, 200, 30), page: self)// X, Y, width, height
         getStarted.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
         self.view.addSubview(getStarted)
+        
+        
+        // Adds text fields and their cooresponding identifying labels
+        creationFunctions.makeLabel(usernameLabel, name: "Current Username:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 150, 300, 35), page: self)
+        creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.cyanColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 150, 300, 35), page: self)
+        
+        creationFunctions.makeLabel(emailLabel, name: "Email Address:",textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 300, 300, 35), page:self)
+        creationFunctions.makeTextField(emailField,backgroundColor: UIColor.cyanColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 300, 300, 35), page: self)
+        
         self.configureView()
     }
     
@@ -50,10 +70,12 @@ class ForgotPasswordPage: UIViewController {
     }
     
     func pressed(sender: UIButton!) {
-        
         let loginPage:LoginPage = LoginPage()
-        
+        creationFunctions.makeAlert("Success.", message: "Check your email for instructions on resetting your password.", printStatement: "*insert username* forgot password", page: self)
         self.presentViewController(loginPage, animated: true, completion: nil)
-        
+    }
+    
+    func backClicked (sender: UIBarButtonItem!){
+        self.presentViewController(loginPage, animated: true, completion: nil)
     }
 }
