@@ -86,6 +86,7 @@ class LoginPage: UIViewController {
                 return
             } else {
                 //TODO: @Mehrab connect to database and do checks to see if matches valid login
+                verifyLogin(usernameField.text!)
             }
             
         }
@@ -116,5 +117,35 @@ class LoginPage: UIViewController {
        let ForgotPassword:ForgotPasswordPage = ForgotPasswordPage()
        self.presentViewController(ForgotPassword, animated: true, completion: nil)
     }
+    
+    func verifyLogin(username: String){
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper();
+        
+        let task: AWSTask! = dynamoDBObjectMapper.load(DDBLoginData.self, hashKey: username, rangeKey: nil)
+        
+        task.continueWithExecutor(AWSExecutor.mainThreadExecutor(), withBlock: { (task:AWSTask!) -> AnyObject! in
+            if (task.error == nil) { //no error
+                if (task.result != nil) {//the item exists in the db; the username exists.
+                    let loginData = task.result as! DDBLoginData //get the login data object we received
+                    
+                    //compare the password on the db to the password they supplied:
+                    if self.passwordField.text == loginData.Password {
+                        self.makeAlert("Success!", message: "Signed in.", printStatement: "Database confirmed sign in info.")
+                        print("Valid. Signed in.")
+                    } else {
+                        print("Wrong password")
+                    }
+                    
+                }
+            } else {
+                print("Error: \(task.error)")
+                
+            }
+            return nil
+        })
+
+    }
+    
+>>>>>>> origin
 }
 

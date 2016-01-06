@@ -21,12 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
         
-        //let cognitoIdentityPoolId = "us-east-1:b9a270f0-ab59-4cbf-ac54-e1dd45a51d96"
+        //don't worry about this stuff, its just technical jargon.
         let credentialsProvider = AWSCognitoCredentialsProvider(
-            regionType: CognitoRegionType, identityPoolId: CognitoIdentityPoolId)
+                                    regionType: CognitoRegionType,
+                                    identityPoolId: CognitoIdentityPoolId)
         
         let defaultServiceConfiguration = AWSServiceConfiguration(
-            region: DefaultServiceRegionType, credentialsProvider: credentialsProvider)
+                                            region: DefaultServiceRegionType,
+                                            credentialsProvider: credentialsProvider)
         
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = defaultServiceConfiguration
         return true

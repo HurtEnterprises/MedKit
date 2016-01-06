@@ -101,9 +101,20 @@ class AccountRegisterPage: UIViewController {
         print(accessCodeField.text)
         print(emailAddressField.text)
         
+        
+        
         if(desiredPasswordField.text == "" || desiredUsernameField.text == "" || confirmPasswordField.text == "" || accessCodeField.text == ""){
             creationFunctions.makeAlert("Incomplete Form", message: "Please fill out all text fields", printStatement: "Form not filled out completely", page: self)
         } else {
+            let loginData = DDBLoginData() //initialize a loginData object.
+            
+            loginData.Username = desiredUsernameField.text!
+            loginData.Password = desiredPasswordField.text!
+            loginData.email = emailAddressField.text!
+            loginData.internalName = accessCodeField.text!
+            loginData.internalState = 0 //set its properties.
+            
+            sendLoginData(loginData) //run the send function and push it to ddb.
             //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
             creationFunctions.makeAlert("Congrats", message: "Account successfully created.", printStatement: "New user",page: self)
             // Take them to next page we have after & automatically log them in
@@ -127,4 +138,22 @@ class AccountRegisterPage: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    func sendLoginData(loginData: DDBLoginData){
+        //get object mapper in order to allow us to send a logindata object to the ddb server.
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper();
+        
+        //save allows us to "save" this new login data to the server.
+        dynamoDBObjectMapper.save(loginData).continueWithExecutor(AWSExecutor.mainThreadExecutor(), withBlock:
+            { (task:AWSTask!) -> AnyObject! in
+                if(task.error == nil){ //no error has occurred, we have successfully sent the login info
+                    print("Successful push to db.")
+                } else { //an error has occurred, we have not successfully sent the login info.
+                    print("Error:  \(task.error)")
+                }
+                
+                return nil
+            })
+    }
 }
+>>>>>>> origin
