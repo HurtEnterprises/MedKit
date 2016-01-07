@@ -22,6 +22,7 @@
 		8FD515331BFA7C30008E7CDB /* Project_BlackSkyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515321BFA7C30008E7CDB /* Project_BlackSkyUITests.swift */; };
 		8FFE85C01C30927100BC38DB /* AccountRegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */; };
 		8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */; };
+		F8F6A23E1C3C702600962C47 /* EncryptionFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6A23D1C3C702600962C47 /* EncryptionFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRegisterPage.swift; sourceTree = "<group>"; };
 		8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
 		B4CE596C600BC070ACA22C32 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F8F6A23D1C3C702600962C47 /* EncryptionFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionFunctions.swift; sourceTree = "<group>"; };
 		FCC0893880AADD86CDD48041 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -164,6 +166,7 @@
 				8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */,
 				8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */,
 				6C7006F21C394C0E00E681DF /* LoginData.swift */,
+				F8F6A23D1C3C702600962C47 /* EncryptionFunctions.swift */,
 				8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */,
 				8FD515161BFA7C2F008E7CDB /* Main.storyboard */,
 				8F9FA2171C1BAD5A003319F0 /* Login */,
@@ -386,6 +389,7 @@
 				6C7006EE1C32862900E681DF /* Obj-C-Bridging-Header.cpp in Sources */,
 				8FFE85C01C30927100BC38DB /* AccountRegisterPage.swift in Sources */,
 				8FD515131BFA7C2F008E7CDB /* MasterViewController.swift in Sources */,
+				F8F6A23E1C3C702600962C47 /* EncryptionFunctions.swift in Sources */,
 				8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */,
 				8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */,
 				6C7006F11C3287E400E681DF /* Constants.swift in Sources */,
