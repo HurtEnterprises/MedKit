@@ -120,14 +120,15 @@ class AccountRegisterPage: UIViewController {
         } else {
             let loginData = DDBLoginData() //initialize a loginData object.
             
+            Tag = emailAddressField.text! //used to generate secret keys for encryption
+            generateKeys() //generate public and private keys using the email as a tag
+            
             loginData.Username = Encrypt2(desiredUsernameField.text!)
             loginData.Password = Encrypt2(desiredPasswordField.text!)
             loginData.email = Encrypt2(emailAddressField.text!)
             loginData.internalName = Encrypt2(accessCodeField.text!)
             loginData.internalState = 0 //set its properties.
             
-            Tag = loginData.email //used to generate secret keys for encryption
-            generateKeys() //generate public and private keys using the email as a tag
             
             sendLoginData(loginData) //run the send function and push it to ddb.
             //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
