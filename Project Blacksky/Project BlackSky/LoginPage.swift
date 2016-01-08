@@ -10,9 +10,8 @@ import Foundation
 import UIKit
 
 class LoginPage: UIViewController {
-    
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-    
+        
+    let mainMenu: MainMenu = MainMenu()
     let creationFunctions: UICreationFunctions = UICreationFunctions()
     
     var detailItem: AnyObject? {
@@ -38,6 +37,7 @@ class LoginPage: UIViewController {
         // Makes Text Fields
         creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 175, 300, 35), page:self)
         creationFunctions.makeTextField(passwordField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 350, 300, 35), page:self)
+        passwordField.secureTextEntry = true
        
         // Makes Text Labels
         let usernameLabel: UILabel = UILabel()
@@ -130,12 +130,11 @@ class LoginPage: UIViewController {
                     
                     //compare the password on the db to the password they supplied:
                     if self.passwordField.text == loginData.Password {
-                        self.creationFunctions.makeAlert("Success!", message: "Signed in.", printStatement: "Database confirmed sign in info.", page: self)
                         print("Valid. Signed in.")
+                        self.presentViewController(self.mainMenu, animated: true, completion: nil)
                     } else {
-                        print("Wrong password")
+                        self.creationFunctions.makeAlert("Wrong Passowrd", message: "You inputted the incorrect password.", printStatement: "Wrong Password.", page: self)
                     }
-                    
                 }
             } else {
                 print("Error: \(task.error)")

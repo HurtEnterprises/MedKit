@@ -12,6 +12,7 @@ import UIKit
 class AccountRegisterPage: UIViewController {
     let loginPage:LoginPage = LoginPage()
     let creationFunctions: UICreationFunctions = UICreationFunctions()
+    let mainMenu: MainMenu = MainMenu()
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     
@@ -26,11 +27,6 @@ class AccountRegisterPage: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         self.view.backgroundColor = UIColor.lightGrayColor()
-        //        if let detail = self.detailItem {
-        //            if let label = self.detailDescriptionLabel {
-        //                label.text = detail.description
-        //            }
-        //        }
     }
     
     // Initializes text fields & labels
@@ -107,7 +103,6 @@ class AccountRegisterPage: UIViewController {
             creationFunctions.makeAlert("Incomplete Form", message: "Please fill out all text fields", printStatement: "Form not filled out completely", page: self)
         } else {
             let loginData = DDBLoginData() //initialize a loginData object.
-            
             loginData.Username = desiredUsernameField.text!
             loginData.Password = desiredPasswordField.text!
             loginData.email = emailAddressField.text!
