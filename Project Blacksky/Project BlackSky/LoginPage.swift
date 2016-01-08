@@ -36,8 +36,10 @@ class LoginPage: UIViewController {
         
         // Makes Text Fields
         creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 175, 300, 35), page:self)
+        usernameField.text = "Ladiesman69"
         creationFunctions.makeTextField(passwordField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 350, 300, 35), page:self)
         passwordField.secureTextEntry = true
+        passwordField.text = "Cashmoneyballer"
        
         // Makes Text Labels
         let usernameLabel: UILabel = UILabel()
