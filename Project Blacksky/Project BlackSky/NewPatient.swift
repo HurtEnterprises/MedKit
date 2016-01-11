@@ -69,7 +69,7 @@ class NewPatient: UIViewController {
         creationFunctions.makeTextField(lastNameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 350, screenSize.height/10, 300, 35), page: self)
         lastNameField.placeholder = "Last Name"
         
-        creationFunctions.makeLabel(<#T##label: UILabel##UILabel#>, name: <#T##String#>, textColor: <#T##UIColor#>, alignment: <#T##NSTextAlignment#>, frame: <#T##CGRect#>, page: <#T##UIViewController#>)
+  //      creationFunctions.makeLabel(<#T##label: UILabel##UILabel#>, name: <#T##String#>, textColor: <#T##UIColor#>, alignment: <#T##NSTextAlignment#>, frame: //<#T##CGRect#>, page: <#T##UIViewController#>)
         
         
         self.configureView()
