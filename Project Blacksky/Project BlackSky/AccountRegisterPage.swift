@@ -105,13 +105,15 @@ class AccountRegisterPage: UIViewController {
             
             let loginData = DDBLoginData() //initialize a loginData object.
             
-            Tag = emailAddressField.text! //used to generate secret keys for encryption
+            PublicTag = emailAddressField.text! //used to generate secret keys for encryption
+            PrivateTag = desiredPasswordField.text!
             generateKeys() //generate public and private keys using the email as a tag
             
-            loginData.Username = Encrypt2(desiredUsernameField.text!)
-            loginData.Password = Encrypt2(desiredPasswordField.text!)
-            loginData.email = Encrypt2(emailAddressField.text!)
-            loginData.internalName = Encrypt2(accessCodeField.text!)
+            loginData.Username = Encrypt2(desiredUsernameField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+            loginData.Password = Encrypt2(desiredPasswordField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+            loginData.email = Encrypt2(emailAddressField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+            loginData.internalName = Encrypt2(accessCodeField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+            print(Decrypt2(loginData.internalName!, privateKeyFunctionParameter: findKey(PrivateTag!)!))
 
             loginData.internalState = 0 //set its properties.
             
@@ -130,7 +132,7 @@ class AccountRegisterPage: UIViewController {
                 alertController.addAction(okayAction)
                 // Present Alert Controller
                 self.presentViewController(alertController, animated: true, completion: nil)
-                print("Successful regiser.")
+                print("Successful register.")
             
         }
         
