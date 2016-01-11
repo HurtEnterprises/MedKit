@@ -103,11 +103,17 @@ class AccountRegisterPage: UIViewController {
             creationFunctions.makeAlert("Incomplete Form", message: "Please fill out all text fields", printStatement: "Form not filled out completely", page: self)
         } else {
             let loginData = DDBLoginData() //initialize a loginData object.
-            loginData.Username = desiredUsernameField.text!
-            loginData.Password = desiredPasswordField.text!
-            loginData.email = emailAddressField.text!
-            loginData.internalName = accessCodeField.text!
-            loginData.internalState = 0 //set its properties.
+            
+            PublicTag = emailAddressField.text! //used to generate secret keys for encryption
+            PrivateTag = desiredPasswordField.text!
+            generateKeys() //generate public and private keys using the email as a tag
+            
+            loginData.Username = Encrypt2(desiredUsernameField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+            loginData.Password = Encrypt2(desiredPasswordField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+            loginData.email = Encrypt2(emailAddressField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+            loginData.internalName = Encrypt2(accessCodeField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+            print(Decrypt2(loginData.internalName!, privateKeyFunctionParameter: findKey(PrivateTag!)!))
+
             
             sendLoginData(loginData) //run the send function and push it to ddb.
             //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
