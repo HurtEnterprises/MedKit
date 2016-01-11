@@ -45,7 +45,7 @@ class MainMenu: UIViewController,UITableViewDelegate, UITableViewDataSource {
             self.tableView.estimatedRowHeight = 200
             
             tableView.alwaysBounceVertical = false;
-            
+                        
             self.view.addSubview(tableView)
         }
         
