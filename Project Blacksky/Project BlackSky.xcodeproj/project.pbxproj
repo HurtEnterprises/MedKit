@@ -17,6 +17,7 @@
 		8FC03B901C40D02900CF9F98 /* MyPatients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */; };
 		8FC03B921C40D03D00CF9F98 /* MyAppointments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC03B911C40D03D00CF9F98 /* MyAppointments.swift */; };
 		8FC03B941C40D04D00CF9F98 /* NewPatient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC03B931C40D04D00CF9F98 /* NewPatient.swift */; };
+		8FC03B971C42287D00CF9F98 /* NewPatientHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC03B961C42287D00CF9F98 /* NewPatientHistory.swift */; };
 		8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */; };
 		8FD515131BFA7C2F008E7CDB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */; };
 		8FD515151BFA7C2F008E7CDB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515141BFA7C2F008E7CDB /* DetailViewController.swift */; };
@@ -60,6 +61,7 @@
 		8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPatients.swift; sourceTree = "<group>"; };
 		8FC03B911C40D03D00CF9F98 /* MyAppointments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAppointments.swift; sourceTree = "<group>"; };
 		8FC03B931C40D04D00CF9F98 /* NewPatient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPatient.swift; sourceTree = "<group>"; };
+		8FC03B961C42287D00CF9F98 /* NewPatientHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPatientHistory.swift; sourceTree = "<group>"; };
 		8FD5150D1BFA7C2F008E7CDB /* Project BlackSky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project BlackSky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,15 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		8FC03B951C42286B00CF9F98 /* NewPatient */ = {
+			isa = PBXGroup;
+			children = (
+				8FC03B931C40D04D00CF9F98 /* NewPatient.swift */,
+				8FC03B961C42287D00CF9F98 /* NewPatientHistory.swift */,
+			);
+			name = NewPatient;
+			sourceTree = "<group>";
+		};
 		8FD515041BFA7C2F008E7CDB = {
 			isa = PBXGroup;
 			children = (
@@ -185,7 +196,7 @@
 				8F6FA9B01C3CE5530083020B /* MainMenu.swift */,
 				8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */,
 				8FC03B911C40D03D00CF9F98 /* MyAppointments.swift */,
-				8FC03B931C40D04D00CF9F98 /* NewPatient.swift */,
+				8FC03B951C42286B00CF9F98 /* NewPatient */,
 				8FD515161BFA7C2F008E7CDB /* Main.storyboard */,
 				8F9FA2171C1BAD5A003319F0 /* Login */,
 				6C7006EA1C3285E600E681DF /* Supporting Files */,
@@ -415,6 +426,7 @@
 				8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */,
 				8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */,
 				8F74854A1C38DACE00C9ED13 /* UICreationFunctions.swift in Sources */,
+				8FC03B971C42287D00CF9F98 /* NewPatientHistory.swift in Sources */,
 				6C7006F11C3287E400E681DF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
