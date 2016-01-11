@@ -14,6 +14,9 @@
 		8F20F9451C2F794B00C5C5D7 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */; };
 		8F6FA9B11C3CE5530083020B /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6FA9B01C3CE5530083020B /* MainMenu.swift */; };
 		8F74854A1C38DACE00C9ED13 /* UICreationFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7485491C38DACE00C9ED13 /* UICreationFunctions.swift */; };
+		8FC03B901C40D02900CF9F98 /* MyPatients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */; };
+		8FC03B921C40D03D00CF9F98 /* MyAppointments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC03B911C40D03D00CF9F98 /* MyAppointments.swift */; };
+		8FC03B941C40D04D00CF9F98 /* NewPatient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC03B931C40D04D00CF9F98 /* NewPatient.swift */; };
 		8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */; };
 		8FD515131BFA7C2F008E7CDB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */; };
 		8FD515151BFA7C2F008E7CDB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515141BFA7C2F008E7CDB /* DetailViewController.swift */; };
@@ -54,6 +57,9 @@
 		8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		8F6FA9B01C3CE5530083020B /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		8F7485491C38DACE00C9ED13 /* UICreationFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICreationFunctions.swift; sourceTree = "<group>"; };
+		8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPatients.swift; sourceTree = "<group>"; };
+		8FC03B911C40D03D00CF9F98 /* MyAppointments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAppointments.swift; sourceTree = "<group>"; };
+		8FC03B931C40D04D00CF9F98 /* NewPatient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPatient.swift; sourceTree = "<group>"; };
 		8FD5150D1BFA7C2F008E7CDB /* Project BlackSky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project BlackSky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +139,10 @@
 		8F9FA2171C1BAD5A003319F0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */,
+				8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */,
+				6C7006F21C394C0E00E681DF /* LoginData.swift */,
+				8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -164,16 +174,18 @@
 			children = (
 				6C7006EF1C3286EF00E681DF /* Bridging Header */,
 				8FD515101BFA7C2F008E7CDB /* AppDelegate.swift */,
-				6C7006F01C3287E400E681DF /* Constants.swift */,
-				8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */,
 				8FD515141BFA7C2F008E7CDB /* DetailViewController.swift */,
-				8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */,
+				8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */,
+				6C7006F01C3287E400E681DF /* Constants.swift */,
 				8F7485491C38DACE00C9ED13 /* UICreationFunctions.swift */,
 				8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */,
 				6C7006F21C394C0E00E681DF /* LoginData.swift */,
 				F8F6A23D1C3C702600962C47 /* EncryptionFunctions.swift */,
 				8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */,
 				8F6FA9B01C3CE5530083020B /* MainMenu.swift */,
+				8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */,
+				8FC03B911C40D03D00CF9F98 /* MyAppointments.swift */,
+				8FC03B931C40D04D00CF9F98 /* NewPatient.swift */,
 				8FD515161BFA7C2F008E7CDB /* Main.storyboard */,
 				8F9FA2171C1BAD5A003319F0 /* Login */,
 				6C7006EA1C3285E600E681DF /* Supporting Files */,
@@ -390,11 +402,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F6FA9B11C3CE5530083020B /* MainMenu.swift in Sources */,
+				8FC03B901C40D02900CF9F98 /* MyPatients.swift in Sources */,
+				8FC03B941C40D04D00CF9F98 /* NewPatient.swift in Sources */,
 				8F20F9451C2F794B00C5C5D7 /* LoginPage.swift in Sources */,
 				8FD515151BFA7C2F008E7CDB /* DetailViewController.swift in Sources */,
 				6C7006F31C394C0E00E681DF /* LoginData.swift in Sources */,
 				6C7006EE1C32862900E681DF /* Obj-C-Bridging-Header.cpp in Sources */,
 				8FFE85C01C30927100BC38DB /* AccountRegisterPage.swift in Sources */,
+				8FC03B921C40D03D00CF9F98 /* MyAppointments.swift in Sources */,
 				8FD515131BFA7C2F008E7CDB /* MasterViewController.swift in Sources */,
 				F8F6A23E1C3C702600962C47 /* EncryptionFunctions.swift in Sources */,
 				8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */,
