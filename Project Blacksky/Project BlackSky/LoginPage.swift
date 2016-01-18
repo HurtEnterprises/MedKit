@@ -52,16 +52,20 @@ class LoginPage: UIViewController {
         
         // Makes login, register, and forgot password button.
         let loginButton = UIButton()
-        creationFunctions.makeButton(loginButton, name: "Login", titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2, 5*screenSize.width/6, 120, 30), page: self)
+        creationFunctions.makeButton(loginButton, name: "Login", titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2, 5.5*screenSize.height/10, 120, 30), page: self)
         loginButton.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
         
         let register = UIButton()
-        creationFunctions.makeButton(register, name: "Register",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2-100, 8*screenSize.width/9, 120, 30), page: self)
+        creationFunctions.makeButton(register, name: "Register",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2-150, 6*screenSize.height/10, 120, 30), page: self)
         register.addTarget(self, action: "registerSwitch:", forControlEvents: .TouchUpInside)
         
         let forgotPassword = UIButton()
-        creationFunctions.makeButton(forgotPassword, name: "Forgot Password",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-150)/2+100, 8*screenSize.width/9, 150, 30), page: self)
+        creationFunctions.makeButton(forgotPassword, name: "Forgot Password",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-150)/2+150,6*screenSize.height/10, 150, 30), page: self)
         forgotPassword.addTarget(self, action: "forgotPasswordSwitch:", forControlEvents: .TouchUpInside)
+        
+        // Makes Navigation Bar
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "Login", color: UIColor.lightGrayColor(), forwardButton: false, backButton: false, page: self)
         
         self.configureView()
         
@@ -87,7 +91,6 @@ class LoginPage: UIViewController {
                 creationFunctions.makeAlert("No Password", message: "Please input a password.", printStatement: "No password", page: self)
                 return
             } else {
-                //TODO: @Mehrab connect to database and do checks to see if matches valid login
                 verifyLogin(usernameField.text!)
             }
             
