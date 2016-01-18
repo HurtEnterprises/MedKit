@@ -27,7 +27,9 @@ class MainMenu: UIViewController,UITableViewDelegate, UITableViewDataSource {
             super.viewDidLoad()
             
             self.view.backgroundColor = UIColor.whiteColor()
-
+            
+            tableView.layoutMargins = UIEdgeInsetsZero
+            tableView.separatorInset = UIEdgeInsetsZero
             
             // Makes Navigation Bar
             let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
@@ -45,6 +47,8 @@ class MainMenu: UIViewController,UITableViewDelegate, UITableViewDataSource {
             self.tableView.estimatedRowHeight = 200
             
             tableView.alwaysBounceVertical = false;
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            self.tableView.separatorColor = UIColor.whiteColor()
                         
             self.view.addSubview(tableView)
         }
@@ -60,6 +64,8 @@ class MainMenu: UIViewController,UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = self.items[indexPath.row]
             
             cell.backgroundColor = UIColor.lightGrayColor()
+            
+            cell.layoutMargins = UIEdgeInsetsZero
             
             return cell
             
@@ -95,8 +101,9 @@ class MainMenu: UIViewController,UITableViewDelegate, UITableViewDataSource {
         }
     
     func logoutClicked(){
+        self.dismissViewControllerAnimated(true, completion: nil)
         self.presentViewController(loginPage, animated: true, completion: nil)
-        //TODO: @Mehrab add some sort of logout function
+        //TODO: @Mehrab add some sort of logout function or we can make it so the user is logged out whenever they hit the login page?
     }
     
     func myPatientsClicked(){

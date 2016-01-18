@@ -128,15 +128,15 @@ class AccountRegisterPage: UIViewController {
                 // Add Actions
                 alertController.addAction(okayAction)
                 // Present Alert Controller
-                self.presentViewController(alertController, animated: true, completion: nil)
-                print("Successful regiser.")
-            
+            print("Successful regiser.")
+            self.presentViewController(alertController, animated: true, completion: nil)
+            //self.dismissViewControllerAnimated(true, completion: {});
         }
         
     }
     
     func backClicked (sender: UIBarButtonItem!){
-        self.presentViewController(loginPage, animated: true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: {});
     }
     
     

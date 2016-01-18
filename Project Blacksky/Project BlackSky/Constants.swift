@@ -38,3 +38,11 @@ class CurrentUser {
     
     var typeOfUser: String = "" //Maybe here define doctor, nurse, secretary, for access purposes (probably needs a better syste)
 }
+
+class Patient {
+    
+}
+
+class Visit {
+    
+}
