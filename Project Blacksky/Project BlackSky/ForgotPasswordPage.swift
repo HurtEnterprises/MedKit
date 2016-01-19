@@ -57,9 +57,11 @@ class ForgotPasswordPage: UIViewController {
         // Adds text fields and their cooresponding identifying labels
         creationFunctions.makeLabel(usernameLabel, name: "Current Username:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 150, 300, 35), page: self)
         creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.cyanColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 150, 300, 35), page: self)
+        creationFunctions.disableAutocorrect(usernameField)
         
         creationFunctions.makeLabel(emailLabel, name: "Email Address:",textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 300, 300, 35), page:self)
         creationFunctions.makeTextField(emailField,backgroundColor: UIColor.cyanColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 300, 300, 35), page: self)
+        creationFunctions.disableAutocorrect(emailField)
         
         self.configureView()
     }

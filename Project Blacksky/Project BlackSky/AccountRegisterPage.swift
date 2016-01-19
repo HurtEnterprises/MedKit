@@ -61,17 +61,21 @@ class AccountRegisterPage: UIViewController {
         // Adds text fields and their cooresponding identifying labels
         creationFunctions.makeLabel(desiredUsernameLabel, name: "Desired Username", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 150, 300, 35), page: self)
         creationFunctions.makeTextField(desiredUsernameField, backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 150, 300, 35), page: self)
+        creationFunctions.disableAutocorrect(desiredUsernameField)
         
         creationFunctions.makeLabel(desiredPasswordLabel, name: "Desired Password:",textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 300, 300, 35), page:self)
         creationFunctions.makeTextField(desiredPasswordField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 300, 300, 35), page: self)
         desiredPasswordField.secureTextEntry = true
+        creationFunctions.disableAutocorrect(desiredPasswordField)
         
         creationFunctions.makeLabel(confirmPasswordLabel, name: "Confirm Password:", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 450, 300, 35), page: self)
         creationFunctions.makeTextField(confirmPasswordField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 450, 300, 35), page:self)
         confirmPasswordField.secureTextEntry = true
+        creationFunctions.disableAutocorrect(confirmPasswordField)
         
         creationFunctions.makeLabel(emailAddressLabel, name: "Email Address:", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 600, 300, 35), page: self)
         creationFunctions.makeTextField(emailAddressField, backgroundColor: UIColor.whiteColor(),frame: CGRectMake((screenSize.width-300)/2 + 300, 600, 300, 35), page: self)
+        creationFunctions.disableAutocorrect(emailAddressField)
         
         creationFunctions.makeLabel(accessCodeLabelabel, name: "Access Code:",textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center,  frame: CGRectMake((screenSize.width-300)/2 - 300, 750, 300, 35), page: self)
         creationFunctions.makeTextField(accessCodeField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 750, 300, 35), page: self)

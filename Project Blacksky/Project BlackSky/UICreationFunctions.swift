@@ -73,4 +73,9 @@ class UICreationFunctions: UIViewController{
     //Adds the bar to the view
     page.view.addSubview(navigationBar)
 }
+    
+    func disableAutocorrect(textField: UITextField){
+        textField.autocorrectionType = .No
+        textField.autocapitalizationType = .None
+    }
 }

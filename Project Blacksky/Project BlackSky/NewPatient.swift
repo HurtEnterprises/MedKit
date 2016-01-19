@@ -64,29 +64,36 @@ class NewPatient: UIViewController {
         creationFunctions.makeNavigationBar(navigationBar, barTitle: "New Patient: General Information", color: UIColor.grayColor(), forwardButton: false, backButton: true, page: self)
         
         creationFunctions.makeTextField(firstNameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 - 350, screenSize.height/10, 300, 35), page: self)
+        firstNameField.autocorrectionType = .No
         firstNameField.placeholder = "First Name"
         
         creationFunctions.makeTextField(middleNameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2, screenSize.height/10 , 300, 35), page: self)
+        middleNameField.autocorrectionType = .No
         middleNameField.placeholder = "Middle Name"
         
         creationFunctions.makeTextField(lastNameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 350, screenSize.height/10, 300, 35), page: self)
+        lastNameField.autocorrectionType = .No
         lastNameField.placeholder = "Last Name"
         
         creationFunctions.makeTextField(streetAddressField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width - 700)/2, 3 * screenSize.height/10, 700, 35), page: self)
         streetAddressField.placeholder = "Street Address"
         
         creationFunctions.makeTextField(cityField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width - 500)/2 - 100, 3.5 * screenSize.height/10, 300, 35), page: self)
+        cityField.autocorrectionType = .No
         cityField.placeholder = "City"
         
         creationFunctions.makeTextField(stateField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width - 200)/2 + 250 , 3.5 * screenSize.height/10, 200, 35), page: self)
         stateField.placeholder = "State"
         
         creationFunctions.makeTextField(zipField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width - 200)/2 - 250, 4 * screenSize.height/10, 200, 35), page: self)
+        zipField.keyboardType = UIKeyboardType.NumberPad
         zipField.placeholder = "Zip Code"
         
         creationFunctions.makeLabel(phoneNumberLabel, name: "Phone Number:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 + 125, 6*screenSize.height/10, 300, 35), page: self)
         
         creationFunctions.makeTextField(phoneNumberField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 350 , 6*screenSize.height/10, 200, 35), page: self)
+        phoneNumberField.keyboardType = UIKeyboardType.NumberPad
+
         
         creationFunctions.makeLabel(DOBLabel, name: "Date of Birth:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 350, 6*screenSize.height/10, 300, 35), page: self)
         
@@ -95,10 +102,13 @@ class NewPatient: UIViewController {
         creationFunctions.makeLabel(insuranceProviderLabel, name: "Insurance Provider:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 375, 6.5*screenSize.height/10, 300, 35), page: self)
         
         creationFunctions.makeTextField(insuranceProviderField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 - 125, 6.5*screenSize.height/10, 300, 35), page: self)
+        insuranceProviderField.autocorrectionType = .No
         
         creationFunctions.makeLabel(policyNumberLabel, name: "Policy Number:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 + 125, 6.5*screenSize.height/10, 300, 35), page: self)
         
         creationFunctions.makeTextField(policyNumberField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-200)/2 + 300, 6.5*screenSize.height/10, 200, 35), page: self)
+        policyNumberField.keyboardType = UIKeyboardType.NumberPad
+
         
         //TODO: Refactor date picker stuff to outside function
         
