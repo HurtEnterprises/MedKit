@@ -108,4 +108,4 @@ func Decrypt2(encryptedTextString: String, privateKeyFunctionParameter: SecKey?)
 
     */  return encryptedTextString
 }
->>>>>>> origin
+

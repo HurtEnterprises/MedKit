@@ -68,9 +68,9 @@ class MainMenu: UIViewController,UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView,
         heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
             if indexPath.row == 3 {
-                return (screenSize.height - 70)/4 //Whatever fits your need for that cell
+                return height*24/100 //Whatever fits your need for that cell
             } else {
-                return (screenSize.height - 70)/4 // other cell height
+                return height*24/100 // other cell height
             }
     }
         

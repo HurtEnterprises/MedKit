@@ -15,6 +15,8 @@ let CognitoIdentityPoolId = "us-east-1:b9a270f0-ab59-4cbf-ac54-e1dd45a51d96"
 let AWSSampleDynamoDBTableName = "Login-Test"
 
 let screenSize: CGRect = UIScreen.mainScreen().bounds // Gets Size of Screen
+let width = screenSize.width
+let height = screenSize.height
 
 
 // NOTE: This is incredibly rough and we will need to consult with practicing medical professionals to figure out what to put here
