@@ -47,7 +47,7 @@ class NewPatientHistory: UIViewController {
     }
     
     func backClicked(sender: UIBarButtonItem!){
-        self.presentViewController(self.mainMenu, animated: true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: {});
     }
     
 }

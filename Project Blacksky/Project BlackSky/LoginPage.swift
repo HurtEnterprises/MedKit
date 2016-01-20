@@ -55,19 +55,29 @@ class LoginPage: UIViewController {
         
         // Makes login, register, and forgot password button.
         let loginButton = UIButton()
+
         creationFunctions.makeButton(loginButton, name: "Login", titleColor: UIColor.blueColor(), location: CGRectMake(width*44/100, height*63/100, width*117/1000, height*22/1000), page: self)
+
         loginButton.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
         loginButton.sizeToFit()
         
         let register = UIButton()
+
         creationFunctions.makeButton(register, name: "Register",titleColor: UIColor.blueColor(), location: CGRectMake(width*34/100, height*66/100, width*177/1000, height*22/1000), page: self)
+
         register.addTarget(self, action: "registerSwitch:", forControlEvents: .TouchUpInside)
         register.sizeToFit()
         
         let forgotPassword = UIButton()
+
         creationFunctions.makeButton(forgotPassword, name: "Forgot Password",titleColor: UIColor.blueColor(), location: CGRectMake(width*52/100, height*66/100, width*146/1000, height*22/1000), page: self)
+
         forgotPassword.addTarget(self, action: "forgotPasswordSwitch:", forControlEvents: .TouchUpInside)
         forgotPassword.sizeToFit()
+        
+        // Makes Navigation Bar
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "Login", color: UIColor.lightGrayColor(), forwardButton: false, backButton: false, page: self)
         
         self.configureView()
         
@@ -93,7 +103,6 @@ class LoginPage: UIViewController {
                 creationFunctions.makeAlert("No Password", message: "Please input a password.", printStatement: "No password", page: self)
                 return
             } else {
-                //TODO: @Mehrab connect to database and do checks to see if matches valid login
                 verifyLogin(usernameField.text!)
             }
             

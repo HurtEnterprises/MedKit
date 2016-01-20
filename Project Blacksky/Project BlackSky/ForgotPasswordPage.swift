@@ -93,8 +93,17 @@ class ForgotPasswordPage: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
+    // Called when 'return' key pressed. return NO to ignore. Resigns first responder (closes keyboard)
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
+    // Called when the user click on the view (outside the UITextField). Resigns first responder (closes keyboard)
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     func backClicked (sender: UIBarButtonItem!){
-        self.presentViewController(loginPage, animated: true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: {});
     }
 }
