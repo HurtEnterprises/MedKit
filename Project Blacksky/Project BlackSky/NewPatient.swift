@@ -155,11 +155,19 @@ class NewPatient: UIViewController {
         //self.presentViewController(self.mainMenu, animated: true, completion: nil)
     }
     
-    func nextClicked(sender: UIButton){
+    func nextClicked(sedner: UIButton){
+        //loginChecks()
+        self.presentViewController(patientHistoryPage, animated: true, completion: nil)
+    }
+    func loginChecks(){
+        let zipInt = Int(zipField.text!)
+
         if(firstNameField.text == "" || lastNameField.text == "" ){
             creationFunctions.makeAlert("Paitent name isn't complete.", message: "Please input a first and last name for the patient.", printStatement: "First or last name missing on New Patient Page.", page: self)
         } else if (streetAddressField.text == "" || cityField.text == "" || stateField.text == "" || zipField.text == ""){
             creationFunctions.makeAlert("Address Incomplete", message: "Please complete the patient's address", printStatement: "Incomplete address on new patient.", page: self)
+        }else if(zipInt == nil){
+            creationFunctions.makeAlert("Zip Code is Non-Numberic", message: "Please only enter numbers for your zip code.", printStatement: "Zip non-numberic.", page: self)
         }else if(DOBField.text == ""){
             creationFunctions.makeAlert("No Date of Birth", message: "Please input a date of birth for the patient", printStatement: "No DOB for new patient.", page: self)
         }else if(phoneNumberField.text == ""){
@@ -180,7 +188,7 @@ class NewPatient: UIViewController {
             print("New Patient Added.")
             self.presentViewController(alertController, animated: true, completion: nil)
         } else if(insuranceProviderField.text == "" || policyNumberField.text == ""){
-            
+            creationFunctions.makeAlert("Insurance Information Not completed.", message: "Please complete the patient's insurance information.", printStatement: "Incomplete Insurance Info", page: self)
     }else{
         self.presentViewController(patientHistoryPage, animated: true, completion: nil)
         }

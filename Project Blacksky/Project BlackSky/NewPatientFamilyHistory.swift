@@ -1,15 +1,15 @@
 //
-//  NewPatientHistory.swift
+//  NewPatientFamilyHistory.swift
 //  Project BlackSky
 //
-//  Created by Deven  on 1/10/16.
+//  Created by Deven  on 1/19/16.
 //  Copyright © 2016 Hurt Enterprises. All rights reserved.
 //
 
 import Foundation
-import UIKit 
+import UIKit
 
-class NewPatientHistory: UIViewController {
+class NewPatientFamilyHistory: UIViewController {
     
     let mainMenu: MainMenu = MainMenu()
     let creationFunctions: UICreationFunctions = UICreationFunctions()
@@ -29,9 +29,8 @@ class NewPatientHistory: UIViewController {
     
     //Smoker? Current Meds? Current illnesses? Family history of illness?
     
-    let nextButton:UIButton = UIButton()
+    let saveButton:UIButton = UIButton()
     let smokerStatusLabel:UILabel = UILabel()
-    let smokerBox:CheckBox = CheckBox()
     let currentMedsLabel:UILabel = UILabel()
     let familyHistoryLabel:UILabel = UILabel()
     let currentConditionsLabel:UILabel = UILabel()
@@ -43,22 +42,17 @@ class NewPatientHistory: UIViewController {
         // Makes Navigation Bar
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
         
-        creationFunctions.makeNavigationBar(navigationBar, barTitle: "New Patient: Personal History", color: UIColor.grayColor(), forwardButton: false, backButton: true, page: self)
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "New Patient: Family History", color: UIColor.grayColor(), forwardButton: false, backButton: true, page: self)
         
-        creationFunctions.makeButton(nextButton, name: "Next", titleColor: UIColor.blackColor(), location: CGRectMake((screenSize.width-150)/2, 8*screenSize.height/10, 150, 40), page: self)
-        nextButton.titleLabel?.font = UIFont(name: (nextButton.titleLabel?.font?.fontName)!, size: 30)
-        nextButton.addTarget(self, action: "nextClicked:", forControlEvents: .TouchUpInside)
-        
-        smokerBox.frame = CGRectMake(screenSize.width/2, screenSize.height/2, 30, 30)
-        smokerBox.backgroundColor = UIColor.lightGrayColor()
-        self.view.addSubview(smokerBox)
-        
+        creationFunctions.makeButton(saveButton, name: "Save", titleColor: UIColor.blackColor(), location: CGRectMake((screenSize.width-150)/2, 8*screenSize.height/10, 150, 40), page: self)
+        saveButton.titleLabel?.font = UIFont(name: (saveButton.titleLabel?.font?.fontName)!, size: 30)
+        saveButton.addTarget(self, action: "saveClicked:", forControlEvents: .TouchUpInside)
 
         
         self.configureView()
     }
     
-    func nextClicked(sender: UIButton){
+    func saveClicked(sender: UIButton){
         
     }
     
