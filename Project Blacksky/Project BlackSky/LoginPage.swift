@@ -32,8 +32,10 @@ class LoginPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Dismisses the main menu page
         
+        // Do any additional setup after loading the view, typically from a nib.
+
         // Makes Text Fields
         creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 175, 300, 35), page:self)
         creationFunctions.disableAutocorrect(usernameField)
@@ -85,7 +87,7 @@ class LoginPage: UIViewController {
             // Checks login logic
             print(usernameField.text)
             print(passwordField.text)
-            
+
             if (usernameField.text == ""){
                 creationFunctions.makeAlert("No Username", message: "Please input a username.", printStatement: "No username", page: self)
                 return

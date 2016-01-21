@@ -29,12 +29,19 @@ class NewPatientHistory: UIViewController {
     
     //Smoker? Current Meds? Current illnesses? Family history of illness?
     
-    let nextButton:UIButton = UIButton()
+    let yesLabel:UILabel = UILabel()
+    let noLabel:UILabel = UILabel()
     let smokerStatusLabel:UILabel = UILabel()
     let smokerBox:CheckBox = CheckBox()
+    let drinkLabel:UILabel = UILabel()
+    let drinkBox:CheckBox = CheckBox()
     let currentMedsLabel:UILabel = UILabel()
-    let familyHistoryLabel:UILabel = UILabel()
+    let currentMedsBox:CheckBox = CheckBox()
     let currentConditionsLabel:UILabel = UILabel()
+    let currentConditionsBox:CheckBox = CheckBox()
+    let currentMedicationsLabel:UILabel = UILabel()
+    let currentMedicationsBox:CheckBox = CheckBox()
+    let nextButton:UIButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +57,8 @@ class NewPatientHistory: UIViewController {
         nextButton.addTarget(self, action: "nextClicked:", forControlEvents: .TouchUpInside)
         
         smokerBox.frame = CGRectMake(screenSize.width/2, screenSize.height/2, 30, 30)
-        smokerBox.backgroundColor = UIColor.lightGrayColor()
+        smokerBox.backgroundColor = self.view.backgroundColor
+        
         self.view.addSubview(smokerBox)
         
 

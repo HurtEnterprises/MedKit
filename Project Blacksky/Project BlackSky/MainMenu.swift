@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 let creationFunctions: UICreationFunctions = UICreationFunctions()
+let registerPage: AccountRegisterPage = AccountRegisterPage()
 let loginPage:LoginPage = LoginPage()
 let myPatientsPage: MyPatients = MyPatients()
 let myAppointmentsPage: MyApointments = MyApointments()
@@ -101,8 +102,10 @@ class MainMenu: UIViewController,UITableViewDelegate, UITableViewDataSource {
         }
     
     func logoutClicked(){
+        if(self.presentedViewController == registerPage){
+            registerPage.dismissViewControllerAnimated(true, completion: nil)
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
-        self.presentViewController(loginPage, animated: true, completion: nil)
         //TODO: @Mehrab add some sort of logout function or we can make it so the user is logged out whenever they hit the login page?
     }
     

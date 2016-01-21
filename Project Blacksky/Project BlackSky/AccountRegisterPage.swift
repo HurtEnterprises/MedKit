@@ -134,7 +134,6 @@ class AccountRegisterPage: UIViewController {
                 // Present Alert Controller
             print("Successful regiser.")
             self.presentViewController(alertController, animated: true, completion: nil)
-            //self.dismissViewControllerAnimated(true, completion: {});
         }
         
     }
