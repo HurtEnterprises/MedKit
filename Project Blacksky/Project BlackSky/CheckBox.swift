@@ -16,7 +16,7 @@ class CheckBox: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addTarget(self, action: "smokerClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addTarget(self, action: "Clicked:", forControlEvents: UIControlEvents.TouchUpInside)
         self.setImage(uncheckedImage, forState: .Normal)
         self.isChecked = false
         //other stuff
@@ -37,7 +37,7 @@ class CheckBox: UIButton {
     }
     
     
-    func smokerClicked(sender: UIButton) {
+    func Clicked(sender: UIButton) {
         if sender == self {
             if isChecked == true {
                 isChecked = false

@@ -18,14 +18,21 @@ class UICreationFunctions: UIViewController{
     button.setTitleColor(titleColor, forState: .Normal)
     button.frame = location // X, Y, width, height
     page.view.addSubview(button)
-}
+    }
+    
+    // Makes a checkbox
+    func makeCheckBox(box: CheckBox,frame: CGRect, page: UIViewController){
+        box.frame = frame
+        box.backgroundColor = page.view.backgroundColor
+        page.view.addSubview(box)
+    }
 
 // Makes a Text Field
     func makeTextField(field: UITextField, backgroundColor: UIColor, frame: CGRect, page: UIViewController){
     field.frame = frame
     field.backgroundColor = backgroundColor
     page.view.addSubview(field)
-}
+    }
 
 // Makes a label
     func makeLabel(label: UILabel, name: String, textColor:UIColor, alignment: NSTextAlignment, frame: CGRect, page: UIViewController){
@@ -34,7 +41,7 @@ class UICreationFunctions: UIViewController{
     label.textAlignment = alignment
     label.text = name
     page.view.addSubview(label)
-}
+    }
 
 // Makes an alert
     func makeAlert(title: String, message: String, printStatement: String, page:UIViewController){
@@ -49,7 +56,7 @@ class UICreationFunctions: UIViewController{
     // Present Alert Controller
     page.presentViewController(alertController, animated: true, completion: nil)
     print(printStatement)
-}
+    }
 
 // Makes a navigation Bar
     func makeNavigationBar(navigationBar: UINavigationBar, barTitle: String,color: UIColor, forwardButton: Bool, backButton: Bool, page: UIViewController){
@@ -73,9 +80,10 @@ class UICreationFunctions: UIViewController{
     //Adds the bar to the view
     page.view.addSubview(navigationBar)
 }
-    
+    // Disables autocorrect and auto capitalization
     func disableAutocorrect(textField: UITextField){
         textField.autocorrectionType = .No
         textField.autocapitalizationType = .None
     }
+    
 }

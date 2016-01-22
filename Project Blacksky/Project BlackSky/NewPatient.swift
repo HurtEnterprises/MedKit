@@ -89,22 +89,28 @@ class NewPatient: UIViewController {
         zipField.keyboardType = UIKeyboardType.NumberPad
         zipField.placeholder = "Zip Code"
         
-        creationFunctions.makeLabel(phoneNumberLabel, name: "Phone Number:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 + 125, 6*screenSize.height/10, 300, 35), page: self)
+        creationFunctions.makeLabel(phoneNumberLabel, name: "Phone Number:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 + 200, 6*screenSize.height/10, 300, 35), page: self)
+        phoneNumberLabel.sizeToFit()
         
         creationFunctions.makeTextField(phoneNumberField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 350 , 6*screenSize.height/10, 200, 35), page: self)
         phoneNumberField.keyboardType = UIKeyboardType.NumberPad
+        //makePhoneNumber(<#T##textField: UITextField##UITextField#>, shouldChangeCharactersInRange: <#T##NSRange#>, replacementString: <#T##String#>)
+        
 
         
-        creationFunctions.makeLabel(DOBLabel, name: "Date of Birth:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 350, 6*screenSize.height/10, 300, 35), page: self)
+        creationFunctions.makeLabel(DOBLabel, name: "Date of Birth:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 6*screenSize.height/10, 300, 35), page: self)
+        DOBLabel.sizeToFit()
         
         creationFunctions.makeTextField(DOBField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 - 125 , 6*screenSize.height/10, 200, 35), page: self)
         
-        creationFunctions.makeLabel(insuranceProviderLabel, name: "Insurance Provider:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 375, 6.5*screenSize.height/10, 300, 35), page: self)
+        creationFunctions.makeLabel(insuranceProviderLabel, name: "Insurance Provider:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 6.5*screenSize.height/10, 300, 35), page: self)
+        insuranceProviderLabel.sizeToFit()
         
         creationFunctions.makeTextField(insuranceProviderField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 - 125, 6.5*screenSize.height/10, 300, 35), page: self)
         insuranceProviderField.autocorrectionType = .No
         
-        creationFunctions.makeLabel(policyNumberLabel, name: "Policy Number:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 + 125, 6.5*screenSize.height/10, 300, 35), page: self)
+        creationFunctions.makeLabel(policyNumberLabel, name: "Policy Number:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 + 200, 6.5*screenSize.height/10, 300, 35), page: self)
+        policyNumberLabel.sizeToFit()
         
         creationFunctions.makeTextField(policyNumberField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-200)/2 + 300, 6.5*screenSize.height/10, 200, 35), page: self)
         policyNumberField.keyboardType = UIKeyboardType.NumberPad
@@ -125,7 +131,7 @@ class NewPatient: UIViewController {
         DOBField.inputAccessoryView = toolBar
         
         
-        creationFunctions.makeButton(nextButton, name: "Next", titleColor: UIColor.blackColor(), location: CGRectMake((screenSize.width - 300)/2, 7.5 * screenSize.height/10, 300, 45), page: self)
+        creationFunctions.makeButton(nextButton, name: "Next", titleColor: UIColor.blackColor(), location: CGRectMake((screenSize.width - 200)/2, 8 * screenSize.height/10, 200, 50), page: self)
         
         nextButton.titleLabel?.font = UIFont(name: (nextButton.titleLabel?.font?.fontName)!, size: 30)
         nextButton.addTarget(self, action: "nextClicked:", forControlEvents: .TouchUpInside)
@@ -202,6 +208,55 @@ class NewPatient: UIViewController {
         let strDate = dateFormatter.stringFromDate(dobPicker.date)
         self.DOBField.text = strDate
         DOBField.text = dateFormatter.stringFromDate(sender.date)
+    }
+    
+    func makePhoneNumber(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
+    {
+        if (textField == phoneNumberField)
+        {
+            let newString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            let components = newString.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+            
+            let decimalString = components.joinWithSeparator("") as NSString
+            let length = decimalString.length
+            let hasLeadingOne = length > 0 && decimalString.characterAtIndex(0) == (1 as unichar)
+            
+            if length == 0 || (length > 10 && !hasLeadingOne) || length > 11
+            {
+                let newLength = (textField.text! as NSString).length + (string as NSString).length - range.length as Int
+                
+                return (newLength > 10) ? false : true
+            }
+            var index = 0 as Int
+            let formattedString = NSMutableString()
+            
+            if hasLeadingOne
+            {
+                formattedString.appendString("1 ")
+                index += 1
+            }
+            if (length - index) > 3
+            {
+                let areaCode = decimalString.substringWithRange(NSMakeRange(index, 3))
+                formattedString.appendFormat("(%@)", areaCode)
+                index += 3
+            }
+            if length - index > 3
+            {
+                let prefix = decimalString.substringWithRange(NSMakeRange(index, 3))
+                formattedString.appendFormat("%@-", prefix)
+                index += 3
+            }
+            
+            let remainder = decimalString.substringFromIndex(index)
+            formattedString.appendString(remainder)
+            textField.text = formattedString as String
+            return false
+        }
+        else
+        {
+            return true
+        }
     }
     
     func closeButtonPressed(){

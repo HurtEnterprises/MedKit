@@ -57,14 +57,18 @@ class LoginPage: UIViewController {
         // Makes login, register, and forgot password button.
         let loginButton = UIButton()
         creationFunctions.makeButton(loginButton, name: "Login", titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2, 5.5*screenSize.height/10, 120, 30), page: self)
+        loginButton.titleLabel?.font = UIFont(name: (loginButton.titleLabel?.font?.fontName)!, size: 30)
         loginButton.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
         
         let register = UIButton()
-        creationFunctions.makeButton(register, name: "Register",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2-150, 6*screenSize.height/10, 120, 30), page: self)
+        creationFunctions.makeButton(register, name: "Register",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2-200, 6.5*screenSize.height/10, 120, 30), page: self)
+        register.titleLabel?.font = UIFont(name: (register.titleLabel?.font?.fontName)!, size: 30)
         register.addTarget(self, action: "registerSwitch:", forControlEvents: .TouchUpInside)
+
         
         let forgotPassword = UIButton()
-        creationFunctions.makeButton(forgotPassword, name: "Forgot Password",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-150)/2+150,6*screenSize.height/10, 150, 30), page: self)
+        creationFunctions.makeButton(forgotPassword, name: "Forgot Password",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-250)/2+200,6.5*screenSize.height/10, 250, 30), page: self)
+        forgotPassword.titleLabel?.font = UIFont(name: (forgotPassword.titleLabel?.font?.fontName)!, size: 30)
         forgotPassword.addTarget(self, action: "forgotPasswordSwitch:", forControlEvents: .TouchUpInside)
         
         // Makes Navigation Bar

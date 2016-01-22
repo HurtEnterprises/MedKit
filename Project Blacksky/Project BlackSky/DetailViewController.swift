@@ -38,9 +38,15 @@ class DetailViewController: UIViewController {
         let getStarted = UIButton()
         getStarted.setTitle("Get Started", forState: .Normal)
         getStarted.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        getStarted.frame = CGRectMake((screenSize.width-120)/2, screenSize.height/2 + 150, 120, 30) // X, Y, width, height
+        getStarted.frame = CGRectMake((screenSize.width-200)/2, screenSize.height * 2/3 , 200, 30) // X, Y, width, height
         getStarted.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
+        getStarted.titleLabel?.font = UIFont(name: (getStarted.titleLabel?.font?.fontName)!, size: 30)
         self.view.addSubview(getStarted)
+        
+        let companyLabel:UILabel = UILabel()
+        creationFunctions.makeLabel(companyLabel, name: "Welcome to Doctor's Notes", textColor: UIColor.blueColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-400)/2, screenSize.height/3, 400, 65), page: self)
+        companyLabel.font = UIFont(name: (companyLabel.font?.fontName)!, size: 30)
+
         self.configureView()
     }
 
