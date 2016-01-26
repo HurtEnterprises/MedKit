@@ -9,11 +9,9 @@
 import Foundation
 import UIKit 
 
+let patientFamilyHistoryPage: NewPatientFamilyHistory = NewPatientFamilyHistory()
+
 class NewPatientHistory: UIViewController {
-    
-    let mainMenu: MainMenu = MainMenu()
-    let patientFamilyHistoryPage: NewPatientFamilyHistory = NewPatientFamilyHistory()
-    let creationFunctions: UICreationFunctions = UICreationFunctions()
     
     var detailItem: AnyObject? {
         didSet {
@@ -175,7 +173,8 @@ class NewPatientHistory: UIViewController {
         print("Didn't elaborate on a field on NewPatient.")
         // Initialize Actions
         let ContinueAction = UIAlertAction(title: "Continue Anyway", style: .Default) { (action) -> Void in
-            self.presentViewController(self.patientFamilyHistoryPage, animated: true, completion: nil)
+            self.presentViewController(patientFamilyHistoryPage, animated: true, completion: nil)
+            //@Mehrab: should be same as below
             print("Moving to family history anyways.")
         }
         let okayAction = UIAlertAction(title: "Okay", style: .Default) { (action) -> Void in
@@ -193,6 +192,7 @@ class NewPatientHistory: UIViewController {
         }else if currentMedsBox.isChecked && medsField.text == ""{
             self.presentViewController(alertController, animated: true, completion: nil)
         }else{
+            //@Mehrab do your thing. I didn't wanna make seperate variables for everything cause that seemed sloppy, but the bool for smoker and drinker are represented by smokerbox.ischecked and drinkbox.ischecked respectively. As for the fields, to get the strings,use: smokerField.text, drinkerField.text, conditionsField.text, and medsField.text. Lemme know if you have questions
             self.presentViewController(patientFamilyHistoryPage, animated: true, completion: nil)
         }
     }

@@ -14,7 +14,7 @@ let registerPage: AccountRegisterPage = AccountRegisterPage()
 let loginPage:LoginPage = LoginPage()
 let myPatientsPage: MyPatients = MyPatients()
 let myAppointmentsPage: MyApointments = MyApointments()
-let newPatientPage: NewPatient = NewPatient()
+let NewPatientPage: NewPatient = NewPatient()
 
 
 class MainMenu: UIViewController,UITableViewDelegate, UITableViewDataSource {
@@ -118,7 +118,7 @@ class MainMenu: UIViewController,UITableViewDelegate, UITableViewDataSource {
     }
     
     func newPatientClicked(){
-        self.presentViewController(newPatientPage, animated: true, completion: nil)
+        self.presentViewController(NewPatientPage, animated: true, completion: nil)
     }
     
 }

@@ -9,11 +9,10 @@
 import Foundation
 import UIKit
 
+let mainMenu: MainMenu = MainMenu()
+let patientHistoryPage: NewPatientHistory = NewPatientHistory()
+
 class NewPatient: UIViewController {
-    
-    let mainMenu: MainMenu = MainMenu()
-    let creationFunctions: UICreationFunctions = UICreationFunctions()
-    let patientHistoryPage: NewPatientHistory = NewPatientHistory()
     
     var detailItem: AnyObject? {
         didSet {
@@ -167,8 +166,7 @@ class NewPatient: UIViewController {
     }
     
     func nextClicked(sedner: UIButton){
-        //loginChecks()
-        self.presentViewController(patientHistoryPage, animated: true, completion: nil)
+        loginChecks()
     }
     func loginChecks(){
         let zipInt = Int(zipField.text!)
@@ -186,7 +184,7 @@ class NewPatient: UIViewController {
             print("No phone number for new patient.")
             // Initialize Actions
             let ContinueAction = UIAlertAction(title: "Continue Anyway", style: .Default) { (action) -> Void in
-                self.presentViewController(self.patientHistoryPage, animated: true, completion: nil)
+                self.presentViewController(patientHistoryPage, animated: true, completion: nil)
                 print("New Patient Added.")
             }
             let okayAction = UIAlertAction(title: "Okay", style: .Default) { (action) -> Void in
