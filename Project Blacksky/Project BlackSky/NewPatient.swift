@@ -36,6 +36,7 @@ class NewPatient: UIViewController {
     let firstNameField:UITextField = UITextField()
     let lastNameField:UITextField = UITextField()
     let middleNameField:UITextField = UITextField()
+    let emailField:UITextField = UITextField()
     let DOBField:UITextField = UITextField()
     let insuranceProviderField:UITextField = UITextField() //TODO: Give options for insurance provider
     let policyNumberField:UITextField = UITextField()
@@ -74,6 +75,10 @@ class NewPatient: UIViewController {
         creationFunctions.makeTextField(lastNameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 350, screenSize.height/10, 300, 35), page: self)
         lastNameField.autocorrectionType = .No
         lastNameField.placeholder = "Last Name"
+        
+        creationFunctions.makeTextField(emailField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-400)/2, 2*screenSize.height/10, 400, 35), page: self)
+        emailField.autocorrectionType = .No
+        emailField.placeholder = "Email Address"
         
         creationFunctions.makeTextField(streetAddressField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width - 700)/2, 3 * screenSize.height/10, 700, 35), page: self)
         streetAddressField.placeholder = "Street Address"
@@ -185,7 +190,7 @@ class NewPatient: UIViewController {
                 print("New Patient Added.")
             }
             let okayAction = UIAlertAction(title: "Okay", style: .Default) { (action) -> Void in
-                self.presentViewController(self.patientHistoryPage, animated: true, completion: nil)
+                print("They are revisiting the New Patient form.")
             }
             // Add Actions
             alertController.addAction(ContinueAction)
