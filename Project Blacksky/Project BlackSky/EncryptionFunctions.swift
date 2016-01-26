@@ -64,7 +64,10 @@ func generateKeys() { //function that generates the keys, called during the regi
 
 func Encrypt2(UserInput: String, publicKeyFunctionParameter: SecKey?) -> String { //date is entered in as a string and goes into the db as an encrypted string
     
+
+
     /*   var encryptedData = [UInt8](count: Int(blockSize), repeatedValue: 0)
+
     let plainText = UserInput
     let plainTextData = [UInt8](plainText.utf8)
     let plainTextDataLength = plainText.characters.count
@@ -76,17 +79,21 @@ func Encrypt2(UserInput: String, publicKeyFunctionParameter: SecKey?) -> String 
     var encryptedString = ""
     
     for var i = 0; i < 256; ++i {
-    encryptedString = encryptedString + String(encryptedData[i]) + " "
+
+        encryptedString = encryptedString + String(encryptedData[i]) + " "
     }
     return encryptedString
-    */
+*/
+
     return UserInput
 }
 
 func Decrypt2(encryptedTextString: String, privateKeyFunctionParameter: SecKey?) -> String{ //the encrypted string from the db is converted to the original string
     
     
-    /*   let encryptedTextInt = encryptedTextString.characters.split(" ").flatMap { UInt8(String($0)) }
+
+ /*   let encryptedTextInt = encryptedTextString.characters.split(" ").flatMap { UInt8(String($0)) }
+
     
     var decryptedData = [UInt8](count: Int(blockSize), repeatedValue: 0)
     var decryptedDataLength = blockSize
@@ -97,5 +104,8 @@ func Decrypt2(encryptedTextString: String, privateKeyFunctionParameter: SecKey?)
     let decryptedText = String(bytes: decryptedData, encoding:NSUTF8StringEncoding)
     
     return decryptedText!
+
+
     */  return encryptedTextString
 }
+

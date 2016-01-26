@@ -37,39 +37,46 @@ class LoginPage: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 
         // Makes Text Fields
-        creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 175, 300, 35), page:self)
-        creationFunctions.disableAutocorrect(usernameField)
+        creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width*65/100, height*13/100, width*22/100, height*3/100), page:self)
         usernameField.text = "Ladiesman69"
-        creationFunctions.makeTextField(passwordField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 350, 300, 35), page:self)
+        
+        creationFunctions.makeTextField(passwordField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width*65/100, height*26/100, width*22/100, height*3/100), page:self)
         passwordField.secureTextEntry = true
         creationFunctions.disableAutocorrect(passwordField)
         passwordField.text = "Cashmoneyballer"
        
         // Makes Text Labels
         let usernameLabel: UILabel = UILabel()
-        creationFunctions.makeLabel(usernameLabel, name: "Username", textColor: UIColor.lightGrayColor(), alignment:NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 175, 300, 55), page: self)
+        creationFunctions.makeLabel(usernameLabel, name: "Username", textColor: UIColor.lightGrayColor(), alignment:NSTextAlignment.Center, frame: CGRectMake(width*55/1000, height*13/100, width*29/100, height*4/100), page: self)
+        usernameLabel.sizeToFit()
     
         let passwordLabel: UILabel = UILabel()
-        creationFunctions.makeLabel(passwordLabel, name: "Password", textColor: UIColor.lightGrayColor(), alignment:NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 350, 300, 55), page: self)
+        creationFunctions.makeLabel(passwordLabel, name: "Password", textColor: UIColor.lightGrayColor(), alignment:NSTextAlignment.Center, frame: CGRectMake(width*55/1000, height*26/100, width*29/100, height*4/100), page: self)
+        passwordLabel.sizeToFit()
         
         //TODO: Redo the buttons so they are placed and the length is chosen based upon the legnth of the word
         
         // Makes login, register, and forgot password button.
         let loginButton = UIButton()
-        creationFunctions.makeButton(loginButton, name: "Login", titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2, 5.5*screenSize.height/10, 120, 30), page: self)
+        creationFunctions.makeButton(loginButton, name: "Login", titleColor: UIColor.blueColor(), location: CGRectMake(width*44/100, height*63/100, width*117/1000, height*22/1000), page: self)
         loginButton.titleLabel?.font = UIFont(name: (loginButton.titleLabel?.font?.fontName)!, size: 30)
+
         loginButton.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
+        loginButton.sizeToFit()
         
         let register = UIButton()
-        creationFunctions.makeButton(register, name: "Register",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2-200, 6.5*screenSize.height/10, 120, 30), page: self)
+
+        creationFunctions.makeButton(register, name: "Register",titleColor: UIColor.blueColor(), location: CGRectMake(width*34/100, height*66/100, width*177/1000, height*22/1000), page: self)
         register.titleLabel?.font = UIFont(name: (register.titleLabel?.font?.fontName)!, size: 30)
         register.addTarget(self, action: "registerSwitch:", forControlEvents: .TouchUpInside)
-
+        register.sizeToFit()
         
         let forgotPassword = UIButton()
-        creationFunctions.makeButton(forgotPassword, name: "Forgot Password",titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-250)/2+200,6.5*screenSize.height/10, 250, 30), page: self)
+
+        creationFunctions.makeButton(forgotPassword, name: "Forgot Password",titleColor: UIColor.blueColor(), location: CGRectMake(width*52/100, height*66/100, width*146/1000, height*22/1000), page: self)
         forgotPassword.titleLabel?.font = UIFont(name: (forgotPassword.titleLabel?.font?.fontName)!, size: 30)
         forgotPassword.addTarget(self, action: "forgotPasswordSwitch:", forControlEvents: .TouchUpInside)
+        forgotPassword.sizeToFit()
         
         // Makes Navigation Bar
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account

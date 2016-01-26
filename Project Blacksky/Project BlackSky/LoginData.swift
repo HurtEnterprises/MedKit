@@ -20,6 +20,7 @@ class DDBLoginData :AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
     var internalName:String?
     var internalState:NSNumber?
+    var verifiedEmail = false
     
     class func dynamoDBTableName() -> String! {
         return AWSSampleDynamoDBTableName

@@ -45,40 +45,47 @@ class AccountRegisterPage: UIViewController {
     let accessCodeField: UITextField = UITextField()
     let accessCodeLabelabel: UILabel = UILabel()
     
+    let width = screenSize.width
+    let height = screenSize.height
+    
     override func viewDidLoad() {
+        print(width)
+        print(height)
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         // Creates registration button
         let register = UIButton()
-        creationFunctions.makeButton(register, name: "Register", titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-120)/2, screenSize.height/2 + 300, 120, 30), page: self) // X, Y, width, height for CGRect
+        creationFunctions.makeButton(register, name: "Register", titleColor: UIColor.blueColor(), location: CGRectMake((width*45/100), height*61/100, width*70/1000, height*11/10000), page: self) // X, Y, width, height for CGRect
         register.addTarget(self, action: "Confirm:", forControlEvents: .TouchUpInside)
+        register.sizeToFit()
         
         // Adds navigation bar
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
         creationFunctions.makeNavigationBar(navigationBar, barTitle: "Resister Account", color: UIColor.whiteColor(), forwardButton: false, backButton: true, page: self)
         
         // Adds text fields and their cooresponding identifying labels
-        creationFunctions.makeLabel(desiredUsernameLabel, name: "Desired Username", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 150, 300, 35), page: self)
-        creationFunctions.makeTextField(desiredUsernameField, backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 150, 300, 35), page: self)
+        creationFunctions.makeLabel(desiredUsernameLabel, name: "Desired Username", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((width*6)/100, height*11/100, width*30/100, height*26/1000), page: self)
+        creationFunctions.makeTextField(desiredUsernameField, backgroundColor: UIColor.whiteColor(), frame: CGRectMake(width*65/100, height*11/100, width*30/100, height*26/1000), page: self)
         creationFunctions.disableAutocorrect(desiredUsernameField)
         
-        creationFunctions.makeLabel(desiredPasswordLabel, name: "Desired Password:",textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 300, 300, 35), page:self)
-        creationFunctions.makeTextField(desiredPasswordField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 300, 300, 35), page: self)
+        creationFunctions.makeLabel(desiredPasswordLabel, name: "Desired Password:",textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake(width*6/100, height*22/100, width*30/100, height*26/1000), page:self)
+        creationFunctions.makeTextField(desiredPasswordField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake(width*65/100, height*22/100, width*30/100, height*26/1000), page: self)
         desiredPasswordField.secureTextEntry = true
         creationFunctions.disableAutocorrect(desiredPasswordField)
         
-        creationFunctions.makeLabel(confirmPasswordLabel, name: "Confirm Password:", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 450, 300, 35), page: self)
-        creationFunctions.makeTextField(confirmPasswordField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 450, 300, 35), page:self)
+        creationFunctions.makeLabel(confirmPasswordLabel, name: "Confirm Password:", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake(width*6/100, height*33/100, width*30/100, height*26/1000), page: self)
+        creationFunctions.makeTextField(confirmPasswordField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake(width*65/100, height*33/100, width*30/100, height*26/1000), page:self)
         confirmPasswordField.secureTextEntry = true
         creationFunctions.disableAutocorrect(confirmPasswordField)
         
-        creationFunctions.makeLabel(emailAddressLabel, name: "Email Address:", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 600, 300, 35), page: self)
-        creationFunctions.makeTextField(emailAddressField, backgroundColor: UIColor.whiteColor(),frame: CGRectMake((screenSize.width-300)/2 + 300, 600, 300, 35), page: self)
+        creationFunctions.makeLabel(emailAddressLabel, name: "Email Address:", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake(width*6/100, height*44/100, width*30/100, height*26/1000), page: self)
+        creationFunctions.makeTextField(emailAddressField, backgroundColor: UIColor.whiteColor(),frame: CGRectMake(width*65/100, height*44/100, width*30/100, height*26/1000), page: self)
         creationFunctions.disableAutocorrect(emailAddressField)
+
         
-        creationFunctions.makeLabel(accessCodeLabelabel, name: "Access Code:",textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center,  frame: CGRectMake((screenSize.width-300)/2 - 300, 750, 300, 35), page: self)
-        creationFunctions.makeTextField(accessCodeField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 750, 300, 35), page: self)
+        creationFunctions.makeLabel(accessCodeLabelabel, name: "Access Code:",textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center,  frame: CGRectMake(width*6/100, height*55/100, width*30/100, height*26/1000), page: self)
+        creationFunctions.makeTextField(accessCodeField,backgroundColor: UIColor.whiteColor(), frame: CGRectMake(width*65/100, height*55/100, width*30/100, height*26/1000), page: self)
         
         self.configureView()
     }
@@ -106,6 +113,9 @@ class AccountRegisterPage: UIViewController {
         if(desiredPasswordField.text == "" || desiredUsernameField.text == "" || confirmPasswordField.text == "" || accessCodeField.text == ""){
             creationFunctions.makeAlert("Incomplete Form", message: "Please fill out all text fields", printStatement: "Form not filled out completely", page: self)
         } else {
+            
+     //       verifyEmailAddress(emailAddressField.text!)
+            
             let loginData = DDBLoginData() //initialize a loginData object.
             
             PublicTag = emailAddressField.text! //used to generate secret keys for encryption
@@ -118,6 +128,8 @@ class AccountRegisterPage: UIViewController {
             loginData.internalName = Encrypt2(accessCodeField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
             print(Decrypt2(loginData.internalName!, privateKeyFunctionParameter: findKey(PrivateTag!)!))
 
+            loginData.internalState = 0 //set its properties.
+            
             
             sendLoginData(loginData) //run the send function and push it to ddb.
             //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in

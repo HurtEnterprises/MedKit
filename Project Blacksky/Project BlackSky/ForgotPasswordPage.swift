@@ -45,23 +45,27 @@ class ForgotPasswordPage: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // Adds navigation bar
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, height*146/10000, self.view.frame.size.width, height*366/10000)) // Offset by 20 pixels vertically to take the status bar into account
         creationFunctions.makeNavigationBar(navigationBar, barTitle: "Forgot Password", color: UIColor.whiteColor(), forwardButton: false, backButton: true, page: self)
         
         let getStarted = UIButton()
-        creationFunctions.makeButton(getStarted, name: "Forgot Password", titleColor: UIColor.blueColor(), location: CGRectMake((screenSize.width-200)/2, 7*screenSize.height/10, 200, 30), page: self)// X, Y, width, height
+        
+        creationFunctions.makeButton(getStarted, name: "Forgot Password", titleColor: UIColor.blueColor(), location: CGRectMake(width*40/100, 7*screenSize.height/10, width*19/100, height*2/100), page: self)// X, Y, width, height
         getStarted.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
         self.view.addSubview(getStarted)
+        getStarted.sizeToFit()
         
         
         // Adds text fields and their cooresponding identifying labels
-        creationFunctions.makeLabel(usernameLabel, name: "Current Username:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 150, 300, 35), page: self)
-        creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.cyanColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 150, 300, 35), page: self)
-        creationFunctions.disableAutocorrect(usernameField)
+        creationFunctions.makeLabel(usernameLabel, name: "Current Username:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake(width*71/1000, height*11/100, width*29/100, height*26/1000), page: self)
+        usernameLabel.sizeToFit()
         
-        creationFunctions.makeLabel(emailLabel, name: "Email Address:",textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-300)/2 - 300, 300, 300, 35), page:self)
-        creationFunctions.makeTextField(emailField,backgroundColor: UIColor.cyanColor(), frame: CGRectMake((screenSize.width-300)/2 + 300, 300, 300, 35), page: self)
-        creationFunctions.disableAutocorrect(emailField)
+        creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.cyanColor(), frame: CGRectMake(64*width/100, height*11/100, width*29/100, height*26/1000), page: self)
+        
+        creationFunctions.makeLabel(emailLabel, name: "Email Address:",textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake(width*71/1000, height*22/100, width*29/100, height*26/1000), page:self)
+        emailLabel.sizeToFit()
+        
+        creationFunctions.makeTextField(emailField,backgroundColor: UIColor.cyanColor(), frame: CGRectMake(width*64/100, height*22/100, width*29/100, height*26/1000), page: self)
         
         self.configureView()
     }
