@@ -81,7 +81,6 @@ class NewPatient: UIViewController {
         
   //      creationFunctions.makeLabel(<#T##label: UILabel##UILabel#>, name: <#T##String#>, textColor: <#T##UIColor#>, alignment: <#T##NSTextAlignment#>, frame: //<#T##CGRect#>, page: <#T##UIViewController#>)
 
->>>>>>> 947fe59a0ff407716a9fa1567401054ec7ca80f7
         creationFunctions.makeTextField(streetAddressField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width - 700)/2, 3 * screenSize.height/10, 700, 35), page: self)
         streetAddressField.placeholder = "Street Address"
         
