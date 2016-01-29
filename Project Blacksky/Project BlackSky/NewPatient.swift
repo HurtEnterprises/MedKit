@@ -168,7 +168,8 @@ class NewPatient: UIViewController {
     }
     
     func nextClicked(sedner: UIButton){
-        loginChecks()
+        //loginChecks()
+        self.presentViewController(patientHistoryPage, animated: true, completion: nil)
     }
     func loginChecks(){
         let zipInt = Int(zipField.text!)
