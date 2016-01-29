@@ -2,4 +2,275 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project BlackSky/NewPatientHistory.swift"
+            timestampString = "475488954.701638"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "doesSmoke(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project BlackSky/NewPatientHistory.swift"
+            timestampString = "475488954.701638"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "doesSmoke(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project BlackSky/NewPatient.swift"
+            timestampString = "475488827.553511"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "NewPatient"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_BlackSky.NewPatient.detailItem.materializeForSet : Swift.Optional&lt;Swift.AnyObject&gt;"
+                  moduleName = "Project BlackSky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Hurt%20Enterprises/BlackSky/Project%20Blacksky/Project%20BlackSky/NewPatient.swift"
+                  timestampString = "475488828.642588"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_BlackSky.NewPatient.init (Project_BlackSky.NewPatient.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; Project_BlackSky.NewPatient"
+                  moduleName = "Project BlackSky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Hurt%20Enterprises/BlackSky/Project%20Blacksky/Project%20BlackSky/NewPatient.swift"
+                  timestampString = "475488828.642788"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "69">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_BlackSky.NewPatient.init (Project_BlackSky.NewPatient.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Project_BlackSky.NewPatient&gt;"
+                  moduleName = "Project BlackSky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Hurt%20Enterprises/BlackSky/Project%20Blacksky/Project%20BlackSky/NewPatient.swift"
+                  timestampString = "475488828.642954"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project BlackSky/NewPatient.swift"
+            timestampString = "475488827.553511"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "NewPatient"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_BlackSky.NewPatient.DOBLabel.getter : __ObjC.UILabel"
+                  moduleName = "Project BlackSky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Hurt%20Enterprises/BlackSky/Project%20Blacksky/Project%20BlackSky/NewPatient.swift"
+                  timestampString = "475488828.645136"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_BlackSky.NewPatient.init (Project_BlackSky.NewPatient.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; Project_BlackSky.NewPatient"
+                  moduleName = "Project BlackSky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Hurt%20Enterprises/BlackSky/Project%20Blacksky/Project%20BlackSky/NewPatient.swift"
+                  timestampString = "475488828.645287"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_BlackSky.NewPatient.init (Project_BlackSky.NewPatient.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Project_BlackSky.NewPatient&gt;"
+                  moduleName = "Project BlackSky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Hurt%20Enterprises/BlackSky/Project%20Blacksky/Project%20BlackSky/NewPatient.swift"
+                  timestampString = "475488828.645397"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "42">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project BlackSky/MainMenu.swift"
+            timestampString = "475488348.605635"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "newPatientClicked()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project BlackSky/NewPatient.swift"
+            timestampString = "475488827.553511"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "NewPatient"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_BlackSky.NewPatient.mainMenu.getter : Project_BlackSky.MainMenu"
+                  moduleName = "Project BlackSky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Hurt%20Enterprises/BlackSky/Project%20Blacksky/Project%20BlackSky/NewPatient.swift"
+                  timestampString = "475488667.836407"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_BlackSky.NewPatient.init (Project_BlackSky.NewPatient.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; Project_BlackSky.NewPatient"
+                  moduleName = "Project BlackSky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Hurt%20Enterprises/BlackSky/Project%20Blacksky/Project%20BlackSky/NewPatient.swift"
+                  timestampString = "475488667.836531"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "57">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_BlackSky.NewPatient.init (Project_BlackSky.NewPatient.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Project_BlackSky.NewPatient&gt;"
+                  moduleName = "Project BlackSky"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Hurt%20Enterprises/BlackSky/Project%20Blacksky/Project%20BlackSky/NewPatient.swift"
+                  timestampString = "475488667.836633"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project BlackSky/NewPatient.swift"
+            timestampString = "475488827.553511"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "configureView()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project BlackSky/NewPatient.swift"
+            timestampString = "475723894.590223"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "loginChecks()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
