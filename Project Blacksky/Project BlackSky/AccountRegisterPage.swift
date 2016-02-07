@@ -111,6 +111,9 @@ class AccountRegisterPage: UIViewController {
             
      //       verifyEmailAddress(emailAddressField.text!)
             
+            KeychainWrapper.setString(desiredPasswordField.text!, forKey: "Password")
+            KeychainWrapper.setString(desiredUsernameField.text!, forKey: "Username")
+            
             let loginData = DDBLoginData() //initialize a loginData object.
             
             PublicTag = emailAddressField.text! //used to generate secret keys for encryption
