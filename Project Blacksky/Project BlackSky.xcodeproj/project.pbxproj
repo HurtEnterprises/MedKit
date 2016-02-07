@@ -14,6 +14,8 @@
 		8F20F9451C2F794B00C5C5D7 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */; };
 		8F6FA9B11C3CE5530083020B /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6FA9B01C3CE5530083020B /* MainMenu.swift */; };
 		8F74854A1C38DACE00C9ED13 /* UICreationFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7485491C38DACE00C9ED13 /* UICreationFunctions.swift */; };
+		8FB01F071C5B39DA003B0CC2 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB01F061C5B39DA003B0CC2 /* CheckBox.swift */; };
+		8FB01F091C5B39F5003B0CC2 /* NewPatientFamilyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB01F081C5B39F5003B0CC2 /* NewPatientFamilyHistory.swift */; };
 		8FC03B901C40D02900CF9F98 /* MyPatients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */; };
 		8FC03B921C40D03D00CF9F98 /* MyAppointments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC03B911C40D03D00CF9F98 /* MyAppointments.swift */; };
 		8FC03B941C40D04D00CF9F98 /* NewPatient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC03B931C40D04D00CF9F98 /* NewPatient.swift */; };
@@ -62,6 +64,8 @@
 		8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		8F6FA9B01C3CE5530083020B /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		8F7485491C38DACE00C9ED13 /* UICreationFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICreationFunctions.swift; sourceTree = "<group>"; };
+		8FB01F061C5B39DA003B0CC2 /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		8FB01F081C5B39F5003B0CC2 /* NewPatientFamilyHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPatientFamilyHistory.swift; sourceTree = "<group>"; };
 		8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPatients.swift; sourceTree = "<group>"; };
 		8FC03B911C40D03D00CF9F98 /* MyAppointments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAppointments.swift; sourceTree = "<group>"; };
 		8FC03B931C40D04D00CF9F98 /* NewPatient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPatient.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 		8FC03B951C42286B00CF9F98 /* NewPatient */ = {
 			isa = PBXGroup;
 			children = (
+				8FB01F081C5B39F5003B0CC2 /* NewPatientFamilyHistory.swift */,
 				8FC03B931C40D04D00CF9F98 /* NewPatient.swift */,
 				8FC03B961C42287D00CF9F98 /* NewPatientHistory.swift */,
 			);
@@ -205,6 +210,7 @@
 				8FD515141BFA7C2F008E7CDB /* DetailViewController.swift */,
 				8FD515121BFA7C2F008E7CDB /* MasterViewController.swift */,
 				6C7006F01C3287E400E681DF /* Constants.swift */,
+				8FB01F061C5B39DA003B0CC2 /* CheckBox.swift */,
 				8F7485491C38DACE00C9ED13 /* UICreationFunctions.swift */,
 				8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */,
 				6C7006F21C394C0E00E681DF /* LoginData.swift */,
@@ -433,7 +439,9 @@
 				8FC03B901C40D02900CF9F98 /* MyPatients.swift in Sources */,
 				8FC03B941C40D04D00CF9F98 /* NewPatient.swift in Sources */,
 				8F20F9451C2F794B00C5C5D7 /* LoginPage.swift in Sources */,
+				8FB01F071C5B39DA003B0CC2 /* CheckBox.swift in Sources */,
 				8FD515151BFA7C2F008E7CDB /* DetailViewController.swift in Sources */,
+				8FB01F091C5B39F5003B0CC2 /* NewPatientFamilyHistory.swift in Sources */,
 				8FC03B991C4E942F00CF9F98 /* CurrentUserClass.swift in Sources */,
 				F84AD4A41C4461E2009FDFEB /* EncryptionFunctions.swift in Sources */,
 				F85FD4821C52D73D006411AD /* KeychainFunctions.swift in Sources */,

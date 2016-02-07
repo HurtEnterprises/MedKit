@@ -36,13 +36,18 @@ class LoginPage: UIViewController {
         
         // Do any additional setup after loading the view, typically from a nib.
         
+        // Do any additional setup after loading the view, typically from a nib.
+
         // Makes Text Fields
         creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width*65/100, height*13/100, width*22/100, height*3/100), page:self)
         usernameField.text = "Ladiesman69"
         
         creationFunctions.makeTextField(passwordField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width*65/100, height*26/100, width*22/100, height*3/100), page:self)
         passwordField.secureTextEntry = true
+
 //        creationFunctions.disableAutocorrect(passwordField)
+        creationFunctions.disableAutocorrect(passwordField)
+
         passwordField.text = "Cashmoneyballer"
         
         // Makes Text Labels
@@ -229,8 +234,8 @@ class LoginPage: UIViewController {
         
         // Makes login, register, and forgot password button.
         let loginButton = UIButton()
-
         creationFunctions.makeButton(loginButton, name: "Login", titleColor: UIColor.blueColor(), location: CGRectMake(width*44/100, height*63/100, width*117/1000, height*22/1000), page: self)
+        loginButton.titleLabel?.font = UIFont(name: (loginButton.titleLabel?.font?.fontName)!, size: 30)
 
         loginButton.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
         loginButton.sizeToFit()
@@ -238,14 +243,14 @@ class LoginPage: UIViewController {
         let register = UIButton()
 
         creationFunctions.makeButton(register, name: "Register",titleColor: UIColor.blueColor(), location: CGRectMake(width*34/100, height*66/100, width*177/1000, height*22/1000), page: self)
-
+        register.titleLabel?.font = UIFont(name: (register.titleLabel?.font?.fontName)!, size: 30)
         register.addTarget(self, action: "registerSwitch:", forControlEvents: .TouchUpInside)
         register.sizeToFit()
         
         let forgotPassword = UIButton()
 
         creationFunctions.makeButton(forgotPassword, name: "Forgot Password",titleColor: UIColor.blueColor(), location: CGRectMake(width*52/100, height*66/100, width*146/1000, height*22/1000), page: self)
-
+        forgotPassword.titleLabel?.font = UIFont(name: (forgotPassword.titleLabel?.font?.fontName)!, size: 30)
         forgotPassword.addTarget(self, action: "forgotPasswordSwitch:", forControlEvents: .TouchUpInside)
         forgotPassword.sizeToFit()
         
@@ -269,7 +274,7 @@ class LoginPage: UIViewController {
             // Checks login logic
             print(usernameField.text)
             print(passwordField.text)
-            
+
             if (usernameField.text == ""){
                 creationFunctions.makeAlert("No Username", message: "Please input a username.", printStatement: "No username", page: self)
                 return
