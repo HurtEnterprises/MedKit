@@ -37,7 +37,7 @@ class User :AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var internalState:NSNumber?
     
     class func dynamoDBTableName() -> String! {
-        return AWSSampleDynamoDBTableName //I think this should be a whole different table in the database. Idk how you set that though
+        return AWSDynamoDBLoginTable //I think this should be a whole different table in the database. Idk how you set that though
     }
     
     class func hashKeyAttribute() -> String! {

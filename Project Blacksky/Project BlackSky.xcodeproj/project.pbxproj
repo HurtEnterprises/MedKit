@@ -154,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */,
+				8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */,
+				6C7006F21C394C0E00E681DF /* LoginData.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -212,8 +214,6 @@
 				6C7006F01C3287E400E681DF /* Constants.swift */,
 				8FB01F061C5B39DA003B0CC2 /* CheckBox.swift */,
 				8F7485491C38DACE00C9ED13 /* UICreationFunctions.swift */,
-				8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */,
-				6C7006F21C394C0E00E681DF /* LoginData.swift */,
 				8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */,
 				F85FD47F1C4EE862006411AD /* Email.swift */,
 				8F6FA9B01C3CE5530083020B /* MainMenu.swift */,

@@ -23,7 +23,7 @@ class DDBLoginData :AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var verifiedEmail = false
     
     class func dynamoDBTableName() -> String! {
-        return AWSSampleDynamoDBTableName
+        return AWSDynamoDBLoginTable
     }
     
     class func hashKeyAttribute() -> String! {

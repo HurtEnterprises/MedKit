@@ -193,7 +193,25 @@ class NewPatientHistory: UIViewController {
             self.presentViewController(alertController, animated: true, completion: nil)
         }else{
             //@Mehrab do your thing. I didn't wanna make seperate variables for everything cause that seemed sloppy, but the bool for smoker and drinker are represented by smokerbox.ischecked and drinkbox.ischecked respectively. As for the fields, to get the strings,use: smokerField.text, drinkerField.text, conditionsField.text, and medsField.text. Lemme know if you have questions
+            print("TESTING TESTING TESTING")
             self.presentViewController(patientFamilyHistoryPage, animated: true, completion: nil)
+            if(smokerBox.isChecked){
+                patientPrototype.smokerStatus = "YES"
+            } else {
+                patientPrototype.smokerStatus = "NO"
+            }
+            
+            if(drinkBox.isChecked){
+                patientPrototype.drinkerStatus = "YES"
+            } else {
+                patientPrototype.drinkerStatus = "NO"
+            }
+            //TODO: Enforce comma delimited list for medsfield and conditions field.
+            //NOTE: Currently we accept no-space separated, only-comma-separated lists of values
+            let medsArray = medsField.text!.characters.split{$0 == ","}.map(String.init)
+            let conditionsArray = conditionsField.text!.characters.split{$0 == ","}.map(String.init)
+            patientPrototype.currentMedications = medsArray
+            patientPrototype.prexistingContitions = conditionsArray
         }
     }
     

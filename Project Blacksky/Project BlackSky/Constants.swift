@@ -12,8 +12,10 @@ import Foundation
 let CognitoRegionType = AWSRegionType.USEast1
 let DefaultServiceRegionType = AWSRegionType.USEast1
 let CognitoIdentityPoolId = "us-east-1:b9a270f0-ab59-4cbf-ac54-e1dd45a51d96"
-let AWSSampleDynamoDBTableName = "Login-Test"
+let AWSDynamoDBLoginTable = "Login-Test"
+let AWSDynamoDBPatientTable = "Patient-Data"
 
 let screenSize: CGRect = UIScreen.mainScreen().bounds // Gets Size of Screen
 let height = screenSize.height
 let width = screenSize.width
+let patientPrototype: PatientData = PatientData()

@@ -169,6 +169,20 @@ class NewPatient: UIViewController {
     
     func nextClicked(sedner: UIButton){
         //loginChecks()
+        
+        patientPrototype.firstName = firstNameField.text!
+        patientPrototype.middleName = middleNameField.text!
+        patientPrototype.lastName = lastNameField.text!
+        patientPrototype.streetAddress = streetAddressField.text!
+        patientPrototype.city = cityField.text!
+        patientPrototype.state = stateField.text!
+        patientPrototype.phoneNumber = phoneNumberField.text!
+        patientPrototype.insuranceProvider = insuranceProviderField.text!
+        patientPrototype.policyNumber = policyNumberField.text!
+        patientPrototype.zip = zipField.text!
+        patientPrototype.DOB = DOBField.text!
+        patientPrototype.Email = emailField.text!
+
         self.presentViewController(patientHistoryPage, animated: true, completion: nil)
     }
     func loginChecks(){
@@ -205,17 +219,17 @@ class NewPatient: UIViewController {
             
         
       //      let encryptedFirstName = Encrypt2(firstNameField.text!,publicKeyFunctionParameter: findKey(PublicTag!)!)
-            print(middleNameField.text)
-        let encryptedMiddleName = Encrypt2((middleNameField.text)!,publicKeyFunctionParameter: findKey(PublicTag!)!)
-        let encryptedLastName = Encrypt2(lastNameField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-        let encryptedStreetAddress = Encrypt2(streetAddressField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-        let encryptedCity = Encrypt2(cityField.text!, publicKeyFunctionParameter:findKey(PublicTag!)!)
-        let encryptedState = Encrypt2(stateField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-        let encryptedPhoneNumber = Encrypt2(phoneNumberField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-        let encryptedInsuranceProvider = Encrypt2(insuranceProviderField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-        let encryptedPolicyNumber = Encrypt2(policyNumberField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-        let encryptedZip = Encrypt2(zipField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-        let encryptedDOB = Encrypt2(DOBField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+//        let encryptedMiddleName = Encrypt2((middleNameField.text)!,publicKeyFunctionParameter: findKey(PublicTag!)!)
+//        let encryptedLastName = Encrypt2(lastNameField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+//        let encryptedStreetAddress = Encrypt2(streetAddressField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+//        let encryptedCity = Encrypt2(cityField.text!, publicKeyFunctionParameter:findKey(PublicTag!)!)
+//        let encryptedState = Encrypt2(stateField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+//        let encryptedPhoneNumber = Encrypt2(phoneNumberField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+//        let encryptedInsuranceProvider = Encrypt2(insuranceProviderField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+//        let encryptedPolicyNumber = Encrypt2(policyNumberField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+//        let encryptedZip = Encrypt2(zipField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+//        let encryptedDOB = Encrypt2(DOBField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+
             
         self.presentViewController(patientHistoryPage, animated: true, completion: nil)
         }

@@ -40,7 +40,7 @@ class LoginPage: UIViewController {
 
         // Makes Text Fields
         creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width*65/100, height*13/100, width*22/100, height*3/100), page:self)
-        usernameField.text = "Ladiesman69"
+        usernameField.text = "blackmamba9in"
         
         creationFunctions.makeTextField(passwordField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width*65/100, height*26/100, width*22/100, height*3/100), page:self)
         passwordField.secureTextEntry = true
@@ -48,7 +48,7 @@ class LoginPage: UIViewController {
 //        creationFunctions.disableAutocorrect(passwordField)
         creationFunctions.disableAutocorrect(passwordField)
 
-        passwordField.text = "Cashmoneyballer"
+        passwordField.text = "plunger"
         
         // Makes Text Labels
         let usernameLabel: UILabel = UILabel()
