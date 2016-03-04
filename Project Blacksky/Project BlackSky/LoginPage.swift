@@ -32,10 +32,7 @@ class LoginPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Dismisses the main menu page
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        
+        creationFunctions.setBackgroundColor("blueBG", page: self)
         // Do any additional setup after loading the view, typically from a nib.
 
         // Makes Text Fields

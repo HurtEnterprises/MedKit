@@ -12,7 +12,17 @@ import UIKit
 // This file will contain general UI creation functions
 
 class UICreationFunctions: UIViewController{
-// Creates Button
+    
+    //sets background color
+    func setBackgroundColor(name: String, page:UIViewController){
+        let imageName = name
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = UIScreen.mainScreen().bounds
+        page.view.addSubview(imageView)
+    }
+    
+    // Creates Button
     func makeButton(button: UIButton, name: String, titleColor: UIColor, location: CGRect, page:UIViewController){
     button.setTitle(name, forState: .Normal)
     button.setTitleColor(titleColor, forState: .Normal)
