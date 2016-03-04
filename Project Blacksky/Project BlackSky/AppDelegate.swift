@@ -16,22 +16,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //Changing initial page loaded to login page //TODO: Through keychain or some either means make it so doctors don't have to always log in and out. Tim was working on this at one point and will likely conitnue
+        let rootView: LoginPage = loginPage
+        
+        if let window = self.window{
+            window.rootViewController = rootView
+        }
+        
+        //don't worry about this stuff, its just technical jargon.
+        let credentialsProvider = AWSCognitoCredentialsProvider(
+            regionType: CognitoRegionType,
+            identityPoolId: CognitoIdentityPoolId)
+        
+        let defaultServiceConfiguration = AWSServiceConfiguration(
+            region: DefaultServiceRegionType,
+            credentialsProvider: credentialsProvider)
+        
+        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = defaultServiceConfiguration
+        return true
+            
         let splitViewController = self.window!.rootViewController as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
-        
-        //don't worry about this stuff, its just technical jargon.
-        let credentialsProvider = AWSCognitoCredentialsProvider(
-                                    regionType: CognitoRegionType,
-                                    identityPoolId: CognitoIdentityPoolId)
-        
-        let defaultServiceConfiguration = AWSServiceConfiguration(
-                                            region: DefaultServiceRegionType,
-                                            credentialsProvider: credentialsProvider)
-        
-        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = defaultServiceConfiguration
-        return true
     }
 
     func applicationWillResignActive(application: UIApplication) {

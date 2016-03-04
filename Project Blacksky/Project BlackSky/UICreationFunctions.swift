@@ -20,6 +20,13 @@ class UICreationFunctions: UIViewController{
     page.view.addSubview(button)
     }
     
+    // Creates the clear button with the white outline we will commonly use
+    func makeClearButton(button: UIButton, name: String, titleColor:UIColor, location: CGRect, page:UIViewController){
+        
+    }
+    
+    // Creates the grayish raised button we will commonly use
+    
     // Makes a checkbox
     func makeCheckBox(box: CheckBox,frame: CGRect, page: UIViewController){
         box.frame = frame
