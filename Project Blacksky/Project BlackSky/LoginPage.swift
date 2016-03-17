@@ -36,31 +36,42 @@ class LoginPage: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 
         // Makes Text Fields
-        creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width*65/100, height*13/100, width*22/100, height*3/100), page:self)
+        creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width/4, height/3.25, width/5, height/10), page:self)
+        usernameField.font = usernameField.font!.fontWithSize(30)
         usernameField.text = "blackmamba9in"
+        usernameField.layer.backgroundColor = UIColor.clearColor().CGColor
+        usernameField.layer.borderColor = UIColor.clearColor().CGColor
+        usernameField.layer.borderWidth = 2.0
+        let border = CALayer()
+        border.borderColor = UIColor.whiteColor().CGColor
+        border.frame = CGRect(x: 0, y: usernameField.frame.size.height - usernameField.layer.borderWidth, width:  usernameField.frame.size.width, height: usernameField.frame.size.height)
+        border.borderWidth = width
+        usernameField.layer.addSublayer(border)
+        usernameField.layer.masksToBounds = true
         
         creationFunctions.makeTextField(passwordField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width*65/100, height*26/100, width*22/100, height*3/100), page:self)
         passwordField.secureTextEntry = true
 
-//        creationFunctions.disableAutocorrect(passwordField)
         creationFunctions.disableAutocorrect(passwordField)
 
         passwordField.text = "plunger"
         
         // Makes Text Labels
         let usernameLabel: UILabel = UILabel()
-        creationFunctions.makeLabel(usernameLabel, name: "Username", textColor: UIColor.lightGrayColor(), alignment:NSTextAlignment.Center, frame: CGRectMake(width*55/1000, height*13/100, width*29/100, height*4/100), page: self)
+        creationFunctions.makeLabel(usernameLabel, name: "USERNAME", textColor: UIColor.whiteColor(), alignment:NSTextAlignment.Center, frame: CGRectMake(width/4, height/3.5, width/5, height/10), page: self)
+        usernameLabel.font = usernameLabel.font.fontWithSize(30)
         usernameLabel.sizeToFit()
+
         
         let passwordLabel: UILabel = UILabel()
-        creationFunctions.makeLabel(passwordLabel, name: "Password", textColor: UIColor.lightGrayColor(), alignment:NSTextAlignment.Center, frame: CGRectMake(width*55/1000, height*26/100, width*29/100, height*4/100), page: self)
+        creationFunctions.makeLabel(passwordLabel, name: "PASSWORD", textColor: UIColor.lightGrayColor(), alignment:NSTextAlignment.Center, frame: CGRectMake(width*55/1000, height*26/100, width*29/100, height*4/100), page: self)
         passwordLabel.sizeToFit()
         
         //TODO: Redo the buttons so they are placed and the length is chosen based upon the legnth of the word
         
         // Makes login, register, and forgot password button.
         let loginButton = UIButton()
-        creationFunctions.makeButton(loginButton, name: "Login", titleColor: UIColor.blueColor(), location: CGRectMake(width*44/100, height*63/100, width*117/1000, height*22/1000), page: self)
+        creationFunctions.makeClearButton(loginButton, name: "Login", titleColor: UIColor.blueColor(), location: CGRectMake(width*44/100, height*63/100, width*117/1000, height*22/1000), page: self)
         loginButton.titleLabel?.font = UIFont(name: (loginButton.titleLabel?.font?.fontName)!, size: 30)
         
         loginButton.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
@@ -80,9 +91,17 @@ class LoginPage: UIViewController {
         forgotPassword.addTarget(self, action: "forgotPasswordSwitch:", forControlEvents: .TouchUpInside)
         forgotPassword.sizeToFit()
         
-        // Makes Navigation Bar
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
-        creationFunctions.makeNavigationBar(navigationBar, barTitle: "Login", color: UIColor.lightGrayColor(), forwardButton: false, backButton: false, page: self)
+        let imageName = "MedKitLogo.png"
+        creationFunctions.addImage(imageName, frame: CGRectMake(width/2, 0, width/4, height/4), center:true, page: self)
+        
+        let infoBox = UIView(frame: CGRectMake(width/10, height/4, width * 8/10, height/2.35))
+        infoBox.backgroundColor = UIColor.clearColor()
+        infoBox.layer.borderWidth = 5
+        infoBox.layer.borderColor = UIColor.whiteColor().CGColor
+        infoBox.layer.cornerRadius = 8.0
+        infoBox.clipsToBounds = true
+        view.addSubview(infoBox)
+
         
         self.configureView()
         

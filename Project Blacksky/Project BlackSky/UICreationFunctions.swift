@@ -32,7 +32,14 @@ class UICreationFunctions: UIViewController{
     
     // Creates the clear button with the white outline we will commonly use
     func makeClearButton(button: UIButton, name: String, titleColor:UIColor, location: CGRect, page:UIViewController){
-        
+        button.setTitle(name, forState: .Normal)
+        button.setTitleColor(titleColor, forState: .Normal)
+        button.frame = location // X, Y, width, height
+        button.backgroundColor = UIColor.clearColor()
+        button.layer.cornerRadius = 5
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.whiteColor().CGColor
+        page.view.addSubview(button)
     }
     
     // Creates the grayish raised button we will commonly use
@@ -101,6 +108,27 @@ class UICreationFunctions: UIViewController{
     func disableAutocorrect(textField: UITextField){
         textField.autocorrectionType = .No
         textField.autocapitalizationType = .None
+    }
+    
+    // Adds an image
+    func addImage(imageName: String, frame: CGRect,center: Bool, page: UIViewController){
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = frame
+        if center{
+            imageView.frame.origin.x = (page.view.bounds.size.width - imageView.frame.size.width) / 2.0
+        }
+        page.view.addSubview(imageView)
+    }
+    
+    func drawRectangle(color: UIColor, frame: CGRect){
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetLineWidth(context, 4.0)
+        CGContextSetStrokeColorWithColor(context,
+            UIColor.blueColor().CGColor)
+        let rectangle = frame
+        CGContextAddRect(context, rectangle)
+        CGContextStrokePath(context)
     }
     
 }
