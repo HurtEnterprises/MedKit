@@ -32,29 +32,49 @@ class LoginPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        creationFunctions.setBackgroundColor("blueBG", page: self)
         // Do any additional setup after loading the view, typically from a nib.
+        // NOTES: Views must be added in a specific order as they stack (Background, boxes, all labels and textboxes)
 
+        creationFunctions.setBackgroundColor("MainBackground", page: self)
+        
+        let infoBox = UIView(frame: CGRectMake(width/10, height/4, width * 8/10, height/2.35))
+        infoBox.backgroundColor = UIColor.clearColor()
+        infoBox.layer.borderWidth = 5
+        infoBox.layer.borderColor = UIColor.whiteColor().CGColor
+        infoBox.layer.cornerRadius = 8.0
+        infoBox.clipsToBounds = true
+        view.addSubview(infoBox)
+        
         // Makes Text Fields
-        creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width/4, height/3.25, width/5, height/10), page:self)
+        creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width/4, height/3.5 + 50, width/2, 30), page:self)
         usernameField.font = usernameField.font!.fontWithSize(30)
         usernameField.text = "blackmamba9in"
         usernameField.layer.backgroundColor = UIColor.clearColor().CGColor
         usernameField.layer.borderColor = UIColor.clearColor().CGColor
         usernameField.layer.borderWidth = 2.0
-        let border = CALayer()
-        border.borderColor = UIColor.whiteColor().CGColor
-        border.frame = CGRect(x: 0, y: usernameField.frame.size.height - usernameField.layer.borderWidth, width:  usernameField.frame.size.width, height: usernameField.frame.size.height)
-        border.borderWidth = width
-        usernameField.layer.addSublayer(border)
+        let usernameBorder = CALayer()
+        usernameBorder.borderColor = UIColor.whiteColor().CGColor
+        usernameBorder.frame = CGRect(x: 0, y: usernameField.frame.size.height - usernameField.layer.borderWidth, width:  usernameField.frame.size.width, height: usernameField.frame.size.height)
+        usernameBorder.borderWidth = width
+        usernameField.layer.addSublayer(usernameBorder)
         usernameField.layer.masksToBounds = true
         
-        creationFunctions.makeTextField(passwordField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width*65/100, height*26/100, width*22/100, height*3/100), page:self)
-        passwordField.secureTextEntry = true
-
-        creationFunctions.disableAutocorrect(passwordField)
-
+        creationFunctions.makeTextField(passwordField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width/4, height/2.5 + 50, width/2, 30), page:self)
+        passwordField.font = passwordField.font!.fontWithSize(30)
         passwordField.text = "plunger"
+        passwordField.secureTextEntry = true
+        creationFunctions.disableAutocorrect(passwordField)
+        passwordField.layer.backgroundColor = UIColor.clearColor().CGColor
+        passwordField.layer.borderColor = UIColor.clearColor().CGColor
+        passwordField.layer.borderWidth = 2.0
+        let passwordBorder = CALayer()
+        passwordBorder.borderColor = UIColor.whiteColor().CGColor
+        passwordBorder.frame = CGRect(x: 0, y: passwordField.frame.size.height - passwordField.layer.borderWidth, width:  passwordField.frame.size.width, height: passwordField.frame.size.height)
+        passwordBorder.borderWidth = width
+        passwordField.layer.addSublayer(passwordBorder)
+        passwordField.layer.masksToBounds = true
+
+
         
         // Makes Text Labels
         let usernameLabel: UILabel = UILabel()
@@ -64,7 +84,8 @@ class LoginPage: UIViewController {
 
         
         let passwordLabel: UILabel = UILabel()
-        creationFunctions.makeLabel(passwordLabel, name: "PASSWORD", textColor: UIColor.lightGrayColor(), alignment:NSTextAlignment.Center, frame: CGRectMake(width*55/1000, height*26/100, width*29/100, height*4/100), page: self)
+        creationFunctions.makeLabel(passwordLabel, name: "PASSWORD", textColor: UIColor.whiteColor(), alignment:NSTextAlignment.Center, frame: CGRectMake(width/4, height/2.5, width/5, height/10), page: self)
+        passwordLabel.font = passwordLabel.font.fontWithSize(30)
         passwordLabel.sizeToFit()
         
         //TODO: Redo the buttons so they are placed and the length is chosen based upon the legnth of the word
@@ -91,16 +112,8 @@ class LoginPage: UIViewController {
         forgotPassword.addTarget(self, action: "forgotPasswordSwitch:", forControlEvents: .TouchUpInside)
         forgotPassword.sizeToFit()
         
-        let imageName = "MedKitLogo.png"
+        let imageName = "MedKitLogoWhite.png"
         creationFunctions.addImage(imageName, frame: CGRectMake(width/2, 0, width/4, height/4), center:true, page: self)
-        
-        let infoBox = UIView(frame: CGRectMake(width/10, height/4, width * 8/10, height/2.35))
-        infoBox.backgroundColor = UIColor.clearColor()
-        infoBox.layer.borderWidth = 5
-        infoBox.layer.borderColor = UIColor.whiteColor().CGColor
-        infoBox.layer.cornerRadius = 8.0
-        infoBox.clipsToBounds = true
-        view.addSubview(infoBox)
 
         
         self.configureView()
