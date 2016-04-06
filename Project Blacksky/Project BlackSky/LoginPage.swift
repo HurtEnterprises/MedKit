@@ -30,6 +30,11 @@ class LoginPage: UIViewController {
     let usernameField: UITextField = UITextField()
     let passwordField: UITextField = UITextField()
     
+    var underlineAttributes = [
+        NSFontAttributeName : UIFont.systemFontOfSize(27.0),
+        NSForegroundColorAttributeName : UIColor.whiteColor(),
+        NSUnderlineStyleAttributeName : 1]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -92,23 +97,40 @@ class LoginPage: UIViewController {
         
         // Makes login, register, and forgot password button.
         let loginButton = UIButton()
-        creationFunctions.makeClearButton(loginButton, name: "Login", titleColor: UIColor.blueColor(), location: CGRectMake(width*44/100, height*63/100, width*117/1000, height*22/1000), page: self)
-        loginButton.titleLabel?.font = UIFont(name: (loginButton.titleLabel?.font?.fontName)!, size: 30)
-        
+        creationFunctions.makeClearButton(loginButton, name: "LOGIN", titleColor: UIColor.whiteColor(), location: CGRectMake((2/3*width)/2,  height/2, width/3, height/12), page: self)
+        loginButton.titleLabel?.font = UIFont(name: (loginButton.titleLabel?.font?.fontName)!, size: 60)
+        loginButton.layer.borderColor = UIColor.clearColor().CGColor
+        loginButton.layer.shadowColor = UIColor.blackColor().CGColor
+        loginButton.layer.shadowOffset = CGSize(width: 10.0, height: 10.0)
+        loginButton.layer.shadowRadius = 3
+        loginButton.layer.shadowOpacity = 0.2
         loginButton.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
-        loginButton.sizeToFit()
+        
+        let layer : CAGradientLayer = CAGradientLayer()
+        layer.frame.size = loginButton.frame.size
+        
+        let color1 = UIColor(red: 190/256, green: 190/256, blue: 190/256, alpha: 1.0).CGColor as CGColorRef
+        let color2 = UIColor(red: 255/256, green: 251/256, blue: 251/256, alpha: 0.0).CGColor as CGColorRef
+      
+        layer.colors = [color2, color1]
+        
+        layer.locations = [0.0, 0.7]
+        
+        loginButton.layer.insertSublayer(layer, atIndex: 0)
         
         let register = UIButton()
         
-        creationFunctions.makeButton(register, name: "Register",titleColor: UIColor.blueColor(), location: CGRectMake(width*34/100, height*66/100, width*177/1000, height*22/1000), page: self)
-        register.titleLabel?.font = UIFont(name: (register.titleLabel?.font?.fontName)!, size: 30)
+        creationFunctions.makeClearButton(register, name: "CREATE AN ACCOUNT",titleColor: UIColor.whiteColor(), location: CGRectMake((width * 2/10)/2, 7.5*height/10, width * 8/10, height/8),page: self)
+        register.titleLabel?.font = UIFont(name: (register.titleLabel?.font?.fontName)!, size: 60)
         register.addTarget(self, action: "registerSwitch:", forControlEvents: .TouchUpInside)
-        register.sizeToFit()
-        
+        register.layer.borderWidth = 5
         let forgotPassword = UIButton()
         
-        creationFunctions.makeButton(forgotPassword, name: "Forgot Password",titleColor: UIColor.blueColor(), location: CGRectMake(width*52/100, height*66/100, width*146/1000, height*22/1000), page: self)
-        forgotPassword.titleLabel?.font = UIFont(name: (forgotPassword.titleLabel?.font?.fontName)!, size: 30)
+        //String is made this way b/c it is attributed
+        var forgotPasswordString = NSMutableAttributedString(string:"Forgot Password?", attributes: underlineAttributes)
+        creationFunctions.makeButton(forgotPassword, name: "Forgot Password?",titleColor: UIColor.whiteColor(), location: CGRectMake((4 * width/5)/2, height * 12/20, width/5, height/20), page: self)
+        forgotPassword.titleLabel?.textAlignment = .Center
+        forgotPassword.setAttributedTitle(forgotPasswordString, forState: .Normal)
         forgotPassword.addTarget(self, action: "forgotPasswordSwitch:", forControlEvents: .TouchUpInside)
         forgotPassword.sizeToFit()
         
