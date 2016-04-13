@@ -13,6 +13,7 @@ class LoginPage: UIViewController {
     
     let mainMenu: MainMenu = MainMenu()
     let creationFunctions: UICreationFunctions = UICreationFunctions()
+    let delegate: AppDelegate = AppDelegate()
     
     var detailItem: AnyObject? {
         didSet {
@@ -39,6 +40,14 @@ class LoginPage: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // NOTES: Views must be added in a specific order as they stack (Background, boxes, all labels and textboxes)
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.frame = CGRectMake(0, 10, width, height/10)
+        var backButton: UIBarButtonItem = UIBarButtonItem(title: "BACK", style: UIBarButtonItemStyle.Bordered, target: self, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        self.navigationController?.navigationBar.frame = CGRectMake(0, 20, width, height/10)
 
         creationFunctions.setBackgroundColor("MainBackground", page: self)
         
@@ -105,17 +114,13 @@ class LoginPage: UIViewController {
         loginButton.layer.shadowRadius = 3
         loginButton.layer.shadowOpacity = 0.2
         loginButton.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
-        
+        // Gradient stuff for login button
         let layer : CAGradientLayer = CAGradientLayer()
         layer.frame.size = loginButton.frame.size
-        
         let color1 = UIColor(red: 190/256, green: 190/256, blue: 190/256, alpha: 1.0).CGColor as CGColorRef
         let color2 = UIColor(red: 255/256, green: 251/256, blue: 251/256, alpha: 0.0).CGColor as CGColorRef
-      
         layer.colors = [color2, color1]
-        
         layer.locations = [0.0, 0.7]
-        
         loginButton.layer.insertSublayer(layer, atIndex: 0)
         
         let register = UIButton()
@@ -135,8 +140,7 @@ class LoginPage: UIViewController {
         forgotPassword.sizeToFit()
         
         let imageName = "MedKitLogoWhite.png"
-        creationFunctions.addImage(imageName, frame: CGRectMake(width/2, 0, width/4, height/4), center:true, page: self)
-
+        creationFunctions.addImage(imageName, frame: CGRectMake(width/2, 0, width/4, height/4), center:true, alpha: 1.0, page: self)
         
         self.configureView()
         
@@ -185,13 +189,14 @@ class LoginPage: UIViewController {
     // Changes to Register Page
     func registerSwitch(sender: UIButton!) {
         let AccountRegister:AccountRegisterPage = AccountRegisterPage()
-        self.presentViewController(AccountRegister, animated: true, completion: nil)
+        self.navigationController?.pushViewController(AccountRegister, animated: true)
+        //self.presentViewController(AccountRegister, animated: true, completion: nil)
     }
     
-    // Changes to Forgot Password Page
+    // Changes to Feorgot Password Page
     func forgotPasswordSwitch(sender: UIButton!) {
         let ForgotPassword:ForgotPasswordPage = ForgotPasswordPage()
-        self.presentViewController(ForgotPassword, animated: true, completion: nil)
+        self.navigationController?.pushViewController(ForgotPassword, animated: true)
     }
     
     func verifyLogin(username: String){

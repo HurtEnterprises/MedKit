@@ -83,16 +83,27 @@ class UICreationFunctions: UIViewController{
     }
 
 // Makes a navigation Bar
-    func makeNavigationBar(navigationBar: UINavigationBar, barTitle: String,color: UIColor, forwardButton: Bool, backButton: Bool, page: UIViewController){
-    navigationBar.backgroundColor = color
+    func makeNavigationBar(navigationBar: UINavigationBar, barTitle: String, forwardButton: Bool, backButton: Bool, page: UIViewController){
     // Create a navigation item with a title
     let navigationItem = UINavigationItem()
     navigationItem.title = barTitle
+    
+    // Makes bar clear
+    navigationBar.backgroundColor = UIColor.clearColor()
+    navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+    navigationBar.shadowImage = UIImage()
+    //navigationBar.translucent = true
+        
+    // Changes text color
+    let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+    navigationBar.titleTextAttributes = titleDict as! [String : AnyObject]
     // Create left navigation item
     if(backButton){
-    let leftButton =  UIBarButtonItem(title: "Back", style:   UIBarButtonItemStyle.Plain, target: page, action: "backClicked:")
-    // Create two buttons for the navigation item
-    navigationItem.leftBarButtonItem = leftButton
+        navigationItem.backBarButtonItem?.tintColor = UIColor.whiteColor()
+        navigationBar.tintColor = UIColor.whiteColor()
+        let backButton = UIBarButtonItem(title: "< Back", style: UIBarButtonItemStyle.Plain, target: self, action: "backClicked")
+        navigationItem.leftBarButtonItem = backButton
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 30)!], forState: UIControlState.Normal)
     }
     if(forwardButton){
         let rightButton =  UIBarButtonItem(title: "Next", style:   UIBarButtonItemStyle.Plain, target: page, action: "nextClickedClicked:")
@@ -111,10 +122,11 @@ class UICreationFunctions: UIViewController{
     }
     
     // Adds an image
-    func addImage(imageName: String, frame: CGRect,center: Bool, page: UIViewController){
+    func addImage(imageName: String, frame: CGRect,center: Bool, alpha: CGFloat, page: UIViewController){
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         imageView.frame = frame
+        imageView.alpha = alpha
         if center{
             imageView.frame.origin.x = (page.view.bounds.size.width - imageView.frame.size.width) / 2.0
         }

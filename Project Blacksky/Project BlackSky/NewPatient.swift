@@ -61,7 +61,7 @@ class NewPatient: UIViewController {
         
         // Makes cooresponding labels and text fields and next button
         
-        creationFunctions.makeNavigationBar(navigationBar, barTitle: "New Patient: General Information", color: UIColor.grayColor(), forwardButton: false, backButton: true, page: self)
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "New Patient: General Information", forwardButton: false, backButton: true, page: self)
         
         creationFunctions.makeTextField(firstNameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake((screenSize.width-300)/2 - 350, screenSize.height/10, 300, 35), page: self)
         firstNameField.autocorrectionType = .No

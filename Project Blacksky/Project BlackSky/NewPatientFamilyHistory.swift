@@ -47,7 +47,7 @@ class NewPatientFamilyHistory: UIViewController {
         greetingLabel.font = UIFont(name: (greetingLabel.font?.fontName)!, size: 25)
         greetingLabel.sizeToFit()
         
-        creationFunctions.makeNavigationBar(navigationBar, barTitle: "New Patient: Family History", color: UIColor.grayColor(), forwardButton: false, backButton: true, page: self)
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "New Patient: Family History", forwardButton: false, backButton: true, page: self)
         
         creationFunctions.makeButton(saveButton, name: "Save", titleColor: UIColor.blackColor(), location: CGRectMake((screenSize.width-150)/2, 8*screenSize.height/10, 150, 40), page: self)
         saveButton.titleLabel?.font = UIFont(name: (saveButton.titleLabel?.font?.fontName)!, size: 30)

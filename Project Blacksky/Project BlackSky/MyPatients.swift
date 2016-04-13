@@ -34,7 +34,7 @@ class MyPatients: UIViewController {
         // Makes Navigation Bar
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
         
-        creationFunctions.makeNavigationBar(navigationBar, barTitle: "My Patients", color: UIColor.grayColor(), forwardButton: false, backButton: true, page: self)
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "My Patients", forwardButton: false, backButton: true, page: self)
         
         self.configureView()
     }

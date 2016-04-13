@@ -34,38 +34,72 @@ class ForgotPasswordPage: UIViewController {
     }
     
     // Initializes text fields & labels
-    let usernameField: UITextField = UITextField()
-    let usernameLabel: UILabel = UILabel()
-    
     let emailField: UITextField = UITextField()
     let emailLabel: UILabel = UILabel()
+    
+    let physicianIDField: UITextField = UITextField()
+    let physicianIDLabel: UILabel = UILabel()
+    
+    let forgotPasswordLabel: UILabel = UILabel()
+    let forgotPasswordParagraph: UITextView = UITextView()
+    
+    let submit: UIButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Adds navigation bar
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, height*146/10000, self.view.frame.size.width, height*366/10000)) // Offset by 20 pixels vertically to take the status bar into account
-        creationFunctions.makeNavigationBar(navigationBar, barTitle: "Forgot Password", color: UIColor.whiteColor(), forwardButton: false, backButton: true, page: self)
+        // Sets background
+        creationFunctions.setBackgroundColor("ForgotPasswordBackground", page: self)
         
-        let getStarted = UIButton()
+        // Adds logo in top right
+        let imageName = "MedKitLogoWhite.png"
+        creationFunctions.addImage(imageName, frame: CGRectMake(8.5 * width/10, 5, width/8, height/8), center:false, alpha: 0.5, page: self)
         
-        creationFunctions.makeButton(getStarted, name: "Forgot Password", titleColor: UIColor.blueColor(), location: CGRectMake(width*40/100, 7*screenSize.height/10, width*19/100, height*2/100), page: self)// X, Y, width, height
-        getStarted.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
-        self.view.addSubview(getStarted)
-        getStarted.sizeToFit()
+        // Makes white box
+        let infoBox = UIView(frame: CGRectMake(width/20,0.375 * height, width * 9/10, height/2.15))
+        infoBox.backgroundColor = UIColor.clearColor()
+        infoBox.layer.borderWidth = 5
+        infoBox.layer.borderColor = UIColor.whiteColor().CGColor
+        infoBox.layer.cornerRadius = 8.0
+        infoBox.clipsToBounds = true
+        view.addSubview(infoBox)
         
+        // Makes navigaiton bar
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.frame = CGRectMake(0, 10, width, height/20)
+        var backButton: UIBarButtonItem = UIBarButtonItem(title: "BACK", style: UIBarButtonItemStyle.Bordered, target: self, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        navigationItem.backBarButtonItem?.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Arial", size: 30)!], forState: UIControlState.Normal)
         
-        // Adds text fields and their cooresponding identifying labels
-        creationFunctions.makeLabel(usernameLabel, name: "Current Username:", textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake(width*71/1000, height*11/100, width*29/100, height*26/1000), page: self)
-        usernameLabel.sizeToFit()
+        creationFunctions.makeLabel(forgotPasswordLabel, name: "FORGOT PASSWORD?", textColor: UIColor.whiteColor(), alignment: NSTextAlignment.Left, frame: CGRectMake(width/20,height/10, 0.75 * width, height/10), page: self)
+        forgotPasswordLabel.font = UIFont(name: (forgotPasswordLabel.font.fontName), size: 60)
         
-        creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.cyanColor(), frame: CGRectMake(64*width/100, height*11/100, width*29/100, height*26/1000), page: self)
+        forgotPasswordParagraph.frame = CGRectMake(width/20, 0.2 * height, 0.8 * width, 0.3 * height)
+        self.view.addSubview(forgotPasswordParagraph)
+        forgotPasswordParagraph.text = "AFTER CONFIRMING YOUR IDENTITY WITH THE \n\nINFORMATION BELOW, YOU WILL RECEIVE AN EMAIL WITH \n\nINSTRUCTIONS ON NEXT STEPS"
+        forgotPasswordParagraph.font = UIFont(name: (forgotPasswordParagraph.font!.fontName), size: 28)
+        forgotPasswordParagraph.textColor = UIColor.whiteColor()
+        forgotPasswordParagraph.backgroundColor = UIColor.clearColor()
         
-        creationFunctions.makeLabel(emailLabel, name: "Email Address:",textColor: UIColor.blackColor(), alignment: NSTextAlignment.Center, frame: CGRectMake(width*71/1000, height*22/100, width*29/100, height*26/1000), page:self)
-        emailLabel.sizeToFit()
+        creationFunctions.makeClearButton(submit, name: "SUBMIT", titleColor: UIColor.whiteColor(), location: CGRectMake((2/3*width)/2, 0.7 * height, width * 0.4, height/12), page: self)
+        submit.titleLabel?.font = UIFont(name: (submit.titleLabel?.font?.fontName)!, size: 60)
+        submit.layer.borderColor = UIColor.clearColor().CGColor
+        submit.layer.shadowColor = UIColor.blackColor().CGColor
+        submit.layer.shadowOffset = CGSize(width: 10.0, height: 10.0)
+        submit.layer.shadowRadius = 3
+        submit.layer.shadowOpacity = 0.2
+        submit.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
         
-        creationFunctions.makeTextField(emailField,backgroundColor: UIColor.cyanColor(), frame: CGRectMake(width*64/100, height*22/100, width*29/100, height*26/1000), page: self)
+        let layer : CAGradientLayer = CAGradientLayer()
+        layer.frame.size = submit.frame.size
+        let color1 = UIColor(red: 190/256, green: 190/256, blue: 190/256, alpha: 1.0).CGColor as CGColorRef
+        let color2 = UIColor(red: 255/256, green: 251/256, blue: 251/256, alpha: 0.0).CGColor as CGColorRef
+        layer.colors = [color2, color1]
+        layer.locations = [0.0, 0.7]
+        submit.layer.insertSublayer(layer, atIndex: 0)
         
         self.configureView()
     }
@@ -77,7 +111,7 @@ class ForgotPasswordPage: UIViewController {
     
     func pressed(sender: UIButton!) {
         // I created an alert this way to allow a page change upon clicking okay
-        if(usernameField.text == "" || emailField.text == ""){
+        if(emailField.text == "" || emailField.text == ""){
             creationFunctions.makeAlert("Incomplete Form", message: "Please fill out the form in its entirety.", printStatement: "Incomplete forgot password form.", page: self)
         }
         //TODO @Mehrab: make sure usernmae and email map to same user

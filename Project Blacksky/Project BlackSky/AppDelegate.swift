@@ -19,10 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         //Changing initial page loaded to login page //TODO: Through keychain or some either means make it so doctors don't have to always log in and out. Tim was working on this at one point and will likely conitnue
         let rootView: LoginPage = loginPage
+        var nav1 = UINavigationController()
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        nav1.viewControllers = [rootView]
+        nav1.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UIBarButtonItem.appearance().setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Arial", size: 30)!], forState: UIControlState.Normal)
         
-        if let window = self.window{
-            window.rootViewController = rootView
-        }
+        self.window!.rootViewController = nav1
+        self.window?.makeKeyAndVisible()
         
         //don't worry about this stuff, its just technical jargon.
         let credentialsProvider = AWSCognitoCredentialsProvider(
