@@ -45,8 +45,12 @@ class LoginPage: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.frame = CGRectMake(0, 10, width, height/10)
-        var backButton: UIBarButtonItem = UIBarButtonItem(title: "BACK", style: UIBarButtonItemStyle.Bordered, target: self, action: nil)
+        //let backButton: UIBarButtonItem = UIBarButtonItem(title: "BACK", style: UIBarButtonItemStyle.Bordered, target: self, action: nil)
+        let navBgImage:UIImage = UIImage(named: "BackArrow")!
+        
+        let backButton:UIBarButtonItem = UIBarButtonItem(image:navBgImage, style:.Plain, target:self, action:"backButtonPressed:")
         navigationItem.backBarButtonItem = backButton
+        self.navigationController?.navigationItem.leftBarButtonItem?.image = UIImage(named: "BackArrow")!
         self.navigationController?.navigationBar.frame = CGRectMake(0, 20, width, height/10)
 
         creationFunctions.setBackgroundColor("MainBackground", page: self)
@@ -87,8 +91,6 @@ class LoginPage: UIViewController {
         passwordBorder.borderWidth = width
         passwordField.layer.addSublayer(passwordBorder)
         passwordField.layer.masksToBounds = true
-
-
         
         // Makes Text Labels
         let usernameLabel: UILabel = UILabel()
@@ -96,12 +98,10 @@ class LoginPage: UIViewController {
         usernameLabel.font = usernameLabel.font.fontWithSize(30)
         usernameLabel.sizeToFit()
 
-        
         let passwordLabel: UILabel = UILabel()
         creationFunctions.makeLabel(passwordLabel, name: "PASSWORD", textColor: UIColor.whiteColor(), alignment:NSTextAlignment.Center, frame: CGRectMake(width/4, height/2.5, width/5, height/10), page: self)
         passwordLabel.font = passwordLabel.font.fontWithSize(30)
         passwordLabel.sizeToFit()
-        
         //TODO: Redo the buttons so they are placed and the length is chosen based upon the legnth of the word
         
         // Makes login, register, and forgot password button.
@@ -143,7 +143,6 @@ class LoginPage: UIViewController {
         creationFunctions.addImage(imageName, frame: CGRectMake(width/2, 0, width/4, height/4), center:true, alpha: 1.0, page: self)
         
         self.configureView()
-        
     }
     
     override func didReceiveMemoryWarning() {

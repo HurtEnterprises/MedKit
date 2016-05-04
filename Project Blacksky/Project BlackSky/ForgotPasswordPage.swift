@@ -13,9 +13,6 @@ class ForgotPasswordPage: UIViewController {
     let loginPage:LoginPage = LoginPage()
     let creationFunctions: UICreationFunctions = UICreationFunctions()
     
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-    
-    
     var detailItem: AnyObject? {
         didSet {
             // Update the view.
@@ -24,13 +21,7 @@ class ForgotPasswordPage: UIViewController {
     }
     
     func configureView() {
-        // Update the user interface for the detail item.
         self.view.backgroundColor = UIColor.whiteColor()
-        if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
-            }
-        }
     }
     
     // Initializes text fields & labels
@@ -44,6 +35,11 @@ class ForgotPasswordPage: UIViewController {
     let forgotPasswordParagraph: UITextView = UITextView()
     
     let submit: UIButton = UIButton()
+    
+    var underlineAttributes = [
+        NSFontAttributeName : UIFont.systemFontOfSize(27.0),
+        NSForegroundColorAttributeName : UIColor.whiteColor(),
+        NSUnderlineStyleAttributeName : 1]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,9 +66,73 @@ class ForgotPasswordPage: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.frame = CGRectMake(0, 10, width, height/20)
-        var backButton: UIBarButtonItem = UIBarButtonItem(title: "BACK", style: UIBarButtonItemStyle.Bordered, target: self, action: nil)
-        navigationItem.backBarButtonItem = backButton
-        navigationItem.backBarButtonItem?.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Arial", size: 30)!], forState: UIControlState.Normal)
+        let navBgImage:UIImage = UIImage(named: "BackArrow")!
+        //navigationItem.backBarButtonItem?.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Arial", size: 30)!], forState: UIControlState.Normal)
+//        let barButton1 = UIBarButtonItem(title: "title", style: .Plain, target: self, action: "backClicked:")
+//        let button1 = UIButton()
+//        button1.setImage(navBgImage, forState: .Normal)
+//        button1.frame = CGRectMake(0, 0, width/20, height/10)
+//        button1.addTarget(self,action:Selector("backClicked:"),forControlEvents:.TouchUpInside)
+//        barButton1.customView = button1
+//        self.navigationItem.leftBarButtonItem = barButton1
+        
+        
+        let backArrowButton =  UIButton(type: .Custom)
+        backArrowButton.setImage(UIImage(named: "BackArrow"), forState: .Normal)
+        backArrowButton.addTarget(self, action: "backClicked:", forControlEvents: .TouchUpInside)
+        backArrowButton.frame = CGRectMake(0, 0, width/25, height/12)
+        
+        
+        let backWord: UIButton = UIButton()
+        creationFunctions.makeButton(backWord, name: "Back", titleColor: UIColor.whiteColor(), location: CGRectMake(width/25, height/35, width/10, 34), page: self)
+        backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 34)
+        backWord.titleLabel?.text = "Back"
+        backWord.titleLabel?.textAlignment = .Center
+        backWord.titleLabel?.textColor = UIColor.whiteColor()
+        backWord.backgroundColor = UIColor.clearColor()
+        backWord.addTarget(self, action: "backClicked:", forControlEvents: .TouchUpInside)
+        backArrowButton.addSubview(backWord)
+        let barButton = UIBarButtonItem(customView: backArrowButton)
+        self.navigationItem.leftBarButtonItem = barButton
+        
+        //
+        // Makes Text Fields
+        creationFunctions.makeTextField(emailField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width/4, height/2.25 + 50, width/2, 30), page:self)
+        emailField.font = emailField.font!.fontWithSize(30)
+        emailField.layer.backgroundColor = UIColor.clearColor().CGColor
+        emailField.layer.borderColor = UIColor.clearColor().CGColor
+        emailField.layer.borderWidth = 2.0
+        let emailLayer = CALayer()
+        emailLayer.borderColor = UIColor.whiteColor().CGColor
+        emailLayer.frame = CGRect(x: 0, y: emailField.frame.size.height - emailField.layer.borderWidth, width: emailField.frame.size.width, height: emailField.frame.size.height)
+        emailLayer.borderWidth = width
+        creationFunctions.disableAutocorrect(emailField)
+        emailField.layer.addSublayer(emailLayer)
+        emailField.layer.masksToBounds = true
+        
+        creationFunctions.makeTextField(physicianIDField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width/4, height/1.75 + 50, width/2, 30), page:self)
+        physicianIDField.font = physicianIDField.font!.fontWithSize(30)
+        physicianIDField.layer.backgroundColor = UIColor.clearColor().CGColor
+        physicianIDField.layer.borderColor = UIColor.clearColor().CGColor
+        physicianIDField.layer.borderWidth = 2.0
+        let physicanIDBoarder = CALayer()
+        physicanIDBoarder.borderColor = UIColor.whiteColor().CGColor
+        physicanIDBoarder.frame = CGRect(x: 0, y: physicianIDField.frame.size.height - physicianIDField.layer.borderWidth, width:  physicianIDField.frame.size.width, height: physicianIDField.frame.size.height)
+        physicanIDBoarder.borderWidth = width
+        physicianIDField.layer.addSublayer(physicanIDBoarder)
+        physicianIDField.layer.masksToBounds = true
+        
+        // Makes Text Labels
+        let usernameLabel: UILabel = UILabel()
+        creationFunctions.makeLabel(usernameLabel, name: "EMAIL", textColor: UIColor.whiteColor(), alignment:NSTextAlignment.Center, frame: CGRectMake(width/4, height/2.25, width/5, height/10), page: self)
+        usernameLabel.font = usernameLabel.font.fontWithSize(30)
+        usernameLabel.sizeToFit()
+        
+        let passwordLabel: UILabel = UILabel()
+        creationFunctions.makeLabel(passwordLabel, name: "PHYSICIAN ID", textColor: UIColor.whiteColor(), alignment:NSTextAlignment.Center, frame: CGRectMake(width/4, height/1.75, width/5, height/10), page: self)
+        passwordLabel.font = passwordLabel.font.fontWithSize(30)
+        passwordLabel.sizeToFit()
+        //
         
         creationFunctions.makeLabel(forgotPasswordLabel, name: "FORGOT PASSWORD?", textColor: UIColor.whiteColor(), alignment: NSTextAlignment.Left, frame: CGRectMake(width/20,height/10, 0.75 * width, height/10), page: self)
         forgotPasswordLabel.font = UIFont(name: (forgotPasswordLabel.font.fontName), size: 60)
@@ -93,6 +153,7 @@ class ForgotPasswordPage: UIViewController {
         submit.layer.shadowOpacity = 0.2
         submit.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
         
+        // Adds gradient to submit button
         let layer : CAGradientLayer = CAGradientLayer()
         layer.frame.size = submit.frame.size
         let color1 = UIColor(red: 190/256, green: 190/256, blue: 190/256, alpha: 1.0).CGColor as CGColorRef
@@ -137,7 +198,8 @@ class ForgotPasswordPage: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-    func backClicked (sender: UIBarButtonItem!){
-        self.dismissViewControllerAnimated(true, completion: {});
+    func backClicked(sender: UIBarButtonItem!){
+        print("Back Clicked")
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
