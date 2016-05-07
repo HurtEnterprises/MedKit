@@ -136,7 +136,7 @@ class AccountRegisterPage: UIViewController {
         haveLoginString.appendAttributedString(signInString)
         creationFunctions.makeButton(haveLogin, name: "Forgot Password?",titleColor: UIColor.whiteColor(), location: CGRectMake((4 * width/5)/2, height * 16/20, width/5, height/20), page: self)
         haveLogin.titleLabel?.textAlignment = .Center
-        haveLogin.setAttributedTitle(haveLoginString, forState: .Normal)a
+        haveLogin.setAttributedTitle(haveLoginString, forState: .Normal)
         haveLogin.addTarget(self, action: "backClicked:", forControlEvents: .TouchUpInside)
         haveLogin.sizeToFit()
 
