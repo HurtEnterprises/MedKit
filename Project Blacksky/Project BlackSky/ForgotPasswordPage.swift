@@ -66,16 +66,6 @@ class ForgotPasswordPage: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.frame = CGRectMake(0, 10, width, height/20)
-        let navBgImage:UIImage = UIImage(named: "BackArrow")!
-        //navigationItem.backBarButtonItem?.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Arial", size: 30)!], forState: UIControlState.Normal)
-//        let barButton1 = UIBarButtonItem(title: "title", style: .Plain, target: self, action: "backClicked:")
-//        let button1 = UIButton()
-//        button1.setImage(navBgImage, forState: .Normal)
-//        button1.frame = CGRectMake(0, 0, width/20, height/10)
-//        button1.addTarget(self,action:Selector("backClicked:"),forControlEvents:.TouchUpInside)
-//        barButton1.customView = button1
-//        self.navigationItem.leftBarButtonItem = barButton1
-        
         
         let backArrowButton =  UIButton(type: .Custom)
         backArrowButton.setImage(UIImage(named: "BackArrow"), forState: .Normal)
@@ -95,7 +85,7 @@ class ForgotPasswordPage: UIViewController {
         let barButton = UIBarButtonItem(customView: backArrowButton)
         self.navigationItem.leftBarButtonItem = barButton
         
-        //
+        
         // Makes Text Fields
         creationFunctions.makeTextField(emailField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width/4, height/2.25 + 50, width/2, 30), page:self)
         emailField.font = emailField.font!.fontWithSize(30)
