@@ -22,28 +22,29 @@ class PatientData :AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var streetAddress:String? = ""
     var city:String? = ""
     var state:String? = ""
-    var zip:Int? = 0
+    var zip:String? = ""
     
-    var email:String? = ""
+    var Email:String? = ""
     var phoneNumber: String? = ""
     
     var insuranceProvider:String? = ""
-    var policyNumber:Int? = 0
+    var policyNumber:String? = ""
     
-    var smokerStatus: Bool = false
-    var currentMedications = []
-    var prexistingContitions = []
-    var familyHistory = []
+    var smokerStatus: String? = ""
+    var drinkerStatus: String? = ""
+    var currentMedications = [String]()
+    var prexistingContitions = [String]()
+    var familyHistory = [String]()
     
     var internalName:String?
     var internalState:NSNumber?
     
     class func dynamoDBTableName() -> String! {
-        return AWSSampleDynamoDBTableName //@Mehrab, change the table name here? Idk
+        return AWSDynamoDBPatientTable //@Mehrab, change the table name here? Idk
     }
     
     class func hashKeyAttribute() -> String! {
-        return "Username" //@Mehrab, hash on email?
+        return "Email" //@Mehrab, hash on email?
     }
     
     class func ignoreAttributes() -> [AnyObject]! {

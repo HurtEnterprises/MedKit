@@ -47,7 +47,7 @@ class NewPatientFamilyHistory: UIViewController {
         greetingLabel.font = UIFont(name: (greetingLabel.font?.fontName)!, size: 25)
         greetingLabel.sizeToFit()
         
-        creationFunctions.makeNavigationBar(navigationBar, barTitle: "New Patient: Family History", color: UIColor.grayColor(), forwardButton: false, backButton: true, page: self)
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "New Patient: Family History", forwardButton: false, backButton: true, page: self)
         
         creationFunctions.makeButton(saveButton, name: "Save", titleColor: UIColor.blackColor(), location: CGRectMake((screenSize.width-150)/2, 8*screenSize.height/10, 150, 40), page: self)
         saveButton.titleLabel?.font = UIFont(name: (saveButton.titleLabel?.font?.fontName)!, size: 30)
@@ -87,6 +87,22 @@ class NewPatientFamilyHistory: UIViewController {
     //@Mehrab do your thing. I didn't wanna make seperate variables for everything cause that seemed sloppy, but the family history string is gonna be in familyHistoryField.text
         creationFunctions.makeAlert("Data saved.", message: "All patient data saved.", printStatement: "New Patient successfully added.", page: self)
         //TODO: Transition to main menu
+        let familyArray = familyHistoryField.text!.characters.split{$0 == ","}.map(String.init)
+        patientPrototype.familyHistory = familyArray
+        sendPatientData(patientPrototype)
+        
+        print(patientPrototype.firstName)
+        print(patientPrototype.middleName)
+        print(patientPrototype.lastName)
+        print(patientPrototype.Email)
+        print(patientPrototype.phoneNumber)
+        print(patientPrototype.insuranceProvider)
+        print(patientPrototype.policyNumber)
+        print(patientPrototype.smokerStatus)
+        print(patientPrototype.drinkerStatus)
+        print(patientPrototype.currentMedications)
+        print(patientPrototype.prexistingContitions)
+        print(patientPrototype.familyHistory)
         }
 
     }
@@ -125,6 +141,23 @@ class NewPatientFamilyHistory: UIViewController {
             familyHistoryField.enabled = false
             self.configureView()
         }
+    }
+    
+    func sendPatientData(patientData: PatientData){
+        //get object mapper in order to allow us to send a logindata object to the ddb server.
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper();
+        
+        //save allows us to "save" this new login data to the server.
+        dynamoDBObjectMapper.save(patientData).continueWithExecutor(AWSExecutor.mainThreadExecutor(), withBlock:
+            { (task:AWSTask!) -> AnyObject! in
+                if(task.error == nil){ //no error has occurred, we have successfully sent the login info
+                    print("Successful push to db.")
+                } else { //an error has occurred, we have not successfully sent the login info.
+                    print("Error:  \(task.error)")
+                }
+                
+                return nil
+        })
     }
     
 }

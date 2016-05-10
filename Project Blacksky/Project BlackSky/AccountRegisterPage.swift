@@ -62,7 +62,7 @@ class AccountRegisterPage: UIViewController {
         
         // Adds navigation bar
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
-        creationFunctions.makeNavigationBar(navigationBar, barTitle: "Resister Account", color: UIColor.whiteColor(), forwardButton: false, backButton: true, page: self)
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "Resister Account",forwardButton: false, backButton: true, page: self)
         
         // Adds text fields and their cooresponding identifying labels
         creationFunctions.makeLabel(desiredUsernameLabel, name: "Desired Username", textColor: UIColor.cyanColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((width*6)/100, height*11/100, width*30/100, height*26/1000), page: self)

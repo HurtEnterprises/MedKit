@@ -55,7 +55,7 @@ class NewPatientHistory: UIViewController {
         // Makes Navigation Bar
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
         
-        creationFunctions.makeNavigationBar(navigationBar, barTitle: "New Patient: Personal History", color: UIColor.grayColor(), forwardButton: false, backButton: true, page: self)
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "New Patient: Personal History", forwardButton: false, backButton: true, page: self)
         
         creationFunctions.makeButton(nextButton, name: "Next", titleColor: UIColor.blackColor(), location: CGRectMake((screenSize.width-150)/2, 8*screenSize.height/10, 150, 40), page: self)
         nextButton.titleLabel?.font = UIFont(name: (nextButton.titleLabel?.font?.fontName)!, size: 30)
@@ -193,7 +193,25 @@ class NewPatientHistory: UIViewController {
             self.presentViewController(alertController, animated: true, completion: nil)
         }else{
             //@Mehrab do your thing. I didn't wanna make seperate variables for everything cause that seemed sloppy, but the bool for smoker and drinker are represented by smokerbox.ischecked and drinkbox.ischecked respectively. As for the fields, to get the strings,use: smokerField.text, drinkerField.text, conditionsField.text, and medsField.text. Lemme know if you have questions
+            print("TESTING TESTING TESTING")
             self.presentViewController(patientFamilyHistoryPage, animated: true, completion: nil)
+            if(smokerBox.isChecked){
+                patientPrototype.smokerStatus = "YES"
+            } else {
+                patientPrototype.smokerStatus = "NO"
+            }
+            
+            if(drinkBox.isChecked){
+                patientPrototype.drinkerStatus = "YES"
+            } else {
+                patientPrototype.drinkerStatus = "NO"
+            }
+            //TODO: Enforce comma delimited list for medsfield and conditions field.
+            //NOTE: Currently we accept no-space separated, only-comma-separated lists of values
+            let medsArray = medsField.text!.characters.split{$0 == ","}.map(String.init)
+            let conditionsArray = conditionsField.text!.characters.split{$0 == ","}.map(String.init)
+            patientPrototype.currentMedications = medsArray
+            patientPrototype.prexistingContitions = conditionsArray
         }
     }
     

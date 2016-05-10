@@ -12,13 +12,37 @@ import UIKit
 // This file will contain general UI creation functions
 
 class UICreationFunctions: UIViewController{
-// Creates Button
+    
+    //sets background color
+    func setBackgroundColor(name: String, page:UIViewController){
+        let imageName = name
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = UIScreen.mainScreen().bounds
+        page.view.addSubview(imageView)
+    }
+    
+    // Creates Button
     func makeButton(button: UIButton, name: String, titleColor: UIColor, location: CGRect, page:UIViewController){
     button.setTitle(name, forState: .Normal)
     button.setTitleColor(titleColor, forState: .Normal)
     button.frame = location // X, Y, width, height
     page.view.addSubview(button)
     }
+    
+    // Creates the clear button with the white outline we will commonly use
+    func makeClearButton(button: UIButton, name: String, titleColor:UIColor, location: CGRect, page:UIViewController){
+        button.setTitle(name, forState: .Normal)
+        button.setTitleColor(titleColor, forState: .Normal)
+        button.frame = location // X, Y, width, height
+        button.backgroundColor = UIColor.clearColor()
+        button.layer.cornerRadius = 5
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.whiteColor().CGColor
+        page.view.addSubview(button)
+    }
+    
+    // Creates the grayish raised button we will commonly use
     
     // Makes a checkbox
     func makeCheckBox(box: CheckBox,frame: CGRect, page: UIViewController){
@@ -59,16 +83,27 @@ class UICreationFunctions: UIViewController{
     }
 
 // Makes a navigation Bar
-    func makeNavigationBar(navigationBar: UINavigationBar, barTitle: String,color: UIColor, forwardButton: Bool, backButton: Bool, page: UIViewController){
-    navigationBar.backgroundColor = color
+    func makeNavigationBar(navigationBar: UINavigationBar, barTitle: String, forwardButton: Bool, backButton: Bool, page: UIViewController){
     // Create a navigation item with a title
     let navigationItem = UINavigationItem()
     navigationItem.title = barTitle
+    
+    // Makes bar clear
+    navigationBar.backgroundColor = UIColor.clearColor()
+    navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+    navigationBar.shadowImage = UIImage()
+    //navigationBar.translucent = true
+        
+    // Changes text color
+    let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+    navigationBar.titleTextAttributes = titleDict as! [String : AnyObject]
     // Create left navigation item
     if(backButton){
-    let leftButton =  UIBarButtonItem(title: "Back", style:   UIBarButtonItemStyle.Plain, target: page, action: "backClicked:")
-    // Create two buttons for the navigation item
-    navigationItem.leftBarButtonItem = leftButton
+        navigationItem.backBarButtonItem?.tintColor = UIColor.whiteColor()
+        navigationBar.tintColor = UIColor.whiteColor()
+        let backButton = UIBarButtonItem(title: "< Back", style: UIBarButtonItemStyle.Plain, target: self, action: "backClicked")
+        navigationItem.leftBarButtonItem = backButton
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 30)!], forState: UIControlState.Normal)
     }
     if(forwardButton){
         let rightButton =  UIBarButtonItem(title: "Next", style:   UIBarButtonItemStyle.Plain, target: page, action: "nextClickedClicked:")
@@ -84,6 +119,28 @@ class UICreationFunctions: UIViewController{
     func disableAutocorrect(textField: UITextField){
         textField.autocorrectionType = .No
         textField.autocapitalizationType = .None
+    }
+    
+    // Adds an image
+    func addImage(imageName: String, frame: CGRect,center: Bool, alpha: CGFloat, page: UIViewController){
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = frame
+        imageView.alpha = alpha
+        if center{
+            imageView.frame.origin.x = (page.view.bounds.size.width - imageView.frame.size.width) / 2.0
+        }
+        page.view.addSubview(imageView)
+    }
+    
+    func drawRectangle(color: UIColor, frame: CGRect){
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetLineWidth(context, 4.0)
+        CGContextSetStrokeColorWithColor(context,
+            UIColor.blueColor().CGColor)
+        let rectangle = frame
+        CGContextAddRect(context, rectangle)
+        CGContextStrokePath(context)
     }
     
 }

@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project BlackSky/MainMenu.swift"
-            timestampString = "475488348.605635"
+            timestampString = "481956867.481292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "newPatientClicked()"
             landmarkType = "5">
          </BreakpointContent>
@@ -269,6 +269,22 @@
             startingLineNumber = "207"
             endingLineNumber = "207"
             landmarkName = "loginChecks()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project BlackSky/UICreationFunctions.swift"
+            timestampString = "482124145.743753"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "drawRectangle(_:frame:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
