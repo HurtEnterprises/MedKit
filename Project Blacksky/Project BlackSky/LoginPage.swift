@@ -66,7 +66,7 @@ class LoginPage: UIViewController {
         // Makes Text Fields
         creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width/4, height/3.5 + 50, width/2, 30), page:self)
         usernameField.font = usernameField.font!.fontWithSize(30)
-        usernameField.text = "blackmamba9in"
+        usernameField.text = "123456"
         usernameField.layer.backgroundColor = UIColor.clearColor().CGColor
         usernameField.layer.borderColor = UIColor.clearColor().CGColor
         usernameField.layer.borderWidth = 2.0
@@ -79,7 +79,7 @@ class LoginPage: UIViewController {
         
         creationFunctions.makeTextField(passwordField,backgroundColor: UIColor.lightGrayColor(), frame: CGRectMake(width/4, height/2.5 + 50, width/2, 30), page:self)
         passwordField.font = passwordField.font!.fontWithSize(30)
-        passwordField.text = "plunger"
+        passwordField.text = "Testing123!"
         passwordField.secureTextEntry = true
         creationFunctions.disableAutocorrect(passwordField)
         passwordField.layer.backgroundColor = UIColor.clearColor().CGColor
@@ -206,6 +206,7 @@ class LoginPage: UIViewController {
         task.continueWithExecutor(AWSExecutor.mainThreadExecutor(), withBlock: { (task:AWSTask!) -> AnyObject! in
             if (task.error == nil) { //no error
                 if (task.result != nil) {//the item exists in the db; the username exists.
+                    print("Found username")
                     let loginData = task.result as! DDBLoginData //get the login data object we received
                     
                     //compare the password on the db to the password they supplied:

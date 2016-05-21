@@ -13,21 +13,21 @@ import Foundation
  * Has primary key: "Username". No sorted key.
  */
 class DDBLoginData :AWSDynamoDBObjectModel, AWSDynamoDBModeling {
-    var Username:String?
+    var PhysicianID:String?
     var Password:String?
     
-    var email:String? = ""
+    var Email:String? = ""
     
     var internalName:String?
     var internalState:NSNumber?
-    var verifiedEmail = false
+    var VerifiedEmail = false
     
     class func dynamoDBTableName() -> String! {
         return AWSDynamoDBLoginTable
     }
     
     class func hashKeyAttribute() -> String! {
-        return "Username"
+        return "PhysicianID"
     }
     
     class func ignoreAttributes() -> [AnyObject]! {

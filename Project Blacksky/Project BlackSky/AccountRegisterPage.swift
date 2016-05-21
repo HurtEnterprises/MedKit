@@ -232,25 +232,24 @@ class AccountRegisterPage: UIViewController {
         
 //            verifyEmailAddress(emailAddressField.text!)
 //            
-//            KeychainWrapper.setString(desiredPasswordField.text!, forKey: "Password")
-//            KeychainWrapper.setString(desiredUsernameField.text!, forKey: "Username")
+            KeychainWrapper.setString(desiredPasswordField.text!, forKey: "Password")
+            KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
 //            
-//            let loginData = DDBLoginData() //initialize a loginData object.
+            let loginData = DDBLoginData() //initialize a loginData object.
 //            
-//            PublicTag = emailAddressField.text! //used to generate secret keys for encryption
-//            PrivateTag = desiredPasswordField.text!
-//            generateKeys() //generate public and private keys using the email as a tag
+            PublicTag = emailField.text! //used to generate secret keys for encryption
+            PrivateTag = desiredPasswordField.text!
+            generateKeys() //generate public and private keys using the email as a tag
 //            
-//            loginData.Username = Encrypt2(desiredUsernameField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-//            loginData.Password = Encrypt2(desiredPasswordField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-//            loginData.email = Encrypt2(emailAddressField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-//            loginData.internalName = Encrypt2(accessCodeField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+            loginData.PhysicianID = physicianIDField.text!
+            loginData.Password = desiredPasswordField.text!
+            loginData.Email = physicianIDField.text!
 //            print(Decrypt2(loginData.internalName!, privateKeyFunctionParameter: findKey(PrivateTag!)!))
-//
-//            loginData.internalState = 0 //set its properties.
+
+            loginData.internalState = 0 //set its properties.
 //            
 //            
-//            sendLoginData(loginData) //run the send function and push it to ddb.
+               sendLoginData(loginData) //run the send function and push it to ddb.
 //            //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
             
             
@@ -263,7 +262,7 @@ class AccountRegisterPage: UIViewController {
                 // Add Actions
                 alertController.addAction(okayAction)
                 // Present Alert Controller
-            print("Successful regiser.")
+            print("Successful register.")
             self.presentViewController(alertController, animated: true, completion: nil)
         }
         
@@ -286,20 +285,20 @@ class AccountRegisterPage: UIViewController {
         self.view.endEditing(true)
     }
     
-//    func sendLoginData(loginData: DDBLoginData){
-//        //get object mapper in order to allow us to send a logindata object to the ddb server.
-//        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper();
-//        
-//        //save allows us to "save" this new login data to the server.
-//        dynamoDBObjectMapper.save(loginData).continueWithExecutor(AWSExecutor.mainThreadExecutor(), withBlock:
-//            { (task:AWSTask!) -> AnyObject! in
-//                if(task.error == nil){ //no error has occurred, we have successfully sent the login info
-//                    print("Successful push to db.")
-//                } else { //an error has occurred, we have not successfully sent the login info.
-//                    print("Error:  \(task.error)")
-//                }
-//                
-//                return nil
-//            })
-//    }
+    func sendLoginData(loginData: DDBLoginData){
+        //get object mapper in order to allow us to send a logindata object to the ddb server.
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.defaultDynamoDBObjectMapper();
+
+        //save allows us to "save" this new login data to the server.
+        dynamoDBObjectMapper.save(loginData).continueWithExecutor(AWSExecutor.mainThreadExecutor(), withBlock:
+            { (task:AWSTask!) -> AnyObject! in
+                if(task.error == nil){ //no error has occurred, we have successfully sent the login info
+                    print("Successful push to db.")
+                } else { //an error has occurred, we have not successfully sent the login info.
+                    print("Error:  \(task.error)")
+                }
+    
+                return nil
+            })
+    }
 }
