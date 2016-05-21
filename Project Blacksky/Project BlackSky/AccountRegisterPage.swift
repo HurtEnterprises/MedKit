@@ -116,7 +116,7 @@ class AccountRegisterPage: UIViewController {
         register.layer.shadowOffset = CGSize(width: 10.0, height: 10.0)
         register.layer.shadowRadius = 3
         register.layer.shadowOpacity = 0.2
-        register.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
+        register.addTarget(self, action: "Confirm:", forControlEvents: .TouchUpInside)
         
         // Adds gradient to register button
         let layer : CAGradientLayer = CAGradientLayer()
