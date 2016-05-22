@@ -138,7 +138,7 @@ class MainMenu: UIViewController {
         logoutButton.layer.shadowOffset = CGSize(width: 10.0, height: 10.0)
         logoutButton.layer.shadowRadius = 3
         logoutButton.layer.shadowOpacity = 0.2
-        logoutButton.addTarget(self, action: "loginChecks:", forControlEvents: .TouchUpInside)
+        logoutButton.addTarget(self, action: "logoutClicked:", forControlEvents: .TouchUpInside)
         // Gradient stuff for login button
         let logoutLayer : CAGradientLayer = CAGradientLayer()
         logoutLayer.frame.size = logoutButton.frame.size
@@ -153,7 +153,7 @@ class MainMenu: UIViewController {
             // Dispose of any resources that can be recreated.
         }
     
-    func logoutClicked(){
+    func logoutClicked(sender: UIButton!){
 //        if(self.presentedViewController == registerPage){
 //            registerPage.dismissViewControllerAnimated(true, completion: nil)
 //        }
