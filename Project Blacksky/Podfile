@@ -1,4 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
+target “Project BlackSky” do
 pod 'AWSCore'
 pod 'AWSAutoScaling'
 pod 'AWSCloudWatch'
@@ -15,4 +16,6 @@ pod 'AWSSimpleDB'
 pod 'AWSSNS'
 pod 'AWSSQS'
 pod 'AWSCognito'
-pod 'AWSCognitoSync'
+pod 'LayerKit’
+pod 'Atlas'
+end
