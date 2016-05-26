@@ -8,6 +8,11 @@
 
 import Foundation
 import UIKit
+import AWSS3
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 let newPatientPage: NewPatient = NewPatient()
 

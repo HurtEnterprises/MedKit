@@ -7,6 +7,11 @@
 //
 
 import Foundation
+import AWSS3
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 /**
  * A class to capture the current user data/info in the database.

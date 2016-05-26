@@ -1,17 +1,17 @@
-/*
- Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License").
- You may not use this file except in compliance with the License.
- A copy of the License is located at
-
- http://aws.amazon.com/apache2.0
-
- or in the "license" file accompanying this file. This file is distributed
- on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- express or implied. See the License for the specific language governing
- permissions and limitations under the License.
- */
+//
+// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License").
+// You may not use this file except in compliance with the License.
+// A copy of the License is located at
+//
+// http://aws.amazon.com/apache2.0
+//
+// or in the "license" file accompanying this file. This file is distributed
+// on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
+//
 
 #import "AWSElasticLoadBalancing.h"
 
@@ -26,7 +26,8 @@
 #import "AWSSynchronizedMutableDictionary.h"
 #import "AWSElasticLoadBalancingResources.h"
 
-NSString *const AWSELBDefinitionFileName = @"elasticloadbalancing-2012-06-01";
+static NSString *const AWSInfoElasticLoadBalancing = @"ElasticLoadBalancing";
+static NSString *const AWSElasticLoadBalancingSDKVersion = @"2.4.2";
 
 @interface AWSElasticLoadBalancingResponseSerializer : AWSXMLResponseSerializer
 
@@ -39,15 +40,14 @@ NSString *const AWSELBDefinitionFileName = @"elasticloadbalancing-2012-06-01";
 static NSDictionary *errorCodeDictionary = nil;
 + (void)initialize {
     errorCodeDictionary = @{
-                            @"IncompleteSignature" : @(AWSElasticLoadBalancingErrorIncompleteSignature),
-                            @"InvalidClientTokenId" : @(AWSElasticLoadBalancingErrorInvalidClientTokenId),
-                            @"MissingAuthenticationToken" : @(AWSElasticLoadBalancingErrorMissingAuthenticationToken),
                             @"LoadBalancerNotFound" : @(AWSElasticLoadBalancingErrorAccessPointNotFound),
                             @"CertificateNotFound" : @(AWSElasticLoadBalancingErrorCertificateNotFound),
+                            @"DependencyThrottle" : @(AWSElasticLoadBalancingErrorDependencyThrottle),
                             @"DuplicateLoadBalancerName" : @(AWSElasticLoadBalancingErrorDuplicateAccessPointName),
                             @"DuplicateListener" : @(AWSElasticLoadBalancingErrorDuplicateListener),
                             @"DuplicatePolicyName" : @(AWSElasticLoadBalancingErrorDuplicatePolicyName),
                             @"DuplicateTagKeys" : @(AWSElasticLoadBalancingErrorDuplicateTagKeys),
+                            @"InsufficientCapacity" : @(AWSElasticLoadBalancingErrorInsufficientCapacity),
                             @"InvalidConfigurationRequest" : @(AWSElasticLoadBalancingErrorInvalidConfigurationRequest),
                             @"InvalidInstance" : @(AWSElasticLoadBalancingErrorInvalidEndPoint),
                             @"InvalidScheme" : @(AWSElasticLoadBalancingErrorInvalidScheme),
@@ -55,12 +55,15 @@ static NSDictionary *errorCodeDictionary = nil;
                             @"InvalidSubnet" : @(AWSElasticLoadBalancingErrorInvalidSubnet),
                             @"ListenerNotFound" : @(AWSElasticLoadBalancingErrorListenerNotFound),
                             @"LoadBalancerAttributeNotFound" : @(AWSElasticLoadBalancingErrorLoadBalancerAttributeNotFound),
+                            @"MinimumLBCapacityUnitsDecreaseThrottling" : @(AWSElasticLoadBalancingErrorMinimumLBCapacityUnitsDecreaseThrottling),
+                            @"MinimumLBCapacityUnitsLimitExceeded" : @(AWSElasticLoadBalancingErrorMinimumLBCapacityUnitsLimitExceeded),
                             @"PolicyNotFound" : @(AWSElasticLoadBalancingErrorPolicyNotFound),
                             @"PolicyTypeNotFound" : @(AWSElasticLoadBalancingErrorPolicyTypeNotFound),
                             @"SubnetNotFound" : @(AWSElasticLoadBalancingErrorSubnetNotFound),
                             @"TooManyLoadBalancers" : @(AWSElasticLoadBalancingErrorTooManyAccessPoints),
                             @"TooManyPolicies" : @(AWSElasticLoadBalancingErrorTooManyPolicies),
                             @"TooManyTags" : @(AWSElasticLoadBalancingErrorTooManyTags),
+                            @"UnsupportedProtocol" : @(AWSElasticLoadBalancingErrorUnsupportedProtocol),
                             };
 }
 
@@ -94,6 +97,15 @@ static NSDictionary *errorCodeDictionary = nil;
                 return responseObject;
             }
         }
+    }
+
+    if (!*error && response.statusCode/100 != 2) {
+        *error = [NSError errorWithDomain:AWSElasticLoadBalancingErrorDomain
+                                     code:AWSElasticLoadBalancingErrorUnknown
+                                 userInfo:nil];
+    }
+
+    if (!*error && [responseObject isKindOfClass:[NSDictionary class]]) {
         if (self.outputClass) {
             responseObject = [AWSMTLJSONAdapter modelOfClass:self.outputClass
                                           fromJSONDictionary:responseObject
@@ -111,42 +123,6 @@ static NSDictionary *errorCodeDictionary = nil;
 @end
 
 @implementation AWSElasticLoadBalancingRequestRetryHandler
-
-- (AWSNetworkingRetryType)shouldRetry:(uint32_t)currentRetryCount
-                             response:(NSHTTPURLResponse *)response
-                                 data:(NSData *)data
-                                error:(NSError *)error {
-    AWSNetworkingRetryType retryType = [super shouldRetry:currentRetryCount
-                                                 response:response
-                                                     data:data
-                                                    error:error];
-    if(retryType == AWSNetworkingRetryTypeShouldNotRetry
-       && currentRetryCount < self.maxRetryCount) {
-        if ([error.domain isEqualToString:AWSElasticLoadBalancingErrorDomain]) {
-            switch (error.code) {
-                case AWSElasticLoadBalancingErrorIncompleteSignature:
-                case AWSElasticLoadBalancingErrorInvalidClientTokenId:
-                case AWSElasticLoadBalancingErrorMissingAuthenticationToken:
-                    retryType = AWSNetworkingRetryTypeShouldRefreshCredentialsAndRetry;
-                    break;
-
-                default:
-                    break;
-            }
-        } else if ([error.domain isEqualToString:AWSGeneralErrorDomain]) {
-            switch (error.code) {
-                case AWSGeneralErrorSignatureDoesNotMatch:
-                    retryType = AWSNetworkingRetryTypeShouldCorrectClockSkewAndRetry;
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    }
-
-    return retryType;
-}
 
 @end
 
@@ -171,22 +147,41 @@ static NSDictionary *errorCodeDictionary = nil;
 
 @implementation AWSElasticLoadBalancing
 
++ (void)initialize {
+    [super initialize];
+
+    if (![AWSiOSSDKVersion isEqualToString:AWSElasticLoadBalancingSDKVersion]) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"AWSCore and AWSElasticLoadBalancing versions need to match. Check your SDK installation. AWSCore: %@ AWSElasticLoadBalancing: %@", AWSiOSSDKVersion, AWSElasticLoadBalancingSDKVersion]
+                                     userInfo:nil];
+    }
+}
+
+#pragma mark - Setup
+
 static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 
 + (instancetype)defaultElasticLoadBalancing {
-    if (![AWSServiceManager defaultServiceManager].defaultServiceConfiguration) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:@"`defaultServiceConfiguration` is `nil`. You need to set it before using this method."
-                                     userInfo:nil];
-    }
-
     static AWSElasticLoadBalancing *_defaultElasticLoadBalancing = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _defaultElasticLoadBalancing = [[AWSElasticLoadBalancing alloc] initWithConfiguration:AWSServiceManager.defaultServiceManager.defaultServiceConfiguration];
-#pragma clang diagnostic pop
+        AWSServiceConfiguration *serviceConfiguration = nil;
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] defaultServiceInfo:AWSInfoElasticLoadBalancing];
+        if (serviceInfo) {
+            serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                               credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+        }
+
+        if (!serviceConfiguration) {
+            serviceConfiguration = [AWSServiceManager defaultServiceManager].defaultServiceConfiguration;
+        }
+
+        if (!serviceConfiguration) {
+            @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                           reason:@"The service configuration is `nil`. You need to configure `Info.plist` or set `defaultServiceConfiguration` before using this method."
+                                         userInfo:nil];
+        }
+        _defaultElasticLoadBalancing = [[AWSElasticLoadBalancing alloc] initWithConfiguration:serviceConfiguration];
     });
 
     return _defaultElasticLoadBalancing;
@@ -197,15 +192,28 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     dispatch_once(&onceToken, ^{
         _serviceClients = [AWSSynchronizedMutableDictionary new];
     });
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [_serviceClients setObject:[[AWSElasticLoadBalancing alloc] initWithConfiguration:configuration]
                         forKey:key];
-#pragma clang diagnostic pop
 }
 
 + (instancetype)ElasticLoadBalancingForKey:(NSString *)key {
-    return [_serviceClients objectForKey:key];
+    @synchronized(self) {
+        AWSElasticLoadBalancing *serviceClient = [_serviceClients objectForKey:key];
+        if (serviceClient) {
+            return serviceClient;
+        }
+
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] serviceInfo:AWSInfoElasticLoadBalancing
+                                                                     forKey:key];
+        if (serviceInfo) {
+            AWSServiceConfiguration *serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                                                        credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+            [AWSElasticLoadBalancing registerElasticLoadBalancingWithConfiguration:serviceConfiguration
+                                                                            forKey:key];
+        }
+
+        return [_serviceClients objectForKey:key];
+    }
 }
 
 + (void)removeElasticLoadBalancingForKey:(NSString *)key {
@@ -218,6 +226,8 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                                  userInfo:nil];
     return nil;
 }
+
+#pragma mark -
 
 - (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration {
     if (self = [super init]) {
@@ -271,7 +281,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 
 #pragma mark - Service method
 
-- (AWSTask *)addTags:(AWSElasticLoadBalancingAddTagsInput *)request {
+- (AWSTask<AWSElasticLoadBalancingAddTagsOutput *> *)addTags:(AWSElasticLoadBalancingAddTagsInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -280,7 +290,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingAddTagsOutput class]];
 }
 
-- (AWSTask *)applySecurityGroupsToLoadBalancer:(AWSElasticLoadBalancingApplySecurityGroupsToLoadBalancerInput *)request {
+- (void)addTags:(AWSElasticLoadBalancingAddTagsInput *)request
+completionHandler:(void (^)(AWSElasticLoadBalancingAddTagsOutput *response, NSError *error))completionHandler {
+    [[self addTags:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingAddTagsOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingAddTagsOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingApplySecurityGroupsToLoadBalancerOutput *> *)applySecurityGroupsToLoadBalancer:(AWSElasticLoadBalancingApplySecurityGroupsToLoadBalancerInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -289,7 +318,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingApplySecurityGroupsToLoadBalancerOutput class]];
 }
 
-- (AWSTask *)attachLoadBalancerToSubnets:(AWSElasticLoadBalancingAttachLoadBalancerToSubnetsInput *)request {
+- (void)applySecurityGroupsToLoadBalancer:(AWSElasticLoadBalancingApplySecurityGroupsToLoadBalancerInput *)request
+                        completionHandler:(void (^)(AWSElasticLoadBalancingApplySecurityGroupsToLoadBalancerOutput *response, NSError *error))completionHandler {
+    [[self applySecurityGroupsToLoadBalancer:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingApplySecurityGroupsToLoadBalancerOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingApplySecurityGroupsToLoadBalancerOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingAttachLoadBalancerToSubnetsOutput *> *)attachLoadBalancerToSubnets:(AWSElasticLoadBalancingAttachLoadBalancerToSubnetsInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -298,7 +346,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingAttachLoadBalancerToSubnetsOutput class]];
 }
 
-- (AWSTask *)configureHealthCheck:(AWSElasticLoadBalancingConfigureHealthCheckInput *)request {
+- (void)attachLoadBalancerToSubnets:(AWSElasticLoadBalancingAttachLoadBalancerToSubnetsInput *)request
+                  completionHandler:(void (^)(AWSElasticLoadBalancingAttachLoadBalancerToSubnetsOutput *response, NSError *error))completionHandler {
+    [[self attachLoadBalancerToSubnets:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingAttachLoadBalancerToSubnetsOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingAttachLoadBalancerToSubnetsOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingConfigureHealthCheckOutput *> *)configureHealthCheck:(AWSElasticLoadBalancingConfigureHealthCheckInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -307,7 +374,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingConfigureHealthCheckOutput class]];
 }
 
-- (AWSTask *)createAppCookieStickinessPolicy:(AWSElasticLoadBalancingCreateAppCookieStickinessPolicyInput *)request {
+- (void)configureHealthCheck:(AWSElasticLoadBalancingConfigureHealthCheckInput *)request
+           completionHandler:(void (^)(AWSElasticLoadBalancingConfigureHealthCheckOutput *response, NSError *error))completionHandler {
+    [[self configureHealthCheck:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingConfigureHealthCheckOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingConfigureHealthCheckOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingCreateAppCookieStickinessPolicyOutput *> *)createAppCookieStickinessPolicy:(AWSElasticLoadBalancingCreateAppCookieStickinessPolicyInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -316,7 +402,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingCreateAppCookieStickinessPolicyOutput class]];
 }
 
-- (AWSTask *)createLBCookieStickinessPolicy:(AWSElasticLoadBalancingCreateLBCookieStickinessPolicyInput *)request {
+- (void)createAppCookieStickinessPolicy:(AWSElasticLoadBalancingCreateAppCookieStickinessPolicyInput *)request
+                      completionHandler:(void (^)(AWSElasticLoadBalancingCreateAppCookieStickinessPolicyOutput *response, NSError *error))completionHandler {
+    [[self createAppCookieStickinessPolicy:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingCreateAppCookieStickinessPolicyOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingCreateAppCookieStickinessPolicyOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingCreateLBCookieStickinessPolicyOutput *> *)createLBCookieStickinessPolicy:(AWSElasticLoadBalancingCreateLBCookieStickinessPolicyInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -325,7 +430,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingCreateLBCookieStickinessPolicyOutput class]];
 }
 
-- (AWSTask *)createLoadBalancer:(AWSElasticLoadBalancingCreateAccessPointInput *)request {
+- (void)createLBCookieStickinessPolicy:(AWSElasticLoadBalancingCreateLBCookieStickinessPolicyInput *)request
+                     completionHandler:(void (^)(AWSElasticLoadBalancingCreateLBCookieStickinessPolicyOutput *response, NSError *error))completionHandler {
+    [[self createLBCookieStickinessPolicy:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingCreateLBCookieStickinessPolicyOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingCreateLBCookieStickinessPolicyOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingCreateAccessPointOutput *> *)createLoadBalancer:(AWSElasticLoadBalancingCreateAccessPointInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -334,7 +458,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingCreateAccessPointOutput class]];
 }
 
-- (AWSTask *)createLoadBalancerListeners:(AWSElasticLoadBalancingCreateLoadBalancerListenerInput *)request {
+- (void)createLoadBalancer:(AWSElasticLoadBalancingCreateAccessPointInput *)request
+         completionHandler:(void (^)(AWSElasticLoadBalancingCreateAccessPointOutput *response, NSError *error))completionHandler {
+    [[self createLoadBalancer:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingCreateAccessPointOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingCreateAccessPointOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingCreateLoadBalancerListenerOutput *> *)createLoadBalancerListeners:(AWSElasticLoadBalancingCreateLoadBalancerListenerInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -343,7 +486,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingCreateLoadBalancerListenerOutput class]];
 }
 
-- (AWSTask *)createLoadBalancerPolicy:(AWSElasticLoadBalancingCreateLoadBalancerPolicyInput *)request {
+- (void)createLoadBalancerListeners:(AWSElasticLoadBalancingCreateLoadBalancerListenerInput *)request
+                  completionHandler:(void (^)(AWSElasticLoadBalancingCreateLoadBalancerListenerOutput *response, NSError *error))completionHandler {
+    [[self createLoadBalancerListeners:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingCreateLoadBalancerListenerOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingCreateLoadBalancerListenerOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingCreateLoadBalancerPolicyOutput *> *)createLoadBalancerPolicy:(AWSElasticLoadBalancingCreateLoadBalancerPolicyInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -352,7 +514,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingCreateLoadBalancerPolicyOutput class]];
 }
 
-- (AWSTask *)deleteLoadBalancer:(AWSElasticLoadBalancingDeleteAccessPointInput *)request {
+- (void)createLoadBalancerPolicy:(AWSElasticLoadBalancingCreateLoadBalancerPolicyInput *)request
+               completionHandler:(void (^)(AWSElasticLoadBalancingCreateLoadBalancerPolicyOutput *response, NSError *error))completionHandler {
+    [[self createLoadBalancerPolicy:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingCreateLoadBalancerPolicyOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingCreateLoadBalancerPolicyOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDeleteAccessPointOutput *> *)deleteLoadBalancer:(AWSElasticLoadBalancingDeleteAccessPointInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -361,7 +542,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingDeleteAccessPointOutput class]];
 }
 
-- (AWSTask *)deleteLoadBalancerListeners:(AWSElasticLoadBalancingDeleteLoadBalancerListenerInput *)request {
+- (void)deleteLoadBalancer:(AWSElasticLoadBalancingDeleteAccessPointInput *)request
+         completionHandler:(void (^)(AWSElasticLoadBalancingDeleteAccessPointOutput *response, NSError *error))completionHandler {
+    [[self deleteLoadBalancer:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDeleteAccessPointOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDeleteAccessPointOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDeleteLoadBalancerListenerOutput *> *)deleteLoadBalancerListeners:(AWSElasticLoadBalancingDeleteLoadBalancerListenerInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -370,7 +570,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingDeleteLoadBalancerListenerOutput class]];
 }
 
-- (AWSTask *)deleteLoadBalancerPolicy:(AWSElasticLoadBalancingDeleteLoadBalancerPolicyInput *)request {
+- (void)deleteLoadBalancerListeners:(AWSElasticLoadBalancingDeleteLoadBalancerListenerInput *)request
+                  completionHandler:(void (^)(AWSElasticLoadBalancingDeleteLoadBalancerListenerOutput *response, NSError *error))completionHandler {
+    [[self deleteLoadBalancerListeners:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDeleteLoadBalancerListenerOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDeleteLoadBalancerListenerOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDeleteLoadBalancerPolicyOutput *> *)deleteLoadBalancerPolicy:(AWSElasticLoadBalancingDeleteLoadBalancerPolicyInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -379,7 +598,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingDeleteLoadBalancerPolicyOutput class]];
 }
 
-- (AWSTask *)deregisterInstancesFromLoadBalancer:(AWSElasticLoadBalancingDeregisterEndPointsInput *)request {
+- (void)deleteLoadBalancerPolicy:(AWSElasticLoadBalancingDeleteLoadBalancerPolicyInput *)request
+               completionHandler:(void (^)(AWSElasticLoadBalancingDeleteLoadBalancerPolicyOutput *response, NSError *error))completionHandler {
+    [[self deleteLoadBalancerPolicy:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDeleteLoadBalancerPolicyOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDeleteLoadBalancerPolicyOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDeregisterEndPointsOutput *> *)deregisterInstancesFromLoadBalancer:(AWSElasticLoadBalancingDeregisterEndPointsInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -388,7 +626,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingDeregisterEndPointsOutput class]];
 }
 
-- (AWSTask *)describeInstanceHealth:(AWSElasticLoadBalancingDescribeEndPointStateInput *)request {
+- (void)deregisterInstancesFromLoadBalancer:(AWSElasticLoadBalancingDeregisterEndPointsInput *)request
+                          completionHandler:(void (^)(AWSElasticLoadBalancingDeregisterEndPointsOutput *response, NSError *error))completionHandler {
+    [[self deregisterInstancesFromLoadBalancer:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDeregisterEndPointsOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDeregisterEndPointsOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDescribeEndPointStateOutput *> *)describeInstanceHealth:(AWSElasticLoadBalancingDescribeEndPointStateInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -397,7 +654,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingDescribeEndPointStateOutput class]];
 }
 
-- (AWSTask *)describeLoadBalancerAttributes:(AWSElasticLoadBalancingDescribeLoadBalancerAttributesInput *)request {
+- (void)describeInstanceHealth:(AWSElasticLoadBalancingDescribeEndPointStateInput *)request
+             completionHandler:(void (^)(AWSElasticLoadBalancingDescribeEndPointStateOutput *response, NSError *error))completionHandler {
+    [[self describeInstanceHealth:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDescribeEndPointStateOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDescribeEndPointStateOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDescribeLoadBalancerAttributesOutput *> *)describeLoadBalancerAttributes:(AWSElasticLoadBalancingDescribeLoadBalancerAttributesInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -406,7 +682,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingDescribeLoadBalancerAttributesOutput class]];
 }
 
-- (AWSTask *)describeLoadBalancerPolicies:(AWSElasticLoadBalancingDescribeLoadBalancerPoliciesInput *)request {
+- (void)describeLoadBalancerAttributes:(AWSElasticLoadBalancingDescribeLoadBalancerAttributesInput *)request
+                     completionHandler:(void (^)(AWSElasticLoadBalancingDescribeLoadBalancerAttributesOutput *response, NSError *error))completionHandler {
+    [[self describeLoadBalancerAttributes:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDescribeLoadBalancerAttributesOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDescribeLoadBalancerAttributesOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDescribeLoadBalancerPoliciesOutput *> *)describeLoadBalancerPolicies:(AWSElasticLoadBalancingDescribeLoadBalancerPoliciesInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -415,7 +710,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingDescribeLoadBalancerPoliciesOutput class]];
 }
 
-- (AWSTask *)describeLoadBalancerPolicyTypes:(AWSElasticLoadBalancingDescribeLoadBalancerPolicyTypesInput *)request {
+- (void)describeLoadBalancerPolicies:(AWSElasticLoadBalancingDescribeLoadBalancerPoliciesInput *)request
+                   completionHandler:(void (^)(AWSElasticLoadBalancingDescribeLoadBalancerPoliciesOutput *response, NSError *error))completionHandler {
+    [[self describeLoadBalancerPolicies:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDescribeLoadBalancerPoliciesOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDescribeLoadBalancerPoliciesOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDescribeLoadBalancerPolicyTypesOutput *> *)describeLoadBalancerPolicyTypes:(AWSElasticLoadBalancingDescribeLoadBalancerPolicyTypesInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -424,7 +738,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingDescribeLoadBalancerPolicyTypesOutput class]];
 }
 
-- (AWSTask *)describeLoadBalancers:(AWSElasticLoadBalancingDescribeAccessPointsInput *)request {
+- (void)describeLoadBalancerPolicyTypes:(AWSElasticLoadBalancingDescribeLoadBalancerPolicyTypesInput *)request
+                      completionHandler:(void (^)(AWSElasticLoadBalancingDescribeLoadBalancerPolicyTypesOutput *response, NSError *error))completionHandler {
+    [[self describeLoadBalancerPolicyTypes:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDescribeLoadBalancerPolicyTypesOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDescribeLoadBalancerPolicyTypesOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDescribeAccessPointsOutput *> *)describeLoadBalancers:(AWSElasticLoadBalancingDescribeAccessPointsInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -433,7 +766,54 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingDescribeAccessPointsOutput class]];
 }
 
-- (AWSTask *)describeTags:(AWSElasticLoadBalancingDescribeTagsInput *)request {
+- (void)describeLoadBalancers:(AWSElasticLoadBalancingDescribeAccessPointsInput *)request
+            completionHandler:(void (^)(AWSElasticLoadBalancingDescribeAccessPointsOutput *response, NSError *error))completionHandler {
+    [[self describeLoadBalancers:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDescribeAccessPointsOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDescribeAccessPointsOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDescribeProvisionedCapacityOutput *> *)describeProvisionedCapacity:(AWSElasticLoadBalancingDescribeProvisionedCapacityInput *)request {
+    return [self invokeRequest:request
+                    HTTPMethod:AWSHTTPMethodPOST
+                     URLString:@""
+                  targetPrefix:@""
+                 operationName:@"DescribeProvisionedCapacity"
+                   outputClass:[AWSElasticLoadBalancingDescribeProvisionedCapacityOutput class]];
+}
+
+- (void)describeProvisionedCapacity:(AWSElasticLoadBalancingDescribeProvisionedCapacityInput *)request
+                  completionHandler:(void (^)(AWSElasticLoadBalancingDescribeProvisionedCapacityOutput *response, NSError *error))completionHandler {
+    [[self describeProvisionedCapacity:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDescribeProvisionedCapacityOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDescribeProvisionedCapacityOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDescribeTagsOutput *> *)describeTags:(AWSElasticLoadBalancingDescribeTagsInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -442,7 +822,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingDescribeTagsOutput class]];
 }
 
-- (AWSTask *)detachLoadBalancerFromSubnets:(AWSElasticLoadBalancingDetachLoadBalancerFromSubnetsInput *)request {
+- (void)describeTags:(AWSElasticLoadBalancingDescribeTagsInput *)request
+   completionHandler:(void (^)(AWSElasticLoadBalancingDescribeTagsOutput *response, NSError *error))completionHandler {
+    [[self describeTags:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDescribeTagsOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDescribeTagsOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingDetachLoadBalancerFromSubnetsOutput *> *)detachLoadBalancerFromSubnets:(AWSElasticLoadBalancingDetachLoadBalancerFromSubnetsInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -451,7 +850,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingDetachLoadBalancerFromSubnetsOutput class]];
 }
 
-- (AWSTask *)disableAvailabilityZonesForLoadBalancer:(AWSElasticLoadBalancingRemoveAvailabilityZonesInput *)request {
+- (void)detachLoadBalancerFromSubnets:(AWSElasticLoadBalancingDetachLoadBalancerFromSubnetsInput *)request
+                    completionHandler:(void (^)(AWSElasticLoadBalancingDetachLoadBalancerFromSubnetsOutput *response, NSError *error))completionHandler {
+    [[self detachLoadBalancerFromSubnets:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingDetachLoadBalancerFromSubnetsOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingDetachLoadBalancerFromSubnetsOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingRemoveAvailabilityZonesOutput *> *)disableAvailabilityZonesForLoadBalancer:(AWSElasticLoadBalancingRemoveAvailabilityZonesInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -460,7 +878,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingRemoveAvailabilityZonesOutput class]];
 }
 
-- (AWSTask *)enableAvailabilityZonesForLoadBalancer:(AWSElasticLoadBalancingAddAvailabilityZonesInput *)request {
+- (void)disableAvailabilityZonesForLoadBalancer:(AWSElasticLoadBalancingRemoveAvailabilityZonesInput *)request
+                              completionHandler:(void (^)(AWSElasticLoadBalancingRemoveAvailabilityZonesOutput *response, NSError *error))completionHandler {
+    [[self disableAvailabilityZonesForLoadBalancer:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingRemoveAvailabilityZonesOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingRemoveAvailabilityZonesOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingAddAvailabilityZonesOutput *> *)enableAvailabilityZonesForLoadBalancer:(AWSElasticLoadBalancingAddAvailabilityZonesInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -469,7 +906,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingAddAvailabilityZonesOutput class]];
 }
 
-- (AWSTask *)modifyLoadBalancerAttributes:(AWSElasticLoadBalancingModifyLoadBalancerAttributesInput *)request {
+- (void)enableAvailabilityZonesForLoadBalancer:(AWSElasticLoadBalancingAddAvailabilityZonesInput *)request
+                             completionHandler:(void (^)(AWSElasticLoadBalancingAddAvailabilityZonesOutput *response, NSError *error))completionHandler {
+    [[self enableAvailabilityZonesForLoadBalancer:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingAddAvailabilityZonesOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingAddAvailabilityZonesOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingModifyLoadBalancerAttributesOutput *> *)modifyLoadBalancerAttributes:(AWSElasticLoadBalancingModifyLoadBalancerAttributesInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -478,7 +934,54 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingModifyLoadBalancerAttributesOutput class]];
 }
 
-- (AWSTask *)registerInstancesWithLoadBalancer:(AWSElasticLoadBalancingRegisterEndPointsInput *)request {
+- (void)modifyLoadBalancerAttributes:(AWSElasticLoadBalancingModifyLoadBalancerAttributesInput *)request
+                   completionHandler:(void (^)(AWSElasticLoadBalancingModifyLoadBalancerAttributesOutput *response, NSError *error))completionHandler {
+    [[self modifyLoadBalancerAttributes:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingModifyLoadBalancerAttributesOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingModifyLoadBalancerAttributesOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingModifyProvisionedCapacityOutput *> *)modifyProvisionedCapacity:(AWSElasticLoadBalancingModifyProvisionedCapacityInput *)request {
+    return [self invokeRequest:request
+                    HTTPMethod:AWSHTTPMethodPOST
+                     URLString:@""
+                  targetPrefix:@""
+                 operationName:@"ModifyProvisionedCapacity"
+                   outputClass:[AWSElasticLoadBalancingModifyProvisionedCapacityOutput class]];
+}
+
+- (void)modifyProvisionedCapacity:(AWSElasticLoadBalancingModifyProvisionedCapacityInput *)request
+                completionHandler:(void (^)(AWSElasticLoadBalancingModifyProvisionedCapacityOutput *response, NSError *error))completionHandler {
+    [[self modifyProvisionedCapacity:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingModifyProvisionedCapacityOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingModifyProvisionedCapacityOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingRegisterEndPointsOutput *> *)registerInstancesWithLoadBalancer:(AWSElasticLoadBalancingRegisterEndPointsInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -487,7 +990,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingRegisterEndPointsOutput class]];
 }
 
-- (AWSTask *)removeTags:(AWSElasticLoadBalancingRemoveTagsInput *)request {
+- (void)registerInstancesWithLoadBalancer:(AWSElasticLoadBalancingRegisterEndPointsInput *)request
+                        completionHandler:(void (^)(AWSElasticLoadBalancingRegisterEndPointsOutput *response, NSError *error))completionHandler {
+    [[self registerInstancesWithLoadBalancer:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingRegisterEndPointsOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingRegisterEndPointsOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingRemoveTagsOutput *> *)removeTags:(AWSElasticLoadBalancingRemoveTagsInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -496,7 +1018,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingRemoveTagsOutput class]];
 }
 
-- (AWSTask *)setLoadBalancerListenerSSLCertificate:(AWSElasticLoadBalancingSetLoadBalancerListenerSSLCertificateInput *)request {
+- (void)removeTags:(AWSElasticLoadBalancingRemoveTagsInput *)request
+ completionHandler:(void (^)(AWSElasticLoadBalancingRemoveTagsOutput *response, NSError *error))completionHandler {
+    [[self removeTags:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingRemoveTagsOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingRemoveTagsOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingSetLoadBalancerListenerSSLCertificateOutput *> *)setLoadBalancerListenerSSLCertificate:(AWSElasticLoadBalancingSetLoadBalancerListenerSSLCertificateInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -505,7 +1046,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingSetLoadBalancerListenerSSLCertificateOutput class]];
 }
 
-- (AWSTask *)setLoadBalancerPoliciesForBackendServer:(AWSElasticLoadBalancingSetLoadBalancerPoliciesForBackendServerInput *)request {
+- (void)setLoadBalancerListenerSSLCertificate:(AWSElasticLoadBalancingSetLoadBalancerListenerSSLCertificateInput *)request
+                            completionHandler:(void (^)(AWSElasticLoadBalancingSetLoadBalancerListenerSSLCertificateOutput *response, NSError *error))completionHandler {
+    [[self setLoadBalancerListenerSSLCertificate:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingSetLoadBalancerListenerSSLCertificateOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingSetLoadBalancerListenerSSLCertificateOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingSetLoadBalancerPoliciesForBackendServerOutput *> *)setLoadBalancerPoliciesForBackendServer:(AWSElasticLoadBalancingSetLoadBalancerPoliciesForBackendServerInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -514,7 +1074,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                    outputClass:[AWSElasticLoadBalancingSetLoadBalancerPoliciesForBackendServerOutput class]];
 }
 
-- (AWSTask *)setLoadBalancerPoliciesOfListener:(AWSElasticLoadBalancingSetLoadBalancerPoliciesOfListenerInput *)request {
+- (void)setLoadBalancerPoliciesForBackendServer:(AWSElasticLoadBalancingSetLoadBalancerPoliciesForBackendServerInput *)request
+                              completionHandler:(void (^)(AWSElasticLoadBalancingSetLoadBalancerPoliciesForBackendServerOutput *response, NSError *error))completionHandler {
+    [[self setLoadBalancerPoliciesForBackendServer:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingSetLoadBalancerPoliciesForBackendServerOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingSetLoadBalancerPoliciesForBackendServerOutput *result = task.result;
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+
+        return nil;
+    }];
+}
+
+- (AWSTask<AWSElasticLoadBalancingSetLoadBalancerPoliciesOfListenerOutput *> *)setLoadBalancerPoliciesOfListener:(AWSElasticLoadBalancingSetLoadBalancerPoliciesOfListenerInput *)request {
     return [self invokeRequest:request
                     HTTPMethod:AWSHTTPMethodPOST
                      URLString:@""
@@ -522,5 +1101,26 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                  operationName:@"SetLoadBalancerPoliciesOfListener"
                    outputClass:[AWSElasticLoadBalancingSetLoadBalancerPoliciesOfListenerOutput class]];
 }
+
+- (void)setLoadBalancerPoliciesOfListener:(AWSElasticLoadBalancingSetLoadBalancerPoliciesOfListenerInput *)request
+                        completionHandler:(void (^)(AWSElasticLoadBalancingSetLoadBalancerPoliciesOfListenerOutput *response, NSError *error))completionHandler {
+    [[self setLoadBalancerPoliciesOfListener:request] continueWithBlock:^id _Nullable(AWSTask<AWSElasticLoadBalancingSetLoadBalancerPoliciesOfListenerOutput *> * _Nonnull task) {
+        AWSElasticLoadBalancingSetLoadBalancerPoliciesOfListenerOutput *result = task.result;
+        NSError *error = task.error;
+        
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+        
+        if (completionHandler) {
+            completionHandler(result, error);
+        }
+        
+        return nil;
+    }];
+}
+
+#pragma mark -
 
 @end

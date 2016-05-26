@@ -1,22 +1,32 @@
-/*
- Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License").
- You may not use this file except in compliance with the License.
- A copy of the License is located at
-
- http://aws.amazon.com/apache2.0
-
- or in the "license" file accompanying this file. This file is distributed
- on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- express or implied. See the License for the specific language governing
- permissions and limitations under the License.
- */
+//
+// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License").
+// You may not use this file except in compliance with the License.
+// A copy of the License is located at
+//
+// http://aws.amazon.com/apache2.0
+//
+// or in the "license" file accompanying this file. This file is distributed
+// on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
+//
 
 #import <UIKit/UIKit.h>
 #import <AWSCore/AWSCore.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+FOUNDATION_EXPORT NSString *const AWSS3TransferUtilityErrorDomain;
+typedef NS_ENUM(NSInteger, AWSS3TransferUtilityErrorType) {
+    AWSS3TransferUtilityErrorUnknown,
+    AWSS3TransferUtilityErrorRedirection,
+    AWSS3TransferUtilityErrorClientError,
+    AWSS3TransferUtilityErrorServerError,
+};
+
+FOUNDATION_EXPORT NSString *const AWSS3TransferUtilityURLSessionDidBecomeInvalidNotification;
 
 @class AWSS3TransferUtilityTask;
 @class AWSS3TransferUtilityUploadTask;
@@ -32,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param error Returns the error object when the download failed.
  */
 typedef void (^AWSS3TransferUtilityUploadCompletionHandlerBlock) (AWSS3TransferUtilityUploadTask *task,
-                                                                  NSError * __nullable error);
+                                                                  NSError * _Nullable error);
 
 /**
  The download completion handler.
@@ -43,39 +53,20 @@ typedef void (^AWSS3TransferUtilityUploadCompletionHandlerBlock) (AWSS3TransferU
  @param error    Returns the error object when the download failed. Returns `nil` on successful downlaod.
  */
 typedef void (^AWSS3TransferUtilityDownloadCompletionHandlerBlock) (AWSS3TransferUtilityDownloadTask *task,
-                                                                    NSURL * __nullable location,
-                                                                    NSData * __nullable data,
-                                                                    NSError * __nullable error);
+                                                                    NSURL * _Nullable location,
+                                                                    NSData * _Nullable data,
+                                                                    NSError * _Nullable error);
 
 /**
- The upload progress feedback block.
+ The transfer progress feedback block.
 
  @param task                     The upload task object.
- @param bytesSent                The number of bytes sent since the last time this block was called.
- @param totalBytesSent           The total number of bytes sent so far.
- @param totalBytesExpectedToSend The expected length of the body data.
+ @param progress                 The progress object.
  
- @note Refer to `- URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:` in `NSURLSessionTaskDelegate` for more details.
+ @note Refer to `- URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:` in `NSURLSessionTaskDelegate` for more details on upload progress and `- URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:` in `NSURLSessionDownloadDelegate` for more details on download progress.
  */
-typedef void (^AWSS3TransferUtilityUploadProgressBlock) (AWSS3TransferUtilityUploadTask *task,
-                                                         int64_t bytesSent,
-                                                         int64_t totalBytesSent,
-                                                         int64_t totalBytesExpectedToSend);
-
-/**
- The download progress feedback block.
-
- @param task                      The download task object.
- @param bytesWritten              The number of bytes transferred since the last time this delegate method was called.
- @param totalBytesWritten         The total number of bytes transferred so far.
- @param totalBytesExpectedToWrite The expected length of the file, as provided by the `Content-Length` header. If this header was not provided, the value is `NSURLSessionTransferSizeUnknown`.
- 
- @note Refer to `- URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:` in `NSURLSessionDownloadDelegate` for more details.
- */
-typedef void (^AWSS3TransferUtilityDownloadProgressBlock) (AWSS3TransferUtilityDownloadTask *task,
-                                                           int64_t bytesWritten,
-                                                           int64_t totalBytesWritten,
-                                                           int64_t totalBytesExpectedToWrite);
+typedef void (^AWSS3TransferUtilityProgressBlock) (AWSS3TransferUtilityTask *task,
+                                                   NSProgress *progress);
 
 #pragma mark - AWSS3TransferUtility
 
@@ -83,6 +74,13 @@ typedef void (^AWSS3TransferUtilityDownloadProgressBlock) (AWSS3TransferUtilityD
  A high-level utility for managing background uploads and downloads. The transfers continue even when the app is suspended. You must call `+ application:handleEventsForBackgroundURLSession:completionHandler:` in the `- application:handleEventsForBackgroundURLSession:completionHandler:` application delegate in order for the background transfer callback to work.
  */
 @interface AWSS3TransferUtility : AWSService
+
+/**
+ The service configuration used to instantiate this service client.
+
+ @warning Once the client is instantiated, do not modify the configuration object. It may cause unspecified behaviors.
+ */
+@property (readonly) AWSServiceConfiguration *configuration;
 
 /**
  Returns the singleton service client. If the singleton object does not exist, the SDK instantiates the default service client with `defaultServiceConfiguration` from `[AWSServiceManager defaultServiceManager]`. The reference to this object is maintained by the SDK, and you do not need to retain it manually.
@@ -123,7 +121,7 @@ typedef void (^AWSS3TransferUtilityDownloadProgressBlock) (AWSS3TransferUtilityD
 
  @return The default service client.
  */
-+ (nullable instancetype)defaultS3TransferUtility;
++ (instancetype)defaultS3TransferUtility;
 
 /**
  Creates a service client with the given service configuration and registers it for the key.
@@ -172,7 +170,7 @@ typedef void (^AWSS3TransferUtilityDownloadProgressBlock) (AWSS3TransferUtilityD
                                             forKey:(NSString *)key;
 
 /**
- Retrieves the service client associated with the key. You need to call `+ registerS3TransferUtilityWithConfiguration:forKey:` before invoking this method. If `+ registerS3TransferUtilityWithConfiguration:forKey:` has not been called in advance or the key does not exist, this method returns `nil`.
+ Retrieves the service client associated with the key. You need to call `+ registerS3TransferUtilityWithConfiguration:forKey:` before invoking this method.
 
  For example, set the default service configuration in `- application:didFinishLaunchingWithOptions:`
 
@@ -193,10 +191,14 @@ typedef void (^AWSS3TransferUtilityDownloadProgressBlock) (AWSS3TransferUtilityD
 
  @return An instance of the service client.
  */
-+ (nullable instancetype)S3TransferUtilityForKey:(NSString *)key;
++ (instancetype)S3TransferUtilityForKey:(NSString *)key;
 
 /**
  Removes the service client associated with the key and release it.
+
+ The underlying NSURLSession is invalidated, and after the invalidation has completed the transfer is utility removed.
+
+ Observe the AWSS3TransferUtilityURLSessionDidBecomeInvalidNotification to be informed when this has occurred.
 
  @warning Before calling this method, make sure no method is running on this client.
 
@@ -227,12 +229,12 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
 
  @return Returns an instance of `AWSTask`. On successful initialization, `task.result` contains an instance of `AWSS3TransferUtilityUploadTask`.
  */
-- (AWSTask *)uploadData:(NSData *)data
-                 bucket:(NSString *)bucket
-                    key:(NSString *)key
-            contentType:(NSString *)contentType
-             expression:(nullable AWSS3TransferUtilityUploadExpression *)expression
-       completionHander:(nullable AWSS3TransferUtilityUploadCompletionHandlerBlock)completionHandler;
+- (AWSTask<AWSS3TransferUtilityUploadTask *> *)uploadData:(NSData *)data
+                                                   bucket:(NSString *)bucket
+                                                      key:(NSString *)key
+                                              contentType:(NSString *)contentType
+                                               expression:(nullable AWSS3TransferUtilityUploadExpression *)expression
+                                         completionHander:(nullable AWSS3TransferUtilityUploadCompletionHandlerBlock)completionHandler;
 
 /**
  Uploads the file to the specified Amazon S3 bucket.
@@ -246,12 +248,12 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
 
  @return Returns an instance of `AWSTask`. On successful initialization, `task.result` contains an instance of `AWSS3TransferUtilityUploadTask`.
  */
-- (AWSTask *)uploadFile:(NSURL *)fileURL
-                 bucket:(NSString *)bucket
-                    key:(NSString *)key
-            contentType:(NSString *)contentType
-             expression:(nullable AWSS3TransferUtilityUploadExpression *)expression
-       completionHander:(nullable AWSS3TransferUtilityUploadCompletionHandlerBlock)completionHandler;
+- (AWSTask<AWSS3TransferUtilityUploadTask *> *)uploadFile:(NSURL *)fileURL
+                                                   bucket:(NSString *)bucket
+                                                      key:(NSString *)key
+                                              contentType:(NSString *)contentType
+                                               expression:(nullable AWSS3TransferUtilityUploadExpression *)expression
+                                         completionHander:(nullable AWSS3TransferUtilityUploadCompletionHandlerBlock)completionHandler;
 
 /**
  Downloads the specified Amazon S3 object as `NSData`.
@@ -263,15 +265,15 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
 
  @return Returns an instance of `AWSTask`. On successful initialization, `task.result` contains an instance of `AWSS3TransferUtilityDownloadTask`.
  */
-- (AWSTask *)downloadDataFromBucket:(NSString *)bucket
-                                key:(NSString *)key
-                         expression:(nullable AWSS3TransferUtilityDownloadExpression *)expression
-                   completionHander:(nullable AWSS3TransferUtilityDownloadCompletionHandlerBlock)completionHandler;
+- (AWSTask<AWSS3TransferUtilityDownloadTask *> *)downloadDataFromBucket:(NSString *)bucket
+                                                                    key:(NSString *)key
+                                                             expression:(nullable AWSS3TransferUtilityDownloadExpression *)expression
+                                                       completionHander:(nullable AWSS3TransferUtilityDownloadCompletionHandlerBlock)completionHandler;
 
 /**
  Downloads the specified Amazon S3 object to a file URL.
 
- @param fileURL           The file URL to download the object to. Should not be `nil` even though it is marked as `nullable`.
+ @param fileURL           The file URL to download the object to.
  @param bucket            The Amazon S3 bucket name.
  @param key               The Amazon S3 object key name.
  @param expression        The container object to configure the download request.
@@ -279,16 +281,11 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
 
  @return Returns an instance of `AWSTask`. On successful initialization, `task.result` contains an instance of `AWSS3TransferUtilityDownloadTask`.
  */
-- (AWSTask *)downloadToURL:(nullable NSURL *)fileURL
-                    bucket:(NSString *)bucket
-                       key:(NSString *)key
-                expression:(nullable AWSS3TransferUtilityDownloadExpression *)expression
-          completionHander:(nullable AWSS3TransferUtilityDownloadCompletionHandlerBlock)completionHandler;
-
-// Without disabling the nullability completeness, the compiler shows the following warning (Xcode 6.4):
-// Block pointer is missing a nullability type specifier (__nonnull or __nullable)
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wnullability-completeness"
+- (AWSTask<AWSS3TransferUtilityDownloadTask *> *)downloadToURL:(NSURL *)fileURL
+                                                        bucket:(NSString *)bucket
+                                                           key:(NSString *)key
+                                                    expression:(nullable AWSS3TransferUtilityDownloadExpression *)expression
+                                              completionHander:(nullable AWSS3TransferUtilityDownloadCompletionHandlerBlock)completionHandler;
 
 /**
  Assigns progress feedback and completion handler blocks. This method should be called when the app was suspended while the transfer is still happening.
@@ -297,33 +294,32 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
  @param downloadBlocksAssigner The block for assigning the download pregree feedback and completion handler blocks.
  */
 - (void)enumerateToAssignBlocksForUploadTask:(nullable void (^)(AWSS3TransferUtilityUploadTask *uploadTask,
-                                                                AWSS3TransferUtilityUploadProgressBlock * __nullable uploadProgressBlockReference,
-                                                                AWSS3TransferUtilityUploadCompletionHandlerBlock * __nullable completionHandlerReference))uploadBlocksAssigner
+                                                                _Nullable AWSS3TransferUtilityProgressBlock * _Nullable uploadProgressBlockReference,
+                                                                _Nullable AWSS3TransferUtilityUploadCompletionHandlerBlock * _Nullable completionHandlerReference))uploadBlocksAssigner
                                 downloadTask:(nullable void (^)(AWSS3TransferUtilityDownloadTask *downloadTask,
-                                                                AWSS3TransferUtilityDownloadProgressBlock * __nullable downloadProgressBlockReference,
-                                                                AWSS3TransferUtilityDownloadCompletionHandlerBlock * __nullable completionHandlerReference))downloadBlocksAssigner;
-#pragma clang diagnostic pop
+                                                                _Nullable AWSS3TransferUtilityProgressBlock * _Nullable downloadProgressBlockReference,
+                                                                _Nullable AWSS3TransferUtilityDownloadCompletionHandlerBlock * _Nullable completionHandlerReference))downloadBlocksAssigner;
 
 /**
  Retrieves all running tasks.
 
  @return An array of `AWSS3TransferUtilityTask`.
  */
-- (AWSTask *)getAllTasks;
+- (AWSTask<NSArray<__kindof AWSS3TransferUtilityTask *> *> *)getAllTasks;
 
 /**
  Retrieves all running upload tasks.
 
  @return An array of `AWSS3TransferUtilityUploadTask`.
  */
-- (AWSTask *)getUploadTasks;
+- (AWSTask<NSArray<AWSS3TransferUtilityUploadTask *> *> *)getUploadTasks;
 
 /**
  Retrieves all running download tasks.
 
  @return An array of `AWSS3TransferUtilityDownloadTask`.
  */
-- (AWSTask *)getDownloadTasks;
+- (AWSTask<NSArray<AWSS3TransferUtilityDownloadTask *> *> *)getDownloadTasks;
 
 @end
 
@@ -348,6 +344,26 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
  The Amazon S3 object key name associated with the transfer.
  */
 @property (readonly) NSString *key;
+
+/**
+ The transfer progress.
+ */
+@property (readonly) NSProgress *progress;
+
+/**
+ The underlying `NSURLSessionTask` object.
+ */
+@property (readonly) NSURLSessionTask *sessionTask;
+
+/**
+ The HTTP request object.
+ */
+@property (nullable, readonly) NSURLRequest *request;
+
+/**
+ The HTTP response object. May be nil if no response has been received.
+ */
+@property (nullable, readonly) NSHTTPURLResponse *response;
 
 /**
  Cancels the task.
@@ -388,17 +404,35 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
 @interface AWSS3TransferUtilityExpression : NSObject
 
 /**
- The request parameters. It is an dictionary of `<NSString *, NSString *>`.
+ This NSDictionary can contains additional request headers to be included in the pre-signed URL. Default is emtpy.
  */
-@property (readonly, nullable) NSDictionary *requestParameters;
+@property (nonatomic, readonly) NSDictionary<NSString *, NSString *> *requestHeaders;
 
 /**
- Sets value for the request parameter.
-
- @param value            The request parameter value.
- @param requestParameter The key for the request parameter value.
+ This NSDictionary can contains additional request parameters to be included in the pre-signed URL. Adding additional request parameters enables more advanced pre-signed URLs, such as accessing Amazon S3's torrent resource for an object, or for specifying a version ID when accessing an object. Default is emtpy.
  */
-- (void)setValue:(NSString *)value forRequestParameter:(NSString *)requestParameter;
+@property (nonatomic, readonly) NSDictionary<NSString *, NSString *> *requestParameters;
+
+/**
+ The progress feedback block.
+ */
+@property (copy, nonatomic, nullable) AWSS3TransferUtilityProgressBlock progressBlock;
+
+/**
+ Set an additional request header to be included in the pre-signed URL.
+
+ @param value The value of the request parameter being added. Set to nil if parameter doesn't contains value.
+ @param requestHeader The name of the request header.
+ */
+- (void)setValue:(nullable NSString *)value forRequestHeader:(NSString *)requestHeader;
+
+/**
+ Set an additional request parameter to be included in the pre-signed URL. Adding additional request parameters enables more advanced pre-signed URLs, such as accessing Amazon S3's torrent resource for an object, or for specifying a version ID when accessing an object.
+
+ @param value The value of the request parameter being added. Set to nil if parameter doesn't contains value.
+ @param requestParameter The name of the request parameter, as it appears in the URL's query string (e.g. AWSS3PresignedURLVersionID).
+ */
+- (void)setValue:(nullable NSString *)value forRequestParameter:(NSString *)requestParameter;
 
 @end
 
@@ -408,14 +442,9 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
 @interface AWSS3TransferUtilityUploadExpression : AWSS3TransferUtilityExpression
 
 /**
- The upload progress feedback block.
+ The upload request header for `Content-MD5`.
  */
-@property (copy, nonatomic, nullable) AWSS3TransferUtilityUploadProgressBlock uploadProgress;
-
-/**
- `Content-Type` of the uploading data.
- */
-@property (strong, nonatomic, nullable) NSString *contentMD5;
+@property (nonatomic, nullable) NSString *contentMD5;
 
 @end
 
@@ -423,11 +452,6 @@ handleEventsForBackgroundURLSession:(NSString *)identifier
  The expression object for configuring a download task.
  */
 @interface AWSS3TransferUtilityDownloadExpression : AWSS3TransferUtilityExpression
-
-/**
- The download progress feedback block.
- */
-@property (copy, nonatomic, nullable) AWSS3TransferUtilityDownloadProgressBlock downloadProgress;
 
 @end
 

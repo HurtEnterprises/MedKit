@@ -7,6 +7,11 @@
 //
 
 import Foundation
+import AWSS3
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 
 let CognitoRegionType = AWSRegionType.USEast1

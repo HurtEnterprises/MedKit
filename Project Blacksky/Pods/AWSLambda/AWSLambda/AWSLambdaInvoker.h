@@ -1,21 +1,23 @@
-/*
- Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License").
- You may not use this file except in compliance with the License.
- A copy of the License is located at
-
- http://aws.amazon.com/apache2.0
-
- or in the "license" file accompanying this file. This file is distributed
- on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- express or implied. See the License for the specific language governing
- permissions and limitations under the License.
- */
+//
+// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License").
+// You may not use this file except in compliance with the License.
+// A copy of the License is located at
+//
+// http://aws.amazon.com/apache2.0
+//
+// or in the "license" file accompanying this file. This file is distributed
+// on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
+//
 
 #import <Foundation/Foundation.h>
-#import <AWSCore/AWSService.h>
+#import <AWSCore/AWSCore.h>
 #import "AWSLambdaModel.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT NSString *const AWSLambdaInvokerErrorDomain;
 FOUNDATION_EXPORT NSString *const AWSLambdaInvokerFunctionErrorKey;
@@ -123,7 +125,7 @@ typedef NS_ENUM(NSInteger, AWSLambdaInvokerErrorType) {
 + (void)registerLambdaInvokerWithConfiguration:(AWSServiceConfiguration *)configuration forKey:(NSString *)key;
 
 /**
- Retrieves the service client associated with the key. You need to call `+ registerKinesisWithConfiguration:forKey:` before invoking this method. If `+ registerKinesisWithConfiguration:forKey:` has not been called in advance or the key does not exist, this method returns `nil`.
+ Retrieves the service client associated with the key. You need to call `+ registerKinesisWithConfiguration:forKey:` before invoking this method.
 
  For example, set the default service configuration in `- application:didFinishLaunchingWithOptions:`
 
@@ -185,18 +187,44 @@ typedef NS_ENUM(NSInteger, AWSLambdaInvokerErrorType) {
  @see AWSLambdaInvokerInvocationRequest
  @see AWSLambdaInvokerInvocationResponse
  */
-- (AWSTask *)invoke:(AWSLambdaInvokerInvocationRequest *)request;
+- (AWSTask<AWSLambdaInvokerInvocationResponse *> *)invoke:(AWSLambdaInvokerInvocationRequest *)request;
+
+/**
+ Invokes an AWS Lambda function with a given request object.
+
+ @param request           The request object.
+ @param completionHandler The completion handler to call when the invoke request is complete.
+                          `response` - An `AWSLambdaInvokerInvocationResponse` object, or `nil` if the request failed.
+                          `error` - An error object that indicates why the request failed, or `nil` if the request was successful. On failed service execution, `task.error` may contain an `NSError` with `AWSLambdaErrorDomain` domain and the following error code: `AWSLambdaErrorService`, `AWSLambdaErrorResourceNotFound`, `AWSLambdaErrorInvalidParameterValue`. On failed function execution, `task.error` may contain an `NSError` with `AWSLambdaInvokerErrorDomain` domain and the following error code: `AWSLambdaInvokerErrorTypeFunctionError`.
+
+ @see AWSLambdaInvokerInvocationRequest
+ @see AWSLambdaInvokerInvocationResponse
+ */
+- (void)invoke:(AWSLambdaInvokerInvocationRequest *)request completionHandler:(void (^ _Nullable)(AWSLambdaInvokerInvocationResponse * _Nullable response, NSError * _Nullable error))completionHandler;
 
 /**
  Invokes a synchronous AWS Lambda function with given parameters.
 
  @param functionName The name of a function.
- @param JSONObject The object from which to generate JSON request data. Can be `nil`.
- 
+ @param JSONObject   The object from which to generate JSON request data. Can be `nil`.
+
  @return An instance of `AWSTask`. On successful execution, `task.result` will contain a JSON object. On failed service execution, `task.error` may contain an `NSError` with `AWSLambdaErrorDomain` domain and the following error code: `AWSLambdaErrorService`, `AWSLambdaErrorResourceNotFound`, `AWSLambdaErrorInvalidParameterValue`. On failed function execution, `task.error` may contain an `NSError` with `AWSLambdaInvokerErrorDomain` domain and the following error code: `AWSLambdaInvokerErrorTypeFunctionError`.
  */
 - (AWSTask *)invokeFunction:(NSString *)functionName
-                JSONObject:(id)JSONObject;
+                 JSONObject:(nullable id)JSONObject;
+
+/**
+ Invokes a synchronous AWS Lambda function with given parameters.
+
+ @param functionName      The name of a function.
+ @param JSONObject        The object from which to generate JSON request data. Can be `nil`.
+ @param completionHandler The completion handler to call when the invoke request is complete.
+                          `response` - A JSON object., or `nil` if the request failed.
+                          `error` - An error object that indicates why the request failed, or `nil` if the request was successful. On failed service execution, `task.error` may contain an `NSError` with `AWSLambdaErrorDomain` domain and the following error code: `AWSLambdaErrorService`, `AWSLambdaErrorResourceNotFound`, `AWSLambdaErrorInvalidParameterValue`. On failed function execution, `task.error` may contain an `NSError` with `AWSLambdaInvokerErrorDomain` domain and the following error code: `AWSLambdaInvokerErrorTypeFunctionError`.
+ */
+- (void)invokeFunction:(NSString *)functionName
+            JSONObject:(nullable id)JSONObject
+     completionHandler:(void (^ _Nullable)(id _Nullable response, NSError * _Nullable error))completionHandler;
 
 @end
 
@@ -213,3 +241,5 @@ typedef NS_ENUM(NSInteger, AWSLambdaInvokerErrorType) {
 @interface AWSLambdaInvokerInvocationResponse : AWSLambdaInvocationResponse
 
 @end
+
+NS_ASSUME_NONNULL_END

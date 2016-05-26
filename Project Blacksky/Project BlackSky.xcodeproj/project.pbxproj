@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05CEF4FB6B4D1446A38E7C83 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCC0893880AADD86CDD48041 /* libPods.a */; };
+		2D7A9D7F22BBC8232C2F7842 /* Pods_Project_BlackSky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02EBC84A601B9FB32D29B464 /* Pods_Project_BlackSky.framework */; };
 		6C7006EE1C32862900E681DF /* Obj-C-Bridging-Header.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6C7006EC1C32862900E681DF /* Obj-C-Bridging-Header.cpp */; };
 		6C7006F11C3287E400E681DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7006F01C3287E400E681DF /* Constants.swift */; };
 		6C7006F31C394C0E00E681DF /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7006F21C394C0E00E681DF /* LoginData.swift */; };
@@ -55,7 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		310339BA6D4E8C1A7E588097 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		02EBC84A601B9FB32D29B464 /* Pods_Project_BlackSky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_BlackSky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3690CD5992AB721934BF02FF /* Pods-Project BlackSky.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project BlackSky.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project BlackSky/Pods-Project BlackSky.debug.xcconfig"; sourceTree = "<group>"; };
+		3BB3418842808B1B17D3D2E3 /* Pods-Project BlackSky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project BlackSky.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project BlackSky/Pods-Project BlackSky.release.xcconfig"; sourceTree = "<group>"; };
 		6C7006EB1C32862900E681DF /* Project BlackSky-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project BlackSky-Bridging-Header.h"; sourceTree = "<group>"; };
 		6C7006EC1C32862900E681DF /* Obj-C-Bridging-Header.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Obj-C-Bridging-Header.cpp"; sourceTree = "<group>"; };
 		6C7006ED1C32862900E681DF /* Obj-C-Bridging-Header.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "Obj-C-Bridging-Header.hpp"; sourceTree = "<group>"; };
@@ -88,11 +90,9 @@
 		8FD515341BFA7C30008E7CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRegisterPage.swift; sourceTree = "<group>"; };
 		8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
-		B4CE596C600BC070ACA22C32 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionFunctions.swift; sourceTree = "<group>"; };
 		F85FD47F1C4EE862006411AD /* Email.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		F85FD4811C52D73D006411AD /* KeychainFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainFunctions.swift; sourceTree = "<group>"; };
-		FCC0893880AADD86CDD48041 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05CEF4FB6B4D1446A38E7C83 /* libPods.a in Frameworks */,
+				2D7A9D7F22BBC8232C2F7842 /* Pods_Project_BlackSky.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,13 +121,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		68489BE3A9AFC246620B657D /* Pods */ = {
+		4389968C8F6AB3919505113A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				310339BA6D4E8C1A7E588097 /* Pods.debug.xcconfig */,
-				B4CE596C600BC070ACA22C32 /* Pods.release.xcconfig */,
+				02EBC84A601B9FB32D29B464 /* Pods_Project_BlackSky.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		6C7006EA1C3285E600E681DF /* Supporting Files */ = {
@@ -187,8 +186,8 @@
 				8FD515261BFA7C30008E7CDB /* Project BlackSkyTests */,
 				8FD515311BFA7C30008E7CDB /* Project BlackSkyUITests */,
 				8FD5150E1BFA7C2F008E7CDB /* Products */,
-				68489BE3A9AFC246620B657D /* Pods */,
-				B6682445B03FDD3EC965B70C /* Frameworks */,
+				B4D81DB2DFD08F8749E74487 /* Pods */,
+				4389968C8F6AB3919505113A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -245,12 +244,13 @@
 			path = "Project BlackSkyUITests";
 			sourceTree = "<group>";
 		};
-		B6682445B03FDD3EC965B70C /* Frameworks */ = {
+		B4D81DB2DFD08F8749E74487 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FCC0893880AADD86CDD48041 /* libPods.a */,
+				3690CD5992AB721934BF02FF /* Pods-Project BlackSky.debug.xcconfig */,
+				3BB3418842808B1B17D3D2E3 /* Pods-Project BlackSky.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,12 +260,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8FD515371BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSky" */;
 			buildPhases = (
-				5BDF3EBEB69AC25B40842F81 /* Check Pods Manifest.lock */,
+				E4EED31EE8E5142AF7DE327B /* 📦 Check Pods Manifest.lock */,
 				8FD515091BFA7C2F008E7CDB /* Sources */,
 				8FD5150A1BFA7C2F008E7CDB /* Frameworks */,
 				8FD5150B1BFA7C2F008E7CDB /* Resources */,
-				6402EAED41616014C3F5DD7E /* Embed Pods Frameworks */,
-				94C4B4F30F3D56727F84D739 /* Copy Pods Resources */,
+				FA742BEE687F4DB20D10B745 /* 📦 Embed Pods Frameworks */,
+				6E2008FAFB044A9C5CE7A01C /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -383,14 +383,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5BDF3EBEB69AC25B40842F81 /* Check Pods Manifest.lock */ = {
+		6E2008FAFB044A9C5CE7A01C /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Project BlackSky/Pods-Project BlackSky-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4EED31EE8E5142AF7DE327B /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,34 +413,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6402EAED41616014C3F5DD7E /* Embed Pods Frameworks */ = {
+		FA742BEE687F4DB20D10B745 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		94C4B4F30F3D56727F84D739 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Project BlackSky/Pods-Project BlackSky-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -596,7 +596,7 @@
 		};
 		8FD515381BFA7C30008E7CDB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 310339BA6D4E8C1A7E588097 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 3690CD5992AB721934BF02FF /* Pods-Project BlackSky.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -611,7 +611,7 @@
 		};
 		8FD515391BFA7C30008E7CDB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4CE596C600BC070ACA22C32 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 3BB3418842808B1B17D3D2E3 /* Pods-Project BlackSky.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
