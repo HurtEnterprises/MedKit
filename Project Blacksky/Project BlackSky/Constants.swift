@@ -24,3 +24,5 @@ let screenSize: CGRect = UIScreen.mainScreen().bounds // Gets Size of Screen
 let height = screenSize.height
 let width = screenSize.width
 let patientPrototype: PatientData = PatientData()
+
+var currentUser = DDBLoginData()

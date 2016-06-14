@@ -302,8 +302,11 @@ class AccountRegisterPage: UIViewController {
                 } else { //an error has occurred, we have not successfully sent the login info.
                     print("Error:  \(task.error)")
                 }
-    
+                
+                currentUser = loginData
                 return nil
             })
+        
+        currentUser = loginData
     }
 }

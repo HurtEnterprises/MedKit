@@ -162,6 +162,10 @@ class MainMenu: UIViewController {
         //TODO: @Mehrab add some sort of logout function or we can make it so the user is logged out whenever they hit the login page?
     }
     
+    func logoutCurrentUser(){
+        currentUser = DDBLoginData() //set the user constant to a blank login data, essentially deleting the user.
+    }
+    
     func myAccoutClicked(sender: UIBarButtonItem!){
         print("My Account")
     }

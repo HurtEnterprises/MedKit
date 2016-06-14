@@ -338,10 +338,10 @@ class LoginPage: UIViewController {
                     } else {
                         self.creationFunctions.makeAlert("Wrong Passowrd", message: "You inputted the incorrect password.", printStatement: "Wrong Password.", page: self)
                     }
+                    currentUser = loginData
                 }
             } else {
                 print("Error: \(task.error)")
-                
             }
             return nil
         })
