@@ -173,8 +173,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "181"
             endingLineNumber = "181"
-            landmarkName = "myAppointmentsClicked()"
-            landmarkType = "5">
+            landmarkName = "myPatientsClicked(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -275,7 +275,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project BlackSky/UICreationFunctions.swift"
@@ -285,7 +285,7 @@
             startingLineNumber = "136"
             endingLineNumber = "136"
             landmarkName = "drawRectangle(_:frame:)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -301,7 +301,7 @@
             startingLineNumber = "95"
             endingLineNumber = "95"
             landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

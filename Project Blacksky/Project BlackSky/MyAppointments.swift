@@ -24,7 +24,7 @@ class MyApointments: UIViewController {
     
     func configureView() {
         // Update the user interface for the detail item.
-        self.view.backgroundColor = UIColor.cyanColor()
+        self.view.backgroundColor = UIColor.cyan
     }
     
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class MyApointments: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // Makes Navigation Bar
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 50)) // Offset by 20 pixels vertically to take the status bar into account
         
         creationFunctions.makeNavigationBar(navigationBar, barTitle: "My Appointments", forwardButton: false, backButton: true, page: self)
         
@@ -45,8 +45,8 @@ class MyApointments: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func backClicked(sender: UIBarButtonItem!){
-        self.presentViewController(self.mainMenu, animated: true, completion: nil)
+    func backClicked(_ sender: UIBarButtonItem!){
+        self.present(self.mainMenu, animated: true, completion: nil)
     }
     
 

@@ -50,10 +50,10 @@ class User :AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     }
     
     class func ignoreAttributes() -> [AnyObject]! {
-        return ["internalName", "internalState"]
+        return ["internalName" as AnyObject, "internalState" as AnyObject]
     }
     
-    override func isEqual(object: AnyObject?) -> Bool {
+    override func isEqual(_ object: Any?) -> Bool {
         return super.isEqual(object)
     }
     

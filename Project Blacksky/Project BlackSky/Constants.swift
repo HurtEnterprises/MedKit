@@ -14,13 +14,13 @@ import AWSSNS
 import AWSCognito
 
 
-let CognitoRegionType = AWSRegionType.USEast1
-let DefaultServiceRegionType = AWSRegionType.USEast1
+let CognitoRegionType = AWSRegionType.usEast1
+let DefaultServiceRegionType = AWSRegionType.usEast1
 let CognitoIdentityPoolId = "us-east-1:b9a270f0-ab59-4cbf-ac54-e1dd45a51d96"
 let AWSDynamoDBLoginTable = "LoginData"
 let AWSDynamoDBPatientTable = "Patient-Data"
 
-let screenSize: CGRect = UIScreen.mainScreen().bounds // Gets Size of Screen
+let screenSize: CGRect = UIScreen.main.bounds // Gets Size of Screen
 let height = screenSize.height
 let width = screenSize.width
 let patientPrototype: PatientData = PatientData()

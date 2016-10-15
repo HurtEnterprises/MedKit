@@ -16,16 +16,16 @@ var PublicTag: String?
 var PrivateTag: String?
 
 
-func findKey(tag: String) -> SecKey? { //details are gritty but the function finds which keys to use for encryption based on the user
+func findKey(_ tag: String) -> SecKey? { //details are gritty but the function finds which keys to use for encryption based on the user
     let query: [String: AnyObject] = [
         kSecClass as String: kSecClassKey,
         kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
-        kSecAttrApplicationTag as String: tag,
-        kSecReturnRef as String: true
+        kSecAttrApplicationTag as String: tag as AnyObject,
+        kSecReturnRef as String: true as AnyObject
     ]
     
     var keyPtr: AnyObject?
-    let result = SecItemCopyMatching(query, &keyPtr)
+    let result = SecItemCopyMatching(query as CFDictionary, &keyPtr)
     
     switch result {
     case noErr:
@@ -40,29 +40,29 @@ func findKey(tag: String) -> SecKey? { //details are gritty but the function fin
 }
 
 let publicKeyParameters: [String: AnyObject] = [
-    kSecAttrIsPermanent as String: true,
-    kSecAttrApplicationTag as String: PublicTag!
+    kSecAttrIsPermanent as String: true as AnyObject,
+    kSecAttrApplicationTag as String: PublicTag! as AnyObject
 ]
 let privateKeyParameters: [String: AnyObject] = [
-    kSecAttrIsPermanent as String: true,
-    kSecAttrApplicationTag as String: PrivateTag!
+    kSecAttrIsPermanent as String: true as AnyObject,
+    kSecAttrApplicationTag as String: PrivateTag! as AnyObject
 ]
 
 let parameters: [String: AnyObject] = [
     kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
-    kSecAttrKeySizeInBits as String: 2048,
-    kSecPublicKeyAttrs as String: publicKeyParameters,
-    kSecPrivateKeyAttrs as String: privateKeyParameters
+    kSecAttrKeySizeInBits as String: 2048 as AnyObject,
+    kSecPublicKeyAttrs as String: publicKeyParameters as AnyObject,
+    kSecPrivateKeyAttrs as String: privateKeyParameters as AnyObject
 ]
 
 
 func generateKeys() { //function that generates the keys, called during the registration process
     var publicKey, privateKey: SecKey?
-    _ = SecKeyGeneratePair(parameters, &publicKey, &privateKey)
+    _ = SecKeyGeneratePair(parameters as CFDictionary, &publicKey, &privateKey)
     blockSize = SecKeyGetBlockSize(publicKey!)
 }
 
-func Encrypt2(UserInput: String, publicKeyFunctionParameter: SecKey?) -> String { //date is entered in as a string and goes into the db as an encrypted string
+func Encrypt2(_ UserInput: String, publicKeyFunctionParameter: SecKey?) -> String { //date is entered in as a string and goes into the db as an encrypted string
     
 
 
@@ -88,7 +88,7 @@ func Encrypt2(UserInput: String, publicKeyFunctionParameter: SecKey?) -> String 
     return UserInput
 }
 
-func Decrypt2(encryptedTextString: String, privateKeyFunctionParameter: SecKey?) -> String{ //the encrypted string from the db is converted to the original string
+func Decrypt2(_ encryptedTextString: String, privateKeyFunctionParameter: SecKey?) -> String{ //the encrypted string from the db is converted to the original string
     
     
 
