@@ -44,7 +44,7 @@ class MasterViewController: UITableViewController {
                 return nil
             }
             
-            let listTablesOutput = task.result as AWSDynamoDBListTablesOutput!
+            let listTablesOutput = task.result as! AWSDynamoDBListTablesOutput!
             
             for tableName : String in (listTablesOutput?.tableNames!)! {
                 print("\(tableName)")
