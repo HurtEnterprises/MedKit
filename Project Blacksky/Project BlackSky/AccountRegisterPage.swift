@@ -295,7 +295,7 @@ class AccountRegisterPage: UIViewController {
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default();
 
         //save allows us to "save" this new login data to the server.
-        dynamoDBObjectMapper?.save(loginData).continue(with: AWSExecutor.mainThread(), with:
+        dynamoDBObjectMapper.save(loginData).continue(with: AWSExecutor.mainThread(), with:
             { (task:AWSTask!) -> AnyObject! in
                 if(task.error == nil){ //no error has occurred, we have successfully sent the login info
                     print("Successful push to db.")

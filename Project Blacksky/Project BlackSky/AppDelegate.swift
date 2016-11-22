@@ -44,6 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             credentialsProvider: credentialsProvider)
         
         AWSServiceManager.default().defaultServiceConfiguration = defaultServiceConfiguration
+        
+        var instanceOfCustomObject: CustomObject = CustomObject()
+        instanceOfCustomObject.verifyLayer()
+        
         return true
             
         let splitViewController = self.window!.rootViewController as! UISplitViewController
