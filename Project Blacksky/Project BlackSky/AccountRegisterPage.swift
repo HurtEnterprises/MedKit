@@ -232,26 +232,27 @@ class AccountRegisterPage: UIViewController {
         
 //            verifyEmailAddress(emailAddressField.text!)
 //            
-//            KeychainWrapper.setString(desiredPasswordField.text!, forKey: "Password")
-//            KeychainWrapper.setString(desiredUsernameField.text!, forKey: "Username")
+            KeychainWrapper.setString(desiredPasswordField.text!, forKey: "Password")
+            KeychainWrapper.setString(physicianIDField.text!, forKey: "physicianIDField")
 //            
 //            let loginData = DDBLoginData() //initialize a loginData object.
 //            
-//            PublicTag = emailAddressField.text! //used to generate secret keys for encryption
-//            PrivateTag = desiredPasswordField.text!
-//            generateKeys() //generate public and private keys using the email as a tag
-//            
-//            loginData.Username = Encrypt2(desiredUsernameField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-//            loginData.Password = Encrypt2(desiredPasswordField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-//            loginData.email = Encrypt2(emailAddressField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-//            loginData.internalName = Encrypt2(accessCodeField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+            PublicTag = emailField.text! //used to generate secret keys for encryption
+            PrivateTag = desiredPasswordField.text!
+            generateKeys() //generate public and private keys using the email as a tag
+            
+      //      loginData.physicianIDField = Encrypt2(physicianIDField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+        //    loginData.Password = Encrypt2(desiredPasswordField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+          //  loginData.email = Encrypt2(emailField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
+        
 //            print(Decrypt2(loginData.internalName!, privateKeyFunctionParameter: findKey(PrivateTag!)!))
-//
-//            loginData.internalState = 0 //set its properties.
+//            for testing purposes 
+            
+           // loginData.internalState = 0 //set its properties.
 //            
 //            
-//            sendLoginData(loginData) //run the send function and push it to ddb.
-//            //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
+          //  sendLoginData(loginData) //run the send function and push it to ddb.
+            //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
             
             
             //Take them to main menu & automatically log them in
