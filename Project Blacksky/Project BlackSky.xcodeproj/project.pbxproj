@@ -30,6 +30,7 @@
 		8FD5151D1BFA7C2F008E7CDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD5151B1BFA7C2F008E7CDB /* LaunchScreen.storyboard */; };
 		8FD515281BFA7C30008E7CDB /* Project_BlackSkyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515271BFA7C30008E7CDB /* Project_BlackSkyTests.swift */; };
 		8FD515331BFA7C30008E7CDB /* Project_BlackSkyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD515321BFA7C30008E7CDB /* Project_BlackSkyUITests.swift */; };
+		8FE0ACB41DEC326C0072D7AE /* PhysicalExam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE0ACB31DEC326C0072D7AE /* PhysicalExam.swift */; };
 		8FFE85C01C30927100BC38DB /* AccountRegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */; };
 		8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */; };
 		F84AD4A41C4461E2009FDFEB /* EncryptionFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */; };
@@ -88,6 +89,7 @@
 		8FD5152E1BFA7C30008E7CDB /* Project BlackSkyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project BlackSkyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD515321BFA7C30008E7CDB /* Project_BlackSkyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_BlackSkyUITests.swift; sourceTree = "<group>"; };
 		8FD515341BFA7C30008E7CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FE0ACB31DEC326C0072D7AE /* PhysicalExam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicalExam.swift; sourceTree = "<group>"; };
 		8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRegisterPage.swift; sourceTree = "<group>"; };
 		8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
 		F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionFunctions.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				8F7485491C38DACE00C9ED13 /* UICreationFunctions.swift */,
 				F85FD47F1C4EE862006411AD /* Email.swift */,
 				8F6FA9B01C3CE5530083020B /* MainMenu.swift */,
+				8FE0ACB31DEC326C0072D7AE /* PhysicalExam.swift */,
 				F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */,
 				F85FD4811C52D73D006411AD /* KeychainFunctions.swift */,
 				8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */,
@@ -458,6 +461,7 @@
 				F85FD4801C4EE862006411AD /* Email.swift in Sources */,
 				8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */,
 				8F74854A1C38DACE00C9ED13 /* UICreationFunctions.swift in Sources */,
+				8FE0ACB41DEC326C0072D7AE /* PhysicalExam.swift in Sources */,
 				8FC03B971C42287D00CF9F98 /* NewPatientHistory.swift in Sources */,
 				6C7006F11C3287E400E681DF /* Constants.swift in Sources */,
 			);

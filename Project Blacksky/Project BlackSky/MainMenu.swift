@@ -158,6 +158,7 @@ class MainMenu: UIViewController {
 //            registerPage.dismissViewControllerAnimated(true, completion: nil)
 //        }
 //        self.dismissViewControllerAnimated(true, completion: nil)
+        logoutCurrentUser()
         self.navigationController?.popToViewController(loginPage, animated: true)
         //TODO: @Mehrab add some sort of logout function or we can make it so the user is logged out whenever they hit the login page?
     }
