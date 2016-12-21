@@ -238,19 +238,15 @@ class AccountRegisterPage: UIViewController {
 //            verifyEmailAddress(emailAddressField.text!)
 //            
             KeychainWrapper.setString(desiredPasswordField.text!, forKey: "Password")
-<<<<<<< HEAD
             KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
-=======
-            KeychainWrapper.setString(physicianIDField.text!, forKey: "physicianIDField")
->>>>>>> addEncryption
+
 //            
             let loginData = DDBLoginData() //initialize a loginData object.
 //            
             PublicTag = emailField.text! //used to generate secret keys for encryption
             PrivateTag = desiredPasswordField.text!
             generateKeys() //generate public and private keys using the email as a tag
-<<<<<<< HEAD
-//            
+//
             loginData?.PhysicianID = physicianIDField.text!
             loginData?.Password = desiredPasswordField.text!
             loginData?.Email = physicianIDField.text!
@@ -261,21 +257,6 @@ class AccountRegisterPage: UIViewController {
 //            
                sendLoginData(loginData!) //run the send function and push it to ddb.
 //            //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
-=======
-            
-      //      loginData.physicianIDField = Encrypt2(physicianIDField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-        //    loginData.Password = Encrypt2(desiredPasswordField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-          //  loginData.email = Encrypt2(emailField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-        
-//            print(Decrypt2(loginData.internalName!, privateKeyFunctionParameter: findKey(PrivateTag!)!))
-//            for testing purposes 
-            
-           // loginData.internalState = 0 //set its properties.
-//            
-//            
-          //  sendLoginData(loginData) //run the send function and push it to ddb.
-            //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
->>>>>>> addEncryption
             
             
             //Take them to main menu & automatically log them in
