@@ -238,6 +238,7 @@ class AccountRegisterPage: UIViewController {
 //            verifyEmailAddress(emailAddressField.text!)
 //            
             KeychainWrapper.setString(desiredPasswordField.text!, forKey: "Password")
+<<<<<<< .merge_file_wnWNI9
 <<<<<<< .merge_file_8CAhVy
 <<<<<<< .merge_file_t25RmX
             KeychainWrapper.setString(physicianIDField.text!, forKey: "physicianIDField")
@@ -247,12 +248,16 @@ class AccountRegisterPage: UIViewController {
 =======
             KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
 >>>>>>> .merge_file_dsWeh2
+=======
+            KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
+>>>>>>> .merge_file_wGY8xW
 //            
             let loginData = DDBLoginData() //initialize a loginData object.
 //            
             PublicTag = emailField.text! //used to generate secret keys for encryption
             PrivateTag = desiredPasswordField.text!
             generateKeys() //generate public and private keys using the email as a tag
+<<<<<<< .merge_file_wnWNI9
 <<<<<<< .merge_file_8CAhVy
 <<<<<<< .merge_file_t25RmX
             
@@ -271,6 +276,8 @@ class AccountRegisterPage: UIViewController {
 =======
 =======
 >>>>>>> .merge_file_dsWeh2
+=======
+>>>>>>> .merge_file_wGY8xW
 //            
             loginData?.PhysicianID = physicianIDField.text!
             loginData?.Password = desiredPasswordField.text!
