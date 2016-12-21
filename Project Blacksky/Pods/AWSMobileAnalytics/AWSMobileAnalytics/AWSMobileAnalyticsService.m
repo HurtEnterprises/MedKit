@@ -1,39 +1,51 @@
-/*
- Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- 
- Licensed under the Apache License, Version 2.0 (the "License").
- You may not use this file except in compliance with the License.
- A copy of the License is located at
- 
- http://aws.amazon.com/apache2.0
- 
- or in the "license" file accompanying this file. This file is distributed
- on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- express or implied. See the License for the specific language governing
- permissions and limitations under the License.
- */
+////
+// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License").
+// You may not use this file except in compliance with the License.
+// A copy of the License is located at
+//
+// http://aws.amazon.com/apache2.0
+//
+// or in the "license" file accompanying this file. This file is distributed
+// on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
+//
 
 #import "AWSMobileAnalytics.h"
 #import "AWSMobileAnalyticsDefaultContext.h"
 #import "AWSMobileAnalyticsInternalEventClient.h"
 #import "AWSMobileAnalyticsDefaultSessionClient.h"
 #import "AWSMobileAnalyticsDefaultOptions.h"
-#import "AWSMobileAnalyticsContext.h"
 #import "AWSMobileAnalyticsDefaultEventClient.h"
 #import "AWSMobileAnalyticsSessionClient.h"
-#import "AWSMobileAnalyticsRequestTimingInterceptor.h"
+#import "AWSMobileAnalyticsContext.h"
 #import "AWSMobileAnalyticsDefaultDeliveryClient.h"
 #import "AWSMobileAnalyticsConfiguration.h"
 #import "AWSClientContext.h"
 #import "AWSLogging.h"
 #import "AWSSynchronizedMutableDictionary.h"
+#import "AWSMobileAnalyticsContext.h"
+#import "AWSMobileAnalyticsERSService.h"
+
+#import <AWSCore/AWSInfo.h>
+
+static NSString *const AWSInfoMobileAnalytics = @"MobileAnalytics";
+static NSString *const AWSInfoAppId = @"AppId";
+
+@interface AWSMobileAnalyticsERS()
+
+- (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration;
+
+@end
 
 @interface AWSMobileAnalytics()
 
-@property (nonatomic, readonly) id<AWSMobileAnalyticsContext> mobileAnalyticsContext;
 @property (nonatomic, readonly) id<AWSMobileAnalyticsSessionClient> sessionClient;
 @property (nonatomic, readonly) id<AWSMobileAnalyticsDeliveryClient> deliveryClient;
 @property (nonatomic, strong) AWSMobileAnalyticsConfiguration *configuration;
+@property (nonatomic, readonly) id<AWSMobileAnalyticsContext> mobileAnalyticsContext;
 @property (nonatomic, strong) NSString *insightsPrivateKey;
 
 @end
@@ -42,9 +54,22 @@
 
 static AWSSynchronizedMutableDictionary *_mobileAnalyticsForAppNamespace = nil;
 
++ (instancetype)defaultMobileAnalytics {
+    AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] defaultServiceInfo:AWSInfoMobileAnalytics];
+    NSString *appId = [serviceInfo.infoDictionary objectForKey:AWSInfoAppId];
+
+    if (!appId) {
+        return nil;
+    }
+
+    return [self mobileAnalyticsForAppId:appId
+                           configuration:nil
+                         completionBlock:nil];
+}
+
 + (instancetype)mobileAnalyticsForAppId:(NSString *)appId {
     return [self mobileAnalyticsForAppId:appId
-                           configuration:[AWSMobileAnalyticsConfiguration new]
+                           configuration:nil
                          completionBlock:nil];
 }
 
@@ -60,7 +85,8 @@ static AWSSynchronizedMutableDictionary *_mobileAnalyticsForAppNamespace = nil;
                         completionBlock:(AWSInitializationCompletionBlock)completionBlock {
     AWSMobileAnalyticsConfiguration *configuration = [AWSMobileAnalyticsConfiguration new];
     if (identityPoolId) {
-        AWSCognitoCredentialsProvider* credentialsProvider = [[AWSCognitoCredentialsProvider alloc] initWithRegionType:AWSRegionUSEast1 identityPoolId:identityPoolId];
+        AWSCognitoCredentialsProvider* credentialsProvider = [[AWSCognitoCredentialsProvider alloc] initWithRegionType:AWSRegionUSEast1
+                                                                                                        identityPoolId:identityPoolId];
         AWSServiceConfiguration *serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1
                                                                                     credentialsProvider:credentialsProvider];
         configuration.serviceConfiguration = serviceConfiguration;
@@ -74,8 +100,7 @@ static AWSSynchronizedMutableDictionary *_mobileAnalyticsForAppNamespace = nil;
 + (instancetype)mobileAnalyticsForAppId:(NSString *)appId
                           configuration:(AWSMobileAnalyticsConfiguration *)configuration
                         completionBlock:(AWSInitializationCompletionBlock)completionBlock {
-    
-    if ((!configuration.serviceConfiguration && ![AWSServiceManager defaultServiceManager].defaultServiceConfiguration ) || !appId) {
+    if (!appId) {
         return nil;
     }
 
@@ -94,6 +119,8 @@ static AWSSynchronizedMutableDictionary *_mobileAnalyticsForAppNamespace = nil;
             if (mobileAnalytics) {
                 [_mobileAnalyticsForAppNamespace setObject:mobileAnalytics
                                                     forKey:appId];
+            } else {
+                return nil;
             }
         }
 
@@ -105,7 +132,7 @@ static AWSSynchronizedMutableDictionary *_mobileAnalyticsForAppNamespace = nil;
                      insightsPrivateKey:(NSString *)insightsPrivateKey {
     return [self mobileAnalyticsForAppId:appId
                       insightsPrivateKey:insightsPrivateKey
-                           configuration:[AWSMobileAnalyticsConfiguration new]
+                           configuration:nil
                          completionBlock:nil];
 }
 
@@ -113,7 +140,7 @@ static AWSSynchronizedMutableDictionary *_mobileAnalyticsForAppNamespace = nil;
                      insightsPrivateKey:(NSString *)insightsPrivateKey
                           configuration:(AWSMobileAnalyticsConfiguration *)configuration
                         completionBlock:(AWSInitializationCompletionBlock)completionBlock {
-    if ((!configuration.serviceConfiguration && ![AWSServiceManager defaultServiceManager].defaultServiceConfiguration ) || !appId) {
+    if (!appId) {
         return nil;
     }
 
@@ -132,6 +159,8 @@ static AWSSynchronizedMutableDictionary *_mobileAnalyticsForAppNamespace = nil;
             if (mobileAnalytics) {
                 [_mobileAnalyticsForAppNamespace setObject:mobileAnalytics
                                                     forKey:appId];
+            } else {
+                return nil;
             }
         }
 
@@ -150,17 +179,27 @@ static AWSSynchronizedMutableDictionary *_mobileAnalyticsForAppNamespace = nil;
             _configuration = [AWSMobileAnalyticsConfiguration new];
         }
 
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] defaultServiceInfo:AWSInfoMobileAnalytics];
+        if (serviceInfo) {
+            _configuration.serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                                              credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+        }
+
+        if (!_configuration.serviceConfiguration) {
+            return nil;
+        }
+
         // create insights options from theClientConfig
-        AWSMobileAnalyticsDefaultOptions *options = [AWSMobileAnalyticsDefaultOptions optionsWithAllowEventCollection:configuration.enableEvents
-                                                                                                      withWANDelivery:configuration.transmitOnWAN];
+        AWSMobileAnalyticsDefaultOptions *options = [AWSMobileAnalyticsDefaultOptions optionsWithAllowEventCollection:_configuration.enableEvents
+                                                                                                      withWANDelivery:_configuration.transmitOnWAN];
 
         // Build a DefaultContext and call the internal constructor
         _mobileAnalyticsContext = [AWSMobileAnalyticsDefaultContext contextWithIdentifier:appId
                                                                        insightsPrivateKey:insightsPrivateKey
-                                                                  withClientConfiguration:configuration
+                                                                  withClientConfiguration:_configuration
                                                                               withSdkInfo:[AWSMobileAnalyticsSDKInfo sdkInfoFromBrazil]
                                                                 withConfigurationSettings:settings];
-
+        _mobileAnalyticsContext.ers = [[AWSMobileAnalyticsERS alloc] initWithConfiguration:_configuration.serviceConfiguration];
 
         _deliveryClient = [AWSMobileAnalyticsDefaultDeliveryClient deliveryClientWithContext:_mobileAnalyticsContext
                                                                              withWanDelivery:options.allowWANDelivery];
@@ -168,10 +207,6 @@ static AWSSynchronizedMutableDictionary *_mobileAnalyticsForAppNamespace = nil;
         _eventClient = [[AWSMobileAnalyticsDefaultEventClient alloc] initWithContext:_mobileAnalyticsContext
                                                                   withDeliveryClient:_deliveryClient
                                                                allowsEventCollection:options.allowEventCollection];
-
-        id<AWSMobileAnalyticsInterceptor> reqTimingInterceptor = [[AWSMobileAnalyticsRequestTimingInterceptor alloc] initWithConnectivity:[_mobileAnalyticsContext.system connectivity]
-                                                                                                                          withEventClient:(id<AWSMobileAnalyticsInternalEventClient>)_eventClient];
-        [_mobileAnalyticsContext.httpClient addInterceptor:reqTimingInterceptor];
 
         // Session Client
         _sessionClient = [[AWSMobileAnalyticsDefaultSessionClient alloc] initWithEventClient:(id<AWSMobileAnalyticsInternalEventClient>)_eventClient
@@ -184,7 +219,6 @@ static AWSSynchronizedMutableDictionary *_mobileAnalyticsForAppNamespace = nil;
         }
 
         [_sessionClient startSession];
-        [_mobileAnalyticsContext synchronize];
 
         AWSLogInfo(@"Mobile Analytics SDK(%@) Initialization successfully completed.", [_mobileAnalyticsContext sdkInfo].sdkVersion);
     }

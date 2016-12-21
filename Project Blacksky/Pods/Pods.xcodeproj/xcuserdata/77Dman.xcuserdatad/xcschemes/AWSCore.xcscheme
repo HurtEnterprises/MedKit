@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABB86C28639C7AAD6EF20377352DFAE3"
-               BuildableName = "libAWSCore.a"
+               BlueprintIdentifier = "BC279E1A4A79751E826180F63A851E07"
+               BuildableName = "AWSCore.framework"
                BlueprintName = "AWSCore"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -45,8 +45,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ABB86C28639C7AAD6EF20377352DFAE3"
-            BuildableName = "libAWSCore.a"
+            BlueprintIdentifier = "BC279E1A4A79751E826180F63A851E07"
+            BuildableName = "AWSCore.framework"
             BlueprintName = "AWSCore"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
@@ -63,8 +63,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ABB86C28639C7AAD6EF20377352DFAE3"
-            BuildableName = "libAWSCore.a"
+            BlueprintIdentifier = "BC279E1A4A79751E826180F63A851E07"
+            BuildableName = "AWSCore.framework"
             BlueprintName = "AWSCore"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

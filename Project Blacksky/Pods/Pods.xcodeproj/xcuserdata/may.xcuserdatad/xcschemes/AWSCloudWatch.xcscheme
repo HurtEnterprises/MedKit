@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '9C0AE2982CA98C398CB6A507'
+               BlueprintIdentifier = 'BD02CE344851D72142B287462B4106C0'
                BlueprintName = 'AWSCloudWatch'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libAWSCloudWatch.a'>
+               BuildableName = 'AWSCloudWatch.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

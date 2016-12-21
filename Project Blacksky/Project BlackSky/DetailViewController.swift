@@ -36,15 +36,15 @@ class DetailViewController: UIViewController {
         //let screenSize: CGRect = UIScreen.mainScreen().bounds
         
         let getStarted = UIButton()
-        getStarted.setTitle("Get Started", forState: .Normal)
-        getStarted.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        getStarted.frame = CGRectMake(width*44/100, height*61/100, width*12/100, height*2/100) // X, Y, width, height
-        getStarted.addTarget(self, action: "pressed:", forControlEvents: .TouchUpInside)
+        getStarted.setTitle("Get Started", for: UIControlState())
+        getStarted.setTitleColor(UIColor.blue, for: UIControlState())
+        getStarted.frame = CGRect(x: width*44/100, y: height*61/100, width: width*12/100, height: height*2/100) // X, Y, width, height
+        getStarted.addTarget(self, action: #selector(DetailViewController.pressed(_:)), for: .touchUpInside)
         getStarted.titleLabel?.font = UIFont(name: (getStarted.titleLabel?.font?.fontName)!, size: 30)
         self.view.addSubview(getStarted)
         
         let companyLabel:UILabel = UILabel()
-        creationFunctions.makeLabel(companyLabel, name: "Welcome to Doctor's Notes", textColor: UIColor.blueColor(), alignment: NSTextAlignment.Center, frame: CGRectMake((screenSize.width-400)/2, screenSize.height/3, 400, 65), page: self)
+        creationFunctions.makeLabel(companyLabel, name: "Welcome to Doctor's Notes", textColor: UIColor.blue, alignment: NSTextAlignment.center, frame: CGRect(x: (screenSize.width-400)/2, y: screenSize.height/3, width: 400, height: 65), page: self)
         companyLabel.font = UIFont(name: (companyLabel.font?.fontName)!, size: 30)
 
         self.configureView()
@@ -55,10 +55,10 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func pressed(sender: UIButton!) {
+    func pressed(_ sender: UIButton!) {
         
         let loginPage:LoginPage = LoginPage()
-        self.presentViewController(loginPage, animated: true, completion: nil)
+        self.present(loginPage, animated: true, completion: nil)
         
     }
 }

@@ -1,17 +1,17 @@
-/*
- Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License").
- You may not use this file except in compliance with the License.
- A copy of the License is located at
-
- http://aws.amazon.com/apache2.0
-
- or in the "license" file accompanying this file. This file is distributed
- on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- express or implied. See the License for the specific language governing
- permissions and limitations under the License.
- */
+//
+// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License").
+// You may not use this file except in compliance with the License.
+// A copy of the License is located at
+//
+// http://aws.amazon.com/apache2.0
+//
+// or in the "license" file accompanying this file. This file is distributed
+// on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
+//
 
 #import "AWSAbstractKinesisRecorder.h"
 #import "AWSKinesis.h"
@@ -36,7 +36,8 @@ NSString *const AWSKinesisAbstractClientRecorderDatabasePathPrefix = @"com/amazo
                             records:(NSArray *)temporaryRecords
                       partitionKeys:(NSArray *)partitionKeys
                    putPartitionKeys:(NSMutableArray *)putPartitionKeys
-                 retryPartitionKeys:(NSMutableArray *)retryPartitionKeys;
+                 retryPartitionKeys:(NSMutableArray *)retryPartitionKeys
+                               stop:(BOOL *)stop;
 
 - (NSError *)dataTooLargeError;
 
@@ -139,7 +140,7 @@ NSString *const AWSKinesisAbstractClientRecorderDatabasePathPrefix = @"com/amazo
     NSUInteger diskByteLimit = self.diskByteLimit;
     __weak id notificationSender = self;
 
-    return [[AWSTask taskWithResult:nil] continueWithSuccessBlock:^id(AWSTask *task) {
+    return [[AWSTask taskWithResult:nil] continueWithExecutor:[AWSExecutor executorWithDispatchQueue:[AWSKinesisRecorder sharedQueue]] withSuccessBlock:^id _Nullable(AWSTask * _Nonnull task) {
         // Inserts a new record to the database.
         __block NSError *error = nil;
         [databaseQueue inDatabase:^(AWSFMDatabase *db) {
@@ -227,6 +228,7 @@ NSString *const AWSKinesisAbstractClientRecorderDatabasePathPrefix = @"com/amazo
     return [[AWSTask taskWithResult:nil] continueWithExecutor:[AWSExecutor executorWithDispatchQueue:[AWSKinesisRecorder sharedQueue]] withSuccessBlock:^id _Nullable(AWSTask * _Nonnull task) {
         __block NSError *error = nil;
         __block NSUInteger batchSize = 0;
+        __block BOOL stop = NO;
 
         do {
             [databaseQueue inTransaction:^(AWSFMDatabase *db, BOOL *rollback) {
@@ -275,7 +277,8 @@ NSString *const AWSKinesisAbstractClientRecorderDatabasePathPrefix = @"com/amazo
                                                          records:temporaryRecords
                                                    partitionKeys:partitionKeys
                                                 putPartitionKeys:putPartitionKeys
-                                              retryPartitionKeys:retryPartitionKeys] waitUntilFinished];
+                                              retryPartitionKeys:retryPartitionKeys
+                                                            stop:&stop] waitUntilFinished];
 
                     for (NSString *partitionKey in putPartitionKeys) {
                         BOOL result = [db executeUpdate:@"DELETE FROM record WHERE partition_key = :partition_key"
@@ -307,7 +310,7 @@ NSString *const AWSKinesisAbstractClientRecorderDatabasePathPrefix = @"com/amazo
                     error = db.lastError;
                 }
             }];
-        } while (!error && batchSize > 0);
+        } while (!stop && !error && batchSize > 0);
 
         if (error) {
             return [AWSTask taskWithError:error];
@@ -320,7 +323,7 @@ NSString *const AWSKinesisAbstractClientRecorderDatabasePathPrefix = @"com/amazo
 - (AWSTask *)removeAllRecords {
     AWSFMDatabaseQueue *databaseQueue = self.databaseQueue;
 
-    return [[AWSTask taskWithResult:nil] continueWithSuccessBlock:^id(AWSTask *task) {
+    return [[AWSTask taskWithResult:nil] continueWithExecutor:[AWSExecutor executorWithDispatchQueue:[AWSKinesisRecorder sharedQueue]] withSuccessBlock:^id _Nullable(AWSTask * _Nonnull task) {
         __block NSError *error = nil;
         [databaseQueue inDatabase:^(AWSFMDatabase *db) {
             if (![db executeUpdate:@"DELETE FROM record"]) {

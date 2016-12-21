@@ -1,19 +1,19 @@
-/*
- Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License").
+// You may not use this file except in compliance with the License.
+// A copy of the License is located at
+//
+// http://aws.amazon.com/apache2.0
+//
+// or in the "license" file accompanying this file. This file is distributed
+// on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
+//
 
- Licensed under the Apache License, Version 2.0 (the "License").
- You may not use this file except in compliance with the License.
- A copy of the License is located at
-
- http://aws.amazon.com/apache2.0
-
- or in the "license" file accompanying this file. This file is distributed
- on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- express or implied. See the License for the specific language governing
- permissions and limitations under the License.
- */
-
-#import "AWSMobileAnalyticsERS.h"
+#import "AWSMobileAnalyticsERSService.h"
 
 #import "AWSNetworking.h"
 #import "AWSCategory.h"
@@ -27,7 +27,8 @@
 #import "AWSSynchronizedMutableDictionary.h"
 #import "AWSMobileAnalyticsERSResources.h"
 
-NSString *const AWSERSDefinitionFileName = @"mobileanalytics-2014-06-30";
+static NSString *const AWSInfoMobileAnalyticsERS = @"MobileAnalyticsERS";
+static NSString *const AWSMobileAnalyticsERSSDKVersion = @"2.4.2";
 
 @interface AWSMobileAnalyticsERSResponseSerializer : AWSJSONResponseSerializer
 
@@ -40,12 +41,11 @@ NSString *const AWSERSDefinitionFileName = @"mobileanalytics-2014-06-30";
 static NSDictionary *errorCodeDictionary = nil;
 + (void)initialize {
     errorCodeDictionary = @{
-                            @"IncompleteSignature" : @(AWSMobileAnalyticsERSErrorIncompleteSignature),
-                            @"InvalidClientTokenId" : @(AWSMobileAnalyticsERSErrorInvalidClientTokenId),
-                            @"MissingAuthenticationToken" : @(AWSMobileAnalyticsERSErrorMissingAuthenticationToken),
                             @"BadRequestException" : @(AWSMobileAnalyticsERSErrorBadRequest),
                             };
 }
+
+#pragma mark -
 
 - (id)responseObjectForResponse:(NSHTTPURLResponse *)response
                 originalRequest:(NSURLRequest *)originalRequest
@@ -67,6 +67,7 @@ static NSDictionary *errorCodeDictionary = nil;
                                  userInfo:richUserInfo];
 
     }
+
     if (!*error && [responseObject isKindOfClass:[NSDictionary class]]) {
         NSString *errorTypeHeader = [[[[response allHeaderFields] objectForKey:@"x-amzn-ErrorType"] componentsSeparatedByString:@":"] firstObject];
 
@@ -74,7 +75,6 @@ static NSDictionary *errorCodeDictionary = nil;
         if (errorTypeHeader == nil) {
             errorTypeHeader = [responseObject objectForKey:@"__type"];
         }
-
 
         if (errorCodeDictionary[[[errorTypeHeader componentsSeparatedByString:@"#"] lastObject]]) {
             if (error) {
@@ -117,8 +117,8 @@ static NSDictionary *errorCodeDictionary = nil;
 
         if (self.outputClass) {
             responseObject = [AWSMTLJSONAdapter modelOfClass:self.outputClass
-                                       fromJSONDictionary:responseObject
-                                                    error:error];
+                                          fromJSONDictionary:responseObject
+                                                       error:error];
         }
     }
 
@@ -142,35 +142,7 @@ static NSDictionary *errorCodeDictionary = nil;
 
 @implementation AWSMobileAnalyticsERSRequestRetryHandler
 
-- (AWSNetworkingRetryType)shouldRetry:(uint32_t)currentRetryCount
-                             response:(NSHTTPURLResponse *)response
-                                 data:(NSData *)data
-                                error:(NSError *)error {
-    AWSNetworkingRetryType retryType = [super shouldRetry:currentRetryCount
-                                                 response:response
-                                                     data:data
-                                                    error:error];
-    if(retryType == AWSNetworkingRetryTypeShouldNotRetry
-       && [error.domain isEqualToString:AWSMobileAnalyticsERSErrorDomain]
-       && currentRetryCount < self.maxRetryCount) {
-        switch (error.code) {
-            case AWSMobileAnalyticsERSErrorIncompleteSignature:
-            case AWSMobileAnalyticsERSErrorInvalidClientTokenId:
-            case AWSMobileAnalyticsERSErrorMissingAuthenticationToken:
-                retryType = AWSNetworkingRetryTypeShouldRefreshCredentialsAndRetry;
-                break;
-
-            default:
-                break;
-        }
-    }
-
-    return retryType;
-}
-
 @end
-
-
 
 @interface AWSRequest()
 
@@ -193,22 +165,41 @@ static NSDictionary *errorCodeDictionary = nil;
 
 @implementation AWSMobileAnalyticsERS
 
++ (void)initialize {
+    [super initialize];
+
+    if (![AWSiOSSDKVersion isEqualToString:AWSMobileAnalyticsERSSDKVersion]) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:[NSString stringWithFormat:@"AWSCore and AWSMobileAnalytics versions need to match. Check your SDK installation. AWSCore: %@ AWSMobileAnalytics: %@", AWSiOSSDKVersion, AWSMobileAnalyticsERSSDKVersion]
+                                     userInfo:nil];
+    }
+}
+
+#pragma mark - Setup
+
 static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 
 + (instancetype)defaultMobileAnalyticsERS {
-    if (![AWSServiceManager defaultServiceManager].defaultServiceConfiguration) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:@"`defaultServiceConfiguration` is `nil`. You need to set it before using this method."
-                                     userInfo:nil];
-    }
-
     static AWSMobileAnalyticsERS *_defaultMobileAnalyticsERS = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _defaultMobileAnalyticsERS = [[AWSMobileAnalyticsERS alloc] initWithConfiguration:AWSServiceManager.defaultServiceManager.defaultServiceConfiguration];
-#pragma clang diagnostic pop
+        AWSServiceConfiguration *serviceConfiguration = nil;
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] defaultServiceInfo:AWSInfoMobileAnalyticsERS];
+        if (serviceInfo) {
+            serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                               credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+        }
+
+        if (!serviceConfiguration) {
+            serviceConfiguration = [AWSServiceManager defaultServiceManager].defaultServiceConfiguration;
+        }
+
+        if (!serviceConfiguration) {
+            @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                           reason:@"The service configuration is `nil`. You need to configure `Info.plist` or set `defaultServiceConfiguration` before using this method."
+                                         userInfo:nil];
+        }
+        _defaultMobileAnalyticsERS = [[AWSMobileAnalyticsERS alloc] initWithConfiguration:serviceConfiguration];
     });
 
     return _defaultMobileAnalyticsERS;
@@ -219,15 +210,28 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     dispatch_once(&onceToken, ^{
         _serviceClients = [AWSSynchronizedMutableDictionary new];
     });
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [_serviceClients setObject:[[AWSMobileAnalyticsERS alloc] initWithConfiguration:configuration]
                         forKey:key];
-#pragma clang diagnostic pop
 }
 
 + (instancetype)MobileAnalyticsERSForKey:(NSString *)key {
-    return [_serviceClients objectForKey:key];
+    @synchronized(self) {
+        AWSMobileAnalyticsERS *serviceClient = [_serviceClients objectForKey:key];
+        if (serviceClient) {
+            return serviceClient;
+        }
+
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] serviceInfo:AWSInfoMobileAnalyticsERS
+                                                                     forKey:key];
+        if (serviceInfo) {
+            AWSServiceConfiguration *serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                                                        credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+            [AWSMobileAnalyticsERS registerMobileAnalyticsERSWithConfiguration:serviceConfiguration
+                                                                        forKey:key];
+        }
+
+        return [_serviceClients objectForKey:key];
+    }
 }
 
 + (void)removeMobileAnalyticsERSForKey:(NSString *)key {
@@ -240,6 +244,8 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                                  userInfo:nil];
     return nil;
 }
+
+#pragma mark -
 
 - (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration {
     if (self = [super init]) {
@@ -311,5 +317,25 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                  operationName:@"PutEvents"
                    outputClass:nil];
 }
+
+- (void)putEvents:(AWSMobileAnalyticsERSPutEventsInput *)request
+completionHandler:(void (^)(NSError *error))completionHandler {
+    [[self putEvents:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
+        NSError *error = task.error;
+
+        if (task.exception) {
+            AWSLogError(@"Fatal exception: [%@]", task.exception);
+            kill(getpid(), SIGKILL);
+        }
+
+        if (completionHandler) {
+            completionHandler(error);
+        }
+
+        return nil;
+    }];
+}
+
+#pragma mark -
 
 @end
