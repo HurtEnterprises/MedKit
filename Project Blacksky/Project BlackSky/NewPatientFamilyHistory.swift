@@ -153,11 +153,15 @@ class NewPatientFamilyHistory: UIViewController {
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default();
         
         //save allows us to "save" this new login data to the server.
+<<<<<<< .merge_file_f0XbvA
 <<<<<<< .merge_file_2iNh7a
         dynamoDBObjectMapper.save(patientData).continue(with: AWSExecutor.mainThread(), with:
 =======
         dynamoDBObjectMapper?.save(patientData).continue(with: AWSExecutor.mainThread(), with:
 >>>>>>> .merge_file_ChPHdj
+=======
+        dynamoDBObjectMapper?.save(patientData).continue(with: AWSExecutor.mainThread(), with:
+>>>>>>> .merge_file_85j65r
             { (task:AWSTask!) -> AnyObject! in
                 if(task.error == nil){ //no error has occurred, we have successfully sent the login info
                     print("Successful push to db.")

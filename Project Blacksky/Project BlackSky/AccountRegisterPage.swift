@@ -238,6 +238,7 @@ class AccountRegisterPage: UIViewController {
 //            verifyEmailAddress(emailAddressField.text!)
 //            
             KeychainWrapper.setString(desiredPasswordField.text!, forKey: "Password")
+<<<<<<< .merge_file_fhzIdc
 <<<<<<< .merge_file_Uy8uW1
 <<<<<<< .merge_file_wnWNI9
 <<<<<<< .merge_file_8CAhVy
@@ -255,12 +256,16 @@ class AccountRegisterPage: UIViewController {
 =======
             KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
 >>>>>>> .merge_file_kLTQuC
+=======
+            KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
+>>>>>>> .merge_file_AEaONw
 //            
             let loginData = DDBLoginData() //initialize a loginData object.
 //            
             PublicTag = emailField.text! //used to generate secret keys for encryption
             PrivateTag = desiredPasswordField.text!
             generateKeys() //generate public and private keys using the email as a tag
+<<<<<<< .merge_file_fhzIdc
 <<<<<<< .merge_file_Uy8uW1
 <<<<<<< .merge_file_wnWNI9
 <<<<<<< .merge_file_8CAhVy
@@ -285,6 +290,8 @@ class AccountRegisterPage: UIViewController {
 >>>>>>> .merge_file_wGY8xW
 =======
 >>>>>>> .merge_file_kLTQuC
+=======
+>>>>>>> .merge_file_AEaONw
 //            
             loginData?.PhysicianID = physicianIDField.text!
             loginData?.Password = desiredPasswordField.text!
@@ -336,11 +343,15 @@ class AccountRegisterPage: UIViewController {
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default();
 
         //save allows us to "save" this new login data to the server.
+<<<<<<< .merge_file_fhzIdc
 <<<<<<< .merge_file_Uy8uW1
         dynamoDBObjectMapper.save(loginData).continue(with: AWSExecutor.mainThread(), with:
 =======
         dynamoDBObjectMapper?.save(loginData).continue(with: AWSExecutor.mainThread(), with:
 >>>>>>> .merge_file_kLTQuC
+=======
+        dynamoDBObjectMapper?.save(loginData).continue(with: AWSExecutor.mainThread(), with:
+>>>>>>> .merge_file_AEaONw
             { (task:AWSTask!) -> AnyObject! in
                 if(task.error == nil){ //no error has occurred, we have successfully sent the login info
                     print("Successful push to db.")

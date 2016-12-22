@@ -16,11 +16,15 @@
             startingLineNumber = "194"
             endingLineNumber = "194"
             landmarkName = "viewDidLoad()"
+<<<<<<< .merge_file_UIr54c
 <<<<<<< .merge_file_9TUjav
             landmarkType = "5">
 =======
             landmarkType = "7">
 >>>>>>> .merge_file_lpmn4n
+=======
+            landmarkType = "7">
+>>>>>>> .merge_file_eAPtSw
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -36,11 +40,15 @@
             startingLineNumber = "249"
             endingLineNumber = "249"
             landmarkName = "Confirm(_:)"
+<<<<<<< .merge_file_UIr54c
 <<<<<<< .merge_file_9TUjav
             landmarkType = "5">
 =======
             landmarkType = "7">
 >>>>>>> .merge_file_lpmn4n
+=======
+            landmarkType = "7">
+>>>>>>> .merge_file_eAPtSw
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
