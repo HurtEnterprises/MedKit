@@ -44,7 +44,11 @@ class MasterViewController: UITableViewController {
                 return nil
             }
             
+<<<<<<< .merge_file_GgadCU
             let listTablesOutput = task.result as AWSDynamoDBListTablesOutput!
+=======
+            let listTablesOutput = task.result as! AWSDynamoDBListTablesOutput!
+>>>>>>> .merge_file_Y4xbRI
             
             for tableName : String in (listTablesOutput?.tableNames!)! {
                 print("\(tableName)")
