@@ -28,18 +28,14 @@
 static NSString *const ATLParticipantTableSectionHeaderIdentifier = @"ATLParticipantTableSectionHeaderIdentifier";
 static NSString *const ATLParticipantCellIdentifier = @"ATLParticipantCellIdentifier";
 
-@interface ATLParticipantTableViewController () <UISearchBarDelegate, UISearchDisplayDelegate>
+@interface ATLParticipantTableViewController () <UISearchBarDelegate, UISearchResultsUpdating>
 
-@property (nonatomic) ATLParticipantTableDataSet *unfilteredDataSet;
-@property (nonatomic) ATLParticipantTableDataSet *filteredDataSet;
+@property (nonatomic) ATLParticipantTableDataSet *participantsDataSet;
 @property (nonatomic) NSMutableSet *selectedParticipants;
 @property (nonatomic) UISearchBar *searchBar;
 @property (nonatomic) BOOL hasAppeared;
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-@property (nonatomic) UISearchDisplayController *searchController;
-#pragma GCC diagnostic pop
+@property (nonatomic) BOOL isObservingParticipants;
+@property (nonatomic) UISearchController *searchController;
 
 @end
 
@@ -82,6 +78,11 @@ NSString *const ATLParticipantTableViewControllerTitle = @"Participants";
     _selectedParticipants = [[NSMutableSet alloc] init];
 }
 
+- (void)dealloc
+{
+    [self stopObservingParticipants];
+}
+
 - (void)loadView
 {
     self.view = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -99,21 +100,21 @@ NSString *const ATLParticipantTableViewControllerTitle = @"Participants";
     self.tableView.sectionHeaderHeight = 20;
     [self.tableView registerClass:[ATLParticipantSectionHeaderView class] forHeaderFooterViewReuseIdentifier:ATLParticipantTableSectionHeaderIdentifier];
     
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
-    [self.searchBar sizeToFit];
-    self.searchBar.translucent = NO;
-    self.searchBar.accessibilityLabel = @"Search Bar";
-    self.searchBar.delegate = self;
-    self.searchBar.userInteractionEnabled = YES;
-    self.tableView.tableHeaderView = self.searchBar;
+    // UISearchController
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
     
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-#pragma GCC diagnostic pop
-    self.searchController.delegate = self;
-    self.searchController.searchResultsDelegate = self;
-    self.searchController.searchResultsDataSource = self;
+    // UISearchBar
+    self.searchController.searchBar.delegate = self;
+    self.searchController.searchBar.translucent = NO;
+    self.searchController.searchBar.accessibilityLabel = @"Search Bar";
+    [self.searchController.searchBar sizeToFit];
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+    // Since the search view covers the table view when active we make the
+    // table view controller define the presentation context
+    self.definesPresentationContext = YES;
 
     self.title = ATLLocalizedString(@"alt.participant.tableview.title.key", ATLParticipantTableViewControllerTitle, nil);
 }
@@ -125,7 +126,8 @@ NSString *const ATLParticipantTableViewControllerTitle = @"Participants";
         self.tableView.rowHeight = self.rowHeight;
         self.tableView.allowsMultipleSelection = self.allowsMultipleSelection;
         [self.tableView registerClass:self.cellClass forCellReuseIdentifier:ATLParticipantCellIdentifier];
-        self.unfilteredDataSet = [ATLParticipantTableDataSet dataSetWithParticipants:self.participants sortType:self.sortType];
+        self.participantsDataSet = [ATLParticipantTableDataSet dataSetWithParticipants:self.participants sortType:self.sortType];
+        [self startObservingParticipants];
         [self.tableView reloadData];
     }
 }
@@ -178,37 +180,22 @@ NSString *const ATLParticipantTableViewControllerTitle = @"Participants";
     _sortType = sortType;
 }
 
-#pragma mark - UISearchDisplayDelegate
+#pragma mark - UISearchResultsUpdating
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    tableView.allowsMultipleSelection = self.allowsMultipleSelection;
-    tableView.sectionHeaderHeight = self.tableView.sectionHeaderHeight;
-    tableView.rowHeight = self.rowHeight;
-    [tableView registerClass:self.cellClass forCellReuseIdentifier:ATLParticipantCellIdentifier];
-    [tableView registerClass:[ATLParticipantSectionHeaderView class] forHeaderFooterViewReuseIdentifier:ATLParticipantTableSectionHeaderIdentifier];
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self.delegate participantTableViewController:self didSearchWithString:searchString completion:^(NSSet *filteredParticipants) {
-        if (![searchString isEqualToString:controller.searchBar.text]) return;
-        self.filteredDataSet = [ATLParticipantTableDataSet dataSetWithParticipants:filteredParticipants sortType:self.sortType];
-        UITableView *tableView = controller.searchResultsTableView;
-        [tableView reloadData];
+    NSString *searchString = searchController.searchBar.text;
+    [self.delegate participantTableViewController:self didSearchWithString:searchString completion:^(NSSet * _Nonnull filteredParticipants) {
+        if (![searchString isEqualToString:self.searchController.searchBar.text]) return;
+        self.participantsDataSet = [ATLParticipantTableDataSet dataSetWithParticipants:filteredParticipants sortType:self.sortType];
+        [self.tableView reloadData];
         for (id<ATLParticipant> participant in self.selectedParticipants) {
-            NSIndexPath *indexPath = [self indexPathForParticipant:participant inTableView:tableView];
+            NSIndexPath *indexPath = [self indexPathForParticipant:participant inTableView:self.tableView];
             if (!indexPath) continue;
-            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         }
     }];
-    return NO;
 }
-
-#pragma GCC diagnostic pop
 
 #pragma mark - UITableViewDataSource
 
@@ -271,8 +258,8 @@ NSString *const ATLParticipantTableViewControllerTitle = @"Participants";
     id<ATLParticipant> participant = [self participantForTableView:tableView atIndexPath:indexPath];
     [self.selectedParticipants addObject:participant];
     if (tableView != self.tableView) {
-        NSIndexPath *unfilteredIndexPath = [self indexPathForParticipant:participant inTableView:self.tableView];
-        [self.tableView selectRowAtIndexPath:unfilteredIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        NSIndexPath *indexPath = [self indexPathForParticipant:participant inTableView:self.tableView];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
     [self.delegate participantTableViewController:self didSelectParticipant:participant];
 }
@@ -282,8 +269,8 @@ NSString *const ATLParticipantTableViewControllerTitle = @"Participants";
     id<ATLParticipant> participant = [self participantForTableView:tableView atIndexPath:indexPath];
     [self.selectedParticipants removeObject:participant];
     if (tableView != self.tableView) {
-        NSIndexPath *unfilteredIndexPath = [self indexPathForParticipant:participant inTableView:self.tableView];
-        [self.tableView deselectRowAtIndexPath:unfilteredIndexPath animated:NO];
+        NSIndexPath *indexPath = [self indexPathForParticipant:participant inTableView:self.tableView];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
     if ([self.delegate respondsToSelector:@selector(participantTableViewController:didDeselectParticipant:)]) {
         [self.delegate participantTableViewController:self didDeselectParticipant:participant];
@@ -294,11 +281,7 @@ NSString *const ATLParticipantTableViewControllerTitle = @"Participants";
 
 - (ATLParticipantTableDataSet *)dataSetForTableView:(UITableView *)tableView
 {
-    if (tableView == self.tableView) {
-        return self.unfilteredDataSet;
-    } else {
-        return self.filteredDataSet;
-    }
+    return self.participantsDataSet;
 }
 
 - (id<ATLParticipant>)participantForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
@@ -313,6 +296,66 @@ NSString *const ATLParticipantTableViewControllerTitle = @"Participants";
     ATLParticipantTableDataSet *dataSet = [self dataSetForTableView:tableView];
     NSIndexPath *indexPath = [dataSet indexPathForParticipant:participant];
     return indexPath;
+}
+
+#pragma mark - Notification Handlers
+
+- (void)startObservingParticipants
+{
+    if (!self.isObservingParticipants) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(layerClientObjectsDidChange:) name:LYRClientObjectsDidChangeNotification object:nil];
+        self.isObservingParticipants = YES;
+    }
+}
+
+- (void)stopObservingParticipants
+{
+    if (self.isObservingParticipants) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:LYRClientObjectsDidChangeNotification object:nil];
+        self.isObservingParticipants = NO;
+    }
+}
+
+- (void)layerClientObjectsDidChange:(NSNotification *)notification
+{
+    NSArray *changes = notification.userInfo[LYRClientObjectChangesUserInfoKey];
+    NSInteger changeCount = 0;
+    for (LYRObjectChange *change in changes) {
+        // Interested only in LYRIdentity objects who are potential participants.
+        if (![change.object isKindOfClass:[LYRIdentity class]]) {
+            continue;
+        }
+        if (![change.object conformsToProtocol:@protocol(ATLParticipant)]) {
+            continue;
+        }
+
+        id<ATLParticipant> particpant = change.object;
+
+        switch (change.type) {
+            case LYRObjectChangeTypeCreate:
+                [self.participantsDataSet addParticipant:particpant];
+                changeCount++;
+                break;
+
+            case LYRObjectChangeTypeUpdate:
+                [self.participantsDataSet particpant:particpant updatedProperty:change.property];
+                changeCount++;
+                break;
+
+            case LYRObjectChangeTypeDelete:
+                [self.participantsDataSet removeParticipant:particpant];
+                changeCount++;
+                break;
+
+            default:
+                NSAssert(YES, @"Unrecognized LYRObjectChangeType.");
+                break;
+        }
+    }
+
+    if (changeCount > 0) {
+        [self.tableView reloadData];
+    }
 }
 
 @end

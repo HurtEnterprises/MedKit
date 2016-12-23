@@ -12,7 +12,10 @@ import AWSDynamoDB
 import AWSSQS
 import AWSSNS
 import AWSCognito
+<<<<<<< HEAD
 
+=======
+>>>>>>> a0cd69aad244fc53dca7280b10bd64d989fdf966
 
 class MasterViewController: UITableViewController {
 
@@ -45,7 +48,11 @@ class MasterViewController: UITableViewController {
                 return nil
             }
             
+<<<<<<< HEAD
             let listTablesOutput = task.result as AWSDynamoDBListTablesOutput!
+=======
+            let listTablesOutput = task.result as! AWSDynamoDBListTablesOutput!
+>>>>>>> a0cd69aad244fc53dca7280b10bd64d989fdf966
             
             for tableName : String in (listTablesOutput?.tableNames!)! {
                 print("\(tableName)")

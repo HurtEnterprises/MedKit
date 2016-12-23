@@ -18,12 +18,52 @@
 #import "LYRPolicy.h"
 #import "LYRProgress.h"
 #import "LYRSession.h"
+#import "LYRClientOptions.h"
 
 @class LYRClient, LYRQuery, LYRQueryController, LYRObjectChange;
 
-///-------------------------------------
-/// @name Client Lifecycle Notifications
-///-------------------------------------
+///------------------------------
+/// @name Transport Notifications
+///------------------------------
+
+/**
+ @abstract Posted when the client has scheduled an attempt to connect to Layer.
+ */
+extern NSString * _Nonnull const LYRClientWillAttemptToConnectNotification;
+
+/**
+ @abstract The key into the `userInfo` of a `LYRClientWillAttemptToConnectNotification` notification for retrieving the current attempt number.
+ */
+extern NSString * _Nonnull const LYRClientConnectionAttemptNumberUserInfoKey;
+
+/**
+ @abstract The key into the `userInfo` of a `LYRClientWillAttemptToConnectNotification` notification for retrieving the total number of connection attempts that will be made.
+ */
+extern NSString * _Nonnull const LYRClientConnectionAttemptLimitUserInfoKey;
+
+/**
+ @abstract The key into the `userInfo` of a `LYRClientWillAttemptToConnectNotification` notification for retrieving the amount of delay that will be applied before performing another connection attempt.
+ */
+extern NSString * _Nonnull const LYRClientConnectionAttemptDelayIntervalUserInfoKey;
+
+/**
+ @abstract Posted when the client has successfully connected to Layer.
+ */
+extern NSString * _Nonnull const LYRClientDidConnectNotification;
+
+/**
+ @abstract Posted when the client has lost an established connection to Layer.
+ */
+extern NSString * _Nonnull const LYRClientDidLoseConnectionNotification;
+
+/**
+ @abstract Posted when the client has lost the connection to Layer.
+ */
+extern NSString * _Nonnull const LYRClientDidDisconnectNotification;
+
+///-----------------------------------
+/// @name Authentication Notifications
+///-----------------------------------
 
 /**
  @abstract Posted when a client has authenticated successfully.
@@ -40,20 +80,39 @@ extern NSString * _Nonnull const LYRClientAuthenticatedUserIDUserInfoKey;
  */
 extern NSString * _Nonnull const LYRClientDidDeauthenticateNotification;
 
+///---------------------------------------
+/// @name Session Management Notifications
+///---------------------------------------
+
+/**
+ @abstract Posted when the client has created a new session.
+ */
+extern NSString * _Nonnull const LYRClientDidCreateSessionNotification;
+
+/**
+ @abstract Posted when the client has authenticated a session.
+ */
+extern NSString * _Nonnull const LYRClientDidAuthenticateSessionNotification;
+
+/**
+ @abstract Posted when the client has resumed an existing session.
+ */
+extern NSString * _Nonnull const LYRClientDidResumeSessionNotification;
+
 /**
  @abstract Posted when the client has switched sessions.
  */
 extern NSString * _Nonnull const LYRClientDidSwitchSessionNotification;
 
 /**
- @abstract Posted when a client is beginning a synchronization operation.
+ @abstract Posted when the client has destroyed a session.
  */
-extern NSString * _Nonnull const LYRClientWillBeginSynchronizationNotification;
+extern NSString * _Nonnull const LYRClientDidDestroySessionNotification;
 
 /**
- @abstract Posted when a client has finished a synchronization operation.
+ @abstract A key into the user info dictionary of a `LYRClient` session notification specifying the session that was affected.
  */
-extern NSString * _Nonnull const LYRClientDidFinishSynchronizationNotification;
+extern NSString * _Nonnull const LYRClientSessionUserInfoKey;
 
 ///---------------------------
 /// @name Change Notifications
@@ -78,25 +137,24 @@ extern NSString * _Nonnull const LYRClientObjectsDidChangeNotification;
  */
 extern NSString * _Nonnull const LYRClientObjectChangesUserInfoKey;
 
-/**
- @abstract Posted when the client has scheduled an attempt to connect to Layer.
- */
-extern NSString * _Nonnull const LYRClientWillAttemptToConnectNotification;
+///-------------------------------------------------------
+/// @name Synchronization & Content Transfer Notifications
+///-------------------------------------------------------
 
 /**
- @abstract Posted when the client has successfully connected to Layer.
+ @abstract Posted when a client is beginning a synchronization operation.
  */
-extern NSString * _Nonnull const LYRClientDidConnectNotification;
+extern NSString * _Nonnull const LYRClientWillBeginSynchronizationNotification;
 
 /**
- @abstract Posted when the client has lost an established connection to Layer.
+ @abstract Posted when a client has finished a synchronization operation.
  */
-extern NSString * _Nonnull const LYRClientDidLoseConnectionNotification;
+extern NSString * _Nonnull const LYRClientDidFinishSynchronizationNotification;
 
 /**
- @abstract Posted when the client has lost the connection to Layer.
+ @abstract Posted when a client has finished synchronizing policies.
  */
-extern NSString * _Nonnull const LYRClientDidDisconnectNotification;
+extern NSString * _Nonnull const LYRClientDidFinishPolicySynchronizationNotification;
 
 /**
  @abstract The key into the `userInfo` of the `LYRClientWillBeginSynchronizationNotification` whose value is the `LYRProgress` instance
@@ -145,33 +203,6 @@ extern NSString * _Nonnull const LYRClientContentTransferObjectUserInfoKey;
 extern NSString * _Nonnull const LYRClientContentTransferProgressUserInfoKey;
 
 
-///-----------------------------
-/// @name Initialization Options
-///-----------------------------
-
-/**
- @abstract A key into the `options` of client initialization method `+clientWithID:options:`
- that sets the client synchronization behavior whose value should be one of the
- `LYRClientSynchronizationPolicy`'s enum values.
- @see LYRClientSynchronizationPolicy enum.
- */
-extern NSString * _Nonnull const LYRClientOptionSynchronizationPolicy;
-
-/**
- @abstract A key into the `options` of client initialization method `+clientWithID:options:`
- that should be used in conjuction with `LYRClientOptionSynchronizationPolicy : @(LYRClientSynchronizationPolicyMessageCount)`.
- @see LYRClientSynchronizationPolicy enum.
- */
-extern NSString * _Nonnull const LYRClientOptionSynchronizationMessageCount;
-
-/**
- @abstract A key into the `options` of client initialization method `+clientWithID:options:`
- that configures the client deauthentication behavior whose value should be one of the
- `LYRClientDeauthenticationPolicy`'s enum values.
- @see LYRClientDeauthenticationPolicy enum.
- */
-extern NSString * _Nonnull const LYRClientOptionDeauthenticationPolicy;
-
 ///----------------------
 /// @name Client Delegate
 ///----------------------
@@ -196,6 +227,10 @@ extern NSString * _Nonnull const LYRClientOptionDeauthenticationPolicy;
 - (void)layerClient:(nonnull LYRClient *)client didReceiveAuthenticationChallengeWithNonce:(nonnull NSString *)nonce;
 
 @optional
+
+///----------------
+/// @name Transport
+///----------------
 
 /**
  @abstract Informs the delegate that the client is making an attempt to connect to Layer.
@@ -225,6 +260,10 @@ extern NSString * _Nonnull const LYRClientOptionDeauthenticationPolicy;
  */
 - (void)layerClientDidDisconnect:(nonnull LYRClient *)client;
 
+///---------------------
+/// @name Authentication
+///---------------------
+
 /**
  @abstract Tells the delegate that a client has successfully authenticated with Layer.
  @param client The client that has authenticated successfully.
@@ -239,6 +278,49 @@ extern NSString * _Nonnull const LYRClientOptionDeauthenticationPolicy;
  @param client The client that was deauthenticated.
  */
 - (void)layerClientDidDeauthenticate:(nonnull LYRClient *)client;
+
+///---------------
+/// @name Sessions
+///---------------
+
+/**
+ @abstract Tells the delegate that the client has created a new session.
+ @param client The client that created the session.
+ @param session The session that was created.
+ */
+- (void)layerClient:(nonnull LYRClient *)client didCreateSession:(nonnull LYRSession *)session;
+
+/**
+ @abstract Tells the delegate that the client has authenticated a session.
+ @param client The client that authenticated the session.
+ @param session The session that was authenticated.
+ */
+- (void)layerClient:(nonnull LYRClient *)client didAuthenticateSession:(nonnull LYRSession *)session;
+
+/**
+ @abstract Tells the delegate that the client has resumed an existing authenticated session.
+ @param client The client that resumed the session.
+ @param session The session that was resumed.
+ */
+- (void)layerClient:(nonnull LYRClient *)client didResumeSession:(nonnull LYRSession *)session;
+
+/**
+ @abstract Tells the delegate that the client has switched to another session.
+ @param client The client that has switched sessions.
+ @param session The session that the client has switched to.
+ */
+- (void)layerClient:(nonnull LYRClient *)client didSwitchToSession:(nonnull LYRSession *)session;
+
+/**
+ @abstract Tells the delegate that the client has destroyed an existing session.
+ @param client The client that destroyed the session.
+ @param session The session that was destroyed.
+ */
+- (void)layerClient:(nonnull LYRClient *)client didDestroySession:(nonnull LYRSession *)session;
+
+///-------------------------------------------
+/// @name Synchronization & Content Management
+///-------------------------------------------
 
 /**
  @abstract Tells the delegate that objects associated with the client have changed due to local mutation or synchronization activities.
@@ -289,23 +371,29 @@ extern NSString * _Nonnull const LYRClientOptionDeauthenticationPolicy;
 /**
  @abstract Creates and returns a new Layer client instance.
  @param appID An app id url obtained from the Layer Developer Portal. https://developer.layer.com/projects
- @param options Options to the client initialization. @see LYRClientOptionSynchronizationPolicy.
+ @param options Options to the client initialization.
  @return Returns a newly created Layer client object, or `nil` in the case the client cannot not be initialized due to file protection.
+ @see LYRClientOptions
  @warning Throws `NSInternalInconsistencyException` when creating another Layer Client instance with the same `appID` value under the same process (application).
  However multiple instances of Layer Client with the same `appID` are allowed if running the code under Unit Tests.  Make sure to initialize the client when the 
  file access is available if the app uses NSFileProtection.
  */
-+ (nullable instancetype)clientWithAppID:(nonnull NSURL *)appID options:(nullable NSDictionary<NSString *, id> *)options;
++ (nonnull instancetype)clientWithAppID:(nonnull NSURL *)appID delegate:(nonnull id<LYRClientDelegate>)delegate options:(nullable LYRClientOptions *)options;
 
 /**
  @abstract The object that acts as the delegate of the receiving client.
  */
-@property (nonatomic, weak, nullable) id<LYRClientDelegate> delegate;
+@property (nonatomic, readonly, nonnull) id<LYRClientDelegate> delegate;
 
 /**
  @abstract The app key.
  */
 @property (nonatomic, copy, readonly, nonnull) NSURL *appID;
+
+/**
+ @abstract Returns a copy of the options that the client was initialized with.
+ */
+@property (nonatomic, copy, readonly, nonnull) LYRClientOptions *options;
 
 ///--------------------------------
 /// @name Managing Connection State
@@ -450,21 +538,21 @@ extern NSString * _Nonnull const LYRClientOptionDeauthenticationPolicy;
  @abstract Creates a new Conversation with the given set of participants.
  @discussion This method will create a new `LYRConversation` instance. Creating new message instances with a new `LYRConversation` object instance and sending them will also result in creation of a new conversation for other participants. An attempt to create a 1:1 conversation with a blocked participant will result in an error. If you wish to ensure that only one Conversation exists for a set of participants then set the value for the `LYRConversationOptionsDistinctByParticipantsKey` key to true in the `options` parameter.
  @param participants A set of participants with which to initialize the new Conversation.
- @param options A dictionary of options to apply to the conversation.
+ @param options An instance of `LYRConversationOptions` containing options to apply to the conversation.
  @param error A pointer to an error that upon failure is set to an error object describing why execution failed.
  @return The newly created Conversation or `nil` if an attempt is made to create a conversation with a distinct participants list, but one already exists. The existing conversation will be set as the value for the `LYRExistingDistinctConversationKey` in the `userInfo` dictionary of the error parameter.
  */
-- (nullable LYRConversation *)newConversationWithParticipants:(nonnull NSSet<NSString *> *)participants options:(nullable NSDictionary<NSString *, id> *)options error:(NSError * _Nullable * _Nullable)error;
+- (nullable LYRConversation *)newConversationWithParticipants:(nonnull NSSet<NSString *> *)participants options:(nullable LYRConversationOptions *)options error:(NSError * _Nullable * _Nullable)error;
 
 /**
  @abstract Creates and returns a new message with the given set of message parts.
  @discussion This method will allow a maximum of 1000 parts per message.
  @param messageParts An array of `LYRMessagePart` objects specifying the content of the message. Cannot be `nil` or empty.
- @param options A dictionary of options to apply to the message.
+ @param options An instance of `LYRMessageOptions` containing options to apply to the newly initialized `LYRMessage` instance.
  @return A new message that is ready to be sent.
  @raises NSInvalidArgumentException Raised if `conversation` is `nil` or `messageParts` is empty.
  */
-- (nullable LYRMessage *)newMessageWithParts:(nonnull NSArray<LYRMessagePart *> *)messageParts options:(nullable NSDictionary<NSString *, id> *)options error:(NSError * _Nullable * _Nullable)error;
+- (nullable LYRMessage *)newMessageWithParts:(nonnull NSArray<LYRMessagePart *> *)messageParts options:(nullable LYRMessageOptions *)options error:(NSError * _Nullable * _Nullable)error;
 
 ///---------------
 /// @name Querying
@@ -634,26 +722,13 @@ extern NSString * _Nonnull const LYRClientOptionDeauthenticationPolicy;
  */
 @property (nonatomic) LYRSize autodownloadMaximumContentSize;
 
-///-------------------------------
-/// @name Synchronization Policies
-///-------------------------------
-
-/**
- @abstract The synchronization policy the client was initialized with.
- */
-@property (nonatomic, readonly) LYRClientSynchronizationPolicy synchronizationPolicy;
-
-/**
- @abstract The synchronization policy options the client was initialized with.
- */
-@property (nonatomic, readonly, nonnull) NSDictionary *synchronizationPolicyOptions;
-
 ///---------------------
 /// @name Helper Methods
 ///---------------------
 
 /**
  @abstract Waits for the creation of an object with the specified identifier and calls the completion block with the object if found or an error if it times out.
+ @discussion The completion block is always invoked on the main thread.
  @param objectIdentifier The identifier of the object expected to be created.
  @param timeout The specified time the method should wait for the object creation before timing out.
  @param completion The block that will be called once the operation completes with either the expected object or an error.
@@ -665,11 +740,18 @@ extern NSString * _Nonnull const LYRClientOptionDeauthenticationPolicy;
 ///----------------
 
 /**
- @abstract Captures a debug snapshot of the current state of the Layer powered application and persists it to the file system.
+ @abstract Captures a debug snapshot of the current state of the Layer client object and persists it to the file system.
  @param completion A block to be called upon completion of the asynchronous request for a debug snapshot. The block takes one parameter: an `NSURL` location of the snapshot on the file system.
  @discussion The debug snapshot is a zip file containing the following: 1. A JSON dump of diagnostic information about the `LYRClient` 2. A copy of the local database, 3. A copy of any accumulated log files.
  */
 - (void)captureDebugSnapshotWithCompletion:(nonnull void(^)(NSURL * _Nullable snapshotPath, NSError * _Nullable error))completion;
+
+/**
+ @abstract Returns a string describing the state of the subsystems underlying the Layer client.
+ @discussion The diagnostic description string can be useful when investigating client issues via logging.
+ @return A string describing the underlying state of the receiving client object.
+ */
+- (nonnull NSString *)diagnosticDescription;
 
 /**
  @abstract When `YES`, `LayerKit` will log detailed debugging information to both the XCode debugger and the file system.
@@ -678,7 +760,7 @@ extern NSString * _Nonnull const LYRClientOptionDeauthenticationPolicy;
 @property (nonatomic) BOOL debuggingEnabled;
 
 /**
- @abstract Configures the log level for the specified component
+ @abstract Configures the log level for the specified component.
  @param level The log level to be set for the component.
  @param component The component to configure.
  */

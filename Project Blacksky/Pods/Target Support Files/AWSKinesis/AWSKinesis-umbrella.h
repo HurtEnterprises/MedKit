@@ -11,6 +11,7 @@
 #import "AWSKinesis.h"
 #import "AWSKinesisModel.h"
 #import "AWSKinesisRecorder.h"
+#import "AWSKinesisRequestRetryHandler.h"
 #import "AWSKinesisResources.h"
 #import "AWSKinesisService.h"
 

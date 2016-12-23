@@ -12,7 +12,10 @@ import AWSDynamoDB
 import AWSSQS
 import AWSSNS
 import AWSCognito
+<<<<<<< HEAD
 import DropDown
+=======
+>>>>>>> a0cd69aad244fc53dca7280b10bd64d989fdf966
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {

@@ -16,6 +16,7 @@
             startingLineNumber = "194"
             endingLineNumber = "194"
             landmarkName = "viewDidLoad()"
+<<<<<<< HEAD
 <<<<<<< .merge_file_F5nakC
 <<<<<<< .merge_file_UIr54c
 <<<<<<< .merge_file_9TUjav
@@ -29,6 +30,9 @@
 =======
             landmarkType = "7">
 >>>>>>> .merge_file_dIkEWz
+=======
+            landmarkType = "7">
+>>>>>>> a0cd69aad244fc53dca7280b10bd64d989fdf966
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -44,6 +48,7 @@
             startingLineNumber = "249"
             endingLineNumber = "249"
             landmarkName = "Confirm(_:)"
+<<<<<<< HEAD
 <<<<<<< .merge_file_F5nakC
 <<<<<<< .merge_file_UIr54c
 <<<<<<< .merge_file_9TUjav
@@ -57,6 +62,9 @@
 =======
             landmarkType = "7">
 >>>>>>> .merge_file_dIkEWz
+=======
+            landmarkType = "7">
+>>>>>>> a0cd69aad244fc53dca7280b10bd64d989fdf966
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
