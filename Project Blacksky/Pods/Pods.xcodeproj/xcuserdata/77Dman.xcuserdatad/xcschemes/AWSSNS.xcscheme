@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A5D74149151C19435FBED7862908B355"
-               BuildableName = "libAWSSNS.a"
+               BlueprintIdentifier = "7051517F12CD2BBD8AE2AD214DB4EC0C"
+               BuildableName = "AWSSNS.framework"
                BlueprintName = "AWSSNS"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -45,8 +45,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A5D74149151C19435FBED7862908B355"
-            BuildableName = "libAWSSNS.a"
+            BlueprintIdentifier = "7051517F12CD2BBD8AE2AD214DB4EC0C"
+            BuildableName = "AWSSNS.framework"
             BlueprintName = "AWSSNS"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
@@ -63,8 +63,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A5D74149151C19435FBED7862908B355"
-            BuildableName = "libAWSSNS.a"
+            BlueprintIdentifier = "7051517F12CD2BBD8AE2AD214DB4EC0C"
+            BuildableName = "AWSSNS.framework"
             BlueprintName = "AWSSNS"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

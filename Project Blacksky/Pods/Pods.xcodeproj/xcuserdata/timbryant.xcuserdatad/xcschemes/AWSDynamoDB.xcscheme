@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0810"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "555CF66E5D087CB97CF592B388605B33"
-               BuildableName = "libAWSDynamoDB.a"
+               BlueprintIdentifier = "A79E4DFDB520AC579CEA22EC6DE9ECD7"
+               BuildableName = "AWSDynamoDB.framework"
                BlueprintName = "AWSDynamoDB"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -45,8 +45,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "555CF66E5D087CB97CF592B388605B33"
-            BuildableName = "libAWSDynamoDB.a"
+            BlueprintIdentifier = "A79E4DFDB520AC579CEA22EC6DE9ECD7"
+            BuildableName = "AWSDynamoDB.framework"
             BlueprintName = "AWSDynamoDB"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
@@ -63,8 +63,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "555CF66E5D087CB97CF592B388605B33"
-            BuildableName = "libAWSDynamoDB.a"
+            BlueprintIdentifier = "A79E4DFDB520AC579CEA22EC6DE9ECD7"
+            BuildableName = "AWSDynamoDB.framework"
             BlueprintName = "AWSDynamoDB"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1C38E98BEF937AED79BDE7E463CD5878"
-               BuildableName = "libAWSMachineLearning.a"
+               BlueprintIdentifier = "FA4EC47CECE5DCE24241F8B91EC27B05"
+               BuildableName = "AWSMachineLearning.framework"
                BlueprintName = "AWSMachineLearning"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -45,8 +45,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1C38E98BEF937AED79BDE7E463CD5878"
-            BuildableName = "libAWSMachineLearning.a"
+            BlueprintIdentifier = "FA4EC47CECE5DCE24241F8B91EC27B05"
+            BuildableName = "AWSMachineLearning.framework"
             BlueprintName = "AWSMachineLearning"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
@@ -63,8 +63,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1C38E98BEF937AED79BDE7E463CD5878"
-            BuildableName = "libAWSMachineLearning.a"
+            BlueprintIdentifier = "FA4EC47CECE5DCE24241F8B91EC27B05"
+            BuildableName = "AWSMachineLearning.framework"
             BlueprintName = "AWSMachineLearning"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

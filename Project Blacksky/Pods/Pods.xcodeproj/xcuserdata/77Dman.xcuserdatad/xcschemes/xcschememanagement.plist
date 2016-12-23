@@ -2,89 +2,227 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AWSAutoScaling.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>AWSCloudWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>AWSCognito.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>AWSCore.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>AWSDynamoDB.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>AWSEC2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>AWSElasticLoadBalancing.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>AWSKinesis.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>AWSLambda.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>AWSMachineLearning.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>AWSMobileAnalytics.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>AWSS3.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>AWSSES.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>AWSSNS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
+		<key>AWSSQS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
+		<key>AWSSimpleDB.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
+		<key>Atlas-AtlasResource.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Atlas.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>GTMOAuth2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
+		<key>GTMSessionFetcher.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
+		<key>GoogleAPIClient.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
+		<key>Pods-Project BlackSky.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>22</integer>
+		</dict>
+	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0AD59726AA225DA84C3A950302B97D20</key>
+		<key>0849E21B9B9ACDBAAC96A31A5953712F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1C38E98BEF937AED79BDE7E463CD5878</key>
+		<key>108CB98FE2926893B1E8D043EFAC94DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1E0E391DDFD80715D5D46398B1FDF76E</key>
+		<key>11A91B5D6477C52D122B4350DE467C02</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2C7B34EC3A628033A244CF7A1508AB8D</key>
+		<key>12D38A8ABD2468AB36847EB5B7C6900C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>37DA8823B6E71A919A969C9729B2EC00</key>
+		<key>228A8785B1C6C6BFE8E1C8D261204DE3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4187A5DFAC146115CF5D283EB9A121C4</key>
+		<key>39EFD830E6F82181B9D6F38B0A15FFFD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4D1D316CB9BD9BBE4169B95795828500</key>
+		<key>3B41A9B1D49827D58E203AF61D34F608</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>555CF66E5D087CB97CF592B388605B33</key>
+		<key>40F160B1EC87D07E1B9EE04FB13AB5F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5EA8D03578F9AA16EDEA592545858C6C</key>
+		<key>7051517F12CD2BBD8AE2AD214DB4EC0C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>748C8B3AB8BC06217C07552A9EF3229D</key>
+		<key>7BB24175093D7F20531C6FD7CB7D1C9C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>88C51367B8922269287106D63C4F2F7D</key>
+		<key>A02E45903B1C4346E7A9212CABF1F743</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>901219B486CAC9F641B6BB4B7D5EB031</key>
+		<key>A79E4DFDB520AC579CEA22EC6DE9ECD7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A5D74149151C19435FBED7862908B355</key>
+		<key>AC89BF0B23F90017D2FE812E7D8478EF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ABB86C28639C7AAD6EF20377352DFAE3</key>
+		<key>BAA396C4D689A02A15029B49E076FAF0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B05430D5F057D8F5E616DAFB92E2F72C</key>
+		<key>BC279E1A4A79751E826180F63A851E07</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CEA448DB544C9DC1E5BF682A484D03DE</key>
+		<key>BD02CE344851D72142B287462B4106C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F416B66613499E194BB8FF5A8FD13D17</key>
+		<key>C3FB5DE1339FFE064A98868D1CA84176</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D1B3D231EED9AD3B2A77C4CE93023F11</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D468777BEC2DE5127A16239373FFD11F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D7C577A782ECBFCC395DF4C6F01965C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F9D3017FDE322CAF12E15A42B3977BFD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA4EC47CECE5DCE24241F8B91EC27B05</key>
 		<dict>
 			<key>primary</key>
 			<true/>

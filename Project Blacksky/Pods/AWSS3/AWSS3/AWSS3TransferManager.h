@@ -1,20 +1,19 @@
-/*
- Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License").
+// You may not use this file except in compliance with the License.
+// A copy of the License is located at
+//
+// http://aws.amazon.com/apache2.0
+//
+// or in the "license" file accompanying this file. This file is distributed
+// on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
+//
 
- Licensed under the Apache License, Version 2.0 (the "License").
- You may not use this file except in compliance with the License.
- A copy of the License is located at
-
- http://aws.amazon.com/apache2.0
-
- or in the "license" file accompanying this file. This file is distributed
- on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- express or implied. See the License for the specific language governing
- permissions and limitations under the License.
- */
-
-#import <AWSCore/AWSService.h>
-#import "AWSS3Model.h"
+#import "AWSS3Service.h"
 
 FOUNDATION_EXPORT NSString *const AWSS3TransferManagerErrorDomain;
 typedef NS_ENUM(NSInteger, AWSS3TransferManagerErrorType) {
@@ -38,7 +37,6 @@ typedef NS_ENUM(NSInteger, AWSS3TransferManagerRequestState) {
 typedef void (^AWSS3TransferManagerResumeAllBlock) (AWSRequest *request);
 
 @class AWSS3;
-@class AWSTask;
 @class AWSS3TransferManagerUploadRequest;
 @class AWSS3TransferManagerUploadOutput;
 @class AWSS3TransferManagerDownloadRequest;
@@ -136,13 +134,27 @@ typedef void (^AWSS3TransferManagerResumeAllBlock) (AWSRequest *request);
 + (void)registerS3TransferManagerWithConfiguration:(AWSServiceConfiguration *)configuration forKey:(NSString *)key;
 
 /**
- Retrieves the service client associated with the key. You need to call `+ registerS3TransferManagerWithConfiguration:forKey:` before invoking this method. If `+ registerS3TransferManagerWithConfiguration:forKey:` has not been called in advance or the key does not exist, this method returns `nil`.
+ Retrieves the service client associated with the key. You need to call `+ registerS3TransferManagerWithConfiguration:forKey:` before invoking this method.
 
  For example, set the default service configuration in `- application:didFinishLaunchingWithOptions:`
 
+ *Swift*
+
+     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+         let credentialProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: "YourIdentityPoolId")
+         let configuration = AWSServiceConfiguration(region: .USWest2, credentialsProvider: credentialProvider)
+         AWSS3TransferManager.registerS3TransferManagerWithConfiguration(configuration, forKey: "USWest2S3TransferManager")
+
+         return true
+     }
+
+ *Objective-C*
+
      - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-         AWSCognitoCredentialsProvider *credentialsProvider = [AWSCognitoCredentialsProvider credentialsWithRegionType:AWSRegionUSEast1 identityPoolId:@"YourIdentityPoolId"];
-         AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSWest2 credentialsProvider:credentialsProvider];
+         AWSCognitoCredentialsProvider *credentialsProvider = [[AWSCognitoCredentialsProvider alloc] initWithRegionType:AWSRegionUSEast1
+                                                                                                         identityPoolId:@"YourIdentityPoolId"];
+         AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSWest2
+                                                                              credentialsProvider:credentialsProvider];
 
          [AWSS3TransferManager registerS3TransferManagerWithConfiguration:configuration forKey:@"USWest2S3TransferManager"];
 
@@ -151,7 +163,13 @@ typedef void (^AWSS3TransferManagerResumeAllBlock) (AWSRequest *request);
 
  Then call the following to get the service client:
 
-     AWSS3TransferManager *S3TransferManager = [AWSS3TransferManager S3ForKey:@"USWest2S3TransferManager"];
+ *Swift*
+
+     let S3TransferManager = AWSS3TransferManager(forKey: "USWest2S3TransferManager")
+
+ *Objective-C*
+
+     AWSS3TransferManager *S3TransferManager = [AWSS3TransferManager S3TransferManagerForKey:@"USWest2S3TransferManager"];
 
  @param key A string to identify the service client.
 
@@ -167,19 +185,6 @@ typedef void (^AWSS3TransferManagerResumeAllBlock) (AWSRequest *request);
  @param key A string to identify the service client.
  */
 + (void)removeS3TransferManagerForKey:(NSString *)key;
-
-/**
- Returns an instance of this service client using `configuration` and `identifier`.
-
- @warning This method has been deprecated. Use `+ registerS3TransferManagerWithConfiguration:forKey:` and `+ S3TransferManagerForKey:` instead.
-
- @param configuration An object to configure the internal `AWSS3`. At least `regionType` and `credentialsProvider` need to be set.
- @param identifier    An unique identifier for AWSS3TransferManager to create a disk cache. Multiple instances with the same identifier are allowed and can safely access the same data on disk.
-
- @return An instance of this service client.
- */
-- (instancetype)initWithConfiguration:(AWSServiceConfiguration *)configuration
-                           identifier:(NSString *)identifier  __attribute__ ((deprecated("Use '+ registerS3TransferManagerWithConfiguration:forKey:' and '+ S3TransferManagerForKey:' instead.")));
 
 /**
  Schedules a new transfer to upload data to Amazon S3.

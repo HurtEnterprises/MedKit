@@ -1,21 +1,21 @@
-/*
- Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License").
- You may not use this file except in compliance with the License.
- A copy of the License is located at
-
- http://aws.amazon.com/apache2.0
-
- or in the "license" file accompanying this file. This file is distributed
- on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- express or implied. See the License for the specific language governing
- permissions and limitations under the License.
- */
+//
+// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License").
+// You may not use this file except in compliance with the License.
+// A copy of the License is located at
+//
+// http://aws.amazon.com/apache2.0
+//
+// or in the "license" file accompanying this file. This file is distributed
+// on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
+//
 
 #import <Foundation/Foundation.h>
-#import <AWSCore/AWSNetworking.h>
-#import <AWSCore/AWSModel.h>
+#import "AWSNetworking.h"
+#import "AWSModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,9 +23,7 @@ FOUNDATION_EXPORT NSString *const AWSCognitoIdentityErrorDomain;
 
 typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
     AWSCognitoIdentityErrorUnknown,
-    AWSCognitoIdentityErrorIncompleteSignature,
-    AWSCognitoIdentityErrorInvalidClientTokenId,
-    AWSCognitoIdentityErrorMissingAuthenticationToken,
+    AWSCognitoIdentityErrorConcurrentModification,
     AWSCognitoIdentityErrorDeveloperUserAlreadyRegistered,
     AWSCognitoIdentityErrorExternalService,
     AWSCognitoIdentityErrorInternalError,
@@ -38,8 +36,17 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
     AWSCognitoIdentityErrorTooManyRequests,
 };
 
+typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorCode) {
+    AWSCognitoIdentityErrorCodeUnknown,
+    AWSCognitoIdentityErrorCodeAccessDenied,
+    AWSCognitoIdentityErrorCodeInternalServerError,
+};
+
+@class AWSCognitoIdentityCognitoIdentityProvider;
 @class AWSCognitoIdentityCreateIdentityPoolInput;
 @class AWSCognitoIdentityCredentials;
+@class AWSCognitoIdentityDeleteIdentitiesInput;
+@class AWSCognitoIdentityDeleteIdentitiesResponse;
 @class AWSCognitoIdentityDeleteIdentityPoolInput;
 @class AWSCognitoIdentityDescribeIdentityInput;
 @class AWSCognitoIdentityDescribeIdentityPoolInput;
@@ -67,6 +74,25 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 @class AWSCognitoIdentitySetIdentityPoolRolesInput;
 @class AWSCognitoIdentityUnlinkDeveloperIdentityInput;
 @class AWSCognitoIdentityUnlinkIdentityInput;
+@class AWSCognitoIdentityUnprocessedIdentityId;
+
+/**
+ <p>A provider representing a Cognito User Identity Pool and its client ID.</p>
+ */
+@interface AWSCognitoIdentityCognitoIdentityProvider : AWSModel
+
+
+/**
+ <p>The client ID for the Cognito User Identity Pool.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable clientId;
+
+/**
+ <p>The provider name for a Cognito User Identity Pool. For example, <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable providerName;
+
+@end
 
 /**
  <p>Input to the CreateIdentityPool action.</p>
@@ -81,6 +107,11 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 @property (nonatomic, strong) NSNumber * _Nullable allowUnauthenticatedIdentities;
 
 /**
+ <p>A list representing a Cognito User Identity Pool and its client ID.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSCognitoIdentityCognitoIdentityProvider *> * _Nullable cognitoIdentityProviders;
+
+/**
  <p>The "domain" by which Cognito will refer to your users. This name acts as a placeholder that allows your backend and the Cognito service to communicate about the developer provider. For the <code>DeveloperProviderName</code>, you can use letters as well as period (<code>.</code>), underscore (<code>_</code>), and dash (<code>-</code>).</p><p>Once you have set a developer provider name, you cannot change it. Please take care in setting this parameter.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable developerProviderName;
@@ -93,17 +124,17 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 /**
  <p>A list of OpendID Connect provider ARNs.</p>
  */
-@property (nonatomic, strong) NSArray * _Nullable openIdConnectProviderARNs;
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable openIdConnectProviderARNs;
 
 /**
  <p>Optional key:value pairs mapping provider names to provider app IDs.</p>
  */
-@property (nonatomic, strong) NSDictionary * _Nullable supportedLoginProviders;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable supportedLoginProviders;
 
 @end
 
 /**
- <p>Credentials for the the provided identity ID.</p>
+ <p>Credentials for the provided identity ID.</p>
  */
 @interface AWSCognitoIdentityCredentials : AWSModel
 
@@ -127,6 +158,33 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
  <p>The Session Token portion of the credentials</p>
  */
 @property (nonatomic, strong) NSString * _Nullable sessionToken;
+
+@end
+
+/**
+ <p>Input to the <code>DeleteIdentities</code> action.</p>
+ Required parameters: [IdentityIdsToDelete]
+ */
+@interface AWSCognitoIdentityDeleteIdentitiesInput : AWSRequest
+
+
+/**
+ <p>A list of 1-60 identities that you want to delete.</p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable identityIdsToDelete;
+
+@end
+
+/**
+ <p>Returned in response to a successful <code>DeleteIdentities</code> operation.</p>
+ */
+@interface AWSCognitoIdentityDeleteIdentitiesResponse : AWSModel
+
+
+/**
+ <p>An array of UnprocessedIdentityId objects, each of which contains an ErrorCode and IdentityId.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSCognitoIdentityUnprocessedIdentityId *> * _Nullable unprocessedIdentityIds;
 
 @end
 
@@ -187,7 +245,7 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 /**
  <p>A set of optional name-value pairs that map provider names to provider tokens.</p>
  */
-@property (nonatomic, strong) NSDictionary * _Nullable logins;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable logins;
 
 @end
 
@@ -198,7 +256,7 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 
 
 /**
- <p>Credentials for the the provided identity ID.</p>
+ <p>Credentials for the provided identity ID.</p>
  */
 @property (nonatomic, strong) AWSCognitoIdentityCredentials * _Nullable credentials;
 
@@ -227,9 +285,9 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 @property (nonatomic, strong) NSString * _Nullable identityPoolId;
 
 /**
- <p>A set of optional name-value pairs that map provider names to provider tokens.</p><p>The available provider names for <code>Logins</code> are as follows: <ul><li>Facebook: <code>graph.facebook.com</code></li><li>Google: <code>accounts.google.com</code></li><li>Amazon: <code>www.amazon.com</code></li><li>Twitter: <code>www.twitter.com</code></li><li>Digits: <code>www.digits.com</code></li></ul></p>
+ <p>A set of optional name-value pairs that map provider names to provider tokens.</p><p>The available provider names for <code>Logins</code> are as follows: <ul><li>Facebook: <code>graph.facebook.com</code></li><li>Amazon Cognito Identity Provider: <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code></li><li>Google: <code>accounts.google.com</code></li><li>Amazon: <code>www.amazon.com</code></li><li>Twitter: <code>api.twitter.com</code></li><li>Digits: <code>www.digits.com</code></li></ul></p>
  */
-@property (nonatomic, strong) NSDictionary * _Nullable logins;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable logins;
 
 @end
 
@@ -274,7 +332,7 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 /**
  <p>The map of roles associated with this pool. Currently only authenticated and unauthenticated roles are supported.</p>
  */
-@property (nonatomic, strong) NSDictionary * _Nullable roles;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable roles;
 
 @end
 
@@ -298,7 +356,7 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 /**
  <p>A set of optional name-value pairs that map provider names to provider tokens. Each name-value pair represents a user from a public provider or developer provider. If the user is from a developer provider, the name-value pair will follow the syntax <code>"developer_provider_name": "developer_user_identifier"</code>. The developer provider is the "domain" by which Cognito will refer to your users; you provided this domain while creating/updating the identity pool. The developer user identifier is an identifier from your backend that uniquely identifies a user. When you create an identity pool, you can specify the supported logins.</p>
  */
-@property (nonatomic, strong) NSDictionary * _Nullable logins;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable logins;
 
 /**
  <p>The expiration time of the token, in seconds. You can specify a custom expiration time for the token so that you can cache it. If you don't provide an expiration time, the token is valid for 15 minutes. You can exchange the token with Amazon STS for temporary AWS credentials, which are valid for a maximum of one hour. The maximum token duration you can set is 24 hours. You should take care in setting the expiration time for a token, as there are significant security implications: an attacker could use a leaked token to access your AWS resources for the token's duration.</p>
@@ -338,9 +396,9 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 @property (nonatomic, strong) NSString * _Nullable identityId;
 
 /**
- A set of optional name-value pairs that map provider names to provider tokens. When using graph.facebook.com and www.amazon.com, supply the access_token returned from the provider's authflow. For accounts.google.com or any other OpenId Connect provider, always include the id_token.
+ <p>A set of optional name-value pairs that map provider names to provider tokens. When using graph.facebook.com and www.amazon.com, supply the access_token returned from the provider's authflow. For accounts.google.com, an Amazon Cognito Identity Provider, or any other OpenId Connect provider, always include the <code>id_token</code>.</p>
  */
-@property (nonatomic, strong) NSDictionary * _Nullable logins;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable logins;
 
 @end
 
@@ -386,7 +444,7 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 /**
  A set of optional name-value pairs that map provider names to provider tokens.
  */
-@property (nonatomic, strong) NSArray * _Nullable logins;
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable logins;
 
 @end
 
@@ -401,6 +459,11 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
  TRUE if the identity pool supports unauthenticated logins.
  */
 @property (nonatomic, strong) NSNumber * _Nullable allowUnauthenticatedIdentities;
+
+/**
+ <p>A list representing a Cognito User Identity Pool and its client ID.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSCognitoIdentityCognitoIdentityProvider *> * _Nullable cognitoIdentityProviders;
 
 /**
  <p>The "domain" by which Cognito will refer to your users.</p>
@@ -420,12 +483,12 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 /**
  <p>A list of OpendID Connect provider ARNs.</p>
  */
-@property (nonatomic, strong) NSArray * _Nullable openIdConnectProviderARNs;
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable openIdConnectProviderARNs;
 
 /**
  <p>Optional key:value pairs mapping provider names to provider app IDs.</p>
  */
-@property (nonatomic, strong) NSDictionary * _Nullable supportedLoginProviders;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable supportedLoginProviders;
 
 @end
 
@@ -455,6 +518,11 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 
 
 /**
+ <p>An optional boolean parameter that allows you to hide disabled identities. If omitted, the ListIdentities API will include disabled identities in the response.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable hideDisabled;
+
+/**
  An identity pool ID in the format REGION:GUID.
  */
 @property (nonatomic, strong) NSString * _Nullable identityPoolId;
@@ -480,7 +548,7 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 /**
  An object containing a set of identities and associated mappings.
  */
-@property (nonatomic, strong) NSArray * _Nullable identities;
+@property (nonatomic, strong) NSArray<AWSCognitoIdentityIdentityDescription *> * _Nullable identities;
 
 /**
  An identity pool ID in the format REGION:GUID.
@@ -522,7 +590,7 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 /**
  The identity pools returned by the ListIdentityPools action.
  */
-@property (nonatomic, strong) NSArray * _Nullable identityPools;
+@property (nonatomic, strong) NSArray<AWSCognitoIdentityIdentityPoolShortDescription *> * _Nullable identityPools;
 
 /**
  A pagination token.
@@ -574,7 +642,7 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 /**
  <p>This is the list of developer user identifiers associated with an identity ID. Cognito supports the association of multiple developer user identifiers with an identity ID.</p>
  */
-@property (nonatomic, strong) NSArray * _Nullable developerUserIdentifierList;
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable developerUserIdentifierList;
 
 /**
  <p>A unique identifier in the format REGION:GUID.</p>
@@ -643,9 +711,9 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 @property (nonatomic, strong) NSString * _Nullable identityPoolId;
 
 /**
- <p>The map of roles associated with this pool. Currently only authenticated and unauthenticated roles are supported.</p>
+ <p>The map of roles associated with this pool. For a given role, the key will be either "authenticated" or "unauthenticated" and the value will be the Role ARN.</p>
  */
-@property (nonatomic, strong) NSDictionary * _Nullable roles;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable roles;
 
 @end
 
@@ -693,12 +761,30 @@ typedef NS_ENUM(NSInteger, AWSCognitoIdentityErrorType) {
 /**
  A set of optional name-value pairs that map provider names to provider tokens.
  */
-@property (nonatomic, strong) NSDictionary * _Nullable logins;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable logins;
 
 /**
  Provider names to unlink from this identity.
  */
-@property (nonatomic, strong) NSArray * _Nullable loginsToRemove;
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable loginsToRemove;
+
+@end
+
+/**
+ <p>An array of UnprocessedIdentityId objects, each of which contains an ErrorCode and IdentityId.</p>
+ */
+@interface AWSCognitoIdentityUnprocessedIdentityId : AWSModel
+
+
+/**
+ <p>The error code indicating the type of error that occurred.</p>
+ */
+@property (nonatomic, assign) AWSCognitoIdentityErrorCode errorCode;
+
+/**
+ <p>A unique identifier in the format REGION:GUID.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable identityId;
 
 @end
 

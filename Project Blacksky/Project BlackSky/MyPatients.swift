@@ -24,7 +24,7 @@ class MyPatients: UIViewController {
     
     func configureView() {
         // Update the user interface for the detail item.
-        self.view.backgroundColor = UIColor.cyanColor()
+        self.view.backgroundColor = UIColor.cyan
     }
     
     override func viewDidLoad() {
@@ -32,9 +32,9 @@ class MyPatients: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // Makes Navigation Bar
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 20, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 50)) // Offset by 20 pixels vertically to take the status bar into account
         
-        creationFunctions.makeNavigationBar(navigationBar, barTitle: "My Patients", color: UIColor.grayColor(), forwardButton: false, backButton: true, page: self)
+        creationFunctions.makeNavigationBar(navigationBar, barTitle: "My Patients", forwardButton: false, backButton: true, page: self)
         
         self.configureView()
     }
@@ -45,20 +45,20 @@ class MyPatients: UIViewController {
     }
     
     // Called when 'return' key pressed. return NO to ignore. Resigns first responder (closes keyboard)
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
     
     // Called when the user click on the view (outside the UITextField). Resigns first responder (closes keyboard)
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    func backClicked(sender: UIBarButtonItem!){
+    func backClicked(_ sender: UIBarButtonItem!){
         //self.presentViewController(self.mainMenu, animated: true, completion: nil)
-        self.dismissViewControllerAnimated(true, completion: {});
+        self.dismiss(animated: true, completion: {});
     }
     
 

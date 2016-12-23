@@ -7,6 +7,11 @@
 //
 
 import Foundation
+import AWSS3
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 /**
  * A class to capture the current user data/info in the database.
@@ -37,7 +42,7 @@ class User :AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var internalState:NSNumber?
     
     class func dynamoDBTableName() -> String! {
-        return AWSSampleDynamoDBTableName //I think this should be a whole different table in the database. Idk how you set that though
+        return AWSDynamoDBLoginTable //I think this should be a whole different table in the database. Idk how you set that though
     }
     
     class func hashKeyAttribute() -> String! {
@@ -45,10 +50,10 @@ class User :AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     }
     
     class func ignoreAttributes() -> [AnyObject]! {
-        return ["internalName", "internalState"]
+        return ["internalName" as AnyObject, "internalState" as AnyObject]
     }
     
-    override func isEqual(object: AnyObject?) -> Bool {
+    override func isEqual(_ object: Any?) -> Bool {
         return super.isEqual(object)
     }
     

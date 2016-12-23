@@ -1,17 +1,17 @@
-/*
- Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License").
- You may not use this file except in compliance with the License.
- A copy of the License is located at
-
- http://aws.amazon.com/apache2.0
-
- or in the "license" file accompanying this file. This file is distributed
- on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- express or implied. See the License for the specific language governing
- permissions and limitations under the License.
- */
+//
+// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License").
+// You may not use this file except in compliance with the License.
+// A copy of the License is located at
+//
+// http://aws.amazon.com/apache2.0
+//
+// or in the "license" file accompanying this file. This file is distributed
+// on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
+//
 
 #import "AWSCategory.h"
 #import <objc/runtime.h>
@@ -482,6 +482,73 @@ static NSTimeInterval _clockskew = 0.0;
     } else {
         return ![self aws_contains:@"."];
     }
+}
+
+- (AWSRegionType)aws_regionTypeValue {
+    if ([self isEqualToString:@"AWSRegionUSEast1"]
+        || [self isEqualToString:@"USEast1"]
+        || [self isEqualToString:@"us-east-1"]) {
+        return AWSRegionUSEast1;
+    }
+    if ([self isEqualToString:@"AWSRegionUSWest1"]
+        || [self isEqualToString:@"USWest1"]
+        || [self isEqualToString:@"us-west-1"]) {
+        return AWSRegionUSWest1;
+    }
+    if ([self isEqualToString:@"AWSRegionUSWest2"]
+        || [self isEqualToString:@"USWest2"]
+        || [self isEqualToString:@"us-west-2"]) {
+        return AWSRegionUSWest2;
+    }
+    if ([self isEqualToString:@"AWSRegionEUWest1"]
+        || [self isEqualToString:@"EUWest1"]
+        || [self isEqualToString:@"eu-west-1"]) {
+        return AWSRegionEUWest1;
+    }
+    if ([self isEqualToString:@"AWSRegionEUCentral1"]
+        || [self isEqualToString:@"EUCentral1"]
+        || [self isEqualToString:@"eu-central-1"]) {
+        return AWSRegionEUCentral1;
+    }
+    if ([self isEqualToString:@"AWSRegionAPNortheast1"]
+        || [self isEqualToString:@"APNortheast1"]
+        || [self isEqualToString:@"ap-northeast-1"]) {
+        return AWSRegionAPNortheast1;
+    }
+    if ([self isEqualToString:@"AWSRegionAPNortheast2"]
+        || [self isEqualToString:@"APNortheast2"]
+        || [self isEqualToString:@"ap-northeast-2"]) {
+        return AWSRegionAPNortheast2;
+    }
+    if ([self isEqualToString:@"AWSRegionAPSoutheast1"]
+        || [self isEqualToString:@"APSoutheast1"]
+        || [self isEqualToString:@"ap-southeast-1"]) {
+        return AWSRegionAPSoutheast1;
+    }
+    if ([self isEqualToString:@"AWSRegionAPSoutheast2"]
+        || [self isEqualToString:@"APSoutheast2"]
+        || [self isEqualToString:@"ap-southeast-2"]) {
+        return AWSRegionAPSoutheast2;
+    }
+    if ([self isEqualToString:@"AWSRegionSAEast1"]
+        || [self isEqualToString:@"SAEast1"]
+        || [self isEqualToString:@"sa-east-1"]) {
+        return AWSRegionSAEast1;
+    }
+
+    if ([self isEqualToString:@"AWSRegionUSGovWest1"]
+        || [self isEqualToString:@"USGovWest1"]
+        || [self isEqualToString:@"us-gov-west-1"]) {
+        return AWSRegionUSGovWest1;
+    }
+
+    if ([self isEqualToString:@"AWSRegionCNNorth1"]
+        || [self isEqualToString:@"CNNorth1"]
+        || [self isEqualToString:@"cn-north-1"]) {
+        return AWSRegionCNNorth1;
+    }
+
+    return AWSRegionUnknown;
 }
 
 - (BOOL)aws_contains:(NSString *)searchString {

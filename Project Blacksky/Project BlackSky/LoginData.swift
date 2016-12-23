@@ -7,34 +7,39 @@
 //
 
 import Foundation
+import AWSS3
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 /**
  * A class to capture Login data/info in the database.
  * Has primary key: "Username". No sorted key.
  */
 class DDBLoginData :AWSDynamoDBObjectModel, AWSDynamoDBModeling {
-    var Username:String?
+    var PhysicianID:String?
     var Password:String?
     
-    var email:String? = ""
+    var Email:String? = ""
     
     var internalName:String?
     var internalState:NSNumber?
-    var verifiedEmail = false
+    var VerifiedEmail = false
     
     class func dynamoDBTableName() -> String! {
-        return AWSSampleDynamoDBTableName
+        return AWSDynamoDBLoginTable
     }
     
     class func hashKeyAttribute() -> String! {
-        return "Username"
+        return "PhysicianID"
     }
     
     class func ignoreAttributes() -> [AnyObject]! {
-        return ["internalName", "internalState"]
+        return ["internalName" as AnyObject, "internalState" as AnyObject]
     }
     
-    override func isEqual(object: AnyObject?) -> Bool {
+    override func isEqual(_ object: Any?) -> Bool {
         return super.isEqual(object)
     }
     

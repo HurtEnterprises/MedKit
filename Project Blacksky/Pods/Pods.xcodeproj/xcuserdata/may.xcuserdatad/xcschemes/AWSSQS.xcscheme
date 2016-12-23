@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D7AF76EA71183173FAE53323'
+               BlueprintIdentifier = 'D1B3D231EED9AD3B2A77C4CE93023F11'
                BlueprintName = 'AWSSQS'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libAWSSQS.a'>
+               BuildableName = 'AWSSQS.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

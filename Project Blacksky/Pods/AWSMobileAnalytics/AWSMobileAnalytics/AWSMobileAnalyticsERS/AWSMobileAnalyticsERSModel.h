@@ -1,17 +1,17 @@
-/*
- Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
- Licensed under the Apache License, Version 2.0 (the "License").
- You may not use this file except in compliance with the License.
- A copy of the License is located at
-
- http://aws.amazon.com/apache2.0
-
- or in the "license" file accompanying this file. This file is distributed
- on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- express or implied. See the License for the specific language governing
- permissions and limitations under the License.
- */
+//
+// Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License").
+// You may not use this file except in compliance with the License.
+// A copy of the License is located at
+//
+// http://aws.amazon.com/apache2.0
+//
+// or in the "license" file accompanying this file. This file is distributed
+// on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
+//
 
 #import <Foundation/Foundation.h>
 #import <AWSCore/AWSNetworking.h>
@@ -23,9 +23,6 @@ FOUNDATION_EXPORT NSString *const AWSMobileAnalyticsERSErrorDomain;
 
 typedef NS_ENUM(NSInteger, AWSMobileAnalyticsERSErrorType) {
     AWSMobileAnalyticsERSErrorUnknown,
-    AWSMobileAnalyticsERSErrorIncompleteSignature,
-    AWSMobileAnalyticsERSErrorInvalidClientTokenId,
-    AWSMobileAnalyticsERSErrorMissingAuthenticationToken,
     AWSMobileAnalyticsERSErrorBadRequest,
 };
 
@@ -43,7 +40,7 @@ typedef NS_ENUM(NSInteger, AWSMobileAnalyticsERSErrorType) {
 /**
  
  */
-@property (nonatomic, strong) NSDictionary * _Nullable attributes;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable attributes;
 
 /**
  
@@ -53,7 +50,7 @@ typedef NS_ENUM(NSInteger, AWSMobileAnalyticsERSErrorType) {
 /**
  
  */
-@property (nonatomic, strong) NSDictionary * _Nullable metrics;
+@property (nonatomic, strong) NSDictionary<NSString *, NSNumber *> * _Nullable metrics;
 
 /**
  
@@ -87,7 +84,7 @@ typedef NS_ENUM(NSInteger, AWSMobileAnalyticsERSErrorType) {
 /**
  
  */
-@property (nonatomic, strong) NSArray * _Nullable events;
+@property (nonatomic, strong) NSArray<AWSMobileAnalyticsERSEvent *> * _Nullable events;
 
 @end
 

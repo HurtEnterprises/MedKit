@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0810"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0AD59726AA225DA84C3A950302B97D20"
-               BuildableName = "libAWSKinesis.a"
+               BlueprintIdentifier = "7BB24175093D7F20531C6FD7CB7D1C9C"
+               BuildableName = "AWSKinesis.framework"
                BlueprintName = "AWSKinesis"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -45,8 +45,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AD59726AA225DA84C3A950302B97D20"
-            BuildableName = "libAWSKinesis.a"
+            BlueprintIdentifier = "7BB24175093D7F20531C6FD7CB7D1C9C"
+            BuildableName = "AWSKinesis.framework"
             BlueprintName = "AWSKinesis"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
@@ -63,8 +63,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0AD59726AA225DA84C3A950302B97D20"
-            BuildableName = "libAWSKinesis.a"
+            BlueprintIdentifier = "7BB24175093D7F20531C6FD7CB7D1C9C"
+            BuildableName = "AWSKinesis.framework"
             BlueprintName = "AWSKinesis"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

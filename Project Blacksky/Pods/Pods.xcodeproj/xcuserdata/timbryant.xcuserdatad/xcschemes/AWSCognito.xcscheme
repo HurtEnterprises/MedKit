@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0810"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "748C8B3AB8BC06217C07552A9EF3229D"
-               BuildableName = "libAWSCognito.a"
+               BlueprintIdentifier = "BAA396C4D689A02A15029B49E076FAF0"
+               BuildableName = "AWSCognito.framework"
                BlueprintName = "AWSCognito"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -45,8 +45,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "748C8B3AB8BC06217C07552A9EF3229D"
-            BuildableName = "libAWSCognito.a"
+            BlueprintIdentifier = "BAA396C4D689A02A15029B49E076FAF0"
+            BuildableName = "AWSCognito.framework"
             BlueprintName = "AWSCognito"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
@@ -63,8 +63,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "748C8B3AB8BC06217C07552A9EF3229D"
-            BuildableName = "libAWSCognito.a"
+            BlueprintIdentifier = "BAA396C4D689A02A15029B49E076FAF0"
+            BuildableName = "AWSCognito.framework"
             BlueprintName = "AWSCognito"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
