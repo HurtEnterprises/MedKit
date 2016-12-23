@@ -61,9 +61,4 @@ class MyPatients: UIViewController {
         self.dismiss(animated: true, completion: {});
     }
     
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> a0cd69aad244fc53dca7280b10bd64d989fdf966
 }

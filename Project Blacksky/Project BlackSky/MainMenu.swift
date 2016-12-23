@@ -122,11 +122,7 @@ class MainMenu: UIViewController {
         myPatientsButton.center = CGPoint(x: width/2, y: height * 13.25/20)
         myPatientsButton.layer.borderWidth = 6.0
         myPatientsButton.setAttributedTitle(myPatientsText, for: UIControlState())
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> a0cd69aad244fc53dca7280b10bd64d989fdf966
         let chatText = NSMutableAttributedString(string:"CHAT", attributes: underlineAttributes)
         creationFunctions.makeClearButton(chatButton, name: "Chat", titleColor: UIColor.white, location: CGRect(x: width/2, y: (height-50)*3/4, width: 8 * width/10, height: height/8), page: self)
         chatButton.center = CGPoint(x: width/2, y: height * 14.5/20)
@@ -151,34 +147,25 @@ class MainMenu: UIViewController {
         logoutLayer.colors = [color2, color1]
         logoutLayer.locations = [0.0, 0.7]
         logoutButton.layer.insertSublayer(logoutLayer, at: 0)
-<<<<<<< HEAD
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-=======
->>>>>>> a0cd69aad244fc53dca7280b10bd64d989fdf966
     }
     
     func logoutClicked(_ sender: UIButton!){
-<<<<<<< HEAD
         //        if(self.presentedViewController == registerPage){
         //            registerPage.dismissViewControllerAnimated(true, completion: nil)
         //        }
         //        self.dismissViewControllerAnimated(true, completion: nil)
-=======
-//        if(self.presentedViewController == registerPage){
-//            registerPage.dismissViewControllerAnimated(true, completion: nil)
-//        }
-//        self.dismissViewControllerAnimated(true, completion: nil)
->>>>>>> a0cd69aad244fc53dca7280b10bd64d989fdf966
+        logoutCurrentUser()
         self.navigationController?.popToViewController(loginPage, animated: true)
         //TODO: @Mehrab add some sort of logout function or we can make it so the user is logged out whenever they hit the login page?
     }
     
     func logoutCurrentUser(){
         currentUser = DDBLoginData() //set the user constant to a blank login data, essentially deleting the user.
-<<<<<<< HEAD
     }
     
     func myAccoutClicked(_ sender: UIBarButtonItem!){
@@ -193,22 +180,6 @@ class MainMenu: UIViewController {
         self.navigationController?.popToViewController(loginPage, animated: true)
     }
     
-=======
-    }
-    
-    func myAccoutClicked(_ sender: UIBarButtonItem!){
-        print("My Account")
-    }
-    
-    func patientInfoClicked(_ sender: UIButton!){
-        print("Patient Info CLicked")
-    }
-    
-    func backClicked(_ sender: UIBarButtonItem!){
-            self.navigationController?.popToViewController(loginPage, animated: true)
-    }
-    
->>>>>>> a0cd69aad244fc53dca7280b10bd64d989fdf966
     func myPatientsClicked(_ sender:UIButton){
         self.navigationController?.pushViewController(myPatientsPage, animated: true)
     }
