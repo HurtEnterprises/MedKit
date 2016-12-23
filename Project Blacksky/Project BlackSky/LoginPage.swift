@@ -53,7 +53,7 @@ class LoginPage: UIViewController {
         NSUnderlineStyleAttributeName : 1] as [String : Any]
     
     
-    override func viewDidAppear(_ animated: Bool) {
+   /* override func viewDidAppear(_ animated: Bool) {
         if let authorizer = service.authorizer,
             let canAuth = authorizer.canAuthorize , canAuth {
             fetchEvents()
@@ -109,7 +109,7 @@ class LoginPage: UIViewController {
         print(eventString)
     }
     
-    
+  
     // Creates the auth controller for authorizing access to Google Calendar API
     fileprivate func createAuthController() -> GTMOAuth2ViewControllerTouch {
         let scopeString = scopes.joined(separator: " ")
@@ -137,7 +137,7 @@ class LoginPage: UIViewController {
         service.authorizer = authResult
         dismiss(animated: true, completion: nil)
     }
-    
+   */ 
     // Helper for showing an alert
     func showAlert(_ title : String, message: String) {
         let alert = UIAlertView(
@@ -161,7 +161,7 @@ class LoginPage: UIViewController {
             service.authorizer = auth
         }
         
-        
+ 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -183,7 +183,7 @@ class LoginPage: UIViewController {
         infoBox.layer.cornerRadius = 8.0
         infoBox.clipsToBounds = true
         view.addSubview(infoBox)
-        
+ 
         // Makes Text Fields
         creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGray, frame: CGRect(x: width/4, y: height/3.5 + 50, width: width/2, height: 30), page:self)
         usernameField.font = usernameField.font!.withSize(30)
@@ -322,7 +322,7 @@ class LoginPage: UIViewController {
     func verifyLogin(_ username: String){
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default();
         
-        let task: AWSTask! = dynamoDBObjectMapper!.load(DDBLoginData.self, hashKey: username, rangeKey: nil)
+        let task: AWSTask! = dynamoDBObjectMapper.load(DDBLoginData.self, hashKey: username, rangeKey: nil)
         
         task.continue(with: AWSExecutor.mainThread(), with: { (task:AWSTask!) -> AnyObject! in
             if (task.error == nil) { //no error

@@ -238,67 +238,13 @@ class AccountRegisterPage: UIViewController {
 //            verifyEmailAddress(emailAddressField.text!)
 //            
             KeychainWrapper.setString(desiredPasswordField.text!, forKey: "Password")
-<<<<<<< .merge_file_bU5gS8
-<<<<<<< .merge_file_fhzIdc
-<<<<<<< .merge_file_Uy8uW1
-<<<<<<< .merge_file_wnWNI9
-<<<<<<< .merge_file_8CAhVy
-<<<<<<< .merge_file_t25RmX
-            KeychainWrapper.setString(physicianIDField.text!, forKey: "physicianIDField")
-=======
             KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
->>>>>>> .merge_file_0IeIC0
-=======
-            KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
->>>>>>> .merge_file_dsWeh2
-=======
-            KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
->>>>>>> .merge_file_wGY8xW
-=======
-            KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
->>>>>>> .merge_file_kLTQuC
-=======
-            KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
->>>>>>> .merge_file_AEaONw
-=======
-            KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
->>>>>>> .merge_file_9YDOze
 //            
             let loginData = DDBLoginData() //initialize a loginData object.
 //            
             PublicTag = emailField.text! //used to generate secret keys for encryption
             PrivateTag = desiredPasswordField.text!
             generateKeys() //generate public and private keys using the email as a tag
-<<<<<<< .merge_file_bU5gS8
-<<<<<<< .merge_file_fhzIdc
-<<<<<<< .merge_file_Uy8uW1
-<<<<<<< .merge_file_wnWNI9
-<<<<<<< .merge_file_8CAhVy
-<<<<<<< .merge_file_t25RmX
-            
-      //      loginData.physicianIDField = Encrypt2(physicianIDField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-        //    loginData.Password = Encrypt2(desiredPasswordField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-          //  loginData.email = Encrypt2(emailField.text!, publicKeyFunctionParameter: findKey(PublicTag!)!)
-        
-//            print(Decrypt2(loginData.internalName!, privateKeyFunctionParameter: findKey(PrivateTag!)!))
-//            for testing purposes 
-            
-           // loginData.internalState = 0 //set its properties.
-//            
-//            
-          //  sendLoginData(loginData) //run the send function and push it to ddb.
-            //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
-=======
-=======
->>>>>>> .merge_file_dsWeh2
-=======
->>>>>>> .merge_file_wGY8xW
-=======
->>>>>>> .merge_file_kLTQuC
-=======
->>>>>>> .merge_file_AEaONw
-=======
->>>>>>> .merge_file_9YDOze
 //            
             loginData?.PhysicianID = physicianIDField.text!
             loginData?.Password = desiredPasswordField.text!
@@ -310,7 +256,6 @@ class AccountRegisterPage: UIViewController {
 //            
                sendLoginData(loginData!) //run the send function and push it to ddb.
 //            //Verify email address? I'll(Deven) look into it. I'll also look into keeping track of the date they registered/signed in
->>>>>>> .merge_file_0IeIC0
             
             
             //Take them to main menu & automatically log them in
@@ -350,19 +295,7 @@ class AccountRegisterPage: UIViewController {
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default();
 
         //save allows us to "save" this new login data to the server.
-<<<<<<< .merge_file_bU5gS8
-<<<<<<< .merge_file_fhzIdc
-<<<<<<< .merge_file_Uy8uW1
         dynamoDBObjectMapper.save(loginData).continue(with: AWSExecutor.mainThread(), with:
-=======
-        dynamoDBObjectMapper?.save(loginData).continue(with: AWSExecutor.mainThread(), with:
->>>>>>> .merge_file_kLTQuC
-=======
-        dynamoDBObjectMapper?.save(loginData).continue(with: AWSExecutor.mainThread(), with:
->>>>>>> .merge_file_AEaONw
-=======
-        dynamoDBObjectMapper?.save(loginData).continue(with: AWSExecutor.mainThread(), with:
->>>>>>> .merge_file_9YDOze
             { (task:AWSTask!) -> AnyObject! in
                 if(task.error == nil){ //no error has occurred, we have successfully sent the login info
                     print("Successful push to db.")

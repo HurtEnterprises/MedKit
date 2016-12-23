@@ -13,6 +13,7 @@ import AWSSQS
 import AWSSNS
 import AWSCognito
 
+
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
@@ -44,19 +45,7 @@ class MasterViewController: UITableViewController {
                 return nil
             }
             
-<<<<<<< .merge_file_f1bgGe
-<<<<<<< .merge_file_YCleuU
-<<<<<<< .merge_file_GgadCU
             let listTablesOutput = task.result as AWSDynamoDBListTablesOutput!
-=======
-            let listTablesOutput = task.result as! AWSDynamoDBListTablesOutput!
->>>>>>> .merge_file_Y4xbRI
-=======
-            let listTablesOutput = task.result as! AWSDynamoDBListTablesOutput!
->>>>>>> .merge_file_Zt7Y7S
-=======
-            let listTablesOutput = task.result as! AWSDynamoDBListTablesOutput!
->>>>>>> .merge_file_L4cp6C
             
             for tableName : String in (listTablesOutput?.tableNames!)! {
                 print("\(tableName)")

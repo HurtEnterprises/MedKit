@@ -1,4 +1,6 @@
+#ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#endif
 
 #import "AWSEC2.h"
 #import "AWSEC2Model.h"
