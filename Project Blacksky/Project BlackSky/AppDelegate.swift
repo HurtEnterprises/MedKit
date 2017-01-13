@@ -12,6 +12,8 @@ import AWSDynamoDB
 import AWSSQS
 import AWSSNS
 import AWSCognito
+import DropDown
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -50,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         splitViewController.delegate = self
+        DropDown.startListeningToKeyboard()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -138,6 +138,7 @@ class LoginPage: UIViewController {
 //        dismiss(animated: true, completion: nil)
 //    }
     
+
     // Helper for showing an alert
     func showAlert(_ title : String, message: String) {
         let alert = UIAlertView(
@@ -161,7 +162,6 @@ class LoginPage: UIViewController {
             service.authorizer = auth
         }
         
-        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -183,7 +183,7 @@ class LoginPage: UIViewController {
         infoBox.layer.cornerRadius = 8.0
         infoBox.clipsToBounds = true
         view.addSubview(infoBox)
-        
+ 
         // Makes Text Fields
         creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGray, frame: CGRect(x: width/4, y: height/3.5 + 50, width: width/2, height: 30), page:self)
         usernameField.font = usernameField.font!.withSize(30)
@@ -329,7 +329,7 @@ class LoginPage: UIViewController {
                 if (task.result != nil) {//the item exists in the db; the username exists.
                     print("Found username")
                     let loginData = task.result as! DDBLoginData //get the login data object we received
-                    
+                     
                     //compare the password on the db to the password they supplied:
                     if self.passwordField.text == loginData.Password {
                         print("Valid. Signed in.")

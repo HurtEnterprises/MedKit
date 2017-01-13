@@ -239,14 +239,13 @@ class AccountRegisterPage: UIViewController {
 //            
             KeychainWrapper.setString(desiredPasswordField.text!, forKey: "Password")
             KeychainWrapper.setString(physicianIDField.text!, forKey: "Username")
-
 //            
             let loginData = DDBLoginData() //initialize a loginData object.
 //            
             PublicTag = emailField.text! //used to generate secret keys for encryption
             PrivateTag = desiredPasswordField.text!
             generateKeys() //generate public and private keys using the email as a tag
-//
+            
             loginData?.PhysicianID = physicianIDField.text!
             loginData?.Password = desiredPasswordField.text!
             loginData?.Email = physicianIDField.text!

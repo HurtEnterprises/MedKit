@@ -36,6 +36,8 @@
 		F84AD4A41C4461E2009FDFEB /* EncryptionFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */; };
 		F85FD4801C4EE862006411AD /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85FD47F1C4EE862006411AD /* Email.swift */; };
 		F85FD4821C52D73D006411AD /* KeychainFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85FD4811C52D73D006411AD /* KeychainFunctions.swift */; };
+		F8AD46811E0D9DD0007B83E0 /* PatientInfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AD46801E0D9DD0007B83E0 /* PatientInfoPage.swift */; };
+		F8AD46831E0DA538007B83E0 /* HistoryOfPresentIllness.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AD46821E0DA538007B83E0 /* HistoryOfPresentIllness.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,8 @@
 		F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionFunctions.swift; sourceTree = "<group>"; };
 		F85FD47F1C4EE862006411AD /* Email.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		F85FD4811C52D73D006411AD /* KeychainFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainFunctions.swift; sourceTree = "<group>"; };
+		F8AD46801E0D9DD0007B83E0 /* PatientInfoPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientInfoPage.swift; sourceTree = "<group>"; };
+		F8AD46821E0DA538007B83E0 /* HistoryOfPresentIllness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryOfPresentIllness.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,8 +223,10 @@
 				F85FD47F1C4EE862006411AD /* Email.swift */,
 				8F6FA9B01C3CE5530083020B /* MainMenu.swift */,
 				8FE0ACB31DEC326C0072D7AE /* PhysicalExam.swift */,
+				F8AD46801E0D9DD0007B83E0 /* PatientInfoPage.swift */,
 				F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */,
 				F85FD4811C52D73D006411AD /* KeychainFunctions.swift */,
+				F8AD46821E0DA538007B83E0 /* HistoryOfPresentIllness.swift */,
 				8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */,
 				8FC03B911C40D03D00CF9F98 /* MyAppointments.swift */,
 				8FD515161BFA7C2F008E7CDB /* Main.storyboard */,
@@ -451,11 +457,13 @@
 				8FC03B991C4E942F00CF9F98 /* CurrentUserClass.swift in Sources */,
 				F84AD4A41C4461E2009FDFEB /* EncryptionFunctions.swift in Sources */,
 				F85FD4821C52D73D006411AD /* KeychainFunctions.swift in Sources */,
+				F8AD46831E0DA538007B83E0 /* HistoryOfPresentIllness.swift in Sources */,
 				8FC03B9B1C4E944000CF9F98 /* PatientClass.swift in Sources */,
 				6C7006F31C394C0E00E681DF /* LoginData.swift in Sources */,
 				6C7006EE1C32862900E681DF /* Obj-C-Bridging-Header.cpp in Sources */,
 				8FFE85C01C30927100BC38DB /* AccountRegisterPage.swift in Sources */,
 				8FC03B921C40D03D00CF9F98 /* MyAppointments.swift in Sources */,
+				F8AD46811E0D9DD0007B83E0 /* PatientInfoPage.swift in Sources */,
 				8FD515131BFA7C2F008E7CDB /* MasterViewController.swift in Sources */,
 				8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */,
 				F85FD4801C4EE862006411AD /* Email.swift in Sources */,

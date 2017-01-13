@@ -43,7 +43,6 @@ class MasterViewController: UITableViewController {
                 print("Error occurred: \(error)")
                 return nil
             }
-            
             let listTablesOutput = task.result as! AWSDynamoDBListTablesOutput!
             
             for tableName : String in (listTablesOutput?.tableNames!)! {

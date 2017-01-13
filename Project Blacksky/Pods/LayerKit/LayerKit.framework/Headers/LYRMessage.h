@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "LYRQuery.h"
 #import "LYRConstants.h"
-#import "LYRActor.h"
 #import "LYRPushNotificationConfiguration.h"
 #import "LYRIdentity.h"
 
@@ -45,6 +44,21 @@ typedef NS_ENUM(NSInteger, LYRRecipientStatus) {
  */
 extern NSString * _Nonnull const LYRMessageOptionsPushNotificationConfigurationKey;
 
+/**
+ @abstract A `LYRMessageOptions` object encapsulates configuration of a newly instantiated `LYRMessage` object meant to be sent out.
+ @discussion Use this class to configure the behavior of a message during the time of the initialization of the
+   `LYRMessage` object instance.
+ */
+@interface LYRMessageOptions : NSObject <NSCoding, NSCopying>
+
+/**
+ @abstract Push notification configuration sent to the Layer services along with the newly initialized `LYRMessage` instance.
+ @discussion @see `LYRPushNotificationConfiguration` for per recipient customization options.
+ */
+@property (nonatomic, copy, nullable) LYRPushNotificationConfiguration *pushNotificationConfiguration;
+
+@end
+
 //------------------------------------------------------------
 
 /**
@@ -70,7 +84,7 @@ extern NSString * _Nonnull const LYRMessageOptionsPushNotificationConfigurationK
  @abstract The conversation that the receiver is a part of.
  @discussion The `conversation` property is queryable via the `LYRPredicateOperatorIsEqualTo`, `LYRPredicateOperatorIsNotEqualTo`, `LYRPredicateOperatorIsIn`, and `LYRPredicateOperatorIsNotIn` operators.
  */
-@property (nonatomic, readonly, nonnull) LYRConversation *conversation LYR_QUERYABLE_PROPERTY LYR_QUERYABLE_FROM(LYRMessagePart);
+@property (nonatomic, readonly, nullable) LYRConversation *conversation LYR_QUERYABLE_PROPERTY LYR_QUERYABLE_FROM(LYRMessagePart);
 
 /**
  @abstract An array of message parts (modeled by the `LYRMessagePart` class) that provide access to the content of the receiver.
@@ -108,7 +122,7 @@ extern NSString * _Nonnull const LYRMessageOptionsPushNotificationConfigurationK
 
 /**
  @abstract The sender who sent the message.
- @discussion The `sender` can be an authenticated user or from a platform, specificed by the sender's properties `userID` and `name`.  They are mutually exclusive.  Both properties are queryable from `LYRMessage`.
+ @discussion The `sender` can be an authenticated user or from a platform, specificed by the sender's properties `userID` and `name`. They are mutually exclusive. The sender's `userID` and `name` properties are queryable from `LYRMessage`.
  */
 @property (nonatomic, readonly, nonnull) LYRIdentity *sender;
 

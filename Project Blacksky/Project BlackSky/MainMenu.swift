@@ -5,20 +5,20 @@
 //  Created by Deven  on 1/6/16.
 //  Copyright © 2016 Hurt Enterprises. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
 let creationFunctions: UICreationFunctions = UICreationFunctions()
 let registerPage: AccountRegisterPage = AccountRegisterPage()
 let loginPage:LoginPage = LoginPage()
+let PatientPage:PatientInfoPage = PatientInfoPage()
 let myPatientsPage: MyPatients = MyPatients()
 let myAppointmentsPage: MyApointments = MyApointments()
 let NewPatientPage: NewPatient = NewPatient()
 
 
 class MainMenu: UIViewController {
-
+    
     func configureView() {
         // Update the user interface for the detail item.
     }
@@ -114,7 +114,7 @@ class MainMenu: UIViewController {
         scheduleButton.setAttributedTitle(scheduleText, for: UIControlState())
         scheduleButton.layer.borderWidth = 6.0
         scheduleButton.center = CGPoint(x: width/2, y: height * 10.5/20)
-        scheduleButton.addTarget(self, action: "myAppointmentsClicked:", for: .touchUpInside)
+        scheduleButton.addTarget(self, action: "myAppointmentsClicked", for: .touchUpInside)
         
         
         let myPatientsText = NSMutableAttributedString(string:"MY PATIENTS", attributes: underlineAttributes)
@@ -147,17 +147,19 @@ class MainMenu: UIViewController {
         logoutLayer.colors = [color2, color1]
         logoutLayer.locations = [0.0, 0.7]
         logoutButton.layer.insertSublayer(logoutLayer, at: 0)
+
     }
-        override func didReceiveMemoryWarning() {
-            super.didReceiveMemoryWarning()
-            // Dispose of any resources that can be recreated.
-        }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     func logoutClicked(_ sender: UIButton!){
-//        if(self.presentedViewController == registerPage){
-//            registerPage.dismissViewControllerAnimated(true, completion: nil)
-//        }
-//        self.dismissViewControllerAnimated(true, completion: nil)
+
+        //        if(self.presentedViewController == registerPage){
+        //            registerPage.dismissViewControllerAnimated(true, completion: nil)
+        //        }
+        //        self.dismissViewControllerAnimated(true, completion: nil)
         logoutCurrentUser()
         self.navigationController?.popToViewController(loginPage, animated: true)
         //TODO: @Mehrab add some sort of logout function or we can make it so the user is logged out whenever they hit the login page?
@@ -172,11 +174,11 @@ class MainMenu: UIViewController {
     }
     
     func patientInfoClicked(_ sender: UIButton!){
-        print("Patient Info CLicked")
+        self.navigationController?.pushViewController(PatientPage, animated: true)
     }
     
     func backClicked(_ sender: UIBarButtonItem!){
-            self.navigationController?.popToViewController(loginPage, animated: true)
+        self.navigationController?.popToViewController(loginPage, animated: true)
     }
     
     func myPatientsClicked(_ sender:UIButton){
@@ -192,6 +194,9 @@ class MainMenu: UIViewController {
     }
     
 }
+
+
+
     
 
 

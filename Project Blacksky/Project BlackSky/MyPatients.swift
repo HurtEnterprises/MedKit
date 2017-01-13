@@ -61,5 +61,4 @@ class MyPatients: UIViewController {
         self.dismiss(animated: true, completion: {});
     }
     
-
 }
