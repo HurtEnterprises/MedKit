@@ -322,7 +322,7 @@ class LoginPage: UIViewController {
     func verifyLogin(_ username: String){
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default();
         
-        let task: AWSTask! = dynamoDBObjectMapper!.load(DDBLoginData.self, hashKey: username, rangeKey: nil)
+        let task: AWSTask! = dynamoDBObjectMapper.load(DDBLoginData.self, hashKey: username, rangeKey: nil)
         
         task.continue(with: AWSExecutor.mainThread(), with: { (task:AWSTask!) -> AnyObject! in
             if (task.error == nil) { //no error
