@@ -114,7 +114,7 @@ class MainMenu: UIViewController {
         scheduleButton.setAttributedTitle(scheduleText, for: UIControlState())
         scheduleButton.layer.borderWidth = 6.0
         scheduleButton.center = CGPoint(x: width/2, y: height * 10.5/20)
-        scheduleButton.addTarget(self, action: "myAppointmentsClicked:", for: .touchUpInside)
+        scheduleButton.addTarget(self, action: "myAppointmentsClicked", for: .touchUpInside)
         
         
         let myPatientsText = NSMutableAttributedString(string:"MY PATIENTS", attributes: underlineAttributes)

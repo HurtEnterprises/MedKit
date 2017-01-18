@@ -84,8 +84,13 @@ class UICreationFunctions: UIViewController{
         
         
     //    self.makeLabel(labelname, name: content, textColor: color, alignment: NSTextAlignment.left, frame: CGRect(x: //location.origin.x + 50, y: location.origin.y, width: location.size.width, height: location.size.height), page: /self)
+    }
     
         
+// Makes a table
+    func makeTable(_ table: UITableView, location: CGRect, page: UIViewController){
+        table.frame = location
+        page.view.addSubview(table)
     }
 
 // Makes an alert
@@ -126,6 +131,7 @@ class UICreationFunctions: UIViewController{
         navigationItem.leftBarButtonItem = backButton
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 30)!], for: UIControlState())
     }
+        
     if(forwardButton){
         let rightButton =  UIBarButtonItem(title: "Next", style:   UIBarButtonItemStyle.plain, target: page, action: "nextClickedClicked:")
         // Create two buttons for the navigation item
@@ -135,7 +141,8 @@ class UICreationFunctions: UIViewController{
     navigationBar.items = [navigationItem]
     //Adds the bar to the view
     page.view.addSubview(navigationBar)
-}
+    }
+    
     // Disables autocorrect and auto capitalization
     func disableAutocorrect(_ textField: UITextField){
         textField.autocorrectionType = .no
@@ -163,4 +170,6 @@ class UICreationFunctions: UIViewController{
         context?.strokePath()
     }
     
-}
+
+
+        }
