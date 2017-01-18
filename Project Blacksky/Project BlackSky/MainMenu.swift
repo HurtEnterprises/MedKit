@@ -147,6 +147,9 @@ class MainMenu: UIViewController {
         logoutLayer.colors = [color2, color1]
         logoutLayer.locations = [0.0, 0.7]
         logoutButton.layer.insertSublayer(logoutLayer, at: 0)
+        let tealColor = UIColor(hue: 0.5583, saturation: 1, brightness: 0.74, alpha: 1.0)
+        
+        
 
     }
     override func didReceiveMemoryWarning() {

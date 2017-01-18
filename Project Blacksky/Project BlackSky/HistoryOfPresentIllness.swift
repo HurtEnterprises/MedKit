@@ -81,6 +81,14 @@ class HistoryOfPresentIllness: UIViewController {
         Skipbutton.frame = CGRect(x: width/1.4,y: 0.900 * height, width: width * 0.25, height: height/10)
         self.view.addSubview(Skipbutton)
         
+        let Notesbutton: UIButton = UIButton(type: UIButtonType.custom)
+        //set image for button
+        Notesbutton.setImage(UIImage(named: "Notes"), for: UIControlState.normal)
+        //add function for button
+        //set frame
+        Notesbutton.frame = CGRect(x: width/2.1,y: 0.770 * height, width: width * 0.49, height: height/8)
+        self.view.addSubview(Notesbutton)
+        
         let CreateNewTemplatebutton: UIButton = UIButton(type: UIButtonType.custom)
         //set image for button
         CreateNewTemplatebutton.setImage(UIImage(named: "Create New Template"), for: UIControlState.normal)

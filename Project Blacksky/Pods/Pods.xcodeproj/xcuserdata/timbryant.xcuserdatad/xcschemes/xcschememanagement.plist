@@ -4,199 +4,175 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AWSAutoScaling 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>26</integer>
+		</dict>
 		<key>AWSAutoScaling.xcscheme</key>
 		<dict>
-<<<<<<< HEAD
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSCloudWatch.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSCognito.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSCore.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSDynamoDB.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSEC2.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSElasticLoadBalancing.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSKinesis.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSLambda.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSMachineLearning.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSMobileAnalytics.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSS3.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSSES.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSSNS.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSSQS.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>AWSSimpleDB.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Atlas-AtlasResource.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Atlas.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>DropDown.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>GTMOAuth2.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>GTMSessionFetcher.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>GoogleAPIClient.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Project BlackSky.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-=======
 			<key>orderHint</key>
 			<integer>3</integer>
+		</dict>
+		<key>AWSCloudWatch 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>27</integer>
 		</dict>
 		<key>AWSCloudWatch.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>AWSCognito 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>28</integer>
+		</dict>
 		<key>AWSCognito.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
+		</dict>
+		<key>AWSCore 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>29</integer>
 		</dict>
 		<key>AWSCore.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
+		<key>AWSDynamoDB 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>30</integer>
+		</dict>
 		<key>AWSDynamoDB.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>7</integer>
+		</dict>
+		<key>AWSEC2 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>31</integer>
 		</dict>
 		<key>AWSEC2.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+		<key>AWSElasticLoadBalancing 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>32</integer>
+		</dict>
 		<key>AWSElasticLoadBalancing.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>9</integer>
+		</dict>
+		<key>AWSKinesis 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>33</integer>
 		</dict>
 		<key>AWSKinesis.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
+		<key>AWSLambda 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>34</integer>
+		</dict>
 		<key>AWSLambda.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>11</integer>
+		</dict>
+		<key>AWSMachineLearning 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>35</integer>
 		</dict>
 		<key>AWSMachineLearning.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>12</integer>
 		</dict>
+		<key>AWSMobileAnalytics 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>36</integer>
+		</dict>
 		<key>AWSMobileAnalytics.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>13</integer>
+		</dict>
+		<key>AWSS3 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>37</integer>
 		</dict>
 		<key>AWSS3.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>14</integer>
 		</dict>
+		<key>AWSSES 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>38</integer>
+		</dict>
 		<key>AWSSES.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>15</integer>
+		</dict>
+		<key>AWSSNS 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>40</integer>
 		</dict>
 		<key>AWSSNS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>17</integer>
 		</dict>
+		<key>AWSSQS 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>41</integer>
+		</dict>
 		<key>AWSSQS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>18</integer>
 		</dict>
+		<key>AWSSimpleDB 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>39</integer>
+		</dict>
 		<key>AWSSimpleDB.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>16</integer>
+		</dict>
+		<key>Atlas 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>24</integer>
+		</dict>
+		<key>Atlas-AtlasResource 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>25</integer>
 		</dict>
 		<key>Atlas-AtlasResource.xcscheme</key>
 		<dict>
@@ -208,38 +184,59 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>GTMOAuth2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>20</integer>
-		</dict>
-		<key>GTMSessionFetcher.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>21</integer>
-		</dict>
-		<key>GoogleAPIClient.xcscheme</key>
+		<key>DropDown.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>19</integer>
 		</dict>
-		<key>Pods-Project BlackSky.xcscheme</key>
+		<key>GTMOAuth2 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>43</integer>
+		</dict>
+		<key>GTMOAuth2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
+		<key>GTMSessionFetcher 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>44</integer>
+		</dict>
+		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>22</integer>
->>>>>>> master
+		</dict>
+		<key>GoogleAPIClient 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>42</integer>
+		</dict>
+		<key>GoogleAPIClient.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
+		<key>Pods-Project BlackSky 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>45</integer>
+		</dict>
+		<key>Pods-Project BlackSky.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>23</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-<<<<<<< HEAD
 		<key>05C7B4C5D3A812EDFE2E0DF08124C813</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-=======
->>>>>>> master
 		<key>0849E21B9B9ACDBAAC96A31A5953712F</key>
 		<dict>
 			<key>primary</key>
@@ -260,119 +257,67 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
 		<key>14899DD2DE4794A659D6E3A53A2FE532</key>
-=======
-		<key>228A8785B1C6C6BFE8E1C8D261204DE3</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
 		<key>228A8785B1C6C6BFE8E1C8D261204DE3</key>
-=======
-		<key>39EFD830E6F82181B9D6F38B0A15FFFD</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
 		<key>2DB2440E9FA2A7EDF63907320807D8AD</key>
-=======
-		<key>3B41A9B1D49827D58E203AF61D34F608</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
 		<key>39EFD830E6F82181B9D6F38B0A15FFFD</key>
-=======
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>40F160B1EC87D07E1B9EE04FB13AB5F3</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
-		<key>40F160B1EC87D07E1B9EE04FB13AB5F3</key>
-=======
 		<key>7051517F12CD2BBD8AE2AD214DB4EC0C</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
-		<key>7051517F12CD2BBD8AE2AD214DB4EC0C</key>
-=======
-		<key>7BB24175093D7F20531C6FD7CB7D1C9C</key>
->>>>>>> master
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-<<<<<<< HEAD
 		<key>71720EFCFAC59A96C1F0B855BDF3BCEC</key>
-=======
-		<key>A02E45903B1C4346E7A9212CABF1F743</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
 		<key>9F766ADB76A46AB732825D44C4BAAABF</key>
-=======
-		<key>A79E4DFDB520AC579CEA22EC6DE9ECD7</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
 		<key>BAA396C4D689A02A15029B49E076FAF0</key>
-=======
-		<key>AC89BF0B23F90017D2FE812E7D8478EF</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
 		<key>BC279E1A4A79751E826180F63A851E07</key>
-=======
-		<key>BAA396C4D689A02A15029B49E076FAF0</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
 		<key>BD02CE344851D72142B287462B4106C0</key>
-=======
-		<key>BC279E1A4A79751E826180F63A851E07</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
 		<key>C3FB5DE1339FFE064A98868D1CA84176</key>
-=======
-		<key>BD02CE344851D72142B287462B4106C0</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-<<<<<<< HEAD
 		<key>CBF20B15AEFABEB1A6F9CF1F30A13134</key>
-=======
-		<key>C3FB5DE1339FFE064A98868D1CA84176</key>
->>>>>>> master
 		<dict>
 			<key>primary</key>
 			<true/>
