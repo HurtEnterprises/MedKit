@@ -161,13 +161,11 @@ class PhysicalExam: UIViewController {
         chestButton.frame = CGRect(x:self.view.center.x + 200,y: 0.38 * height,width:90,height:80)
         chestButton.imageView?.contentMode = .scaleAspectFill
         chestButton.layer.borderWidth = 1.0
-        chestButton.center.x = self.view.center.x
         chestButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         self.view.addSubview(chestButton)
 
         headButton.setImage(headImage, for: UIControlState.normal)
-        headButton.frame = CGRect(x:self.view.center.x + 200,y:self.view.center.y - 140,width: 60,height: 70)
-        headButton.center.x = self.view.center.x
+        headButton.frame = CGRect(x:self.view.center.x + 200,y:self.view.center.y - 180,width: 60,height: 70)
         headButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         headButton.layer.borderWidth = 1.0
         self.view.addSubview(headButton)
@@ -208,26 +206,26 @@ class PhysicalExam: UIViewController {
         
         let labWorkImage = UIImage(named: "RequestLabWork")
         let labWorkimageView = UIImageView(image: labWorkImage!)
-        labWorkimageView.frame = CGRect(x: width/2.3,y: 0.86 * height, width: width * 0.25, height: height/7)
+        labWorkimageView.frame = CGRect(x: width/2.3,y: 0.77 * height, width: width * 0.25, height: height/7)
         labWorkimageView.layer.borderWidth = 2.0
         self.view.addSubview(labWorkimageView)
         
         let reviewSymtomsImage = UIImage(named: "ReviewOfSymptoms")
         let reviewSymtomsimageView = UIImageView(image: reviewSymtomsImage!)
-        reviewSymtomsimageView.frame = CGRect(x: width * 0.1,y: 0.4 * height, width: width * 0.25, height: height/3.5)
+        reviewSymtomsimageView.frame = CGRect(x: width * 0.1,y: 0.41 * height, width: width * 0.25, height: height/3.5)
         self.view.addSubview(reviewSymtomsimageView)
         
         maleButton.setImage(maleNotSelected, for: UIControlState.normal)
-        maleButton.frame = CGRect(x: width * 0.1,y: 0.77 * height, width: width * 0.25, height: height/10)
+        maleButton.frame = CGRect(x: width * 0.1,y: 0.78 * height, width: width * 0.25, height: height/10)
         self.view.addSubview(maleButton)
         maleButton.addTarget(self, action: #selector(PhysicalExam.maleClicked(_:)), for: UIControlEvents.touchUpInside)
         
         femaleButton.setImage(femaleSelected, for: UIControlState.normal)
-        femaleButton.frame = CGRect(x: width * 0.1,y: 0.68 * height, width: width * 0.25, height: height/10)
+        femaleButton.frame = CGRect(x: width * 0.1,y: 0.69 * height, width: width * 0.25, height: height/10)
         self.view.addSubview(femaleButton)
         femaleButton.addTarget(self, action: #selector(PhysicalExam.femaleClicked(_:)), for: UIControlEvents.touchUpInside)
         
-        reviewSymptomsTextView.frame = CGRect(x: width * 0.11,y: 0.45 * height, width: width * 0.23, height: height/4.2)
+        reviewSymptomsTextView.frame = CGRect(x: width * 0.11,y: 0.46 * height, width: width * 0.23, height: height/4.25)
         reviewSymptomsTextView.layer.borderWidth = 2.0
         reviewSymptomsTextView.backgroundColor = UIColor.clear
         reviewSymptomsTextView.textColor = purpleColor
