@@ -22,15 +22,6 @@ class LoginPage: UIViewController {
     let creationFunctions: UICreationFunctions = UICreationFunctions()
     let delegate: AppDelegate = AppDelegate()
     
-    fileprivate let kKeychainItemName = "Google Calendar API"
-    fileprivate let kClientID = "45994898732-dkpdmhmqh68nhrlt2sgg7u62dhv41utu.apps.googleusercontent.com"
-    
-    // If modifying these scopes, delete your previously saved credentials by
-    // resetting the iOS simulator or uninstall the app.
-    fileprivate let scopes = [kGTLAuthScopeCalendarReadonly]
-    
-    fileprivate let service = GTLServiceCalendar()
-    
     var detailItem: AnyObject? {
         didSet {
             // Update the view.
@@ -51,92 +42,7 @@ class LoginPage: UIViewController {
         NSFontAttributeName : UIFont.systemFont(ofSize: 27.0),
         NSForegroundColorAttributeName : UIColor.white,
         NSUnderlineStyleAttributeName : 1] as [String : Any]
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if let authorizer = service.authorizer,
-            let canAuth = authorizer.canAuthorize , canAuth {
-            fetchEvents()
-        } else {
-            present(
-                createAuthController(),
-                animated: true,
-                completion: nil
-            )
-        }
-    }
-    // Construct a query and get a list of upcoming events from the user calendar
-    func fetchEvents() {
-        let query = GTLQueryCalendar.queryForEventsList(withCalendarId: "primary")
-        query?.maxResults = 10
-        query?.timeMin = GTLDateTime(date: Date(), timeZone: TimeZone.autoupdatingCurrent)
-        query?.singleEvents = true
-        query?.orderBy = kGTLCalendarOrderByStartTime
-        service.executeQuery(
-            query!,
-            delegate: self,
-            didFinish: #selector(LoginPage.displayResultWithTicket(_:finishedWithObject:error:))
-        )
-    }
-    
-    // Display the start dates and event summaries in the UITextView
-    func displayResultWithTicket(
-        _ ticket: GTLServiceTicket,
-        finishedWithObject response : GTLCalendarEvents,
-                           error : NSError?) {
-        
-        if let error = error {
-            showAlert("Error", message: error.localizedDescription)
-            return
-        }
-        
-        var eventString = ""
-        
-        if let events = response.items() , !events.isEmpty {
-            for event in events as! [GTLCalendarEvent] {
-                let start : GTLDateTime! = event.start.dateTime ?? event.start.date
-                let startString = DateFormatter.localizedString(
-                    from: start.date,
-                    dateStyle: .short,
-                    timeStyle: .short
-                )
-                eventString += "\(startString) - \(event.summary)\n"
-            }
-        } else {
-            eventString = "No upcoming events found."
-        }
-        
-        print(eventString)
-    }
-    
-    
-    // Creates the auth controller for authorizing access to Google Calendar API
-    fileprivate func createAuthController() -> GTMOAuth2ViewControllerTouch {
-        let scopeString = scopes.joined(separator: " ")
-        return GTMOAuth2ViewControllerTouch(
-            scope: scopeString,
-            clientID: kClientID,
-            clientSecret: nil,
-            keychainItemName: kKeychainItemName,
-            delegate: self,
-            finishedSelector: #selector(LoginPage.viewController(_:finishedWithAuth:error:))
-        )
-    }
-    
-    // Handle completion of the authorization process, and update the Google Calendar API
-    // with the new credentials.
-    func viewController(_ vc : UIViewController,
-                        finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?) {
-        
-        if let error = error {
-            service.authorizer = nil
-            showAlert("Authentication Error", message: error.localizedDescription)
-            return
-        }
-        
-        service.authorizer = authResult
-        dismiss(animated: true, completion: nil)
-    }
+
     
     // Helper for showing an alert
     func showAlert(_ title : String, message: String) {
@@ -153,13 +59,6 @@ class LoginPage: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // NOTES: Views must be added in a specific order as they stack (Background, boxes, all labels and textboxes)
-        //google cal auth
-        if let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
-            forName: kKeychainItemName,
-            clientID: kClientID,
-            clientSecret: nil) {
-            service.authorizer = auth
-        }
         
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
