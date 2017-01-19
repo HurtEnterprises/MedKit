@@ -66,6 +66,11 @@ class UICreationFunctions: UIViewController{
     label.text = name
     page.view.addSubview(label)
     }
+// Makes a table
+    func makeTable(_ table: UITableView, location: CGRect, page: UIViewController){
+        table.frame = location
+        page.view.addSubview(table)
+    }
 
 // Makes an alert
     func makeAlert(_ title: String, message: String, printStatement: String, page:UIViewController){
