@@ -30,6 +30,8 @@ class PhysicalExam: UIViewController {
     var doctorName = "Doctor Name"
     
     let tealColor = UIColor(hue: 0.5583, saturation: 1, brightness: 0.74, alpha: 1.0)
+    let purpleColor = UIColor(hue: 0.9277777778, saturation: 1, brightness: 0.74, alpha: 1.0)
+
     
     // Initializes labels and buttons
     let titleLabel: UILabel = UILabel()
@@ -66,18 +68,38 @@ class PhysicalExam: UIViewController {
     
     let internalImage = UIImage(named: "BlueBoxEmpty") as UIImage?
     let externalImage = UIImage(named: "BlueBoxFilled") as UIImage?
-
-
     
-    var underlineAttributes = [
-        NSFontAttributeName : UIFont.systemFont(ofSize: 27.0),
-        NSForegroundColorAttributeName : UIColor.white,
-        NSUnderlineStyleAttributeName : 1] as [String : Any]
+    let maleSelected = UIImage(named: "MaleChecked") as UIImage?
+    let maleNotSelected = UIImage(named: "MaleUnchecked") as UIImage?
+    
+    let femaleSelected = UIImage(named: "FemaleChecked") as UIImage?
+    let femaleNotSelected = UIImage(named: "FemaleUnchecked") as UIImage?
+    
 
+    let maleButton: UIButton = UIButton()
+    let femaleButton: UIButton = UIButton()
+    let notesButton: UIButton = UIButton()
+    let createOtherButton: UIButton = UIButton()
+    let labWorkYes: UIButton = UIButton()
+    let labWorkNo: UIButton = UIButton()
+    let Skipbutton: UIButton = UIButton(type: UIButtonType.custom)
+    let reviewSymptomsTextView: UITextView = UITextView()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    
+        let underlineAttributes = [
+            NSFontAttributeName : UIFont.systemFont(ofSize: 27.0),
+            NSForegroundColorAttributeName : purpleColor,
+            NSUnderlineStyleAttributeName : 1] as [String : Any]
+        
+        let blueUnderlineAttributes = [
+            NSFontAttributeName : UIFont.systemFont(ofSize: 27.0),
+            NSForegroundColorAttributeName : tealColor,
+            NSUnderlineStyleAttributeName : 1] as [String : Any]
+
+        
         // Makes navigaiton bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -92,7 +114,7 @@ class PhysicalExam: UIViewController {
         
         let backWord: UIButton = UIButton()
         creationFunctions.makeButton(backWord, name: "Back", titleColor: tealColor, location: CGRect(x: width/25, y: height/35, width: width/10, height: 34), page: self)
-        backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 34)
+        backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 30)
         backWord.titleLabel?.text = "Back"
         backWord.titleLabel?.textAlignment = .center
         backWord.titleLabel?.textColor = UIColor.blue
@@ -110,7 +132,7 @@ class PhysicalExam: UIViewController {
         
         let bigBlueAttributes = [NSForegroundColorAttributeName: tealColor, NSFontAttributeName: UIFont.systemFont(ofSize: 60)]
         
-        let smallBlueAttributes = [NSForegroundColorAttributeName: tealColor, NSFontAttributeName: UIFont.systemFont(ofSize: 40)]
+        let smallBlueAttributes = [NSForegroundColorAttributeName: tealColor, NSFontAttributeName: UIFont.systemFont(ofSize: 35)]
         
         let smallGreyAttributes = [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.systemFont(ofSize: 25)]
         
@@ -135,62 +157,102 @@ class PhysicalExam: UIViewController {
         titleLabel.center.x = self.view.center.x
         self.view.addSubview(titleLabel)
         
-//        chestButton.setBackgroundImage(chestImage, for: .normal)
-//        chestButton.frame = CGRect(x:self.view.center.x,y:self.view.center.y,width:200,height:200)
-//        chestButton.imageView?.contentMode = .scaleAspectFill
-//        chestButton.layer.borderWidth = 1.0
-//        chestButton.center.x = self.view.center.x
-//        chestButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
-//        self.view.addSubview(chestButton)
-//        
-//        headButton.setBackgroundImage(UIImage(named: "Head"), for: UIControlState.normal)
-//        headButton.frame = CGRect(x:self.view.center.x,y:self.view.center.y - 200,width: width * 0.5,height: height * 0.3)
-//        headButton.center.x = self.view.center.x
-//        headButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
-//        self.view.addSubview(headButton)
-//        
-//        leftArmButton.frame = CGRect(x:self.view.center.x,y:self.view.center.y,width:200,height:200)
-//        leftArmButton.setBackgroundImage(leftArmImage, for: .normal)
-//        leftArmButton.imageView?.frame = leftArmButton.frame
-//        leftArmButton.layer.borderWidth = 1.0
-//        leftArmButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
-//        self.view.addSubview(leftArmButton)
+        chestButton.setImage(chestImage, for: .normal)
+        chestButton.frame = CGRect(x:self.view.center.x + 200,y: 0.38 * height,width:90,height:80)
+        chestButton.imageView?.contentMode = .scaleAspectFill
+        chestButton.layer.borderWidth = 1.0
+        chestButton.center.x = self.view.center.x
+        chestButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
+        self.view.addSubview(chestButton)
+
+        headButton.setImage(headImage, for: UIControlState.normal)
+        headButton.frame = CGRect(x:self.view.center.x + 200,y:self.view.center.y - 140,width: 60,height: 70)
+        headButton.center.x = self.view.center.x
+        headButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
+        headButton.layer.borderWidth = 1.0
+        self.view.addSubview(headButton)
+        
+        leftArmButton.frame = CGRect(x:width * 0.57 + 70,y:height * 0.4,width:75,height:175)
+        leftArmButton.setImage(leftArmImage, for: .normal)
+        leftArmButton.layer.borderWidth = 1.0
+        leftArmButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
+        self.view.addSubview(leftArmButton)
         
         let Nextbutton: UIButton = UIButton(type: UIButtonType.custom)
         //set image for button
         Nextbutton.setImage(UIImage(named: "Next"), for: UIControlState.normal)
         //add function for button
         //set frame
-        Nextbutton.frame = CGRect(x: width/2.3,y: 0.880 * height, width: width * 0.25, height: height/10)
+        Nextbutton.frame = CGRect(x: width/2.3,y: 0.88 * height, width: width * 0.25, height: height/10)
         self.view.addSubview(Nextbutton)
         Nextbutton.addTarget(self, action: Selector("skipClicked:"), for: UIControlEvents.touchUpInside)
         
-        creationFunctions.makeLabel(internalLabel, name: "INTERNAL", textColor: tealColor, alignment: NSTextAlignment.center, frame: CGRect(x:self.view.center.x/4,y:self.view.center.y/3-50,width:500,height:500), page: self)
+        //set image for button
+        Skipbutton.setImage(UIImage(named: "SKIP"), for: UIControlState.normal)
+        Skipbutton.frame = CGRect(x: width/1.4,y: 0.88 * height, width: width * 0.25, height: height/10)
+        self.view.addSubview(Skipbutton)
+        Skipbutton.addTarget(self, action: "skipClicked:", for: UIControlEvents.touchUpInside)
         
-        creationFunctions.makeLabel(externalLabel, name: "SKIN", textColor: tealColor, alignment: NSTextAlignment.center, frame: CGRect(x:self.view.center.x/4,y:self.view.center.y/3,width:500,height:500), page: self)
+        creationFunctions.makeClearButton(notesButton, name: "NOTES", titleColor: purpleColor, location: CGRect(x: width/1.4,y: 0.77 * height, width: width * 0.25, height: height/11), page: self)
+        let notesText = NSMutableAttributedString(string:"NOTES", attributes: underlineAttributes)
+        notesButton.setAttributedTitle(notesText, for: UIControlState())
+        notesButton.layer.borderWidth = 4.0
+        notesButton.layer.borderColor = purpleColor.cgColor
         
-        let imageView = UIImageView(image: leftArmImage!)
-        imageView.frame = CGRect(x:self.view.center.x,y:self.view.center.y,width:300,height:300)
-        imageView.contentMode = .scaleAspectFit
-        view.addSubview(imageView)
+        creationFunctions.makeClearButton(createOtherButton, name: "CREATE\n OTHER", titleColor: tealColor, location: CGRect(x: width * 0.1,y: 0.88 * height, width: width * 0.25, height: 1 * height/10), page: self)
+        let createOtherText = NSMutableAttributedString(string:"CREATE\n OTHER", attributes: blueUnderlineAttributes)
+        createOtherButton.titleLabel?.numberOfLines = 0
+        createOtherButton.layer.borderWidth = 4.0
+        createOtherButton.layer.borderColor = tealColor.cgColor
+        createOtherButton.setAttributedTitle(createOtherText, for: UIControlState())
         
-//        internalButton.frame = CGRect(x:self.view.center.x + 200,y:self.view.center.y,width:500,height:500)
-//        internalButton.setImage(internalImage, for: .normal)
-//        internalButton.imageView?.frame = leftArmButton.frame
-//        internalButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
-//        internalButton.tintColor = UIColor.blue
-//        internalButton.imageView?.tintColor = UIColor.blue
-//        self.view.addSubview(internalButton)
-//        
-//        externalButton.frame = CGRect(x:self.view.center.x + 200,y:self.view.center.y,width:500,height:500)
-//        externalButton.setImage(externalImage, for: .normal)
-//        externalButton.imageView?.frame = leftArmButton.frame
-//        externalButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
-//        externalButton.tintColor = UIColor.blue
-//        externalButton.imageView?.tintColor = UIColor.blue
-//        self.view.addSubview(externalButton)
+        let labWorkImage = UIImage(named: "RequestLabWork")
+        let labWorkimageView = UIImageView(image: labWorkImage!)
+        labWorkimageView.frame = CGRect(x: width/2.3,y: 0.86 * height, width: width * 0.25, height: height/7)
+        labWorkimageView.layer.borderWidth = 2.0
+        self.view.addSubview(labWorkimageView)
+        
+        let reviewSymtomsImage = UIImage(named: "ReviewOfSymptoms")
+        let reviewSymtomsimageView = UIImageView(image: reviewSymtomsImage!)
+        reviewSymtomsimageView.frame = CGRect(x: width * 0.1,y: 0.4 * height, width: width * 0.25, height: height/3.5)
+        self.view.addSubview(reviewSymtomsimageView)
+        
+        maleButton.setImage(maleNotSelected, for: UIControlState.normal)
+        maleButton.frame = CGRect(x: width * 0.1,y: 0.77 * height, width: width * 0.25, height: height/10)
+        self.view.addSubview(maleButton)
+        maleButton.addTarget(self, action: #selector(PhysicalExam.maleClicked(_:)), for: UIControlEvents.touchUpInside)
+        
+        femaleButton.setImage(femaleSelected, for: UIControlState.normal)
+        femaleButton.frame = CGRect(x: width * 0.1,y: 0.68 * height, width: width * 0.25, height: height/10)
+        self.view.addSubview(femaleButton)
+        femaleButton.addTarget(self, action: #selector(PhysicalExam.femaleClicked(_:)), for: UIControlEvents.touchUpInside)
+        
+        reviewSymptomsTextView.frame = CGRect(x: width * 0.11,y: 0.45 * height, width: width * 0.23, height: height/4.2)
+        reviewSymptomsTextView.layer.borderWidth = 2.0
+        reviewSymptomsTextView.backgroundColor = UIColor.clear
+        reviewSymptomsTextView.textColor = purpleColor
+        reviewSymptomsTextView.text = "hello is this working"
+        self.view.addSubview(reviewSymptomsTextView)
+        
+        //Text views, body parts, resize images
 
         self.configureView()
+    }
+    
+    func maleClicked(_ sender: UIButton){
+        print("Male Clicked")
+    }
+    
+    func femaleClicked(_ sender: UIButton){
+        print("Male Clicked")
+    }
+    
+    func internalClicked(_ sender: UIButton){
+        print("Internal Clicked")
+    }
+    
+    func externalClicked(_ sender: UIButton){
+        print("External Clicked")
     }
     
     func backClicked(_ sender: UIBarButtonItem!){

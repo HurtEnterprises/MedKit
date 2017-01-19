@@ -66,7 +66,7 @@ class MainMenu: UIViewController {
         
         let backWord: UIButton = UIButton()
         creationFunctions.makeButton(backWord, name: "Back", titleColor: UIColor.white, location: CGRect(x: width/25, y: height/35, width: width/10, height: 34), page: self)
-        backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 34)
+        backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 30)
         backWord.titleLabel?.text = "Back"
         backWord.titleLabel?.textAlignment = .center
         backWord.titleLabel?.textColor = UIColor.white
@@ -86,10 +86,12 @@ class MainMenu: UIViewController {
         mainMenuLabel.layer.shadowRadius = 3
         mainMenuLabel.layer.shadowOpacity = 0.4
         mainMenuLabel.sizeToFit()
+        mainMenuLabel.center.x = self.view.center.x
         
         creationFunctions.makeLabel(nextPatientLabel, name: "MY  NEXT  PATIENT  IS", textColor: UIColor.white, alignment: NSTextAlignment.center, frame: CGRect(x: width/4, y: 2.1*(height)/10 , width: 200, height: 50), page: self)
         nextPatientLabel.font = nextPatientLabel.font.withSize(50)
         nextPatientLabel.sizeToFit()
+        nextPatientLabel.center.x = self.view.center.x
         
         creationFunctions.makeClearButton(startVisitButton, name: "click for patient info", titleColor: UIColor.white, location: CGRect(x: width/10,y: (height) * 0.26, width: width * 0.8, height: 1.2 * height/10), page: self)
         var clickforinfomessage = NSMutableAttributedString(string: "\nclick for patient info", attributes: infoMessageAttributes)

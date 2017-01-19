@@ -247,7 +247,7 @@ class LoginPage: UIViewController {
         let register = UIButton()
         
         creationFunctions.makeClearButton(register, name: "CREATE AN ACCOUNT",titleColor: UIColor.white, location: CGRect(x: (width * 2/10)/2, y: 7.5*height/10, width: width * 8/10, height: height/8),page: self)
-        register.titleLabel?.font = UIFont(name: (register.titleLabel?.font?.fontName)!, size: 60)
+        register.titleLabel?.font = UIFont(name: (register.titleLabel?.font?.fontName)!, size: 55)
         register.addTarget(self, action: #selector(LoginPage.registerSwitch(_:)), for: .touchUpInside)
         register.layer.borderWidth = 5
         let forgotPassword = UIButton()
@@ -259,6 +259,7 @@ class LoginPage: UIViewController {
         forgotPassword.setAttributedTitle(forgotPasswordString, for: UIControlState())
         forgotPassword.addTarget(self, action: #selector(LoginPage.forgotPasswordSwitch(_:)), for: .touchUpInside)
         forgotPassword.sizeToFit()
+        forgotPassword.center.x = self.view.center.x
         
         let imageName = "MedKitLogoWhite.png"
         creationFunctions.addImage(imageName, frame: CGRect(x: width/2, y: 0, width: width/4, height: height/4), center:true, alpha: 1.0, page: self)

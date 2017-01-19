@@ -80,7 +80,7 @@ class PatientInfoPage: UIViewController {
         
         let backWord: UIButton = UIButton()
         creationFunctions.makeButton(backWord, name: "Back", titleColor: tealColor, location: CGRect(x: width/25, y: height/35, width: width/10, height: 34), page: self)
-        backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 34)
+        backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 30)
         backWord.titleLabel?.text = "Back"
         backWord.titleLabel?.textAlignment = .center
         backWord.titleLabel?.textColor = UIColor.blue
@@ -97,6 +97,7 @@ class PatientInfoPage: UIViewController {
         button.addTarget(self, action: "currentmedicationsbuttonClicked", for: UIControlEvents.touchUpInside)
         //set frame
         button.frame = CGRect(x: width/39,y: 0.350 * height, width: width * 9/10, height: height/10)
+        button.center.x = self.view.center.x
         self.view.addSubview(button)
         
         let Allergiesbutton: UIButton = UIButton(type: UIButtonType.custom)
@@ -106,6 +107,7 @@ class PatientInfoPage: UIViewController {
         Allergiesbutton.addTarget(self, action: "allergiesbuttonClicked", for: UIControlEvents.touchUpInside)
         //set frame
         Allergiesbutton.frame = CGRect(x: width/38,y: 0.750 * height, width: width * 9/10, height: height/10)
+        Allergiesbutton.center.x = self.view.center.x
         self.view.addSubview(Allergiesbutton)
 
         let Startnewvisitbutton: UIButton = UIButton(type: UIButtonType.custom)
@@ -115,6 +117,7 @@ class PatientInfoPage: UIViewController {
         Startnewvisitbutton.addTarget(self, action: "startnewvisitbuttonClicked", for: UIControlEvents.touchUpInside)
         //set frame
         Startnewvisitbutton.frame = CGRect(x: width/10,y: 0.880 * height, width: width * 9/10, height: height/10)
+        Startnewvisitbutton.center.x = self.view.center.x
         self.view.addSubview(Startnewvisitbutton)
         
         let rightButton =  UIBarButtonItem(title: "\(doctorName) | My Account", style:   UIBarButtonItemStyle.plain, target: self, action: #selector(MainMenu.myAccoutClicked(_:)))
@@ -128,6 +131,7 @@ class PatientInfoPage: UIViewController {
         
         creationFunctions.makeLabel(initialPatientInfoLabel, name: "INITIAL PATIENT INFO", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: 4.2 * width/20,y: 1*height/20, width: 0.75 * width, height: height/10), page: self)
         initialPatientInfoLabel.font = UIFont(name: (initialPatientInfoLabel.font.fontName), size: 55)
+        initialPatientInfoLabel.center.x = self.view.center.x
 
         creationFunctions.makeLabel(nameLabel, name: "NAME:", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: width/20,y: 2.5*height/20, width: 0.75 * width, height: height/10), page: self)
         nameLabel.font = UIFont(name: (nameLabel.font.fontName), size: 40)
