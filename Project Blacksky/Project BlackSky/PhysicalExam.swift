@@ -88,6 +88,30 @@ class PhysicalExam: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let headDoubleTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartDoubleTapped(_:)))
+            headDoubleTapped.numberOfTapsRequired = 2
+        
+        let chestDoubleTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartDoubleTapped(_:)))
+        chestDoubleTapped.numberOfTapsRequired = 2
+        
+        let torsoDoubleTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartDoubleTapped(_:)))
+        torsoDoubleTapped.numberOfTapsRequired = 2
+        
+        let pelvisDoubleTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartDoubleTapped(_:)))
+        pelvisDoubleTapped.numberOfTapsRequired = 2
+        
+        let leftArmDoubleTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartDoubleTapped(_:)))
+        leftArmDoubleTapped.numberOfTapsRequired = 2
+        
+        let rightArmDoubleTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartDoubleTapped(_:)))
+        rightArmDoubleTapped.numberOfTapsRequired = 2
+        
+        let leftLegDoubleTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartDoubleTapped(_:)))
+        leftLegDoubleTapped.numberOfTapsRequired = 2
+        
+        let rightLegDoubleTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartDoubleTapped(_:)))
+        rightLegDoubleTapped.numberOfTapsRequired = 2
 
         let underlineAttributes = [
             NSFontAttributeName : UIFont.systemFont(ofSize: 27.0),
@@ -161,7 +185,8 @@ class PhysicalExam: UIViewController {
         chestButton.frame = CGRect(x:self.view.center.x,y: 0.40 * height,width:85,height:80)
         chestButton.imageView?.contentMode = .scaleAspectFill
         chestButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
-        chestButton.contentEdgeInsets =  UIEdgeInsetsMake(1, 2, 4, 2) //(top, left, bottom, right)
+        chestButton.contentEdgeInsets =  UIEdgeInsetsMake(1, 2, 4, 2)//(top, left, bottom, right)
+        chestButton.addGestureRecognizer(chestDoubleTapped)
         self.view.addSubview(chestButton)
 
         headButton.setImage(headImage, for: UIControlState.normal)
@@ -169,18 +194,21 @@ class PhysicalExam: UIViewController {
         headButton.center.x = chestButton.center.x
         headButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         headButton.contentEdgeInsets =  UIEdgeInsetsMake(0, 0, 8, 0) //(top, left, bottom, right)
+        headButton.addGestureRecognizer(headDoubleTapped)
         self.view.addSubview(headButton)
         
         leftArmButton.frame = CGRect(x:width * 0.57 + 20,y:height * 0.41,width:75,height:175)
         leftArmButton.setImage(leftArmImage, for: .normal)
         leftArmButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         leftArmButton.contentEdgeInsets =  UIEdgeInsetsMake(0, 0, 0, 5) //(top, left, bottom, right)
+        leftArmButton.addGestureRecognizer(leftArmDoubleTapped)
         self.view.addSubview(leftArmButton)
         
         rightArmButton.frame = CGRect(x:self.view.center.x - 60,y:height * 0.41,width:75,height:175)
         rightArmButton.setImage(rightArmImage, for: .normal)
         rightArmButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         rightArmButton.contentEdgeInsets =  UIEdgeInsetsMake(0, 5, 0, 5) //(top, left, bottom, right)
+        rightArmButton.addGestureRecognizer(rightArmDoubleTapped)
         self.view.addSubview(rightArmButton)
         
         torsoButton.frame = CGRect(x:self.view.center.x + 10,y: 0.47 * height,width:85,height:60)
@@ -188,6 +216,7 @@ class PhysicalExam: UIViewController {
         torsoButton.setImage(torsoImage, for: .normal)
         torsoButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         torsoButton.contentEdgeInsets =  UIEdgeInsetsMake(2, 2, 5, 2) //(top, left, bottom, right)
+        torsoButton.addGestureRecognizer(torsoDoubleTapped)
         self.view.addSubview(torsoButton)
         
         PelvisButton.frame = CGRect(x:self.view.center.x + 3,y: 0.52 * height,width:85,height:45)
@@ -195,16 +224,19 @@ class PhysicalExam: UIViewController {
         PelvisButton.setImage(PelvisImage, for: .normal)
         PelvisButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         PelvisButton.contentEdgeInsets =  UIEdgeInsetsMake(2, 2, 5, 2) //(top, left, bottom, right)
+        PelvisButton.addGestureRecognizer(pelvisDoubleTapped)
         self.view.addSubview(PelvisButton)
         
         leftLegButton.frame = CGRect(x:self.view.center.x + 42,y: 0.55 * height,width:50,height:175)
         leftLegButton.setImage(leftLegImage, for: .normal)
         leftLegButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
+        leftLegButton.addGestureRecognizer(leftLegDoubleTapped)
         self.view.addSubview(leftLegButton)
         
         rightLegButton.frame = CGRect(x:self.view.center.x - 7,y: 0.55 * height,width:50,height:175)
         rightLegButton.setImage(rightLegImage, for: .normal)
         rightLegButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
+        rightLegButton.addGestureRecognizer(rightLegDoubleTapped)
         self.view.addSubview(rightLegButton)
         
         let Nextbutton: UIButton = UIButton(type: UIButtonType.custom)
@@ -286,26 +318,52 @@ class PhysicalExam: UIViewController {
     
     func maleClicked(_ sender: UIButton){
         print("Male Clicked")
+        if femaleButton.imageView?.image == femaleSelected {
+            print("wrking")
+            maleButton.setImage(maleSelected, for: .normal)
+            femaleButton.setImage(femaleNotSelected, for: .normal)
+        }
     }
     
     func femaleClicked(_ sender: UIButton){
-        print("Male Clicked")
+        print("Female Clicked")
+        if maleButton.imageView?.image == maleSelected {
+            maleButton.setImage(maleNotSelected, for: .normal)
+            femaleButton.setImage(femaleSelected, for: .normal)
+        }
     }
     
     func internalClicked(_ sender: UIButton){
+        if externalButton.imageView?.image == boxFilled {
+            externalButton.setImage(boxEmpty, for: .normal)
+            internalButton.setImage(boxFilled, for: .normal)
+        }
         print("Internal Clicked")
     }
     
     func externalClicked(_ sender: UIButton){
         print("External Clicked")
+        if internalButton.imageView?.image == boxFilled {
+            externalButton.setImage(boxFilled, for: .normal)
+            internalButton.setImage(boxEmpty, for: .normal)
+        }
+
     }
     
     func labYesClicked(_ sender: UIButton){
         print("Lab Yes Clicked")
+        if labWorkNo.imageView?.image == boxFilled {
+            labWorkYes.setImage(boxFilled, for: .normal)
+            labWorkNo.setImage(boxEmpty, for: .normal)
+        }
     }
     
     func labNoClicked(_ sender: UIButton){
         print("Lab No Clicked")
+        if labWorkYes.imageView?.image == boxFilled {
+            labWorkNo.setImage(boxFilled, for: .normal)
+            labWorkYes.setImage(boxEmpty, for: .normal)
+        }
     }
     
     
@@ -319,11 +377,57 @@ class PhysicalExam: UIViewController {
     }
     
     func bodyPartSingleTapped(_ sender: UIButton){
-        print(sender)
-        if let image = sender.imageView?.image?.withRenderingMode(.alwaysTemplate) {
-            sender.setImage(image, for: .normal)
-            sender.tintColor = UIColor.red
+        if sender == headButton{
+            headButton.setImage(UIImage(named: "HeadBlue"), for: .normal)
+        } else if sender == chestButton {
+            chestButton.setImage(UIImage(named: "ChestBlue"), for: .normal)
+        }else if sender == torsoButton {
+            torsoButton.setImage(UIImage(named: "TorsoBlue"), for: .normal)
+        }else if sender == PelvisButton {
+            PelvisButton.setImage(UIImage(named: "PelvisBlue"), for: .normal)
+        }else if sender == leftArmButton {
+            leftArmButton.setImage(UIImage(named: "LeftArmBlue"), for: .normal)
+        }else if sender == rightArmButton {
+            rightArmButton.setImage(UIImage(named: "RightArmBlue"), for: .normal)
+        }else if sender == leftLegButton {
+            leftLegButton.setImage(UIImage(named: "LeftLegBlue"), for: .normal)
+        }else if sender == rightLegButton {
+            rightLegButton.setImage(UIImage(named: "RightLegBlue"), for: .normal)
         }
+        
+    }
+    
+    func bodyPartDoubleTapped(_ sender: UIGestureRecognizer){
+        var  afflictedBodyParts = [String]()
+        
+        if sender.view == headButton{
+            headButton.setImage(UIImage(named: "HeadRed"), for: .normal)
+            afflictedBodyParts.append("Head")
+        } else if sender.view == chestButton {
+            chestButton.setImage(UIImage(named: "ChestRed"), for: .normal)
+            afflictedBodyParts.append("Chest")
+        }else if sender.view == torsoButton {
+            torsoButton.setImage(UIImage(named: "TorsoRed"), for: .normal)
+            afflictedBodyParts.append("Torso")
+        }else if sender.view == PelvisButton {
+            PelvisButton.setImage(UIImage(named: "PelvisRed"), for: .normal)
+            afflictedBodyParts.append("Pelvis")
+        }else if sender.view == leftArmButton {
+            leftArmButton.setImage(UIImage(named: "LeftArmRed"), for: .normal)
+            afflictedBodyParts.append("Left Arm")
+        }else if sender.view == rightArmButton {
+            rightArmButton.setImage(UIImage(named: "RightArmRed"), for: .normal)
+            afflictedBodyParts.append("Right Arm")
+        }else if sender.view == leftLegButton {
+            leftLegButton.setImage(UIImage(named: "LeftLegRed"), for: .normal)
+            afflictedBodyParts.append("Left Leg")
+        }else if sender.view == rightLegButton {
+            rightLegButton.setImage(UIImage(named: "RightLegRed"), for: .normal)
+            afflictedBodyParts.append("Right Leg")
+        }
+        
+        print(afflictedBodyParts)
+        // TODO:here make array appending body parts that are selected
     }
     
     func switchInternalExternal(_ sender: UIButton){
