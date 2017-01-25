@@ -2,17 +2,17 @@
 //  PatientInfo.swift
 //  Project BlackSky
 //
-//  Created by Tim Bryant on 10/17/16.
+//  Created by Tim Bryant on 1/17/16.
 //  Copyright © 2016 Hurt Enterprises. All rights reserved.
 //
 
 import Foundation
 import DropDown
 import UIKit
+let lastpage: LastPage = LastPage()
 
-class HistoryOfPresentIllness: UIViewController {
-    let loginPage:LoginPage = LoginPage()
-    let assessmentandplan:AssessmentAndPlan = AssessmentAndPlan()
+class AssessmentAndPlan: UIViewController {
+    
     let creationFunctions: UICreationFunctions = UICreationFunctions()
     
     var detailItem: AnyObject? {
@@ -21,7 +21,7 @@ class HistoryOfPresentIllness: UIViewController {
             self.configureView()
         }
     }
-
+    
     
     func configureView() {
         self.view.backgroundColor = UIColor.white
@@ -31,7 +31,7 @@ class HistoryOfPresentIllness: UIViewController {
     
     //TODO: Pull from class info
     var doctorName = "Doctor Name"
-
+    
     var underlineAttributes = [
         NSFontAttributeName : UIFont.systemFont(ofSize: 27.0),
         NSForegroundColorAttributeName : UIColor.white,
@@ -55,11 +55,8 @@ class HistoryOfPresentIllness: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 10, width: width, height: height/20)
         
-        creationFunctions.makeLabel(HistoryOfPresentLabel, name: "HISTORY OF PRESENT", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: 4.2 * width/20,y: 1*height/20, width: 0.75 * width, height: height/15), page: self)
+        creationFunctions.makeLabel(HistoryOfPresentLabel, name: "Assessment and Plan", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: 4.2 * width/20,y: 1*height/20, width: 0.75 * width, height: height/15), page: self)
         HistoryOfPresentLabel.font = UIFont(name: (HistoryOfPresentLabel.font.fontName), size: 55)
-        
-        creationFunctions.makeLabel(IllnessLabel, name: "ILLNESS", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: 8.1 * width/20,y: 1*height/20, width: 0.75 * width, height: height/7), page: self)
-        IllnessLabel.font = UIFont(name: (IllnessLabel.font.fontName), size: 55)
         
         let backArrowButton =  UIButton(type: .custom)
         backArrowButton.setImage(UIImage(named: "BackArrowTeal"), for: UIControlState())
@@ -99,6 +96,9 @@ class HistoryOfPresentIllness: UIViewController {
         CreateNewTemplatebutton.frame = CGRect(x: width / 50,y: 0.900 * height, width: width * 0.4, height: height/10)
         self.view.addSubview(CreateNewTemplatebutton)
         
+    //    let image = "RequestPrescription"
+      //  creationFunctions.addImage(image, frame: CGRect(x: width/2.1  ,y: 0.700 * height, width: width * 0.45, height: //height/10), center:false, alpha: 1.0, page: self)
+        
         
         let backWord: UIButton = UIButton()
         creationFunctions.makeButton(backWord, name: "Back", titleColor: tealColor, location: CGRect(x: width/25, y: height/35, width: width/10, height: 34), page: self)
@@ -113,7 +113,7 @@ class HistoryOfPresentIllness: UIViewController {
         self.navigationItem.leftBarButtonItem = barButton
         
         
-
+        
         let rightButton =  UIBarButtonItem(title: "\(doctorName) | My Account", style:   UIBarButtonItemStyle.plain, target: self, action: #selector(MainMenu.myAccoutClicked(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
         rightButton.tintColor = tealColor
@@ -144,10 +144,10 @@ class HistoryOfPresentIllness: UIViewController {
     
     func nextClicked(_ sender: UIBarButtonItem!){
         print("nextclicked")
-        self.navigationController?.pushViewController(assessmentandplan, animated: true)
+        self.navigationController?.pushViewController(lastpage, animated: true)
     }
     
-
     
-
+    
+    
 }
