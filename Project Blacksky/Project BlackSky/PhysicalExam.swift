@@ -75,6 +75,7 @@ class PhysicalExam: UIViewController {
     let femaleSelected = UIImage(named: "FemaleChecked") as UIImage?
     let femaleNotSelected = UIImage(named: "FemaleUnchecked") as UIImage?
     
+    let problemAreaImage = UIImage(named: "ProblemArea") as UIImage?
 
     let maleButton: UIButton = UIButton()
     let femaleButton: UIButton = UIButton()
@@ -85,9 +86,45 @@ class PhysicalExam: UIViewController {
     let Skipbutton: UIButton = UIButton(type: UIButtonType.custom)
     let reviewSymptomsTextView: UITextView = UITextView()
     
+    let problemAreaTextView:UITextView = UITextView()
+    var problemAreaImageView: UIImageView = UIImageView()
+    
+    var  headSymptoms = [String]()
+    var  chestSymptoms = [String]()
+    var  torsoSymptoms = [String]()
+    var  pelvisSymptoms = [String]()
+    var  leftLegSymptoms = [String]()
+    var  rightLegSymptoms = [String]()
+    var  leftArmSymptoms = [String]()
+    var  rightArmSymptoms = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let headTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)))
+        headTapped.numberOfTapsRequired = 1
+        
+        let chestTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)))
+        chestTapped.numberOfTapsRequired = 1
+        
+        let torsoTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)))
+        torsoTapped.numberOfTapsRequired = 1
+        
+        let pelvisTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)))
+        pelvisTapped.numberOfTapsRequired = 1
+        
+        let leftArmTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)))
+        leftArmTapped.numberOfTapsRequired = 1
+        
+        let rightArmTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)))
+        rightArmTapped.numberOfTapsRequired = 1
+        
+        let leftLegTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)))
+        leftLegTapped.numberOfTapsRequired = 1
+        
+        let rightLegTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)))
+        rightLegTapped.numberOfTapsRequired = 1
         
         let headDoubleTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartDoubleTapped(_:)))
             headDoubleTapped.numberOfTapsRequired = 2
@@ -112,6 +149,16 @@ class PhysicalExam: UIViewController {
         
         let rightLegDoubleTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartDoubleTapped(_:)))
         rightLegDoubleTapped.numberOfTapsRequired = 2
+        
+        let headLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let chestLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let pelvisLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let torsoLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let rightArmLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let leftArmLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let rightLegLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let leftLegLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+
 
         let underlineAttributes = [
             NSFontAttributeName : UIFont.systemFont(ofSize: 27.0),
@@ -182,33 +229,41 @@ class PhysicalExam: UIViewController {
         self.view.addSubview(titleLabel)
         
         chestButton.setImage(chestImage, for: .normal)
-        chestButton.frame = CGRect(x:self.view.center.x,y: 0.40 * height,width:85,height:80)
+        chestButton.frame = CGRect(x: width/2.3,y: 0.40 * height,width:85,height:80)
         chestButton.imageView?.contentMode = .scaleAspectFill
         chestButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         chestButton.contentEdgeInsets =  UIEdgeInsetsMake(1, 2, 4, 2)//(top, left, bottom, right)
         chestButton.addGestureRecognizer(chestDoubleTapped)
+        chestButton.addGestureRecognizer(chestLongTapped)
+        chestButton.addGestureRecognizer(chestTapped)
         self.view.addSubview(chestButton)
 
         headButton.setImage(headImage, for: UIControlState.normal)
-        headButton.frame = CGRect(x:self.view.center.x + 6,y: 0.34 * height,width: 60,height: 70)
-        headButton.center.x = chestButton.center.x
+        headButton.frame = CGRect(x:width/2.3 + 4,y: 0.34 * height,width: 60,height: 70)
+        headButton.center.x = chestButton.center.x - 2
         headButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         headButton.contentEdgeInsets =  UIEdgeInsetsMake(0, 0, 8, 0) //(top, left, bottom, right)
         headButton.addGestureRecognizer(headDoubleTapped)
+        headButton.addGestureRecognizer(headLongTapped)
+        headButton.addGestureRecognizer(headTapped)
         self.view.addSubview(headButton)
         
-        leftArmButton.frame = CGRect(x:width * 0.57 + 20,y:height * 0.41,width:75,height:175)
+        leftArmButton.frame = CGRect(x:width * 0.5 + 22,y:height * 0.41,width:75,height:175)
         leftArmButton.setImage(leftArmImage, for: .normal)
         leftArmButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         leftArmButton.contentEdgeInsets =  UIEdgeInsetsMake(0, 0, 0, 5) //(top, left, bottom, right)
         leftArmButton.addGestureRecognizer(leftArmDoubleTapped)
+        leftArmButton.addGestureRecognizer(leftArmLongTapped)
+        leftArmButton.addGestureRecognizer(leftArmTapped)
         self.view.addSubview(leftArmButton)
         
-        rightArmButton.frame = CGRect(x:self.view.center.x - 60,y:height * 0.41,width:75,height:175)
+        rightArmButton.frame = CGRect(x:width/2.3 - 60,y:height * 0.41,width:75,height:175)
         rightArmButton.setImage(rightArmImage, for: .normal)
         rightArmButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         rightArmButton.contentEdgeInsets =  UIEdgeInsetsMake(0, 5, 0, 5) //(top, left, bottom, right)
         rightArmButton.addGestureRecognizer(rightArmDoubleTapped)
+        rightArmButton.addGestureRecognizer(rightArmLongTapped)
+        rightArmButton.addGestureRecognizer(rightArmTapped)
         self.view.addSubview(rightArmButton)
         
         torsoButton.frame = CGRect(x:self.view.center.x + 10,y: 0.47 * height,width:85,height:60)
@@ -217,6 +272,8 @@ class PhysicalExam: UIViewController {
         torsoButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         torsoButton.contentEdgeInsets =  UIEdgeInsetsMake(2, 2, 5, 2) //(top, left, bottom, right)
         torsoButton.addGestureRecognizer(torsoDoubleTapped)
+        torsoButton.addGestureRecognizer(torsoLongTapped)
+        torsoButton.addGestureRecognizer(torsoTapped)
         self.view.addSubview(torsoButton)
         
         PelvisButton.frame = CGRect(x:self.view.center.x + 3,y: 0.52 * height,width:85,height:45)
@@ -225,18 +282,24 @@ class PhysicalExam: UIViewController {
         PelvisButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         PelvisButton.contentEdgeInsets =  UIEdgeInsetsMake(2, 2, 5, 2) //(top, left, bottom, right)
         PelvisButton.addGestureRecognizer(pelvisDoubleTapped)
+        PelvisButton.addGestureRecognizer(pelvisLongTapped)
+        PelvisButton.addGestureRecognizer(pelvisTapped)
         self.view.addSubview(PelvisButton)
         
-        leftLegButton.frame = CGRect(x:self.view.center.x + 42,y: 0.55 * height,width:50,height:175)
+        leftLegButton.frame = CGRect(x:self.view.center.x - 8,y: 0.55 * height,width:50,height:175)
         leftLegButton.setImage(leftLegImage, for: .normal)
         leftLegButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         leftLegButton.addGestureRecognizer(leftLegDoubleTapped)
+        leftLegButton.addGestureRecognizer(leftLegLongTapped)
+        leftLegButton.addGestureRecognizer(leftLegTapped)
         self.view.addSubview(leftLegButton)
         
-        rightLegButton.frame = CGRect(x:self.view.center.x - 7,y: 0.55 * height,width:50,height:175)
+        rightLegButton.frame = CGRect(x:self.view.center.x - 57,y: 0.55 * height,width:50,height:175)
         rightLegButton.setImage(rightLegImage, for: .normal)
         rightLegButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         rightLegButton.addGestureRecognizer(rightLegDoubleTapped)
+        rightLegButton.addGestureRecognizer(rightLegLongTapped)
+        rightLegButton.addGestureRecognizer(rightLegTapped)
         self.view.addSubview(rightLegButton)
         
         let Nextbutton: UIButton = UIButton(type: UIButtonType.custom)
@@ -245,6 +308,7 @@ class PhysicalExam: UIViewController {
         //add function for button
         //set frame
         Nextbutton.frame = CGRect(x: width/2.3,y: 0.88 * height, width: width * 0.25, height: height/10)
+        Nextbutton.center.x = self.view.center.x
         self.view.addSubview(Nextbutton)
         Nextbutton.addTarget(self, action: Selector("skipClicked:"), for: UIControlEvents.touchUpInside)
         
@@ -271,11 +335,7 @@ class PhysicalExam: UIViewController {
         let labWorkimageView = UIImageView(image: labWorkImage!)
         labWorkimageView.frame = CGRect(x: width/2.3,y: 0.72 * height, width: width * 0.25, height: height/6.8)
         self.view.addSubview(labWorkimageView)
-        
-        let reviewSymtomsImage = UIImage(named: "ReviewOfSymptoms")
-        let reviewSymtomsimageView = UIImageView(image: reviewSymtomsImage!)
-        reviewSymtomsimageView.frame = CGRect(x: width * 0.05,y: 0.41 * height, width: width * 0.25, height: height/3.5)
-        self.view.addSubview(reviewSymtomsimageView)
+        labWorkimageView.center.x = self.view.center.x
         
         maleButton.setImage(maleNotSelected, for: UIControlState.normal)
         maleButton.frame = CGRect(x: width * 0.05,y: 0.78 * height, width: width * 0.25, height: height/10)
@@ -287,13 +347,6 @@ class PhysicalExam: UIViewController {
         self.view.addSubview(femaleButton)
         femaleButton.addTarget(self, action: #selector(PhysicalExam.femaleClicked(_:)), for: UIControlEvents.touchUpInside)
         
-        reviewSymptomsTextView.frame = CGRect(x: width * 0.06,y: 0.46 * height, width: width * 0.23, height: height/4.27)
-        reviewSymptomsTextView.backgroundColor = UIColor.clear
-        reviewSymptomsTextView.textColor = purpleColor
-        reviewSymptomsTextView.font = UIFont(name: "Arial-BoldMT", size: 20)
-        reviewSymptomsTextView.text = "I, (name of Member), do solemnly swear (or affirm) that I will support and defend the Constitution of the United States against all enemies, foreign or domestic; that I will bear true faith and allegiance to the same; that I take this obligation freely, without any mental reservation  or purpose of evasion; and that I will well and faithfully discharge the duties of the office on which I am about to enter.So help me God."
-        self.view.addSubview(reviewSymptomsTextView)
-        
         creationFunctions.makeButton(internalButton, name: "  INTERNAL", titleColor: tealColor, location: CGRect(x: width * 0.05,y: 0.32 * height, width: width * 0.2, height: height/20), page: self)
         internalButton.setImage(boxFilled, for: .normal)
         internalButton.addTarget(self, action: #selector(PhysicalExam.internalClicked(_:)), for: UIControlEvents.touchUpInside)
@@ -302,17 +355,40 @@ class PhysicalExam: UIViewController {
         externalButton.setImage(boxEmpty, for: .normal)
         externalButton.addTarget(self, action: #selector(PhysicalExam.externalClicked(_:)), for: UIControlEvents.touchUpInside)
         
-        creationFunctions.makeButton(labWorkNo, name: "   NO", titleColor: tealColor, location: CGRect(x: width/2.3 - 5,y: 0.72 * height + 92.5, width: width * 0.2, height: height/20), page: self)
+        creationFunctions.makeButton(labWorkNo, name: "   NO", titleColor: tealColor, location: CGRect(x: width/2.4 - 5,y: 0.72 * height + 92.5, width: width * 0.2, height: height/20), page: self)
         labWorkYes.setImage(boxFilled, for: .normal)
         labWorkYes.addTarget(self, action: #selector(PhysicalExam.labYesClicked(_:)), for: UIControlEvents.touchUpInside)
         
-        creationFunctions.makeButton(labWorkYes, name: "   YES", titleColor: tealColor, location: CGRect(x: width/2.3,y: 0.72 * height + 57.5, width: width * 0.2, height: height/20), page: self)
+        creationFunctions.makeButton(labWorkYes, name: "   YES", titleColor: tealColor, location: CGRect(x: width/2.4,y: 0.72 * height + 57.5, width: width * 0.2, height: height/20), page: self)
         labWorkNo.setImage(boxEmpty, for: .normal)
         labWorkNo.addTarget(self, action: #selector(PhysicalExam.labNoClicked(_:)), for: UIControlEvents.touchUpInside)
         
+        let reviewSymtomsImage = UIImage(named: "ReviewOfSymptoms")
+        let reviewSymtomsimageView = UIImageView(image: reviewSymtomsImage!)
+        reviewSymtomsimageView.frame = CGRect(x: width * 0.05,y: 0.41 * height, width: width * 0.25, height: height/3.5)
+        self.view.addSubview(reviewSymtomsimageView)
         
-        //Text views, body parts, resize images
+        reviewSymptomsTextView.frame = CGRect(x: width * 0.06,y: 0.46 * height, width: width * 0.23, height: height/4.27)
+        reviewSymptomsTextView.backgroundColor = UIColor.clear
+        reviewSymptomsTextView.textColor = purpleColor
+        reviewSymptomsTextView.font = UIFont(name: "Arial-BoldMT", size: 20)
+        reviewSymptomsTextView.text = "I, (name of Member), do solemnly swear (or affirm) that I will support and defend the Constitution of the United States against all enemies, foreign or domestic; that I will bear true faith and allegiance to the same; that I take this obligation freely, without any mental reservation  or purpose of evasion; and that I will well and faithfully discharge the duties of the office on which I am about to enter.So help me God."
+        self.view.addSubview(reviewSymptomsTextView)
 
+        
+        problemAreaImageView = UIImageView(image: problemAreaImage!)
+        problemAreaImageView.frame = CGRect(x: width * 0.72,y: 0.41 * height, width: width * 0.25, height: height/3.5)
+        self.view.addSubview(problemAreaImageView)
+        problemAreaImageView.isHidden = true
+        
+        problemAreaTextView.frame = CGRect(x: width * 0.73,y: 0.46 * height, width: width * 0.23, height: height/4.27)
+        problemAreaTextView.backgroundColor = UIColor.clear
+        problemAreaTextView.textColor = purpleColor
+        problemAreaTextView.font = UIFont(name: "Arial-BoldMT", size: 20)
+        problemAreaTextView.text = "I, (name of Member), do solemnly swear (or affirm) that I will support and defend the Constitution of the United States against all enemies, foreign or domestic; that I will bear true faith and allegiance to the same; that I take this obligation freely, without any mental reservation  or purpose of evasion; and that I will well and faithfully discharge the duties of the office on which I am about to enter.So help me God."
+        self.view.addSubview(problemAreaTextView)
+        problemAreaTextView.isHidden = true
+        
         self.configureView()
     }
     
@@ -377,6 +453,7 @@ class PhysicalExam: UIViewController {
     }
     
     func bodyPartSingleTapped(_ sender: UIButton){
+        print("I got here")
         if sender == headButton{
             headButton.setImage(UIImage(named: "HeadBlue"), for: .normal)
         } else if sender == chestButton {
@@ -428,6 +505,35 @@ class PhysicalExam: UIViewController {
         
         print(afflictedBodyParts)
         // TODO:here make array appending body parts that are selected
+    }
+    
+    func bodyPartLongTapped(_ sender: UILongPressGestureRecognizer){
+        // Make outside arrays for symptoms for each body part
+        // Make view recognizable 
+        // Same as above
+        
+        if problemAreaTextView.isHidden || problemAreaImageView.isHidden {
+            problemAreaTextView.isHidden = false
+            problemAreaImageView.isHidden = false
+        }
+        
+        // Get info from server, but for loops adding to view as table rows
+        
+//        if sender.view == headButton{
+//        } else if sender.view == chestButton {
+//
+//        }else if sender.view == torsoButton {
+//        }else if sender.view == PelvisButton {
+//        }else if sender.view == leftArmButton {
+//          
+//        }else if sender.view == rightArmButton {
+//
+//        }else if sender.view == leftLegButton {
+//
+//        }else if sender.view == rightLegButton {
+//
+//        }
+
     }
     
     func switchInternalExternal(_ sender: UIButton){
