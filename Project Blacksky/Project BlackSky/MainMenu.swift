@@ -58,7 +58,7 @@ class MainMenu: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 10, width: width, height: height/20)
         
-        let backArrowButton =  UIButton(type: .custom)
+        /*let backArrowButton =  UIButton(type: .custom)
         backArrowButton.setImage(UIImage(named: "BackArrow"), for: UIControlState())
         backArrowButton.addTarget(self, action: #selector(MainMenu.backClicked(_:)), for: .touchUpInside)
         backArrowButton.frame = CGRect(x: 0, y: 0, width: width/25, height: height/12)
@@ -74,7 +74,7 @@ class MainMenu: UIViewController {
         backWord.addTarget(self, action: #selector(MainMenu.backClicked(_:)), for: .touchUpInside)
         backArrowButton.addSubview(backWord)
         let barButton = UIBarButtonItem(customView: backArrowButton)
-        self.navigationItem.leftBarButtonItem = barButton
+        self.navigationItem.leftBarButtonItem = barButton*/
         
         let rightButton =  UIBarButtonItem(title: "\(doctorName) | My Account", style:   UIBarButtonItemStyle.plain, target: self, action: #selector(MainMenu.myAccoutClicked(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
@@ -149,6 +149,9 @@ class MainMenu: UIViewController {
         logoutLayer.colors = [color2, color1]
         logoutLayer.locations = [0.0, 0.7]
         logoutButton.layer.insertSublayer(logoutLayer, at: 0)
+        let tealColor = UIColor(hue: 0.5583, saturation: 1, brightness: 0.74, alpha: 1.0)
+        
+        
 
     }
     override func didReceiveMemoryWarning() {

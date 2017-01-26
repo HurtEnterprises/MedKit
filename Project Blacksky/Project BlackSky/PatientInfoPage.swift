@@ -37,6 +37,8 @@ class PatientInfoPage: UIViewController {
     let physicianIDLabel: UILabel = UILabel()
     let Alertbutton: UIButton = UIButton(type: UIButtonType.custom)
     
+    let label: UILabel = UILabel()
+    let test: UIButton = UIButton(type: UIButtonType.custom)
     let initialPatientInfoLabel: UILabel = UILabel()
     let firstAlert: UILabel = UILabel()
     let secondAlert: UILabel = UILabel()
@@ -47,6 +49,7 @@ class PatientInfoPage: UIViewController {
     let dropDown = DropDown()
     let allergiesdropDown = DropDown()
     let tealColor = UIColor(hue: 0.5583, saturation: 1, brightness: 0.74, alpha: 1.0)
+    let backgroundDimmer = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
     
     //TODO: Pull from class info
     var doctorName = "Doctor Name"
@@ -158,6 +161,20 @@ class PatientInfoPage: UIViewController {
         
        // creationFunctions.addImage("Alert", frame: CGRect(x: width/2, y: height/6, width: 2*width/3, height: height/4), center:true, alpha: 1.0, page: self)
         
+        
+        
+        func makeLabel(_ label: UILabel, name: String, textColor:UIColor, alignment: NSTextAlignment, frame: CGRect, page: UIViewController){
+            label.frame = frame
+            label.textColor = textColor
+            label.textAlignment = alignment
+            label.text = name
+            page.view.addSubview(label)
+        }
+        
+        backgroundDimmer .backgroundColor = UIColor.white
+        backgroundDimmer .alpha = 0.5
+        view.addSubview(backgroundDimmer)
+        
         //set image for button
         Alertbutton.setImage(UIImage(named: "Alert"), for: UIControlState.normal)
         //add function for button
@@ -171,17 +188,6 @@ class PatientInfoPage: UIViewController {
         
         creationFunctions.makeLabel(secondAlert, name: "-Thinks Tanjim Azad is attractive", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: 2*width/10,y: 5*height/30, width: 2*width/3, height: height/4), page: self)
         secondAlert.font = UIFont(name: (secondAlert.font.fontName), size: 40)
-        
-        
-        func makeLabel(_ label: UILabel, name: String, textColor:UIColor, alignment: NSTextAlignment, frame: CGRect, page: UIViewController){
-            label.frame = frame
-            label.textColor = textColor
-            label.textAlignment = alignment
-            label.text = name
-            page.view.addSubview(label)
-        }
-        
-        
 
    //     creationFunctions.makeClearButton(currentMedicationsButton, name: "Current Medications", titleColor: UIColor.blue, //location: CGRect(x: width/2, y: (height-50)*5/8,  width: 8*width/10, height: height/8), page: self)
         //scheduleButton.setAttributedTitle("mkl", for: UIControlState())
@@ -190,6 +196,10 @@ class PatientInfoPage: UIViewController {
  //       currentMedicationsButton.addTarget(self, action: #selector(currentmedicationsbuttonClicked(_:)), for: .touchUpInside)
         
         self.configureView()
+        
+        //        func makeLabelWithBox(name: String, labelname: String, content: String, location: CGRect, page:UIViewController, color: UIColor) {
+        
+      //  creationFunctions.makeLabelWithBox(name: test, labelname: label, content: "thasdsfdsis", location: CGRect(x: (2/3*width)/2,  y: 17 * height/20, width: width/2, height: height/10), page: self, color: tealColor)
 
     }
     override func didReceiveMemoryWarning() {
@@ -218,6 +228,7 @@ class PatientInfoPage: UIViewController {
         firstAlert.isHidden = true
         secondAlert.isHidden = true
         print("hide")
+        backgroundDimmer.isHidden = true
     }
 
     func startnewvisitbuttonClicked(){

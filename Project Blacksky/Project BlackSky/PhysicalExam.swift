@@ -13,6 +13,7 @@ import UIKit
 class PhysicalExam: UIViewController {
     let loginPage:LoginPage = LoginPage()
     let creationFunctions: UICreationFunctions = UICreationFunctions()
+    let assessmentandplan: AssessmentAndPlan = AssessmentAndPlan()
     
     var detailItem: AnyObject? {
         didSet {
@@ -231,7 +232,6 @@ class PhysicalExam: UIViewController {
         chestButton.setImage(chestImage, for: .normal)
         chestButton.frame = CGRect(x: width/2.3,y: 0.40 * height,width:85,height:80)
         chestButton.imageView?.contentMode = .scaleAspectFill
-        chestButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         chestButton.contentEdgeInsets =  UIEdgeInsetsMake(1, 2, 4, 2)//(top, left, bottom, right)
         chestButton.addGestureRecognizer(chestDoubleTapped)
         chestButton.addGestureRecognizer(chestLongTapped)
@@ -239,18 +239,16 @@ class PhysicalExam: UIViewController {
         self.view.addSubview(chestButton)
 
         headButton.setImage(headImage, for: UIControlState.normal)
-        headButton.frame = CGRect(x:width/2.3 + 4,y: 0.34 * height,width: 60,height: 70)
+        headButton.frame = CGRect(x:width/2.3 + 2,y: 0.34 * height,width: 60,height: 70)
         headButton.center.x = chestButton.center.x - 2
-        headButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         headButton.contentEdgeInsets =  UIEdgeInsetsMake(0, 0, 8, 0) //(top, left, bottom, right)
         headButton.addGestureRecognizer(headDoubleTapped)
-        headButton.addGestureRecognizer(headLongTapped)
         headButton.addGestureRecognizer(headTapped)
+        headButton.addGestureRecognizer(headLongTapped)
         self.view.addSubview(headButton)
         
         leftArmButton.frame = CGRect(x:width * 0.5 + 22,y:height * 0.41,width:75,height:175)
         leftArmButton.setImage(leftArmImage, for: .normal)
-        leftArmButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         leftArmButton.contentEdgeInsets =  UIEdgeInsetsMake(0, 0, 0, 5) //(top, left, bottom, right)
         leftArmButton.addGestureRecognizer(leftArmDoubleTapped)
         leftArmButton.addGestureRecognizer(leftArmLongTapped)
@@ -259,7 +257,6 @@ class PhysicalExam: UIViewController {
         
         rightArmButton.frame = CGRect(x:width/2.3 - 60,y:height * 0.41,width:75,height:175)
         rightArmButton.setImage(rightArmImage, for: .normal)
-        rightArmButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         rightArmButton.contentEdgeInsets =  UIEdgeInsetsMake(0, 5, 0, 5) //(top, left, bottom, right)
         rightArmButton.addGestureRecognizer(rightArmDoubleTapped)
         rightArmButton.addGestureRecognizer(rightArmLongTapped)
@@ -269,7 +266,6 @@ class PhysicalExam: UIViewController {
         torsoButton.frame = CGRect(x:self.view.center.x + 10,y: 0.47 * height,width:85,height:60)
         torsoButton.center.x = chestButton.center.x + 2
         torsoButton.setImage(torsoImage, for: .normal)
-        torsoButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         torsoButton.contentEdgeInsets =  UIEdgeInsetsMake(2, 2, 5, 2) //(top, left, bottom, right)
         torsoButton.addGestureRecognizer(torsoDoubleTapped)
         torsoButton.addGestureRecognizer(torsoLongTapped)
@@ -279,7 +275,6 @@ class PhysicalExam: UIViewController {
         PelvisButton.frame = CGRect(x:self.view.center.x + 3,y: 0.52 * height,width:85,height:45)
         PelvisButton.center.x = chestButton.center.x
         PelvisButton.setImage(PelvisImage, for: .normal)
-        PelvisButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         PelvisButton.contentEdgeInsets =  UIEdgeInsetsMake(2, 2, 5, 2) //(top, left, bottom, right)
         PelvisButton.addGestureRecognizer(pelvisDoubleTapped)
         PelvisButton.addGestureRecognizer(pelvisLongTapped)
@@ -288,7 +283,6 @@ class PhysicalExam: UIViewController {
         
         leftLegButton.frame = CGRect(x:self.view.center.x - 8,y: 0.55 * height,width:50,height:175)
         leftLegButton.setImage(leftLegImage, for: .normal)
-        leftLegButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         leftLegButton.addGestureRecognizer(leftLegDoubleTapped)
         leftLegButton.addGestureRecognizer(leftLegLongTapped)
         leftLegButton.addGestureRecognizer(leftLegTapped)
@@ -296,7 +290,6 @@ class PhysicalExam: UIViewController {
         
         rightLegButton.frame = CGRect(x:self.view.center.x - 57,y: 0.55 * height,width:50,height:175)
         rightLegButton.setImage(rightLegImage, for: .normal)
-        rightLegButton.addTarget(self, action: #selector(PhysicalExam.bodyPartSingleTapped(_:)), for:.touchUpInside)
         rightLegButton.addGestureRecognizer(rightLegDoubleTapped)
         rightLegButton.addGestureRecognizer(rightLegLongTapped)
         rightLegButton.addGestureRecognizer(rightLegTapped)
@@ -449,26 +442,33 @@ class PhysicalExam: UIViewController {
     }
     
     func skipClicked(_ sender: UIBarButtonItem!){
-        print("Skip Clicked")
+        self.navigationController?.pushViewController(assessmentandplan, animated: true)
     }
     
-    func bodyPartSingleTapped(_ sender: UIButton){
-        print("I got here")
-        if sender == headButton{
+    func bodyPartSingleTapped(_ sender: UIGestureRecognizer){
+        if sender.view == headButton{
+            print("I got here")
             headButton.setImage(UIImage(named: "HeadBlue"), for: .normal)
-        } else if sender == chestButton {
+        } else if sender.view == chestButton {
+            print("I got here")
             chestButton.setImage(UIImage(named: "ChestBlue"), for: .normal)
-        }else if sender == torsoButton {
+        }else if sender.view == torsoButton {
+            print("I got here")
             torsoButton.setImage(UIImage(named: "TorsoBlue"), for: .normal)
-        }else if sender == PelvisButton {
+        }else if sender.view == PelvisButton {
+            print("I got here")
             PelvisButton.setImage(UIImage(named: "PelvisBlue"), for: .normal)
-        }else if sender == leftArmButton {
+        }else if sender.view == leftArmButton {
+            print("I got here")
             leftArmButton.setImage(UIImage(named: "LeftArmBlue"), for: .normal)
-        }else if sender == rightArmButton {
+        }else if sender.view == rightArmButton {
+            print("I got here")
             rightArmButton.setImage(UIImage(named: "RightArmBlue"), for: .normal)
-        }else if sender == leftLegButton {
+        }else if sender.view == leftLegButton {
+            print("I got here")
             leftLegButton.setImage(UIImage(named: "LeftLegBlue"), for: .normal)
-        }else if sender == rightLegButton {
+        }else if sender.view == rightLegButton {
+            print("I got here")
             rightLegButton.setImage(UIImage(named: "RightLegBlue"), for: .normal)
         }
         
@@ -511,7 +511,7 @@ class PhysicalExam: UIViewController {
         // Make outside arrays for symptoms for each body part
         // Make view recognizable 
         // Same as above
-        
+        print("Whoop swag")
         if problemAreaTextView.isHidden || problemAreaImageView.isHidden {
             problemAreaTextView.isHidden = false
             problemAreaImageView.isHidden = false

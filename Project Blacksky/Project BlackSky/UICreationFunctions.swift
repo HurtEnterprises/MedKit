@@ -42,6 +42,7 @@ class UICreationFunctions: UIViewController{
         page.view.addSubview(button)
     }
     
+    
     // Creates the grayish raised button we will commonly use
     
     // Makes a checkbox
@@ -66,6 +67,26 @@ class UICreationFunctions: UIViewController{
     label.text = name
     page.view.addSubview(label)
     }
+    
+    func makeLabelWithBox(name: UIButton, labelname: UILabel, content: String, location: CGRect, page:UIViewController, color: UIColor) {
+        
+        //set image for button
+        name.setImage(UIImage(named: "boxfilledin"), for: UIControlState.normal)
+        //add function for button
+        //set frame
+        name.frame = location
+        page.view.addSubview(name)
+        
+        labelname.textColor = color
+        labelname.frame = CGRect(x: location.origin.x + width/3.5, y: location.origin.y - height/100, width: location.size.width, height: location.size.height)
+        labelname.text = content
+        page.view.addSubview(labelname)
+        
+        
+    //    self.makeLabel(labelname, name: content, textColor: color, alignment: NSTextAlignment.left, frame: CGRect(x: //location.origin.x + 50, y: location.origin.y, width: location.size.width, height: location.size.height), page: /self)
+    }
+    
+        
 // Makes a table
     func makeTable(_ table: UITableView, location: CGRect, page: UIViewController){
         table.frame = location
@@ -110,6 +131,7 @@ class UICreationFunctions: UIViewController{
         navigationItem.leftBarButtonItem = backButton
         navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arial", size: 30)!], for: UIControlState())
     }
+        
     if(forwardButton){
         let rightButton =  UIBarButtonItem(title: "Next", style:   UIBarButtonItemStyle.plain, target: page, action: "nextClickedClicked:")
         // Create two buttons for the navigation item
@@ -119,7 +141,8 @@ class UICreationFunctions: UIViewController{
     navigationBar.items = [navigationItem]
     //Adds the bar to the view
     page.view.addSubview(navigationBar)
-}
+    }
+    
     // Disables autocorrect and auto capitalization
     func disableAutocorrect(_ textField: UITextField){
         textField.autocorrectionType = .no
@@ -149,4 +172,6 @@ class UICreationFunctions: UIViewController{
         context?.strokePath()
     }
     
-}
+
+
+        }
