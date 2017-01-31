@@ -29,6 +29,7 @@ class LastPage: UIViewController {
         self.view.backgroundColor = UIColor.white
 
         let tealColor = UIColor(hue: 0.5583, saturation: 1, brightness: 0.74, alpha: 1.0)
+        let grayColor = UIColor(hue: 0.8083, saturation: 0, brightness: 0.96, alpha: 1.0)
         var doctorName = "Doctor Name"
         
         let Historybutton: UIButton = UIButton(type: UIButtonType.custom)
@@ -37,7 +38,7 @@ class LastPage: UIViewController {
         //add function for button
         Historybutton.addTarget(self, action: "HistorybuttonClicked", for: UIControlEvents.touchUpInside)
         //set frame
-        Historybutton.frame = CGRect(x: width/38,y: 0.22 * height, width: width * 9/10, height: height/7)
+        Historybutton.frame = CGRect(x: width/20,y: 0.22 * height, width: width * 9/10, height: height/7)
         self.view.addSubview(Historybutton)
         
         let Assessmentbutton: UIButton = UIButton(type: UIButtonType.custom)
@@ -46,7 +47,7 @@ class LastPage: UIViewController {
         //add function for button
         Assessmentbutton.addTarget(self, action: "AssessmentbuttonClicked:", for: UIControlEvents.touchUpInside)
         //set frame
-        Assessmentbutton.frame = CGRect(x: width/38,y: 0.4 * height, width: width * 9/10, height: height/7)
+        Assessmentbutton.frame = CGRect(x: width/20,y: 0.4 * height, width: width * 9/10, height: height/7)
         self.view.addSubview(Assessmentbutton)
         
         let Planbutton: UIButton = UIButton(type: UIButtonType.custom)
@@ -55,7 +56,7 @@ class LastPage: UIViewController {
         //add function for button
         Planbutton.addTarget(self, action: "PlanbuttonClicked:", for: UIControlEvents.touchUpInside)
         //set frame
-        Planbutton.frame = CGRect(x: width/38,y: 0.56 * height, width: width * 9/10, height: height/10)
+        Planbutton.frame = CGRect(x: width/20, y: 0.56 * height, width: width * 9/10, height: height/10)
         self.view.addSubview(Planbutton)
         
         let Rxbutton: UIButton = UIButton(type: UIButtonType.custom)
@@ -64,7 +65,7 @@ class LastPage: UIViewController {
         //add function for button
         Rxbutton.addTarget(self, action: "RxbuttonClicked:", for: UIControlEvents.touchUpInside)
         //set frame
-        Rxbutton.frame = CGRect(x: width/38,y: 0.63 * height, width: width * 9/10, height: height/10)
+        Rxbutton.frame = CGRect(x: width/20, y: 0.63 * height, width: width * 9/10, height: height/10)
         self.view.addSubview(Rxbutton)
 
         let Notessummarybutton: UIButton = UIButton(type: UIButtonType.custom)
@@ -73,7 +74,7 @@ class LastPage: UIViewController {
         //add function for button
         Notessummarybutton.addTarget(self, action: "NotesSummarybuttonClicked:", for: UIControlEvents.touchUpInside)
         //set frame
-        Notessummarybutton.frame = CGRect(x: width/38,y: 0.7 * height, width: width * 9/10, height: height/10)
+        Notessummarybutton.frame = CGRect(x: width/20,y: 0.7 * height, width: width * 9/10, height: height/10)
         self.view.addSubview(Notessummarybutton)
         
         let Concludebutton: UIButton = UIButton(type: UIButtonType.custom)
@@ -82,7 +83,7 @@ class LastPage: UIViewController {
         //add function for button
         Concludebutton.addTarget(self, action: "ConcludebuttonClicked", for: UIControlEvents.touchUpInside)
         //set frame
-        Concludebutton.frame = CGRect(x: width/38,y: 0.85 * height, width: width * 9/10, height: height/10)
+        Concludebutton.frame = CGRect(x: width/20,y: 0.85 * height, width: width * 9/10, height: height/10)
         self.view.addSubview(Concludebutton)
         
         let backArrowButton =  UIButton(type: .custom)
@@ -106,6 +107,9 @@ class LastPage: UIViewController {
         let rightButton =  UIBarButtonItem(title: "\(doctorName) | My Account", style:   UIBarButtonItemStyle.plain, target: self, action: #selector(MainMenu.myAccoutClicked(_:)))
         self.navigationItem.rightBarButtonItem = rightButton
         rightButton.tintColor = tealColor
+        
+        DropDown.appearance().textColor = tealColor
+        DropDown.appearance().backgroundColor = grayColor
         
         //    The view to which the drop down will appear on
         PlandropDown.anchorView = Planbutton // UIView or UIBarButtonItem

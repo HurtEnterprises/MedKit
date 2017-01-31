@@ -1,0 +1,13 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': '/Users/timbryant/BlackSky/Project Blacksky/build/Debug-iphoneos/DropDown/DropDown.framework/Modules'
+    'contents': [{
+      'type': 'file',
+      'name': 'module.modulemap',
+      'external-contents': '/Users/timbryant/BlackSky/Project Blacksky/build/Pods.build/Debug-iphoneos/DropDown.build/unextended-module.modulemap',
+    }]
+  }]
+}
