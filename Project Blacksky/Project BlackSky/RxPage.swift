@@ -60,7 +60,7 @@ class RxPage: UIViewController {
         self.view.backgroundColor = UIColor.white
         
         let underlineAttributes = [
-            NSFontAttributeName : UIFont.systemFont(ofSize: 27.0),
+            NSFontAttributeName : UIFont.systemFont(ofSize: 36.0),
             NSForegroundColorAttributeName : tealColor,
             NSUnderlineStyleAttributeName : 1] as [String : Any]
         
@@ -87,47 +87,72 @@ class RxPage: UIViewController {
         let barButton = UIBarButtonItem(customView: backArrowButton)
         self.navigationItem.leftBarButtonItem = barButton
         
+        let rightButton =  UIBarButtonItem(title: "\(doctorName) | My Account", style:   UIBarButtonItemStyle.plain, target: self, action: #selector(MainMenu.myAccoutClicked(_:)))
+        self.navigationItem.rightBarButtonItem = rightButton
+        rightButton.tintColor = tealColor
+
+        
         creationFunctions.makeLabel(titleLabel, name: "Rx", textColor: tealColor, alignment: .center, frame: CGRect(x: width * 0.5, y: 0.1 * height, width: 0.1 * width, height: 0.05 * height), page: self)
-        titleLabel.font = UIFont(name: "Arial-BoldMT", size: 28)
+        titleLabel.font = UIFont(name: "ArialMT", size: 60)
+        titleLabel.sizeToFit()
         titleLabel.center.x = view.center.x
         
-        creationFunctions.makeLabel(instructionsLabel, name: "PLEASE ENTER THE PERSCRIPTION \n INFORMAITON IN THE FIELDS BELOW", textColor: tealColor, alignment: .left, frame: CGRect(x: width * 0.5, y: 0.2 * height, width: 0.8 * width, height: 0.1 * height), page: self)
-        instructionsLabel.font = UIFont(name: "Arial-BoldMT", size: 28)
+        creationFunctions.makeLabel(instructionsLabel, name: "PLEASE ENTER THE PERSCRIPTION \n INFORMAITON IN THE FIELDS BELOW", textColor: tealColor, alignment: .left, frame: CGRect(x: width * 0.05, y: 0.18 * height, width: 0.8 * width, height: 0.08 * height), page: self)
+        instructionsLabel.font = UIFont(name: "ArialMT", size: 28)
         instructionsLabel.numberOfLines = 0
+
         
         scriptNameLabel.numberOfLines = 0
-        creationFunctions.makeLabel(scriptNameLabel, name: "NAME OF \n SCRIP", textColor: tealColor, alignment: .left, frame: CGRect(x: width * 0.05,y: 0.2 * height, width: width * 0.25, height: 0.1 * height), page: self)
+        creationFunctions.makeLabel(scriptNameLabel, name: "NAME OF \n SCRIP", textColor: tealColor, alignment: .left, frame: CGRect(x: width * 0.05,y: 0.3 * height, width: width * 0.25, height: 0.1 * height), page: self)
         scriptNameLabel.font = UIFont(name: "Arial-BoldMT", size: 28)
-
         
-        creationFunctions.makeLabel(dosageLabel, name: "DOSAGE", textColor: tealColor, alignment: .left, frame: CGRect(x: width * 0.05,y: 0.3 * height, width: width * 0.25, height: 0.1 * height), page: self)
+        creationFunctions.makeTextField(scriptNameBox, backgroundColor: UIColor.clear, frame: CGRect(x: width * 0.3,y: 0.33 * height, width: width * 0.6, height: 0.04 * height), page: self)
+        scriptNameBox.layer.borderWidth = 4.0
+        scriptNameBox.layer.borderColor = tealColor.cgColor
+        scriptNameBox.textColor = tealColor
+
+        creationFunctions.makeLabel(dosageLabel, name: "DOSAGE", textColor: tealColor, alignment: .left, frame: CGRect(x: width * 0.05,y: 0.4 * height, width: width * 0.25, height: 0.1 * height), page: self)
         dosageLabel.font = UIFont(name: "Arial-BoldMT", size: 28)
+        
+        creationFunctions.makeTextField(dosageBox, backgroundColor: UIColor.clear, frame: CGRect(x: width * 0.3,y: 0.43 * height, width: width * 0.6, height: 0.04 * height), page: self)
+        dosageBox.layer.borderWidth = 4.0
+        dosageBox.layer.borderColor = tealColor.cgColor
+        dosageBox.textColor = tealColor
 
         
-        creationFunctions.makeLabel(refillsLabel, name: "REFILLS", textColor: tealColor, alignment: .left, frame: CGRect(x: width * 0.05,y: 0.4 * height, width: width * 0.25, height: 0.1 * height), page: self)
+        creationFunctions.makeLabel(refillsLabel, name: "REFILLS", textColor: tealColor, alignment: .left, frame: CGRect(x: width * 0.05,y: 0.49 * height, width: width * 0.25, height: 0.1 * height), page: self)
         refillsLabel.font = UIFont(name: "Arial-BoldMT", size: 28)
+        
+        creationFunctions.makeTextField(refillsBox, backgroundColor: UIColor.clear, frame: CGRect(x: width * 0.3,y: 0.52 * height, width: width * 0.1, height: 0.04 * height), page: self)
+        refillsBox.layer.borderWidth = 4.0
+        refillsBox.layer.borderColor = tealColor.cgColor
+        refillsBox.textColor = tealColor
 
         
-        creationFunctions.makeLabel(notesLabel, name: "NOTES", textColor: tealColor, alignment: .left, frame: CGRect(x: width * 0.05,y: 0.5 * height, width: width * 0.25, height: 0.1 * height), page: self)
+        creationFunctions.makeLabel(notesLabel, name: "NOTES", textColor: tealColor, alignment: .left, frame: CGRect(x: width * 0.05,y: 0.58 * height, width: width * 0.25, height: 0.1 * height), page: self)
         notesLabel.font = UIFont(name: "Arial-BoldMT", size: 28)
+        
+        creationFunctions.makeTextField(notesBox, backgroundColor: UIColor.clear, frame: CGRect(x: width * 0.3,y: 0.61 * height, width: width * 0.6, height: 0.04 * height), page: self)
+        notesBox.layer.borderWidth = 4.0
+        notesBox.layer.borderColor = tealColor.cgColor
+        notesBox.textColor = tealColor
 
         
-        creationFunctions.makeLabel(progressLabel, name: "send progress...", textColor: UIColor.lightGray, alignment: .left, frame: CGRect(x: width * 0.05,y: 0.4 * height, width: width * 0.25, height: 0.1 * height), page: self)
-        progressLabel.font = UIFont(name: "Arial-BoldMT", size: 18)
+        creationFunctions.makeLabel(progressLabel, name: "send progress...", textColor: UIColor.lightGray, alignment: .left, frame: CGRect(x: width * 0.05,y: 0.72 * height, width: width * 0.25, height: 0.1 * height), page: self)
+        progressLabel.font = UIFont(name: "ArialMT", size: 18)
 
-        creationFunctions.makeLabel(sendWarning, name: "DO NOT PRESS FINISH UNTIL THE SCRIP \n HAS FINISHED SENDING", textColor: UIColor.lightGray, alignment: .center, frame: CGRect(x: width * 0.5, y: 0.8 * height, width: 0.1 * width, height: 0.05 * height), page: self)
-        sendWarning.font = UIFont(name: "Arial-BoldMT", size: 20)
+        creationFunctions.makeLabel(sendWarning, name: "DO NOT PRESS FINISH UNTIL THE SCRIP \n HAS FINISHED SENDING", textColor: UIColor.lightGray, alignment: .left, frame: CGRect(x: width * 0.05, y: 0.8 * height, width: 0.8 * width, height: 0.05 * height), page: self)
+        sendWarning.font = UIFont(name: "Arial-BoldMT", size: 22)
         sendWarning.numberOfLines = 0
         
         // Adds progress Bar
-        progressBar.frame  = CGRect(x: width * 0.33,y: 0.4 * height, width: width * 0.5, height: 0.05 * height)
+        progressBar.frame  = CGRect(x: width * 0.33,y: 0.77 * height, width: width * 0.5, height: 0.05 * height)
         view.addSubview(progressBar)
-        self.progressBarTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(RxPage.updateProgressBar), userInfo: nil, repeats: true)
+        //self.progressBarTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(RxPage.updateProgressBar), userInfo: nil, repeats: true)
         
         let sendText = NSMutableAttributedString(string:"SEND", attributes: underlineAttributes)
-        creationFunctions.makeClearButton(sendButton, name: "SEND", titleColor: tealColor, location: CGRect(x: width/2.3,y: 0.7 * height, width: width * 0.25, height: height/10), page: self)
-        sendButton.titleLabel?.font =  UIFont(name: "Arial-BoldMT", size: 28)
-        sendButton.layer.borderWidth = 5.0
+        creationFunctions.makeClearButton(sendButton, name: "SEND", titleColor: tealColor, location: CGRect(x: width/2.3,y: 0.67 * height, width: width * 0.25, height: height/12), page: self)
+        sendButton.layer.borderWidth = 4.0
         sendButton.center.x = view.center.x
         sendButton.layer.borderColor = tealColor.cgColor
         sendButton.setAttributedTitle(sendText, for: UIControlState())
