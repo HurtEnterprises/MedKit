@@ -46,9 +46,12 @@ class PatientInfoPage: UIViewController {
     let DOBLabel: UILabel = UILabel()
     let lastVisitLabel: UILabel = UILabel()
     let reasonForVisitLabel: UILabel = UILabel()
-    let dropDown = DropDown()
+    let currentmedicationsdropDown = DropDown()
+    let socialhistorydropDown = DropDown()
+    let pastmedicalhistorydropDown = DropDown()
     let allergiesdropDown = DropDown()
     let tealColor = UIColor(hue: 0.5583, saturation: 1, brightness: 0.74, alpha: 1.0)
+    let grayColor = UIColor(hue: 0.8083, saturation: 0, brightness: 0.96, alpha: 1.0)
     let backgroundDimmer = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
     
     //TODO: Pull from class info
@@ -112,6 +115,24 @@ class PatientInfoPage: UIViewController {
         Allergiesbutton.frame = CGRect(x: width/38,y: 0.750 * height, width: width * 9/10, height: height/10)
         Allergiesbutton.center.x = self.view.center.x
         self.view.addSubview(Allergiesbutton)
+    
+        let pastmedicalhistorybutton: UIButton = UIButton(type: UIButtonType.custom)
+        //set image for button
+        pastmedicalhistorybutton.setImage(UIImage(named: "pastmedicalhistory"), for: UIControlState.normal)
+        //add function for button
+        pastmedicalhistorybutton.addTarget(self, action: "pastmedicalhistorybuttonClicked", for: UIControlEvents.touchUpInside)
+        //set frame
+        pastmedicalhistorybutton.frame = CGRect(x: width/38,y: 0.450 * height, width: width * 9/10, height: height/10)
+        self.view.addSubview(pastmedicalhistorybutton)
+        
+        let socialhistorybutton: UIButton = UIButton(type: UIButtonType.custom)
+        //set image for button
+        socialhistorybutton.setImage(UIImage(named: "SocialHistory"), for: UIControlState.normal)
+        //add function for button
+        socialhistorybutton.addTarget(self, action: "socialhistorybuttonClicked", for: UIControlEvents.touchUpInside)
+        //set frame
+        socialhistorybutton.frame = CGRect(x: width/38,y: 0.600 * height, width: width * 9/10, height: height/10)
+        self.view.addSubview(socialhistorybutton)
 
         let Startnewvisitbutton: UIButton = UIButton(type: UIButtonType.custom)
         //set image for button
@@ -127,9 +148,9 @@ class PatientInfoPage: UIViewController {
         self.navigationItem.rightBarButtonItem = rightButton
         rightButton.tintColor = tealColor
         
-        creationFunctions.addImage("pastmedicalhistory", frame: CGRect(x: width/39,y: 0.450 * height, width: width * 9/10, height: height/7), center:true, alpha: 1.0, page: self)
+     //   creationFunctions.addImage("pastmedicalhistory", frame: CGRect(x: width/39,y: 0.450 * height, width: width * //9/10, height: height/7), center:true, alpha: 1.0, page: self)
   
-        creationFunctions.addImage("SocialHistory", frame: CGRect(x: width/39,y: 0.600 * height, width: width * 9/10, height: height/7), center:true, alpha: 1.0, page: self)
+      //  creationFunctions.addImage("SocialHistory", frame: CGRect(x: width/39,y: 0.600 * height, width: width * 9/10, height: height/7), center:true, alpha: 1.0, page: self)
         
         
         creationFunctions.makeLabel(initialPatientInfoLabel, name: "INITIAL PATIENT INFO", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: 4.2 * width/20,y: 1*height/20, width: 0.75 * width, height: height/10), page: self)
@@ -149,15 +170,41 @@ class PatientInfoPage: UIViewController {
         reasonForVisitLabel.font = UIFont(name: (reasonForVisitLabel.font.fontName), size: 40)
         
          DropDown.startListeningToKeyboard()
+         DropDown.appearance().textColor = tealColor
+         DropDown.appearance().backgroundColor = grayColor
+         DropDown.appearance().textFont = UIFont(name: "Arial-BoldMT", size: 20)!
+        
+         
+
+        
         
      //    The view to which the drop down will appear on
-         dropDown.anchorView = button // UIView or UIBarButtonItem
+         currentmedicationsdropDown.anchorView = button // UIView or UIBarButtonItem
          allergiesdropDown.anchorView = Allergiesbutton
+         socialhistorydropDown.anchorView = socialhistorybutton
+         pastmedicalhistorydropDown.anchorView = pastmedicalhistorybutton
 //         The list of items to display. Can be changed dynamically
-         dropDown.dataSource = ["Car", "Motorcycle", "Truck"]
+        
+         currentmedicationsdropDown.dataSource = ["Car", "Motorcycle", "Truck"]
          allergiesdropDown.dataSource = ["Car", "Motorcycle", "Truck"]
-         dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
-         allergiesdropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
+         socialhistorydropDown.dataSource = ["Car", "Motorcycle", "Truck"]
+         pastmedicalhistorydropDown.dataSource = ["Car", "Motorcycle", "Truck"]
+        
+         currentmedicationsdropDown.bottomOffset = CGPoint(x: width/30.2, y: height/13)
+         allergiesdropDown.bottomOffset = CGPoint(x: width/30.2, y: height/13)
+         socialhistorydropDown.bottomOffset = CGPoint(x: width/36, y: height/13)
+         pastmedicalhistorydropDown.bottomOffset = CGPoint(x: width/36, y: height/13)
+        
+         currentmedicationsdropDown.dismissMode = .manual
+         allergiesdropDown.dismissMode = .manual
+         socialhistorydropDown.dismissMode = .manual
+         pastmedicalhistorydropDown.dismissMode = .manual
+
+        
+         currentmedicationsdropDown.width = 0.836 * width
+         allergiesdropDown.width = 0.836 * width
+         socialhistorydropDown.width = 0.836 * width
+         pastmedicalhistorydropDown.width = 0.836 * width
         
        // creationFunctions.addImage("Alert", frame: CGRect(x: width/2, y: height/6, width: 2*width/3, height: height/4), center:true, alpha: 1.0, page: self)
         
@@ -227,6 +274,8 @@ class PatientInfoPage: UIViewController {
         Alertbutton.isHidden = true
         firstAlert.isHidden = true
         secondAlert.isHidden = true
+        socialhistorydropDown.show()
+        //pastmedicalhistorydropDown.show()
         print("hide")
         backgroundDimmer.isHidden = true
     }
@@ -238,12 +287,20 @@ class PatientInfoPage: UIViewController {
     }
     
     func currentmedicationsbuttonClicked(){
-        dropDown.show()
+        currentmedicationsdropDown.show()
         print("Back Clicked")
     }
     
-
+    func socialhistorybuttonClicked(){
+        socialhistorydropDown.show()
+        print("Back Clicked")
+    }
     
+    func pastmedicalhistorybuttonClicked(){
+        pastmedicalhistorydropDown.show()
+        print("Back Clicked")
+    }
+
     func allergiesbuttonClicked(){
         allergiesdropDown.show()
         print("Back Clicked")
