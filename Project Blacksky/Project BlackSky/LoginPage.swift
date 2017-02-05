@@ -406,7 +406,7 @@ class LoginPage: UIViewController {
                     //compare the password on the db to the password they supplied:
                     if self.passwordField.text == loginData.Password {
                         print("Valid. Signed in.")
-                        //self.presentViewController(self.mainMenu, animated: true, completion: nil)
+                        //self.present(self.mainMenu, animated: true, completion: nil)
                         self.navigationController?.pushViewController(self.mainMenu, animated: true)
                     } else {
                         self.creationFunctions.makeAlert("Wrong Passowrd", message: "You inputted the incorrect password.", printStatement: "Wrong Password.", page: self)

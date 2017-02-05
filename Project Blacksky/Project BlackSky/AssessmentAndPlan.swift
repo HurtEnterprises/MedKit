@@ -9,10 +9,11 @@
 import Foundation
 import DropDown
 import UIKit
-let lastpage: LastPage = LastPage()
 
 class AssessmentAndPlan: UIViewController {
     
+    let lastpage: LastPage = LastPage()
+    let rxPage: RxPage = RxPage()
     let creationFunctions: UICreationFunctions = UICreationFunctions()
     
     var detailItem: AnyObject? {
@@ -143,7 +144,7 @@ class AssessmentAndPlan: UIViewController {
     
     func nextClicked(_ sender: UIBarButtonItem!){
         print("nextclicked")
-        self.navigationController?.pushViewController(lastpage, animated: true)
+        self.navigationController?.pushViewController(rxPage, animated: true)
     }
     
     

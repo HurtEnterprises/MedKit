@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class PhysicalExam: UIViewController {
+class PhysicalExam: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let loginPage:LoginPage = LoginPage()
     let creationFunctions: UICreationFunctions = UICreationFunctions()
     let assessmentandplan: AssessmentAndPlan = AssessmentAndPlan()
@@ -89,6 +89,9 @@ class PhysicalExam: UIViewController {
     
     let problemAreaTextView:UITextView = UITextView()
     var problemAreaImageView: UIImageView = UIImageView()
+    var problemAreaTable: UITableView = UITableView()
+    let cellReuseIdentifier = "cell"
+    var items: [String] = ["Viper", "X", "Games"]
     
     var  headSymptoms = [String]()
     var  chestSymptoms = [String]()
@@ -98,6 +101,9 @@ class PhysicalExam: UIViewController {
     var  rightLegSymptoms = [String]()
     var  leftArmSymptoms = [String]()
     var  rightArmSymptoms = [String]()
+    
+    var lastLongPressed:UIButton = UIButton()
+    var modifyLongPressed = true
     
     
     override func viewDidLoad() {
@@ -151,14 +157,14 @@ class PhysicalExam: UIViewController {
         let rightLegDoubleTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartDoubleTapped(_:)))
         rightLegDoubleTapped.numberOfTapsRequired = 2
         
-        let headLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
-        let chestLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
-        let pelvisLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
-        let torsoLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
-        let rightArmLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
-        let leftArmLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
-        let rightLegLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
-        let leftLegLongTapped = UITapGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let headLongTapped = UILongPressGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let chestLongTapped = UILongPressGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let pelvisLongTapped = UILongPressGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let torsoLongTapped = UILongPressGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let rightArmLongTapped = UILongPressGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let leftArmLongTapped = UILongPressGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let rightLegLongTapped = UILongPressGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
+        let leftLegLongTapped = UILongPressGestureRecognizer(target: self, action: #selector(PhysicalExam.bodyPartLongTapped(_:)))
 
 
         let underlineAttributes = [
@@ -363,28 +369,175 @@ class PhysicalExam: UIViewController {
         
         reviewSymptomsTextView.frame = CGRect(x: width * 0.06,y: 0.46 * height, width: width * 0.23, height: height/4.27)
         reviewSymptomsTextView.backgroundColor = UIColor.clear
-        reviewSymptomsTextView.textColor = purpleColor
         reviewSymptomsTextView.font = UIFont(name: "Arial-BoldMT", size: 20)
-        reviewSymptomsTextView.text = "I, (name of Member), do solemnly swear (or affirm) that I will support and defend the Constitution of the United States against all enemies, foreign or domestic; that I will bear true faith and allegiance to the same; that I take this obligation freely, without any mental reservation  or purpose of evasion; and that I will well and faithfully discharge the duties of the office on which I am about to enter.So help me God."
+        reviewSymptomsTextView.textColor = purpleColor
+        reviewSymptomsTextView.layer.borderWidth = 0.0
         self.view.addSubview(reviewSymptomsTextView)
 
         
         problemAreaImageView = UIImageView(image: problemAreaImage!)
-        problemAreaImageView.frame = CGRect(x: width * 0.72,y: 0.41 * height, width: width * 0.25, height: height/3.5)
+        problemAreaImageView.frame = CGRect(x: width * 0.72,y: 0.405 * height, width: width * 0.255, height: height/3.5)
         self.view.addSubview(problemAreaImageView)
         problemAreaImageView.isHidden = true
         
-        problemAreaTextView.frame = CGRect(x: width * 0.73,y: 0.46 * height, width: width * 0.23, height: height/4.27)
-        problemAreaTextView.backgroundColor = UIColor.clear
-        problemAreaTextView.textColor = purpleColor
-        problemAreaTextView.font = UIFont(name: "Arial-BoldMT", size: 20)
-        problemAreaTextView.text = "I, (name of Member), do solemnly swear (or affirm) that I will support and defend the Constitution of the United States against all enemies, foreign or domestic; that I will bear true faith and allegiance to the same; that I take this obligation freely, without any mental reservation  or purpose of evasion; and that I will well and faithfully discharge the duties of the office on which I am about to enter.So help me God."
-        self.view.addSubview(problemAreaTextView)
-        problemAreaTextView.isHidden = true
+        problemAreaTable.frame = CGRect(x: width * 0.73,y: 0.45 * height, width: width * 0.23, height: height/4.27)
+        problemAreaTable.delegate = self
+        problemAreaTable.dataSource = self
+        self.problemAreaTable.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        self.view.addSubview(problemAreaTable)
+        problemAreaTable.isHidden = true
+
         
         self.configureView()
     }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.items.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        var cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        
+        cell.textLabel?.text = self.items[indexPath.row]
+        
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if modifyLongPressed == true {
+            // Similar to below, but reload entire view
+            if self.lastLongPressed == self.headButton{
+                if let index = self.headSymptoms.index(of: self.items[(indexPath.row)]) {
+                    headSymptoms.remove(at: index)
+                } else {
+                    headSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            } else if lastLongPressed == chestButton {
+                if let index = chestSymptoms.index(of: items[(indexPath.row)] + "\n") {
+                    chestSymptoms.remove(at: index)
+                } else {
+                    chestSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == torsoButton {
+                if let index = torsoSymptoms.index(of: items[(indexPath.row)] + "\n") {
+                    torsoSymptoms.remove(at: index)
+                } else {
+                    torsoSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == PelvisButton {
+                if let index = pelvisSymptoms.index(of: items[(indexPath.row)] + "\n") {
+                    pelvisSymptoms.remove(at: index)
+                } else {
+                    pelvisSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == leftArmButton {
+                if let index = leftArmSymptoms.index(of: items[(indexPath.row)]) {
+                    leftArmSymptoms.remove(at: index)
+                } else {
+                    leftArmSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == rightArmButton {
+                if let index = rightArmSymptoms.index(of: items[(indexPath.row)]) {
+                    rightArmSymptoms.remove(at: index)
+                } else {
+                    rightArmSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == leftLegButton {
+                if let index = leftLegSymptoms.index(of: items[(indexPath.row)]) {
+                    leftLegSymptoms.remove(at: index)
+                } else {
+                    leftLegSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == rightLegButton {
+                if let index = rightLegSymptoms.index(of: items[(indexPath.row)]) {
+                    rightLegSymptoms.remove(at: index)
+                } else {
+                    rightLegSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }
+            self.reloadReviewSymptoms()
+        }else{
+            if self.lastLongPressed == self.headButton{
+                if let index = self.headSymptoms.index(of: self.items[(indexPath.row)]) {
+                    items.remove(at: index)
+                    self.reloadReviewSymptoms()
+                } else {
+                    headSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            } else if lastLongPressed == chestButton {
+                if let index = chestSymptoms.index(of: items[(indexPath.row)]) {
+                    items.remove(at: index)
+                    self.reloadReviewSymptoms()
+                } else {
+                    chestSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == torsoButton {
+                if let index = torsoSymptoms.index(of: items[(indexPath.row)]) {
+                    items.remove(at: index)
+                    self.reloadReviewSymptoms()
+                } else {
+                    torsoSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == PelvisButton {
+                if let index = pelvisSymptoms.index(of: items[(indexPath.row)]) {
+                    items.remove(at: index)
+                    self.reloadReviewSymptoms()
+                } else {
+                    pelvisSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == leftArmButton {
+                if let index = leftArmSymptoms.index(of: items[(indexPath.row)]) {
+                    items.remove(at: index)
+                    self.reloadReviewSymptoms()
+                } else {
+                    leftArmSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == rightArmButton {
+                if let index = rightArmSymptoms.index(of: items[(indexPath.row)]) {
+                    items.remove(at: index)
+                    self.reloadReviewSymptoms()
+                } else {
+                    rightArmSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == leftLegButton {
+                if let index = leftLegSymptoms.index(of: items[(indexPath.row)]) {
+                    items.remove(at: index)
+                    self.reloadReviewSymptoms()
+                } else {
+                    leftLegSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+            }else if lastLongPressed == rightLegButton {
+                if let index = rightLegSymptoms.index(of: items[(indexPath.row)]) {
+                    items.remove(at: index)
+                    self.reloadReviewSymptoms()
+                } else {
+                    rightLegSymptoms.append(items[(indexPath.row)])
+                    reviewSymptomsTextView.text.append(items[(indexPath.row)] + "\n")
+                }
+
+            }
+        }
+        
+        print("You selected cell #\(indexPath.row)!")
+    }
+
     func maleClicked(_ sender: UIButton){
         print("Male Clicked")
         if femaleButton.imageView?.image == femaleSelected {
@@ -435,16 +588,70 @@ class PhysicalExam: UIViewController {
         }
     }
     
-    
+    func reloadReviewSymptoms(){
+        // Reprint Arrays
+        // TODO: Find a better way to do this
+        reviewSymptomsTextView.text = ""
+        if headSymptoms.isEmpty == false{
+            reviewSymptomsTextView.text.append("HEAD \n")
+            for element in headSymptoms {
+                reviewSymptomsTextView.text.append(element + "\n")
+            }
+        }
+        if chestSymptoms.isEmpty == false{
+            reviewSymptomsTextView.text.append("CHEST \n")
+            for element in chestSymptoms {
+                reviewSymptomsTextView.text.append(element + "\n")
+            }
+        }
+        if torsoSymptoms.isEmpty == false{
+            reviewSymptomsTextView.text.append("TORSO \n")
+            for element in torsoSymptoms {
+                reviewSymptomsTextView.text.append(element + "\n")
+            }
+        }
+        if pelvisSymptoms.isEmpty == false{
+            reviewSymptomsTextView.text.append("PELVIS \n")
+            for element in pelvisSymptoms {
+                reviewSymptomsTextView.text.append(element + "\n")
+            }
+        }
+        if rightArmSymptoms.isEmpty == false{
+            reviewSymptomsTextView.text.append("RIGHT ARM \n")
+            for element in rightArmSymptoms {
+                reviewSymptomsTextView.text.append(element + "\n")
+            }
+        }
+        if leftArmSymptoms.isEmpty == false{
+            reviewSymptomsTextView.text.append("LEFT ARM \n")
+            for element in leftArmSymptoms {
+                reviewSymptomsTextView.text.append(element + "\n")
+            }
+        }
+        if rightLegSymptoms.isEmpty == false{
+            reviewSymptomsTextView.text.append("RIGHT LEG \n")
+            for element in rightLegSymptoms {
+                reviewSymptomsTextView.text.append(element + "\n")
+            }
+        }
+        if leftLegSymptoms.isEmpty == false{
+            reviewSymptomsTextView.text.append("LEFT LEG \n")
+            for element in leftLegSymptoms {
+                reviewSymptomsTextView.text.append(element + "\n")
+            }
+        }
+    }
+
+
     func backClicked(_ sender: UIBarButtonItem!){
         print("Back Clicked")
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     func skipClicked(_ sender: UIBarButtonItem!){
         self.navigationController?.pushViewController(assessmentandplan, animated: true)
     }
-    
+
     func bodyPartSingleTapped(_ sender: UIGestureRecognizer){
         if sender.view == headButton{
             print("I got here")
@@ -511,28 +718,18 @@ class PhysicalExam: UIViewController {
         // Make outside arrays for symptoms for each body part
         // Make view recognizable 
         // Same as above
-        print("Whoop swag")
-        if problemAreaTextView.isHidden || problemAreaImageView.isHidden {
-            problemAreaTextView.isHidden = false
-            problemAreaImageView.isHidden = false
+        
+        //items = []
+        if lastLongPressed != sender.view{
+            modifyLongPressed = true
         }
+        lastLongPressed = sender.view as! UIButton
+        // TODO Get symptoms from server and change table values
         
-        // Get info from server, but for loops adding to view as table rows
-        
-//        if sender.view == headButton{
-//        } else if sender.view == chestButton {
-//
-//        }else if sender.view == torsoButton {
-//        }else if sender.view == PelvisButton {
-//        }else if sender.view == leftArmButton {
-//          
-//        }else if sender.view == rightArmButton {
-//
-//        }else if sender.view == leftLegButton {
-//
-//        }else if sender.view == rightLegButton {
-//
-//        }
+        if problemAreaTextView.isHidden || problemAreaImageView.isHidden {
+            problemAreaImageView.isHidden = false
+            problemAreaTable.isHidden = false
+        }
 
     }
     
