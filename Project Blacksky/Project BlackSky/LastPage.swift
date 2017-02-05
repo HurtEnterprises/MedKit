@@ -16,6 +16,7 @@ class LastPage: UIViewController {
     let PlandropDown = DropDown()
     let RxdropDown = DropDown()
     let NotesSummarydropDown = DropDown()
+    let mainMenu: MainMenu = MainMenu()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,6 +158,7 @@ class LastPage: UIViewController {
 
     func ConcludebuttonClicked(_ sender:UIButton!){
         print("Conclude Clicked")
+        self.navigationController?.popToViewController(loginPage, animated: true)
     }
     
 }
