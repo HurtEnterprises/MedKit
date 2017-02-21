@@ -4,345 +4,235 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AWSAutoScaling 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>26</integer>
-		</dict>
 		<key>AWSAutoScaling.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
-		<key>AWSCloudWatch 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>27</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSCloudWatch.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
-		</dict>
-		<key>AWSCognito 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>28</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSCognito.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>AWSCore 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>29</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSCore.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
-		</dict>
-		<key>AWSDynamoDB 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>30</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSDynamoDB.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
-		</dict>
-		<key>AWSEC2 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>31</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSEC2.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
-		</dict>
-		<key>AWSElasticLoadBalancing 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>32</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSElasticLoadBalancing.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
-		</dict>
-		<key>AWSKinesis 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>33</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSKinesis.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
-		</dict>
-		<key>AWSLambda 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>34</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSLambda.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
-		</dict>
-		<key>AWSMachineLearning 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>35</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSMachineLearning.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
-		</dict>
-		<key>AWSMobileAnalytics 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>36</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSMobileAnalytics.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
-		</dict>
-		<key>AWSS3 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>37</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSS3.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>14</integer>
-		</dict>
-		<key>AWSSES 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>38</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSSES.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>15</integer>
-		</dict>
-		<key>AWSSNS 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>40</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSSNS.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>17</integer>
-		</dict>
-		<key>AWSSQS 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>41</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSSQS.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>18</integer>
-		</dict>
-		<key>AWSSimpleDB 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>39</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>AWSSimpleDB.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>16</integer>
-		</dict>
-		<key>Atlas 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>24</integer>
-		</dict>
-		<key>Atlas-AtlasResource 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>25</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Atlas-AtlasResource.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Atlas.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>DropDown.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>19</integer>
-		</dict>
-		<key>GTMOAuth2 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>43</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>GTMOAuth2.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>21</integer>
-		</dict>
-		<key>GTMSessionFetcher 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>44</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>22</integer>
-		</dict>
-		<key>GoogleAPIClient 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>42</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>GoogleAPIClient.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>20</integer>
-		</dict>
-		<key>Pods-Project BlackSky 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>45</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-Project BlackSky.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>23</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>05C7B4C5D3A812EDFE2E0DF08124C813</key>
+		<key>018CF9D4C0F0CAFA8300802595E17CC2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0849E21B9B9ACDBAAC96A31A5953712F</key>
+		<key>11DFC6F885BFA9BCE8EB6EA0458ABFF8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>108CB98FE2926893B1E8D043EFAC94DE</key>
+		<key>20C101155E9F5E994103381E67EB0313</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>11A91B5D6477C52D122B4350DE467C02</key>
+		<key>2F5F8BD18BD465CC77CEA7A3DC2ADBD4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>12D38A8ABD2468AB36847EB5B7C6900C</key>
+		<key>4B1FDC092BA68E8B061023A6B97D488C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>14899DD2DE4794A659D6E3A53A2FE532</key>
+		<key>4DB1DFDB984A929FACAE4D76400F69D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>228A8785B1C6C6BFE8E1C8D261204DE3</key>
+		<key>5168099F2EBFC99A707C03C9EADE01A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2DB2440E9FA2A7EDF63907320807D8AD</key>
+		<key>53C6112213829CB147F47E473C93F271</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>39EFD830E6F82181B9D6F38B0A15FFFD</key>
+		<key>567A58272C63E96877C320B73F956506</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>40F160B1EC87D07E1B9EE04FB13AB5F3</key>
+		<key>73E20D8917BB5388CF2326338031E5AF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7051517F12CD2BBD8AE2AD214DB4EC0C</key>
+		<key>764BF5F8A7793010994AF3D12E8FB7BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>71720EFCFAC59A96C1F0B855BDF3BCEC</key>
+		<key>802A0A49CDDB924AE7AA977A38664CB1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9F766ADB76A46AB732825D44C4BAAABF</key>
+		<key>8396CD932BA047CACB40CEF32006A174</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BAA396C4D689A02A15029B49E076FAF0</key>
+		<key>88AD62235943CB07B710254D06DDF915</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BC279E1A4A79751E826180F63A851E07</key>
+		<key>9F7098779713B711F6C591B62A41F242</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BD02CE344851D72142B287462B4106C0</key>
+		<key>9FC549016533CEAB044C636D1C5E09D2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C3FB5DE1339FFE064A98868D1CA84176</key>
+		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CBF20B15AEFABEB1A6F9CF1F30A13134</key>
+		<key>C14498E8A4F7BC06FEBC95C50C9B88BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D1B3D231EED9AD3B2A77C4CE93023F11</key>
+		<key>C9C01ACED2978423B67BA2FAC5CC4A99</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D468777BEC2DE5127A16239373FFD11F</key>
+		<key>DE637C4816A057A8BEE16B1CD9EADE0D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D7C577A782ECBFCC395DF4C6F01965C3</key>
+		<key>E1966D750E0280E24CEA13029EFEAB7F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F9D3017FDE322CAF12E15A42B3977BFD</key>
+		<key>E1BEB1A235C18934076838ED6ED9FFE6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FA4EC47CECE5DCE24241F8B91EC27B05</key>
+		<key>E9A4E239E2E5294D29F6517EF16B34AA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

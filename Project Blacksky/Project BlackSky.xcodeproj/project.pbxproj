@@ -37,6 +37,7 @@
 		F84AD4A41C4461E2009FDFEB /* EncryptionFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */; };
 		F85FD4801C4EE862006411AD /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85FD47F1C4EE862006411AD /* Email.swift */; };
 		F85FD4821C52D73D006411AD /* KeychainFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85FD4811C52D73D006411AD /* KeychainFunctions.swift */; };
+		F86004AE1E4C012B006C1215 /* NewAPTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86004AD1E4C012B006C1215 /* NewAPTemplate.swift */; };
 		F8AD46811E0D9DD0007B83E0 /* PatientInfoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AD46801E0D9DD0007B83E0 /* PatientInfoPage.swift */; };
 		F8AD46831E0DA538007B83E0 /* HistoryOfPresentIllness.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AD46821E0DA538007B83E0 /* HistoryOfPresentIllness.swift */; };
 /* End PBXBuildFile section */
@@ -60,8 +61,6 @@
 
 /* Begin PBXFileReference section */
 		02EBC84A601B9FB32D29B464 /* Pods_Project_BlackSky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_BlackSky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3690CD5992AB721934BF02FF /* Pods-Project BlackSky.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project BlackSky.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project BlackSky/Pods-Project BlackSky.debug.xcconfig"; sourceTree = "<group>"; };
-		3BB3418842808B1B17D3D2E3 /* Pods-Project BlackSky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project BlackSky.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project BlackSky/Pods-Project BlackSky.release.xcconfig"; sourceTree = "<group>"; };
 		6C7006EB1C32862900E681DF /* Project BlackSky-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project BlackSky-Bridging-Header.h"; sourceTree = "<group>"; };
 		6C7006EC1C32862900E681DF /* Obj-C-Bridging-Header.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "Obj-C-Bridging-Header.cpp"; sourceTree = "<group>"; };
 		6C7006ED1C32862900E681DF /* Obj-C-Bridging-Header.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "Obj-C-Bridging-Header.hpp"; sourceTree = "<group>"; };
@@ -94,11 +93,16 @@
 		8FD515341BFA7C30008E7CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FFE85BF1C30927100BC38DB /* AccountRegisterPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountRegisterPage.swift; sourceTree = "<group>"; };
 		8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
+		94584FF5394A374A7459E171 /* Pods_Project_BlackSkyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_BlackSkyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE43B1F2A12E5D12352909E1 /* Pods_Project_BlackSkyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_BlackSkyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3894EAB0D80F932A5BAB470 /* Pods-Project BlackSky.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project BlackSky.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project BlackSky/Pods-Project BlackSky.debug.xcconfig"; sourceTree = "<group>"; };
+		DEA4E5F780AB2CAC798D5BDF /* Pods-Project BlackSky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project BlackSky.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project BlackSky/Pods-Project BlackSky.release.xcconfig"; sourceTree = "<group>"; };
 		F81D90E71E38649C00660CA0 /* LastPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastPage.swift; sourceTree = "<group>"; };
 		F82932D01E35C59D0070269A /* AssessmentAndPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentAndPlan.swift; sourceTree = "<group>"; };
 		F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionFunctions.swift; sourceTree = "<group>"; };
 		F85FD47F1C4EE862006411AD /* Email.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		F85FD4811C52D73D006411AD /* KeychainFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainFunctions.swift; sourceTree = "<group>"; };
+		F86004AD1E4C012B006C1215 /* NewAPTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAPTemplate.swift; sourceTree = "<group>"; };
 		F8AD46801E0D9DD0007B83E0 /* PatientInfoPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientInfoPage.swift; sourceTree = "<group>"; };
 		F8AD46821E0DA538007B83E0 /* HistoryOfPresentIllness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryOfPresentIllness.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				02EBC84A601B9FB32D29B464 /* Pods_Project_BlackSky.framework */,
+				94584FF5394A374A7459E171 /* Pods_Project_BlackSkyTests.framework */,
+				AE43B1F2A12E5D12352909E1 /* Pods_Project_BlackSkyUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -227,6 +233,7 @@
 				8F6FA9B01C3CE5530083020B /* MainMenu.swift */,
 				F8AD46801E0D9DD0007B83E0 /* PatientInfoPage.swift */,
 				F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */,
+				F86004AD1E4C012B006C1215 /* NewAPTemplate.swift */,
 				F85FD4811C52D73D006411AD /* KeychainFunctions.swift */,
 				F8AD46821E0DA538007B83E0 /* HistoryOfPresentIllness.swift */,
 				8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */,
@@ -259,8 +266,8 @@
 		B4D81DB2DFD08F8749E74487 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3690CD5992AB721934BF02FF /* Pods-Project BlackSky.debug.xcconfig */,
-				3BB3418842808B1B17D3D2E3 /* Pods-Project BlackSky.release.xcconfig */,
+				B3894EAB0D80F932A5BAB470 /* Pods-Project BlackSky.debug.xcconfig */,
+				DEA4E5F780AB2CAC798D5BDF /* Pods-Project BlackSky.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -272,12 +279,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8FD515371BFA7C30008E7CDB /* Build configuration list for PBXNativeTarget "Project BlackSky" */;
 			buildPhases = (
-				E4EED31EE8E5142AF7DE327B /* 📦 Check Pods Manifest.lock */,
+				E4EED31EE8E5142AF7DE327B /* [CP] Check Pods Manifest.lock */,
 				8FD515091BFA7C2F008E7CDB /* Sources */,
 				8FD5150A1BFA7C2F008E7CDB /* Frameworks */,
 				8FD5150B1BFA7C2F008E7CDB /* Resources */,
-				FA742BEE687F4DB20D10B745 /* 📦 Embed Pods Frameworks */,
-				6E2008FAFB044A9C5CE7A01C /* 📦 Copy Pods Resources */,
+				FA742BEE687F4DB20D10B745 /* [CP] Embed Pods Frameworks */,
+				6E2008FAFB044A9C5CE7A01C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -331,7 +338,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Hurt Enterprises";
 				TargetAttributes = {
 					8FD5150C1BFA7C2F008E7CDB = {
@@ -398,14 +405,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6E2008FAFB044A9C5CE7A01C /* 📦 Copy Pods Resources */ = {
+		6E2008FAFB044A9C5CE7A01C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,29 +420,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Project BlackSky/Pods-Project BlackSky-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E4EED31EE8E5142AF7DE327B /* 📦 Check Pods Manifest.lock */ = {
+		E4EED31EE8E5142AF7DE327B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		FA742BEE687F4DB20D10B745 /* 📦 Embed Pods Frameworks */ = {
+		FA742BEE687F4DB20D10B745 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +465,7 @@
 				8FD515151BFA7C2F008E7CDB /* DetailViewController.swift in Sources */,
 				8FB01F091C5B39F5003B0CC2 /* NewPatientFamilyHistory.swift in Sources */,
 				8FC03B991C4E942F00CF9F98 /* CurrentUserClass.swift in Sources */,
+				F86004AE1E4C012B006C1215 /* NewAPTemplate.swift in Sources */,
 				F81D90E81E38649C00660CA0 /* LastPage.swift in Sources */,
 				F84AD4A41C4461E2009FDFEB /* EncryptionFunctions.swift in Sources */,
 				F85FD4821C52D73D006411AD /* KeychainFunctions.swift in Sources */,
@@ -543,8 +551,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -588,8 +598,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -608,6 +620,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -615,8 +628,9 @@
 		};
 		8FD515381BFA7C30008E7CDB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3690CD5992AB721934BF02FF /* Pods-Project BlackSky.debug.xcconfig */;
+			baseConfigurationReference = B3894EAB0D80F932A5BAB470 /* Pods-Project BlackSky.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Project BlackSky/Info.plist";
@@ -631,8 +645,9 @@
 		};
 		8FD515391BFA7C30008E7CDB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3BB3418842808B1B17D3D2E3 /* Pods-Project BlackSky.release.xcconfig */;
+			baseConfigurationReference = DEA4E5F780AB2CAC798D5BDF /* Pods-Project BlackSky.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Project BlackSky/Info.plist";

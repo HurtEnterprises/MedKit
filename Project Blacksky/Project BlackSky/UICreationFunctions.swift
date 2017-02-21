@@ -78,7 +78,7 @@ class UICreationFunctions: UIViewController{
         page.view.addSubview(name)
         
         labelname.textColor = color
-        labelname.frame = CGRect(x: location.origin.x + width/3.5, y: location.origin.y - height/100, width: location.size.width, height: location.size.height)
+        labelname.frame = CGRect(x: location.origin.x + 1.4 * width/3.5, y: location.origin.y - height/100, width: location.size.width, height: location.size.height)
         labelname.text = content
         page.view.addSubview(labelname)
         

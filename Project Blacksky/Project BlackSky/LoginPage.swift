@@ -171,6 +171,8 @@ class LoginPage: UIViewController {
         view.addSubview(infoBox)
  
         // Makes Text Fields
+        
+        
         creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGray, frame: CGRect(x: width/4, y: height/3.5 + 50, width: width/2, height: 30), page:self)
         usernameField.font = usernameField.font!.withSize(30)
         usernameField.text = "123456"

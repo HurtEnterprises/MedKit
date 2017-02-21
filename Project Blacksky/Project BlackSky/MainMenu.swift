@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+let newaptemplate: NewAPTemplate = NewAPTemplate()
 let creationFunctions: UICreationFunctions = UICreationFunctions()
 let registerPage: AccountRegisterPage = AccountRegisterPage()
 let loginPage:LoginPage = LoginPage()
@@ -149,6 +150,15 @@ class MainMenu: UIViewController {
         logoutButton.layer.insertSublayer(logoutLayer, at: 0)
         let tealColor = UIColor(hue: 0.5583, saturation: 1, brightness: 0.74, alpha: 1.0)
         
+        let Startnewvisitbutton: UIButton = UIButton(type: UIButtonType.custom)
+        //set image for button
+        Startnewvisitbutton.setImage(UIImage(named: "StartNewVisit"), for: UIControlState.normal)
+        //add function for button
+        Startnewvisitbutton.addTarget(self, action: "startnewvisitbuttonClicked", for: UIControlEvents.touchUpInside)
+        //set frame
+        Startnewvisitbutton.frame = CGRect(x: width/10,y: 0.880 * height, width: width * 9/10, height: height/10)
+        self.view.addSubview(Startnewvisitbutton)
+        
         
 
     }
@@ -193,6 +203,13 @@ class MainMenu: UIViewController {
     
     func newPatientClicked(){
         self.navigationController?.pushViewController(NewPatientPage, animated: true)
+    }
+    
+    //for testing
+    func startnewvisitbuttonClicked(){
+        print("New Visit Started")
+        self.navigationController?.pushViewController(newaptemplate, animated: true)
+        
     }
     
 }

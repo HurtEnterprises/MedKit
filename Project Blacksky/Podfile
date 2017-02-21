@@ -19,9 +19,9 @@ pod 'AWSSimpleDB'
 pod 'AWSSNS'
 pod 'AWSSQS'
 pod 'AWSCognito'
-pod 'LayerKit' 
+pod 'LayerKit'
 pod 'Atlas'
 pod 'GoogleAPIClient/Calendar'
 pod 'GTMOAuth2'
-pod 'DropDown’
+pod 'DropDown'
 end

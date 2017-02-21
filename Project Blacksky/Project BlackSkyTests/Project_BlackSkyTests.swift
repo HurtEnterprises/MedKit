@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Project_BlackSky
+//@testable import Project_BlackSky
 
 class Project_BlackSkyTests: XCTestCase {
     
