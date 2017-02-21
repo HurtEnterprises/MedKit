@@ -9,10 +9,11 @@
 import Foundation
 import DropDown
 import UIKit
-let lastpage: LastPage = LastPage()
 
 class AssessmentAndPlan: UIViewController {
     
+    let lastpage: LastPage = LastPage()
+    let rxPage: RxPage = RxPage()
     let creationFunctions: UICreationFunctions = UICreationFunctions()
     
     var detailItem: AnyObject? {
@@ -47,21 +48,37 @@ class AssessmentAndPlan: UIViewController {
         let IllnessLabel: UILabel = UILabel()
         // Adds logo in top right
         let imageName = "MedKitLogoWhite.png"
-        creationFunctions.addImage(imageName, frame: CGRect(x: 8.5 * width/10, y: 5, width: width/8, height: height/8), center:false, alpha: 0.5, page: self)
         
+        // Makes navigaiton bar
         // Makes navigaiton bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 10, width: width, height: height/20)
-        
-        creationFunctions.makeLabel(HistoryOfPresentLabel, name: "Assessment and Plan", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: 4.2 * width/20,y: 1*height/20, width: 0.75 * width, height: height/15), page: self)
-        HistoryOfPresentLabel.font = UIFont(name: (HistoryOfPresentLabel.font.fontName), size: 55)
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 20, width: width, height: height/20)
         
         let backArrowButton =  UIButton(type: .custom)
         backArrowButton.setImage(UIImage(named: "BackArrowTeal"), for: UIControlState())
-        backArrowButton.addTarget(self, action: #selector(ForgotPasswordPage.backClicked(_:)), for: .touchUpInside)
+        backArrowButton.addTarget(self, action: #selector(MainMenu.backClicked(_:)), for: .touchUpInside)
         backArrowButton.frame = CGRect(x: 0, y: 0, width: width/25, height: height/12)
+        
+        
+        let backWord: UIButton = UIButton()
+        creationFunctions.makeButton(backWord, name: "Back", titleColor: tealColor, location: CGRect(x: width/25, y: height/35, width: width/10, height: 34), page: self)
+        backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 30)
+        backWord.titleLabel?.text = "Back"
+        backWord.titleLabel?.textAlignment = .center
+        backWord.titleLabel?.textColor = UIColor.blue
+        backWord.backgroundColor = UIColor.clear
+        backWord.addTarget(self, action: #selector(MainMenu.backClicked(_:)), for: .touchUpInside)
+        backArrowButton.addSubview(backWord)
+        let barButton = UIBarButtonItem(customView: backArrowButton)
+        self.navigationItem.leftBarButtonItem = barButton
+        
+        let rightButton =  UIBarButtonItem(title: "\(doctorName) | My Account", style:   UIBarButtonItemStyle.plain, target: self, action: #selector(MainMenu.myAccoutClicked(_:)))
+        self.navigationItem.rightBarButtonItem = rightButton
+        rightButton.tintColor = tealColor
+        creationFunctions.makeLabel(HistoryOfPresentLabel, name: "Assessment and Plan", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: 4.2 * width/20,y: 1*height/20, width: 0.75 * width, height: height/15), page: self)
+        HistoryOfPresentLabel.font = UIFont(name: (HistoryOfPresentLabel.font.fontName), size: 55)
         
         let Nextbutton: UIButton = UIButton(type: UIButtonType.custom)
         //set image for button
@@ -70,6 +87,7 @@ class AssessmentAndPlan: UIViewController {
         //set frame
         Nextbutton.frame = CGRect(x: width/2.3,y: 0.900 * height, width: width * 0.25, height: height/10)
         Nextbutton.addTarget(self, action: #selector(HistoryOfPresentIllness.nextClicked(_:)), for: .touchUpInside)
+        
         self.view.addSubview(Nextbutton)
         
         let Skipbutton: UIButton = UIButton(type: UIButtonType.custom)
@@ -100,24 +118,6 @@ class AssessmentAndPlan: UIViewController {
       //  creationFunctions.addImage(image, frame: CGRect(x: width/2.1  ,y: 0.700 * height, width: width * 0.45, height: //height/10), center:false, alpha: 1.0, page: self)
         
         
-        let backWord: UIButton = UIButton()
-        creationFunctions.makeButton(backWord, name: "Back", titleColor: tealColor, location: CGRect(x: width/25, y: height/35, width: width/10, height: 34), page: self)
-        backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 34)
-        backWord.titleLabel?.text = "Back"
-        backWord.titleLabel?.textAlignment = .center
-        backWord.titleLabel?.textColor = UIColor.blue
-        backWord.backgroundColor = UIColor.clear
-        backWord.addTarget(self, action: #selector(ForgotPasswordPage.backClicked(_:)), for: .touchUpInside)
-        backArrowButton.addSubview(backWord)
-        let barButton = UIBarButtonItem(customView: backArrowButton)
-        self.navigationItem.leftBarButtonItem = barButton
-        
-        
-        
-        let rightButton =  UIBarButtonItem(title: "\(doctorName) | My Account", style:   UIBarButtonItemStyle.plain, target: self, action: #selector(MainMenu.myAccoutClicked(_:)))
-        self.navigationItem.rightBarButtonItem = rightButton
-        rightButton.tintColor = tealColor
-        
         self.configureView()
     }
     
@@ -144,7 +144,7 @@ class AssessmentAndPlan: UIViewController {
     
     func nextClicked(_ sender: UIBarButtonItem!){
         print("nextclicked")
-        self.navigationController?.pushViewController(lastpage, animated: true)
+        self.navigationController?.pushViewController(rxPage, animated: true)
     }
     
     

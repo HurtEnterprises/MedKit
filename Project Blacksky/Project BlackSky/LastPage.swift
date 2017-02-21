@@ -13,19 +13,14 @@ import DropDown
 
 class LastPage: UIViewController {
     
-
-
-    
-    
     let PlandropDown = DropDown()
     let RxdropDown = DropDown()
     let NotesSummarydropDown = DropDown()
+    let mainMenu: MainMenu = MainMenu()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-    
         self.view.backgroundColor = UIColor.white
 
         let tealColor = UIColor(hue: 0.5583, saturation: 1, brightness: 0.74, alpha: 1.0)
@@ -88,11 +83,11 @@ class LastPage: UIViewController {
         
         let backArrowButton =  UIButton(type: .custom)
         backArrowButton.setImage(UIImage(named: "BackArrowTeal"), for: UIControlState())
-        backArrowButton.addTarget(self, action: #selector(ForgotPasswordPage.backClicked(_:)), for: .touchUpInside)
+        backArrowButton.addTarget(self, action: #selector(LastPage.backClicked(_:)), for: .touchUpInside)
         backArrowButton.frame = CGRect(x: 0, y: 0, width: width/25, height: height/12)
         
         let backWord: UIButton = UIButton()
-        creationFunctions.makeButton(backWord, name: "Back", titleColor: tealColor, location: CGRect(x: width/25, y: height/35, width: width/10, height: 34), page: self)
+        creationFunctions.makeButton(backWord, name: "Back", titleColor: tealColor, location: CGRect(x: width/25, y: height/35, width: width/10, height: 30), page: self)
         backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 34)
         backWord.titleLabel?.text = "Back"
         backWord.titleLabel?.textAlignment = .center
@@ -136,6 +131,10 @@ class LastPage: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    func backClicked(_ sender: UIButton!){
+        self.navigationController?.popViewController(animated: true)
+    }
 
     
     func myAccoutClicked(_ sender: UIBarButtonItem!){
@@ -159,6 +158,7 @@ class LastPage: UIViewController {
 
     func ConcludebuttonClicked(_ sender:UIButton!){
         print("Conclude Clicked")
+        self.navigationController?.popToViewController(loginPage, animated: true)
     }
     
 }

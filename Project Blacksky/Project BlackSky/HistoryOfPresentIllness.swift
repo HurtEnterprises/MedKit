@@ -14,6 +14,7 @@ class HistoryOfPresentIllness: UIViewController {
     let loginPage:LoginPage = LoginPage()
     let assessmentandplan:AssessmentAndPlan = AssessmentAndPlan()
     let creationFunctions: UICreationFunctions = UICreationFunctions()
+    let physicalExam: PhysicalExam = PhysicalExam()
     
     var detailItem: AnyObject? {
         didSet {
@@ -57,6 +58,8 @@ class HistoryOfPresentIllness: UIViewController {
         
         creationFunctions.makeLabel(HistoryOfPresentLabel, name: "HISTORY OF PRESENT", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: 4.2 * width/20,y: 1*height/20, width: 0.75 * width, height: height/15), page: self)
         HistoryOfPresentLabel.font = UIFont(name: (HistoryOfPresentLabel.font.fontName), size: 55)
+        HistoryOfPresentLabel.sizeToFit()
+        HistoryOfPresentLabel.center.x = self.view.center.x
         
         creationFunctions.makeLabel(IllnessLabel, name: "ILLNESS", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: 8.1 * width/20,y: 1*height/20, width: 0.75 * width, height: height/7), page: self)
         IllnessLabel.font = UIFont(name: (IllnessLabel.font.fontName), size: 55)
@@ -74,6 +77,7 @@ class HistoryOfPresentIllness: UIViewController {
         Nextbutton.frame = CGRect(x: width/2.3,y: 0.900 * height, width: width * 0.25, height: height/10)
         Nextbutton.addTarget(self, action: #selector(HistoryOfPresentIllness.nextClicked(_:)), for: .touchUpInside)
         self.view.addSubview(Nextbutton)
+        Nextbutton.addTarget(self, action: "skipClicked:", for: UIControlEvents.touchUpInside)
         
         let Skipbutton: UIButton = UIButton(type: UIButtonType.custom)
         //set image for button
@@ -82,6 +86,7 @@ class HistoryOfPresentIllness: UIViewController {
         //set frame
         Skipbutton.frame = CGRect(x: width/1.4,y: 0.900 * height, width: width * 0.25, height: height/10)
         self.view.addSubview(Skipbutton)
+        Skipbutton.addTarget(self, action: "skipClicked:", for: UIControlEvents.touchUpInside)
         
         let Notesbutton: UIButton = UIButton(type: UIButtonType.custom)
         //set image for button
@@ -102,7 +107,7 @@ class HistoryOfPresentIllness: UIViewController {
         
         let backWord: UIButton = UIButton()
         creationFunctions.makeButton(backWord, name: "Back", titleColor: tealColor, location: CGRect(x: width/25, y: height/35, width: width/10, height: 34), page: self)
-        backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 34)
+        backWord.titleLabel?.font = UIFont(name: "Arial-BoldMT", size: 30)
         backWord.titleLabel?.text = "Back"
         backWord.titleLabel?.textAlignment = .center
         backWord.titleLabel?.textColor = UIColor.blue
@@ -142,12 +147,17 @@ class HistoryOfPresentIllness: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func nextClicked(_ sender: UIBarButtonItem!){
-        print("nextclicked")
-        self.navigationController?.pushViewController(assessmentandplan, animated: true)
+    func nextClicked(_ sender:UIButton){
+        print("Next Clicked")
+
+
     }
     
+    func skipClicked(_ sender:UIButton){
+        print("Skip Clicked")
+        self.navigationController?.pushViewController(physicalExam, animated: true)
 
+    }
     
 
 }

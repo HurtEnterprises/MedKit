@@ -16,8 +16,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSAutoScaling</string>
 			<key>Type</key>
@@ -27,8 +25,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSCloudWatch</string>
 			<key>Type</key>
@@ -38,8 +34,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Amazon Software License</string>
 			<key>Title</key>
 			<string>AWSCognito</string>
 			<key>Type</key>
@@ -49,8 +43,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSCore</string>
 			<key>Type</key>
@@ -60,8 +52,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSDynamoDB</string>
 			<key>Type</key>
@@ -71,8 +61,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSEC2</string>
 			<key>Type</key>
@@ -82,8 +70,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSElasticLoadBalancing</string>
 			<key>Type</key>
@@ -93,8 +79,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSKinesis</string>
 			<key>Type</key>
@@ -104,8 +88,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSLambda</string>
 			<key>Type</key>
@@ -115,8 +97,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSMachineLearning</string>
 			<key>Type</key>
@@ -126,8 +106,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSMobileAnalytics</string>
 			<key>Type</key>
@@ -137,8 +115,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSS3</string>
 			<key>Type</key>
@@ -148,8 +124,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSSES</string>
 			<key>Type</key>
@@ -159,8 +133,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSSNS</string>
 			<key>Type</key>
@@ -170,8 +142,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSSQS</string>
 			<key>Type</key>
@@ -181,8 +151,6 @@
 			<key>FooterText</key>
 			<string>The AWS Mobile SDK for iOS is generally licensed under the Apache 2.0 License, with the Amazon Cognito Identity Provider and Amazon Cognito Sync subcomponents being licensed under the Amazon Software License and the AWSLex/Bluefront folder under the AWS Customer Agreement (https://aws.amazon.com/agreement/ ). 
 </string>
-			<key>License</key>
-			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>AWSSimpleDB</string>
 			<key>Type</key>
@@ -393,8 +361,6 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 </string>
-			<key>License</key>
-			<string>Apache2</string>
 			<key>Title</key>
 			<string>Atlas</string>
 			<key>Type</key>
@@ -423,8 +389,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</string>
-			<key>License</key>
-			<string>MIT</string>
 			<key>Title</key>
 			<string>DropDown</string>
 			<key>Type</key>
@@ -635,8 +599,6 @@ SOFTWARE.</string>
    See the License for the specific language governing permissions and
    limitations under the License.
 </string>
-			<key>License</key>
-			<string>Apache</string>
 			<key>Title</key>
 			<string>GTMOAuth2</string>
 			<key>Type</key>
@@ -847,8 +809,6 @@ SOFTWARE.</string>
    See the License for the specific language governing permissions and
    limitations under the License.
 </string>
-			<key>License</key>
-			<string>Apache</string>
 			<key>Title</key>
 			<string>GTMSessionFetcher</string>
 			<key>Type</key>
@@ -1059,8 +1019,6 @@ SOFTWARE.</string>
    See the License for the specific language governing permissions and
    limitations under the License.
 </string>
-			<key>License</key>
-			<string>Apache</string>
 			<key>Title</key>
 			<string>GoogleAPIClient</string>
 			<key>Type</key>
@@ -1104,8 +1062,6 @@ If You comply with this agreement, You have the rights below.
   
   b. claims for breach of contract, breach of warranty, guarantee or condition, strict liability, negligence, or other tort to the extent permitted by applicable law.
 </string>
-			<key>License</key>
-			<string>Commercial</string>
 			<key>Title</key>
 			<string>LayerKit</string>
 			<key>Type</key>

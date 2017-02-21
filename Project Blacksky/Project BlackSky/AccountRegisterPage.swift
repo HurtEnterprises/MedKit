@@ -245,7 +245,7 @@ class AccountRegisterPage: UIViewController {
             PublicTag = emailField.text! //used to generate secret keys for encryption
             PrivateTag = desiredPasswordField.text!
             generateKeys() //generate public and private keys using the email as a tag
-//            
+            
             loginData?.PhysicianID = physicianIDField.text!
             loginData?.Password = desiredPasswordField.text!
             loginData?.Email = physicianIDField.text!

@@ -1,5 +1,5 @@
-#ifdef __OBJC__
 #import <UIKit/UIKit.h>
+<<<<<<< HEAD
 #else
 #ifndef FOUNDATION_EXPORT
 #if defined(__cplusplus)
@@ -9,6 +9,8 @@
 #endif
 #endif
 #endif
+=======
+>>>>>>> 021c400cfb02bc2bf18d5b29b9002c1160715517
 
 #import "AWSLambda.h"
 #import "AWSLambdaInvoker.h"

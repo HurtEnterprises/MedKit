@@ -12,6 +12,7 @@ import UIKit
 let mainMenu: MainMenu = MainMenu()
 let patientHistoryPage: NewPatientHistory = NewPatientHistory()
 
+
 class NewPatient: UIViewController {
     
     var detailItem: AnyObject? {

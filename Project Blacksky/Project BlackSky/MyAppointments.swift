@@ -141,12 +141,7 @@ class MyApointments: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.scheduleTable.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         scheduleTable.delegate = self
         scheduleTable.dataSource = self
-        
-        // Makes Navigation Bar
-        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 50)) // Offset by 20 pixels vertically to take the status bar into account
-        
-        creationFunctions.makeNavigationBar(navigationBar, barTitle: "My Appointments", forwardButton: false, backButton: false, page: self)
-        
+
         
         self.configureView()
     }

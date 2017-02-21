@@ -161,6 +161,8 @@ class UICreationFunctions: UIViewController{
         page.view.addSubview(imageView)
     }
     
+    // Adds a text view 
+    
     func drawRectangle(_ color: UIColor, frame: CGRect){
         let context = UIGraphicsGetCurrentContext()
         context?.setLineWidth(4.0)

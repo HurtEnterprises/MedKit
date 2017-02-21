@@ -2,6 +2,16 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Project BlackSky/PGUser.h">
+   </FileRef>
+   <FileRef
+      location = "group:chatInstall.m">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Chat">
+   </Group>
+   <FileRef
       location = "group:Project BlackSky.xcodeproj">
    </FileRef>
    <FileRef
