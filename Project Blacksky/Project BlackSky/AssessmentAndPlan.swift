@@ -50,7 +50,6 @@ class AssessmentAndPlan: UIViewController {
         let imageName = "MedKitLogoWhite.png"
         
         // Makes navigaiton bar
-        // Makes navigaiton bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -69,7 +68,7 @@ class AssessmentAndPlan: UIViewController {
         backWord.titleLabel?.textAlignment = .center
         backWord.titleLabel?.textColor = UIColor.blue
         backWord.backgroundColor = UIColor.clear
-        backWord.addTarget(self, action: #selector(MainMenu.backClicked(_:)), for: .touchUpInside)
+        backWord.addTarget(self, action: #selector(AssessmentAndPlan.backClicked(_:)), for: .touchUpInside)
         backArrowButton.addSubview(backWord)
         let barButton = UIBarButtonItem(customView: backArrowButton)
         self.navigationItem.leftBarButtonItem = barButton
@@ -86,7 +85,7 @@ class AssessmentAndPlan: UIViewController {
         //add function for button
         //set frame
         Nextbutton.frame = CGRect(x: width/2.3,y: 0.900 * height, width: width * 0.25, height: height/10)
-        Nextbutton.addTarget(self, action: #selector(HistoryOfPresentIllness.nextClicked(_:)), for: .touchUpInside)
+        Nextbutton.addTarget(self, action: #selector(AssessmentAndPlan.nextClicked(_:)), for: .touchUpInside)
         
         self.view.addSubview(Nextbutton)
         
@@ -113,6 +112,8 @@ class AssessmentAndPlan: UIViewController {
         //set frame
         CreateNewTemplatebutton.frame = CGRect(x: width / 50,y: 0.900 * height, width: width * 0.4, height: height/10)
         self.view.addSubview(CreateNewTemplatebutton)
+        CreateNewTemplatebutton.addTarget(self, action: #selector(AssessmentAndPlan.newTemplateClicked(_:)), for: .touchUpInside)
+
         
     //    let image = "RequestPrescription"
       //  creationFunctions.addImage(image, frame: CGRect(x: width/2.1  ,y: 0.700 * height, width: width * 0.45, height: //height/10), center:false, alpha: 1.0, page: self)
@@ -148,6 +149,8 @@ class AssessmentAndPlan: UIViewController {
     }
     
     
-    
+    func newTemplateClicked(_ sender: UIButton){
+        print("New Template Clicked")
+    }
     
 }
