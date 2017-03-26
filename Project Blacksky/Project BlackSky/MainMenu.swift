@@ -110,6 +110,7 @@ class MainMenu: UIViewController {
                 var patientTime = NSMutableAttributedString(string:self.appointmentTimeStr, attributes: underlineAttributes)
                 self.appointmentTime.attributedText = patientTime
                 self.appointmentTime.sizeToFit()
+                self.appointmentTime.center.x = view.center.x
                 var patientName = NSMutableAttributedString(string:self.appointmentNameStr, attributes: underlineAttributes)
                 self.startVisitButton.setAttributedTitle(patientName, for: UIControlState())
                 break
