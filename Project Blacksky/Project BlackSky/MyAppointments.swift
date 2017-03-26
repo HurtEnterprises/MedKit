@@ -210,7 +210,14 @@ class MyApointments: UIViewController, UITableViewDelegate, UITableViewDataSourc
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        appointments.removeAll()
+        scheduleTable.reloadData()
+    }
+    
     func backClicked(_ sender: UIBarButtonItem!){
+        appointments.removeAll()
+        scheduleTable.reloadData()
         self.present(self.mainMenu, animated: true, completion: nil)
     }
     

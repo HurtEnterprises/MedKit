@@ -8,115 +8,169 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>AWSCloudWatch.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>AWSCognito.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>AWSCore.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>AWSDynamoDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>AWSEC2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>AWSElasticLoadBalancing.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>AWSKinesis.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>AWSLambda.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>AWSMachineLearning.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 		<key>AWSMobileAnalytics.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>13</integer>
 		</dict>
 		<key>AWSS3.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>14</integer>
 		</dict>
 		<key>AWSSES.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>15</integer>
 		</dict>
 		<key>AWSSNS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>17</integer>
 		</dict>
 		<key>AWSSQS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>18</integer>
 		</dict>
 		<key>AWSSimpleDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>16</integer>
 		</dict>
 		<key>Atlas-AtlasResource.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Atlas.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>DropDown.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>23</integer>
 		</dict>
 		<key>GTMOAuth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>20</integer>
 		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>21</integer>
 		</dict>
 		<key>GoogleAPIClient.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>19</integer>
 		</dict>
 		<key>Pods-Project BlackSky.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>22</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>05C7B4C5D3A812EDFE2E0DF08124C813</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0849E21B9B9ACDBAAC96A31A5953712F</key>
 		<dict>
 			<key>primary</key>
@@ -137,7 +191,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>14899DD2DE4794A659D6E3A53A2FE532</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>228A8785B1C6C6BFE8E1C8D261204DE3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2DB2440E9FA2A7EDF63907320807D8AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,7 +226,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>71720EFCFAC59A96C1F0B855BDF3BCEC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7BB24175093D7F20531C6FD7CB7D1C9C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9F766ADB76A46AB732825D44C4BAAABF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -198,6 +272,11 @@
 			<true/>
 		</dict>
 		<key>C3FB5DE1339FFE064A98868D1CA84176</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CBF20B15AEFABEB1A6F9CF1F30A13134</key>
 		<dict>
 			<key>primary</key>
 			<true/>
