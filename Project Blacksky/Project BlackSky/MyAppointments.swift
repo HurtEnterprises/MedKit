@@ -135,7 +135,6 @@ class MyApointments: UIViewController, UITableViewDelegate, UITableViewDataSourc
             clientID: kClientID,
             clientSecret: nil) {
             service.authorizer = auth
-            print("hahahaha god pls")
         }
         creationFunctions.makeTable(scheduleTable, location: CGRect(x: 0, y:100, width:self.view.frame.size.width, height:self.view.frame.size.height), page: self)
         self.scheduleTable.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
