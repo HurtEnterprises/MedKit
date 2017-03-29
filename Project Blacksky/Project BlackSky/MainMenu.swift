@@ -7,6 +7,8 @@
 //
 import Foundation
 import UIKit
+import GoogleAPIClient
+import GTMOAuth2
 
 let newaptemplate: NewAPTemplate = NewAPTemplate()
 let creationFunctions: UICreationFunctions = UICreationFunctions()
@@ -34,6 +36,104 @@ class MainMenu: UIViewController {
     let chatButton:UIButton = UIButton()
     let logoutButton:UIButton = UIButton()
     
+    fileprivate let kKeychainItemName = "Google Calendar API"
+    fileprivate let kClientID = "45994898732-dkpdmhmqh68nhrlt2sgg7u62dhv41utu.apps.googleusercontent.com"
+    
+    var appointmentTimeStr:String = ""
+    var appointmentNameStr:String = ""
+    // If modifying these scopes, delete your previously saved credentials by
+    // resetting the iOS simulator or uninstall the app.
+    fileprivate let scopes = [kGTLAuthScopeCalendarReadonly]
+    
+    fileprivate let service = GTLServiceCalendar()
+    
+    // Creates the auth controller for authorizing access to Google Calendar API
+    fileprivate func createAuthController() -> GTMOAuth2ViewControllerTouch {
+        let scopeString = scopes.joined(separator: " ")
+        return GTMOAuth2ViewControllerTouch(
+            scope: scopeString,
+            clientID: kClientID,
+            clientSecret: nil,
+            keychainItemName: kKeychainItemName,
+            delegate: self,
+            finishedSelector: #selector(self.viewController(_:finishedWithAuth:error:))
+        )
+    }
+    
+    // Handle completion of the authorization process, and update the Google Calendar API
+    // with the new credentials.
+    func viewController(_ vc : UIViewController,
+                        finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?) {
+        
+        if error != nil {
+            service.authorizer = nil
+            print("error error")
+            return
+        }
+        
+        service.authorizer = authResult
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Construct a query and get a list of upcoming events from the user calendar
+    func fetchEvents() {
+        let query = GTLQueryCalendar.queryForEventsList(withCalendarId: "primary")
+        query?.maxResults = 10
+        query?.timeMin = GTLDateTime(date: Date(), timeZone: TimeZone.autoupdatingCurrent)
+        query?.singleEvents = true
+        query?.orderBy = kGTLCalendarOrderByStartTime
+        service.executeQuery(
+            query!,
+            delegate: self,
+            didFinish: #selector(self.displayResult(_:finishedWithObject:error:))
+        )
+    }
+    
+    func displayResult(
+        _ ticket: GTLServiceTicket,
+        finishedWithObject response : GTLCalendarEvents,
+        error : NSError?) {
+        // grab events and populate appointments array.
+        if error != nil {
+            print("\(error)")
+            return
+        }
+        if let events = response.items() , !events.isEmpty {
+            for event in events as! [GTLCalendarEvent] {
+                let start : GTLDateTime! = event.start.dateTime ?? event.start.date
+                let startString = DateFormatter.localizedString(
+                    from: start.date,
+                    dateStyle: .short,
+                    timeStyle: .short
+                )
+                self.appointmentTimeStr = "At " + startString
+                self.appointmentNameStr = event.summary!
+                var patientTime = NSMutableAttributedString(string:self.appointmentTimeStr, attributes: underlineAttributes)
+                self.appointmentTime.attributedText = patientTime
+                self.appointmentTime.sizeToFit()
+                self.appointmentTime.center.x = view.center.x
+                var patientName = NSMutableAttributedString(string:self.appointmentNameStr, attributes: underlineAttributes)
+                self.startVisitButton.setAttributedTitle(patientName, for: UIControlState())
+                break
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("\n\nVIEW DID APPEAR\n\n")
+        if let authorizer = service.authorizer,
+            let canAuth = authorizer.canAuthorize , canAuth {
+            fetchEvents()
+        } else {
+            present(
+                createAuthController(),
+                animated: true,
+                completion: nil
+            )
+        }
+    }
+
+    
     var underlineAttributes = [
         NSFontAttributeName : UIFont.boldSystemFont(ofSize: 50.0),
         NSForegroundColorAttributeName : UIColor.white,
@@ -45,10 +145,17 @@ class MainMenu: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("\n\nAND WHAT ABOUT VIEWDIDLOAD???!?!!!!\n\n")
         creationFunctions.setBackgroundColor("MainBackground", page: self)
         
         //TODO: Pull from class info
         var doctorName = "Doctor Name"
+        if let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
+            forName: kKeychainItemName,
+            clientID: kClientID,
+            clientSecret: nil) {
+            service.authorizer = auth
+        }
         
         //TODO: Pull from call
         var patientName = NSMutableAttributedString(string:"PATIENT NAME", attributes: underlineAttributes)
@@ -106,7 +213,7 @@ class MainMenu: UIViewController {
         
         
         //TODO: get time from cal
-        creationFunctions.makeLabel(appointmentTime, name: "At + time", textColor: UIColor.white, alignment: NSTextAlignment.center, frame: CGRect(x: width/2, y: (height)*0.4, width: 200, height: 50), page: self)
+        creationFunctions.makeLabel(appointmentTime, name: "At " + appointmentTimeStr, textColor: UIColor.white, alignment: NSTextAlignment.center, frame: CGRect(x: width/2, y: (height)*0.4, width: 200, height: 50), page: self)
         appointmentTime.center = CGPoint(x: width/2, y: (height)*0.4)
         appointmentTime.textAlignment = .center
         appointmentTime.font = appointmentTime.font.withSize(50.0)
