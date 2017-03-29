@@ -125,6 +125,7 @@ class MainMenu: UIViewController {
         myPatientsButton.center = CGPoint(x: width/2, y: height * 13.25/20)
         myPatientsButton.layer.borderWidth = 6.0
         myPatientsButton.setAttributedTitle(myPatientsText, for: UIControlState())
+        myPatientsButton.addTarget(self, action: #selector(MainMenu.myPatientsClicked(_:)), for: .touchUpInside)
 
         let chatText = NSMutableAttributedString(string:"CHAT", attributes: underlineAttributes)
         creationFunctions.makeClearButton(chatButton, name: "Chat", titleColor: UIColor.white, location: CGRect(x: width/2, y: (height-50)*3/4, width: 8 * width/10, height: height/8), page: self)
@@ -197,6 +198,7 @@ class MainMenu: UIViewController {
     }
     
     func myPatientsClicked(_ sender:UIButton){
+        print ("done")
         self.navigationController?.pushViewController(myPatientsPage, animated: true)
     }
     

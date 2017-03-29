@@ -131,7 +131,7 @@ class LoginPage: UIViewController {
         service.authorizer = authResult
         dismiss(animated: true, completion: nil)
     }
-   */
+ 
 
     override func viewDidAppear(_ animated: Bool) {
         if let authorizer = service.authorizer,
@@ -189,7 +189,7 @@ class LoginPage: UIViewController {
         print(eventString)
     }
     
-    
+  
     // Creates the auth controller for authorizing access to Google Calendar API
     fileprivate func createAuthController() -> GTMOAuth2ViewControllerTouch {
         let scopeString = scopes.joined(separator: " ")
@@ -217,7 +217,7 @@ class LoginPage: UIViewController {
         service.authorizer = authResult
         dismiss(animated: true, completion: nil)
     }
-
+*/
     // Helper for showing an alert
     func showAlert(_ title : String, message: String) {
         let alert = UIAlertView(

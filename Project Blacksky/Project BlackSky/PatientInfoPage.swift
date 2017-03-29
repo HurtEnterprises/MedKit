@@ -156,11 +156,7 @@ class PatientInfoPage: UIViewController {
         creationFunctions.makeLabel(initialPatientInfoLabel, name: "INITIAL PATIENT INFO", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: 4.2 * width/20,y: 1*height/20, width: 0.75 * width, height: height/10), page: self)
         initialPatientInfoLabel.font = UIFont(name: (initialPatientInfoLabel.font.fontName), size: 55)
         initialPatientInfoLabel.center.x = self.view.center.x
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> 021c400cfb02bc2bf18d5b29b9002c1160715517
         creationFunctions.makeLabel(nameLabel, name: "NAME:", textColor: tealColor, alignment: NSTextAlignment.left, frame: CGRect(x: width/20,y: 2.5*height/20, width: 0.75 * width, height: height/10), page: self)
         nameLabel.font = UIFont(name: (nameLabel.font.fontName), size: 40)
         
