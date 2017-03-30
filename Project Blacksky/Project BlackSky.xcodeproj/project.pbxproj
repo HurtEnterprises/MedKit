@@ -12,6 +12,7 @@
 		6C7006F11C3287E400E681DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7006F01C3287E400E681DF /* Constants.swift */; };
 		6C7006F31C394C0E00E681DF /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7006F21C394C0E00E681DF /* LoginData.swift */; };
 		8F20F9451C2F794B00C5C5D7 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */; };
+		8F361DF21E8CAE62008FE196 /* VisitClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F361DF11E8CAE62008FE196 /* VisitClass.swift */; };
 		8F5D51AA1E3EA074001AAEA9 /* RxPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D51A91E3EA074001AAEA9 /* RxPage.swift */; };
 		8F6FA9B11C3CE5530083020B /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6FA9B01C3CE5530083020B /* MainMenu.swift */; };
 		8F74854A1C38DACE00C9ED13 /* UICreationFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7485491C38DACE00C9ED13 /* UICreationFunctions.swift */; };
@@ -70,6 +71,7 @@
 		6C7006F01C3287E400E681DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6C7006F21C394C0E00E681DF /* LoginData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		8F20F9441C2F794B00C5C5D7 /* LoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
+		8F361DF11E8CAE62008FE196 /* VisitClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitClass.swift; sourceTree = "<group>"; };
 		8F5D51A91E3EA074001AAEA9 /* RxPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxPage.swift; sourceTree = "<group>"; };
 		8F6FA9B01C3CE5530083020B /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		8F7485491C38DACE00C9ED13 /* UICreationFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICreationFunctions.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			children = (
 				8FC03B981C4E942F00CF9F98 /* CurrentUserClass.swift */,
 				8FC03B9A1C4E944000CF9F98 /* PatientClass.swift */,
+				8F361DF11E8CAE62008FE196 /* VisitClass.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				8FD515111BFA7C2F008E7CDB /* AppDelegate.swift in Sources */,
 				F85FD4801C4EE862006411AD /* Email.swift in Sources */,
 				8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */,
+				8F361DF21E8CAE62008FE196 /* VisitClass.swift in Sources */,
 				8F74854A1C38DACE00C9ED13 /* UICreationFunctions.swift in Sources */,
 				8FE0ACB41DEC326C0072D7AE /* PhysicalExam.swift in Sources */,
 				8FC03B971C42287D00CF9F98 /* NewPatientHistory.swift in Sources */,
