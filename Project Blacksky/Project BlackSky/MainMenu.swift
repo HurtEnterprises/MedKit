@@ -18,6 +18,7 @@ let PatientPage:PatientInfoPage = PatientInfoPage()
 let myPatientsPage: MyPatients = MyPatients()
 let myAppointmentsPage: MyApointments = MyApointments()
 let NewPatientPage: NewPatient = NewPatient()
+let newhpetemplate: NewHPETemplate = NewHPETemplate()
 
 
 class MainMenu: UIViewController {
@@ -35,7 +36,7 @@ class MainMenu: UIViewController {
     let myPatientsButton:UIButton = UIButton()
     let chatButton:UIButton = UIButton()
     let logoutButton:UIButton = UIButton()
-    
+     /*
     fileprivate let kKeychainItemName = "Google Calendar API"
     fileprivate let kClientID = "45994898732-dkpdmhmqh68nhrlt2sgg7u62dhv41utu.apps.googleusercontent.com"
     
@@ -59,9 +60,11 @@ class MainMenu: UIViewController {
             finishedSelector: #selector(self.viewController(_:finishedWithAuth:error:))
         )
     }
+ */
     
     // Handle completion of the authorization process, and update the Google Calendar API
     // with the new credentials.
+    /*
     func viewController(_ vc : UIViewController,
                         finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?) {
         
@@ -74,7 +77,8 @@ class MainMenu: UIViewController {
         service.authorizer = authResult
         dismiss(animated: true, completion: nil)
     }
-    
+    */
+    /*
     // Construct a query and get a list of upcoming events from the user calendar
     func fetchEvents() {
         let query = GTLQueryCalendar.queryForEventsList(withCalendarId: "primary")
@@ -132,7 +136,7 @@ class MainMenu: UIViewController {
             )
         }
     }
-
+ */
     
     var underlineAttributes = [
         NSFontAttributeName : UIFont.boldSystemFont(ofSize: 50.0),
@@ -150,12 +154,14 @@ class MainMenu: UIViewController {
         
         //TODO: Pull from class info
         var doctorName = "Doctor Name"
+        /*
         if let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychain(
             forName: kKeychainItemName,
             clientID: kClientID,
             clientSecret: nil) {
             service.authorizer = auth
         }
+        */
         
         //TODO: Pull from call
         var patientName = NSMutableAttributedString(string:"PATIENT NAME", attributes: underlineAttributes)
@@ -213,12 +219,15 @@ class MainMenu: UIViewController {
         
         
         //TODO: get time from cal
+        /*
         creationFunctions.makeLabel(appointmentTime, name: "At " + appointmentTimeStr, textColor: UIColor.white, alignment: NSTextAlignment.center, frame: CGRect(x: width/2, y: (height)*0.4, width: 200, height: 50), page: self)
         appointmentTime.center = CGPoint(x: width/2, y: (height)*0.4)
         appointmentTime.textAlignment = .center
         appointmentTime.font = appointmentTime.font.withSize(50.0)
         appointmentTime.sizeToFit()
-        
+        */
+ 
+ 
         let scheduleText = NSMutableAttributedString(string:"TODAY'S SCHEDULE", attributes: underlineAttributes)
         creationFunctions.makeClearButton(scheduleButton, name: "My Schedule", titleColor: UIColor.white, location: CGRect(x: width/2, y: (height-50)*5/8,  width: 8 * width/10, height: height/8), page: self)
         scheduleButton.setAttributedTitle(scheduleText, for: UIControlState())
@@ -306,7 +315,7 @@ class MainMenu: UIViewController {
     
     func myPatientsClicked(_ sender:UIButton){
         print ("done")
-        self.navigationController?.pushViewController(myPatientsPage, animated: true)
+        self.navigationController?.pushViewController(newhpetemplate, animated: true)
     }
     
     func myAppointmentsClicked(){
@@ -320,7 +329,7 @@ class MainMenu: UIViewController {
     //for testing
     func startnewvisitbuttonClicked(){
         print("New Visit Started")
-        self.navigationController?.pushViewController(newaptemplate, animated: true)
+        self.navigationController?.pushViewController(newhpetemplate, animated: true)
         
     }
     

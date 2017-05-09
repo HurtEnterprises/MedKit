@@ -5,7 +5,6 @@
 //  Created by Deven  on 12/26/15.
 //  Copyright © 2015 Hurt Enterprises. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import AWSS3
@@ -48,91 +47,91 @@ class LoginPage: UIViewController {
         NSUnderlineStyleAttributeName : 1] as [String : Any]
     
     
-   /* override func viewDidAppear(_ animated: Bool) {
-        if let authorizer = service.authorizer,
-            let canAuth = authorizer.canAuthorize , canAuth {
-            fetchEvents()
-        } else {
-            present(
-                createAuthController(),
-                animated: true,
-                completion: nil
-            )
-        }
-    }
-    // Construct a query and get a list of upcoming events from the user calendar
-    func fetchEvents() {
-        let query = GTLQueryCalendar.queryForEventsList(withCalendarId: "primary")
-        query?.maxResults = 10
-        query?.timeMin = GTLDateTime(date: Date(), timeZone: TimeZone.autoupdatingCurrent)
-        query?.singleEvents = true
-        query?.orderBy = kGTLCalendarOrderByStartTime
-        service.executeQuery(
-            query!,
-            delegate: self,
-            didFinish: #selector(LoginPage.displayResultWithTicket(_:finishedWithObject:error:))
-        )
-    }
-    
-    // Display the start dates and event summaries in the UITextView
-    func displayResultWithTicket(
-        _ ticket: GTLServiceTicket,
-        finishedWithObject response : GTLCalendarEvents,
-                           error : NSError?) {
-        
-        if let error = error {
-            showAlert("Error", message: error.localizedDescription)
-            return
-        }
-        
-        var eventString = ""
-        
-        if let events = response.items() , !events.isEmpty {
-            for event in events as! [GTLCalendarEvent] {
-                let start : GTLDateTime! = event.start.dateTime ?? event.start.date
-                let startString = DateFormatter.localizedString(
-                    from: start.date,
-                    dateStyle: .short,
-                    timeStyle: .short
-                )
-                eventString += "\(startString) - \(event.summary)\n"
-            }
-        } else {
-            eventString = "No upcoming events found."
-        }
-        
-        print(eventString)
-    }
-    
-    // Creates the auth controller for authorizing access to Google Calendar API
-    fileprivate func createAuthController() -> GTMOAuth2ViewControllerTouch {
-        let scopeString = scopes.joined(separator: " ")
-        return GTMOAuth2ViewControllerTouch(
-            scope: scopeString,
-            clientID: kClientID,
-            clientSecret: nil,
-            keychainItemName: kKeychainItemName,
-            delegate: self,
-            finishedSelector: #selector(LoginPage.viewController(_:finishedWithAuth:error:))
-        )
-    }
-    
-    // Handle completion of the authorization process, and update the Google Calendar API
-    // with the new credentials.
-    func viewController(_ vc : UIViewController,
-                        finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?) {
-        
-        if let error = error {
-            service.authorizer = nil
-            showAlert("Authentication Error", message: error.localizedDescription)
-            return
-        }
-        
-        service.authorizer = authResult
-        dismiss(animated: true, completion: nil)
-    }
- 
-
+    /* override func viewDidAppear(_ animated: Bool) {
+     if let authorizer = service.authorizer,
+     let canAuth = authorizer.canAuthorize , canAuth {
+     fetchEvents()
+     } else {
+     present(
+     createAuthController(),
+     animated: true,
+     completion: nil
+     )
+     }
+     }
+     // Construct a query and get a list of upcoming events from the user calendar
+     func fetchEvents() {
+     let query = GTLQueryCalendar.queryForEventsList(withCalendarId: "primary")
+     query?.maxResults = 10
+     query?.timeMin = GTLDateTime(date: Date(), timeZone: TimeZone.autoupdatingCurrent)
+     query?.singleEvents = true
+     query?.orderBy = kGTLCalendarOrderByStartTime
+     service.executeQuery(
+     query!,
+     delegate: self,
+     didFinish: #selector(LoginPage.displayResultWithTicket(_:finishedWithObject:error:))
+     )
+     }
+     
+     // Display the start dates and event summaries in the UITextView
+     func displayResultWithTicket(
+     _ ticket: GTLServiceTicket,
+     finishedWithObject response : GTLCalendarEvents,
+     error : NSError?) {
+     
+     if let error = error {
+     showAlert("Error", message: error.localizedDescription)
+     return
+     }
+     
+     var eventString = ""
+     
+     if let events = response.items() , !events.isEmpty {
+     for event in events as! [GTLCalendarEvent] {
+     let start : GTLDateTime! = event.start.dateTime ?? event.start.date
+     let startString = DateFormatter.localizedString(
+     from: start.date,
+     dateStyle: .short,
+     timeStyle: .short
+     )
+     eventString += "\(startString) - \(event.summary)\n"
+     }
+     } else {
+     eventString = "No upcoming events found."
+     }
+     
+     print(eventString)
+     }
+     
+     // Creates the auth controller for authorizing access to Google Calendar API
+     fileprivate func createAuthController() -> GTMOAuth2ViewControllerTouch {
+     let scopeString = scopes.joined(separator: " ")
+     return GTMOAuth2ViewControllerTouch(
+     scope: scopeString,
+     clientID: kClientID,
+     clientSecret: nil,
+     keychainItemName: kKeychainItemName,
+     delegate: self,
+     finishedSelector: #selector(LoginPage.viewController(_:finishedWithAuth:error:))
+     )
+     }
+     
+     // Handle completion of the authorization process, and update the Google Calendar API
+     // with the new credentials.
+     func viewController(_ vc : UIViewController,
+     finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?) {
+     
+     if let error = error {
+     service.authorizer = nil
+     showAlert("Authentication Error", message: error.localizedDescription)
+     return
+     }
+     
+     service.authorizer = authResult
+     dismiss(animated: true, completion: nil)
+     }
+     */
+    /*
     override func viewDidAppear(_ animated: Bool) {
         if let authorizer = service.authorizer,
             let canAuth = authorizer.canAuthorize , canAuth {
@@ -144,8 +143,10 @@ class LoginPage: UIViewController {
                 completion: nil
             )
         }
-    }
+    }*/
     // Construct a query and get a list of upcoming events from the user calendar
+    
+    /*
     func fetchEvents() {
         let query = GTLQueryCalendar.queryForEventsList(withCalendarId: "primary")
         query?.maxResults = 10
@@ -158,12 +159,13 @@ class LoginPage: UIViewController {
             didFinish: #selector(LoginPage.displayResultWithTicket(_:finishedWithObject:error:))
         )
     }
-    
+    */
+ 
     // Display the start dates and event summaries in the UITextView
     func displayResultWithTicket(
         _ ticket: GTLServiceTicket,
         finishedWithObject response : GTLCalendarEvents,
-                           error : NSError?) {
+        error : NSError?) {
         
         if let error = error {
             showAlert("Error", message: error.localizedDescription)
@@ -189,7 +191,7 @@ class LoginPage: UIViewController {
         print(eventString)
     }
     
-  
+    /*
     // Creates the auth controller for authorizing access to Google Calendar API
     fileprivate func createAuthController() -> GTMOAuth2ViewControllerTouch {
         let scopeString = scopes.joined(separator: " ")
@@ -202,9 +204,11 @@ class LoginPage: UIViewController {
             finishedSelector: #selector(LoginPage.viewController(_:finishedWithAuth:error:))
         )
     }
+    */
     
     // Handle completion of the authorization process, and update the Google Calendar API
     // with the new credentials.
+    /*
     func viewController(_ vc : UIViewController,
                         finishedWithAuth authResult : GTMOAuth2Authentication, error : NSError?) {
         
@@ -217,7 +221,8 @@ class LoginPage: UIViewController {
         service.authorizer = authResult
         dismiss(animated: true, completion: nil)
     }
-*/
+ */
+    
     // Helper for showing an alert
     func showAlert(_ title : String, message: String) {
         let alert = UIAlertView(
@@ -245,7 +250,7 @@ class LoginPage: UIViewController {
         navigationItem.backBarButtonItem = backButton
         self.navigationController?.navigationItem.leftBarButtonItem?.image = UIImage(named: "BackArrow")!
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 20, width: width, height: height/10)
-
+        
         creationFunctions.setBackgroundColor("MainBackground", page: self)
         
         let infoBox = UIView(frame: CGRect(x: width/10, y: height/4, width: width * 8/10, height: height/2.35))
@@ -255,10 +260,8 @@ class LoginPage: UIViewController {
         infoBox.layer.cornerRadius = 8.0
         infoBox.clipsToBounds = true
         view.addSubview(infoBox)
- 
+        
         // Makes Text Fields
-        
-        
         creationFunctions.makeTextField(usernameField, backgroundColor: UIColor.lightGray, frame: CGRect(x: width/4, y: height/3.5 + 50, width: width/2, height: 30), page:self)
         usernameField.font = usernameField.font!.withSize(30)
         usernameField.text = "123456"
@@ -292,7 +295,7 @@ class LoginPage: UIViewController {
         creationFunctions.makeLabel(usernameLabel, name: "USERNAME", textColor: UIColor.white, alignment:NSTextAlignment.center, frame: CGRect(x: width/4, y: height/3.5, width: width/5, height: height/10), page: self)
         usernameLabel.font = usernameLabel.font.withSize(30)
         usernameLabel.sizeToFit()
-
+        
         let passwordLabel: UILabel = UILabel()
         creationFunctions.makeLabel(passwordLabel, name: "PASSWORD", textColor: UIColor.white, alignment:NSTextAlignment.center, frame: CGRect(x: width/4, y: height/2.5, width: width/5, height: height/10), page: self)
         passwordLabel.font = passwordLabel.font.withSize(30)
@@ -404,7 +407,7 @@ class LoginPage: UIViewController {
                 if (task.result != nil) {//the item exists in the db; the username exists.
                     print("Found username")
                     let loginData = task.result as! DDBLoginData //get the login data object we received
-                     
+                    
                     //compare the password on the db to the password they supplied:
                     if self.passwordField.text == loginData.Password {
                         print("Valid. Signed in.")
@@ -424,4 +427,3 @@ class LoginPage: UIViewController {
     }
     
 }
-

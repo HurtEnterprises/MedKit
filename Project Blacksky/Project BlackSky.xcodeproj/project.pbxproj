@@ -37,6 +37,7 @@
 		8FFE85C21C30927E00BC38DB /* ForgotPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFE85C11C30927E00BC38DB /* ForgotPasswordPage.swift */; };
 		F81D90E81E38649C00660CA0 /* LastPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D90E71E38649C00660CA0 /* LastPage.swift */; };
 		F82932D11E35C59D0070269A /* AssessmentAndPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82932D01E35C59D0070269A /* AssessmentAndPlan.swift */; };
+		F82C52951EC24F9F004720E6 /* NewHPETemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82C52941EC24F9F004720E6 /* NewHPETemplate.swift */; };
 		F84AD4A41C4461E2009FDFEB /* EncryptionFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */; };
 		F85FD4801C4EE862006411AD /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85FD47F1C4EE862006411AD /* Email.swift */; };
 		F85FD4821C52D73D006411AD /* KeychainFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85FD4811C52D73D006411AD /* KeychainFunctions.swift */; };
@@ -105,6 +106,7 @@
 		DEA4E5F780AB2CAC798D5BDF /* Pods-Project BlackSky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project BlackSky.release.xcconfig"; path = "Pods/Target Support Files/Pods-Project BlackSky/Pods-Project BlackSky.release.xcconfig"; sourceTree = "<group>"; };
 		F81D90E71E38649C00660CA0 /* LastPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastPage.swift; sourceTree = "<group>"; };
 		F82932D01E35C59D0070269A /* AssessmentAndPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentAndPlan.swift; sourceTree = "<group>"; };
+		F82C52941EC24F9F004720E6 /* NewHPETemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHPETemplate.swift; sourceTree = "<group>"; };
 		F84AD4A31C4461E2009FDFEB /* EncryptionFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionFunctions.swift; sourceTree = "<group>"; };
 		F85FD47F1C4EE862006411AD /* Email.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		F85FD4811C52D73D006411AD /* KeychainFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainFunctions.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				F85FD4811C52D73D006411AD /* KeychainFunctions.swift */,
 				F8AD46821E0DA538007B83E0 /* HistoryOfPresentIllness.swift */,
 				8FC03B8F1C40D02900CF9F98 /* MyPatients.swift */,
+				F82C52941EC24F9F004720E6 /* NewHPETemplate.swift */,
 				8F5D51A91E3EA074001AAEA9 /* RxPage.swift */,
 				8FC03B911C40D03D00CF9F98 /* MyAppointments.swift */,
 				F81D90E71E38649C00660CA0 /* LastPage.swift */,
@@ -494,6 +497,7 @@
 				8F74854A1C38DACE00C9ED13 /* UICreationFunctions.swift in Sources */,
 				8FE0ACB41DEC326C0072D7AE /* PhysicalExam.swift in Sources */,
 				8FC03B971C42287D00CF9F98 /* NewPatientHistory.swift in Sources */,
+				F82C52951EC24F9F004720E6 /* NewHPETemplate.swift in Sources */,
 				6C7006F11C3287E400E681DF /* Constants.swift in Sources */,
 				8F5D51AA1E3EA074001AAEA9 /* RxPage.swift in Sources */,
 				F82932D11E35C59D0070269A /* AssessmentAndPlan.swift in Sources */,
